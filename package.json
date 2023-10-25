@@ -11,32 +11,6 @@
     "lib",
     "dist"
   ],
-  "scripts": {
-    "prepare": "husky install",
-    "dev": "vite serve site --force",
-    "build": "run-s build:dist build:lib",
-    "build:site": "vite build site --mode production && cp -r ./site/views/ ./site/dist/views",
-    "build:dist": "rimraf dist && lerna run --stream --scope cli dist",
-    "build:lib": "rimraf lib && lerna run --stream --scope cli lib",
-    "help:release": "lerna run --stream --scope cli release",
-    "release": "run-s build help:release",
-    "analyze:lib": "rimraf lib && lerna run --stream --scope cli lib -- -a",
-    "generate:icon": "lerna run --scope @bkui-vue/icon build",
-    "changelog": "conventional-changelog -c .changelog.config.js -p angular -i CHANGELOG.md -s -l",
-    "lint:packages": "eslint ./packages --ext .js,.ts,.tsx --cache",
-    "lint:site": "eslint ./site --ext .js,.ts,.tsx,.vue --cache",
-    "lint:scripts": "eslint ./scripts --ext .js,.ts,.tsx --cache",
-    "lint": "run-p lint:site lint:packages lint:scripts",
-    "fix:packages": "eslint ./packages --ext .js,.ts,.tsx --fix --cache",
-    "fix:site": "eslint ./site --ext .js,.ts,.tsx,.vue --fix --cache",
-    "fix:scripts": "eslint ./scripts --ext .js,.ts,.tsx --fix --cache",
-    "lint:fix": "run-p lint:site lint:packages lint:scripts",
-    "stylelint": "stylelint ./{packages,site}/**/*.{vue,less} --custom-syntax",
-    "stylelint:fix": "stylelint --fix ./{packages,site}/**/*.{vue,less} --custom-syntax",
-    "test:unit": "jest --passWithNoTests --config=./jest.config.js",
-    "test:alert": "lerna run --scope @bkui-vue/alert test",
-    "cz": "git-cz"
-  },
   "devDependencies": {
     "@babel/core": "~7.17.9",
     "@babel/plugin-transform-runtime": "~7.17.0",
@@ -113,6 +87,7 @@
   },
   "main": "dist/index.esm.js",
   "typings": "lib/index.d.ts",
+  "homepage": "https://github.com/bk-vision/bkui-vue3",
   "lint-staged": {
     "scripts/**/*.(vue|ts|tsx|js)": [
       "eslint ./scripts --ext .js,.tsx,.ts --cache --fix",

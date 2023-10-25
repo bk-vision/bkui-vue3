@@ -33,7 +33,7 @@ var __publicField = (obj, key2, value) => {
   __defNormalProp(obj, typeof key2 !== "symbol" ? key2 + "" : key2, value);
   return value;
 };
-import { inject, reactive, defineComponent, computed, watch, provide, createVNode, mergeProps, h as h$1, ref, onMounted, onBeforeUnmount, getCurrentInstance, nextTick, Transition, createTextVNode, withDirectives, vShow, isVNode, renderSlot, Fragment, toRefs, Teleport, resolveDirective, createApp, customRef, onBeforeMount, toRef, shallowRef, onUnmounted, vModelText, unref, watchEffect, markRaw, onUpdated, render as render$1, toRaw, withModifiers, TransitionGroup } from "vue";
+import { inject, reactive, watch, provide, computed, defineComponent, createVNode, mergeProps, h as h$1, ref, onMounted, onBeforeUnmount, getCurrentInstance, nextTick, Transition, createApp, createTextVNode, withDirectives, vShow, isVNode, Fragment, renderSlot, toRefs, Teleport, resolveDirective, customRef, onBeforeMount, toRef, shallowRef, vModelText, unref, watchEffect, markRaw, onUpdated, render as render$1, onUnmounted, toRaw, withModifiers, TransitionGroup } from "vue";
 var reset = "";
 var alert = "";
 var affix = "";
@@ -55,7 +55,6 @@ var loading = "";
 var modal = "";
 var progress = "";
 var radio = "";
-var radioButton = "";
 var rate = "";
 var star$1 = "";
 var swiper = "";
@@ -90,1514 +89,28 @@ var colorPicker = "";
 var timePicker = "";
 var searchSelect = "";
 var configProvider = "";
-const BKLAYERD_INDEX_EFAULT_VALUE = {
-  ["bottom"]: 0,
-  ["content"]: 1,
-  ["navi"]: 100,
-  ["fullScreen"]: 1e3,
-  ["modal"]: 3e3,
-  ["plugins"]: 8e3,
-  ["message"]: 1e4,
-  ["popper"]: 99999
-};
-class BKZIndexManager {
-  constructor() {
-    this.storageLayerIndexValue = {};
-    this.copyDefaultValue();
-  }
-  getNextIndex(type) {
-    if (Object.prototype.hasOwnProperty.call(this.storageLayerIndexValue, type)) {
-      this.storageLayerIndexValue[type] = this.storageLayerIndexValue[type] + 1;
-      return this.storageLayerIndexValue[type];
-    }
-    this.storageLayerIndexValue["modal"] = this.storageLayerIndexValue["modal"] + 1;
-    return this.storageLayerIndexValue["modal"];
-  }
-  getModalNextIndex() {
-    return this.getNextIndex("modal");
-  }
-  getMessageNextIndex() {
-    return this.getNextIndex("message");
-  }
-  getFullScreenNextIndex() {
-    return this.getNextIndex("fullScreen");
-  }
-  getNaviNextIndex() {
-    return this.getNextIndex("navi");
-  }
-  getPopperIndex() {
-    return BKLAYERD_INDEX_EFAULT_VALUE.popper;
-  }
-  setDefaultZIndex(config) {
-    Object.keys(config || {}).forEach((key2) => {
-      if (Object.prototype.hasOwnProperty.call(this.storageLayerIndexValue.__proto__, key2)) {
-        Object.assign(this.storageLayerIndexValue.__proto__, { [key2]: config[key2] });
-      }
-    });
-    this.copyDefaultValue();
-  }
-  resetZIndex(config) {
-    Object.keys(config || {}).forEach((key2) => {
-      if (Object.prototype.hasOwnProperty.call(this.storageLayerIndexValue, key2)) {
-        Object.assign(this.storageLayerIndexValue, { [key2]: config[key2] });
-      }
-    });
-  }
-  copyDefaultValue() {
-    const properties = Object.keys(BKLAYERD_INDEX_EFAULT_VALUE).reduce((props2, key2) => Object.assign(props2, {
-      [key2]: {
-        value: BKLAYERD_INDEX_EFAULT_VALUE[key2],
-        writable: true,
-        configurable: true
-      }
-    }), {});
-    this.storageLayerIndexValue = Object.create(BKLAYERD_INDEX_EFAULT_VALUE, properties);
-  }
-}
-const bkZIndexManager = new BKZIndexManager();
-var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
-var rngBrowser = { exports: {} };
-var getRandomValues = typeof crypto != "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto != "undefined" && typeof window.msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto);
-if (getRandomValues) {
-  var rnds8 = new Uint8Array(16);
-  rngBrowser.exports = function whatwgRNG() {
-    getRandomValues(rnds8);
-    return rnds8;
-  };
-} else {
-  var rnds = new Array(16);
-  rngBrowser.exports = function mathRNG() {
-    for (var i2 = 0, r2; i2 < 16; i2++) {
-      if ((i2 & 3) === 0)
-        r2 = Math.random() * 4294967296;
-      rnds[i2] = r2 >>> ((i2 & 3) << 3) & 255;
-    }
-    return rnds;
-  };
-}
-var byteToHex = [];
-for (var i$1 = 0; i$1 < 256; ++i$1) {
-  byteToHex[i$1] = (i$1 + 256).toString(16).substr(1);
-}
-function bytesToUuid$2(buf, offset2) {
-  var i2 = offset2 || 0;
-  var bth = byteToHex;
-  return [
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    "-",
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    "-",
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    "-",
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    "-",
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    bth[buf[i2++]],
-    bth[buf[i2++]]
-  ].join("");
-}
-var bytesToUuid_1 = bytesToUuid$2;
-var rng$1 = rngBrowser.exports;
-var bytesToUuid$1 = bytesToUuid_1;
-var _nodeId;
-var _clockseq;
-var _lastMSecs = 0;
-var _lastNSecs = 0;
-function v1$1(options, buf, offset2) {
-  var i2 = buf && offset2 || 0;
-  var b2 = buf || [];
-  options = options || {};
-  var node = options.node || _nodeId;
-  var clockseq = options.clockseq !== void 0 ? options.clockseq : _clockseq;
-  if (node == null || clockseq == null) {
-    var seedBytes = rng$1();
-    if (node == null) {
-      node = _nodeId = [
-        seedBytes[0] | 1,
-        seedBytes[1],
-        seedBytes[2],
-        seedBytes[3],
-        seedBytes[4],
-        seedBytes[5]
-      ];
-    }
-    if (clockseq == null) {
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
-    }
-  }
-  var msecs = options.msecs !== void 0 ? options.msecs : new Date().getTime();
-  var nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
-  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
-  if (dt < 0 && options.clockseq === void 0) {
-    clockseq = clockseq + 1 & 16383;
-  }
-  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
-    nsecs = 0;
-  }
-  if (nsecs >= 1e4) {
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  }
-  _lastMSecs = msecs;
-  _lastNSecs = nsecs;
-  _clockseq = clockseq;
-  msecs += 122192928e5;
-  var tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
-  b2[i2++] = tl >>> 24 & 255;
-  b2[i2++] = tl >>> 16 & 255;
-  b2[i2++] = tl >>> 8 & 255;
-  b2[i2++] = tl & 255;
-  var tmh = msecs / 4294967296 * 1e4 & 268435455;
-  b2[i2++] = tmh >>> 8 & 255;
-  b2[i2++] = tmh & 255;
-  b2[i2++] = tmh >>> 24 & 15 | 16;
-  b2[i2++] = tmh >>> 16 & 255;
-  b2[i2++] = clockseq >>> 8 | 128;
-  b2[i2++] = clockseq & 255;
-  for (var n2 = 0; n2 < 6; ++n2) {
-    b2[i2 + n2] = node[n2];
-  }
-  return buf ? buf : bytesToUuid$1(b2);
-}
-var v1_1 = v1$1;
-var rng = rngBrowser.exports;
-var bytesToUuid = bytesToUuid_1;
-function v4$1(options, buf, offset2) {
-  var i2 = buf && offset2 || 0;
-  if (typeof options == "string") {
-    buf = options === "binary" ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-  var rnds = options.random || (options.rng || rng)();
-  rnds[6] = rnds[6] & 15 | 64;
-  rnds[8] = rnds[8] & 63 | 128;
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i2 + ii] = rnds[ii];
-    }
-  }
-  return buf || bytesToUuid(rnds);
-}
-var v4_1 = v4$1;
-var v1 = v1_1;
-var v4 = v4_1;
-var uuid = v4;
-uuid.v1 = v1;
-uuid.v4 = v4;
-var uuid_1 = uuid;
-var top = "top";
-var bottom = "bottom";
-var right = "right";
-var left = "left";
-var auto = "auto";
-var basePlacements = [top, bottom, right, left];
-var start = "start";
-var end = "end";
-var clippingParents = "clippingParents";
-var viewport = "viewport";
-var popper = "popper";
-var reference = "reference";
-var variationPlacements = /* @__PURE__ */ basePlacements.reduce(function(acc, placement) {
-  return acc.concat([placement + "-" + start, placement + "-" + end]);
-}, []);
-var placements = /* @__PURE__ */ [].concat(basePlacements, [auto]).reduce(function(acc, placement) {
-  return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
-}, []);
-var beforeRead = "beforeRead";
-var read = "read";
-var afterRead = "afterRead";
-var beforeMain = "beforeMain";
-var main = "main";
-var afterMain = "afterMain";
-var beforeWrite = "beforeWrite";
-var write = "write";
-var afterWrite = "afterWrite";
-var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite];
-function getNodeName$1(element) {
-  return element ? (element.nodeName || "").toLowerCase() : null;
-}
-function getWindow$1(node) {
-  if (node == null) {
-    return window;
-  }
-  if (node.toString() !== "[object Window]") {
-    var ownerDocument = node.ownerDocument;
-    return ownerDocument ? ownerDocument.defaultView || window : window;
-  }
-  return node;
-}
-function isElement$3(node) {
-  var OwnElement = getWindow$1(node).Element;
-  return node instanceof OwnElement || node instanceof Element;
-}
-function isHTMLElement$1(node) {
-  var OwnElement = getWindow$1(node).HTMLElement;
-  return node instanceof OwnElement || node instanceof HTMLElement;
-}
-function isShadowRoot$1(node) {
-  if (typeof ShadowRoot === "undefined") {
-    return false;
-  }
-  var OwnElement = getWindow$1(node).ShadowRoot;
-  return node instanceof OwnElement || node instanceof ShadowRoot;
-}
-function applyStyles(_ref) {
-  var state = _ref.state;
-  Object.keys(state.elements).forEach(function(name) {
-    var style2 = state.styles[name] || {};
-    var attributes = state.attributes[name] || {};
-    var element = state.elements[name];
-    if (!isHTMLElement$1(element) || !getNodeName$1(element)) {
+var popConfirm = "";
+function scrollTop(el, from = 0, to, duration = 500, endCallback) {
+  const difference = Math.abs(from - to);
+  const step = Math.ceil(difference / duration * 50);
+  function scroll(start2, end2, step2) {
+    if (start2 === end2) {
+      endCallback == null ? void 0 : endCallback();
       return;
     }
-    Object.assign(element.style, style2);
-    Object.keys(attributes).forEach(function(name2) {
-      var value = attributes[name2];
-      if (value === false) {
-        element.removeAttribute(name2);
-      } else {
-        element.setAttribute(name2, value === true ? "" : value);
-      }
-    });
-  });
-}
-function effect$2(_ref2) {
-  var state = _ref2.state;
-  var initialStyles = {
-    popper: {
-      position: state.options.strategy,
-      left: "0",
-      top: "0",
-      margin: "0"
-    },
-    arrow: {
-      position: "absolute"
-    },
-    reference: {}
-  };
-  Object.assign(state.elements.popper.style, initialStyles.popper);
-  state.styles = initialStyles;
-  if (state.elements.arrow) {
-    Object.assign(state.elements.arrow.style, initialStyles.arrow);
-  }
-  return function() {
-    Object.keys(state.elements).forEach(function(name) {
-      var element = state.elements[name];
-      var attributes = state.attributes[name] || {};
-      var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]);
-      var style2 = styleProperties.reduce(function(style3, property) {
-        style3[property] = "";
-        return style3;
-      }, {});
-      if (!isHTMLElement$1(element) || !getNodeName$1(element)) {
-        return;
-      }
-      Object.assign(element.style, style2);
-      Object.keys(attributes).forEach(function(attribute) {
-        element.removeAttribute(attribute);
-      });
-    });
-  };
-}
-var applyStyles$1 = {
-  name: "applyStyles",
-  enabled: true,
-  phase: "write",
-  fn: applyStyles,
-  effect: effect$2,
-  requires: ["computeStyles"]
-};
-function getBasePlacement(placement) {
-  return placement.split("-")[0];
-}
-var max$2 = Math.max;
-var min$2 = Math.min;
-var round$1 = Math.round;
-function getBoundingClientRect$1(element, includeScale) {
-  if (includeScale === void 0) {
-    includeScale = false;
-  }
-  var rect = element.getBoundingClientRect();
-  var scaleX = 1;
-  var scaleY = 1;
-  if (isHTMLElement$1(element) && includeScale) {
-    var offsetHeight = element.offsetHeight;
-    var offsetWidth = element.offsetWidth;
-    if (offsetWidth > 0) {
-      scaleX = round$1(rect.width) / offsetWidth || 1;
+    let d2 = start2 + step2 > end2 ? end2 : start2 + step2;
+    if (start2 > end2) {
+      d2 = start2 - step2 < end2 ? end2 : start2 - step2;
     }
-    if (offsetHeight > 0) {
-      scaleY = round$1(rect.height) / offsetHeight || 1;
-    }
-  }
-  return {
-    width: rect.width / scaleX,
-    height: rect.height / scaleY,
-    top: rect.top / scaleY,
-    right: rect.right / scaleX,
-    bottom: rect.bottom / scaleY,
-    left: rect.left / scaleX,
-    x: rect.left / scaleX,
-    y: rect.top / scaleY
-  };
-}
-function getLayoutRect(element) {
-  var clientRect = getBoundingClientRect$1(element);
-  var width = element.offsetWidth;
-  var height = element.offsetHeight;
-  if (Math.abs(clientRect.width - width) <= 1) {
-    width = clientRect.width;
-  }
-  if (Math.abs(clientRect.height - height) <= 1) {
-    height = clientRect.height;
-  }
-  return {
-    x: element.offsetLeft,
-    y: element.offsetTop,
-    width,
-    height
-  };
-}
-function contains$1(parent, child) {
-  var rootNode = child.getRootNode && child.getRootNode();
-  if (parent.contains(child)) {
-    return true;
-  } else if (rootNode && isShadowRoot$1(rootNode)) {
-    var next = child;
-    do {
-      if (next && parent.isSameNode(next)) {
-        return true;
-      }
-      next = next.parentNode || next.host;
-    } while (next);
-  }
-  return false;
-}
-function getComputedStyle$2(element) {
-  return getWindow$1(element).getComputedStyle(element);
-}
-function isTableElement$1(element) {
-  return ["table", "td", "th"].indexOf(getNodeName$1(element)) >= 0;
-}
-function getDocumentElement$1(element) {
-  return ((isElement$3(element) ? element.ownerDocument : element.document) || window.document).documentElement;
-}
-function getParentNode$1(element) {
-  if (getNodeName$1(element) === "html") {
-    return element;
-  }
-  return element.assignedSlot || element.parentNode || (isShadowRoot$1(element) ? element.host : null) || getDocumentElement$1(element);
-}
-function getTrueOffsetParent$1(element) {
-  if (!isHTMLElement$1(element) || getComputedStyle$2(element).position === "fixed") {
-    return null;
-  }
-  return element.offsetParent;
-}
-function getContainingBlock$1(element) {
-  var isFirefox2 = navigator.userAgent.toLowerCase().indexOf("firefox") !== -1;
-  var isIE = navigator.userAgent.indexOf("Trident") !== -1;
-  if (isIE && isHTMLElement$1(element)) {
-    var elementCss = getComputedStyle$2(element);
-    if (elementCss.position === "fixed") {
-      return null;
-    }
-  }
-  var currentNode = getParentNode$1(element);
-  if (isShadowRoot$1(currentNode)) {
-    currentNode = currentNode.host;
-  }
-  while (isHTMLElement$1(currentNode) && ["html", "body"].indexOf(getNodeName$1(currentNode)) < 0) {
-    var css = getComputedStyle$2(currentNode);
-    if (css.transform !== "none" || css.perspective !== "none" || css.contain === "paint" || ["transform", "perspective"].indexOf(css.willChange) !== -1 || isFirefox2 && css.willChange === "filter" || isFirefox2 && css.filter && css.filter !== "none") {
-      return currentNode;
+    if (el === window) {
+      window.scrollTo(d2, d2);
     } else {
-      currentNode = currentNode.parentNode;
+      el.scrollTop = d2;
     }
+    window.requestAnimationFrame(() => scroll(d2, end2, step2));
   }
-  return null;
+  scroll(from, to, step);
 }
-function getOffsetParent$1(element) {
-  var window2 = getWindow$1(element);
-  var offsetParent = getTrueOffsetParent$1(element);
-  while (offsetParent && isTableElement$1(offsetParent) && getComputedStyle$2(offsetParent).position === "static") {
-    offsetParent = getTrueOffsetParent$1(offsetParent);
-  }
-  if (offsetParent && (getNodeName$1(offsetParent) === "html" || getNodeName$1(offsetParent) === "body" && getComputedStyle$2(offsetParent).position === "static")) {
-    return window2;
-  }
-  return offsetParent || getContainingBlock$1(element) || window2;
-}
-function getMainAxisFromPlacement$1(placement) {
-  return ["top", "bottom"].indexOf(placement) >= 0 ? "x" : "y";
-}
-function within$1(min2, value, max2) {
-  return max$2(min2, min$2(value, max2));
-}
-function withinMaxClamp(min2, value, max2) {
-  var v2 = within$1(min2, value, max2);
-  return v2 > max2 ? max2 : v2;
-}
-function getFreshSideObject() {
-  return {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  };
-}
-function mergePaddingObject(paddingObject) {
-  return Object.assign({}, getFreshSideObject(), paddingObject);
-}
-function expandToHashMap(value, keys) {
-  return keys.reduce(function(hashMap, key2) {
-    hashMap[key2] = value;
-    return hashMap;
-  }, {});
-}
-var toPaddingObject = function toPaddingObject2(padding, state) {
-  padding = typeof padding === "function" ? padding(Object.assign({}, state.rects, {
-    placement: state.placement
-  })) : padding;
-  return mergePaddingObject(typeof padding !== "number" ? padding : expandToHashMap(padding, basePlacements));
-};
-function arrow$1(_ref) {
-  var _state$modifiersData$;
-  var state = _ref.state, name = _ref.name, options = _ref.options;
-  var arrowElement = state.elements.arrow;
-  var popperOffsets2 = state.modifiersData.popperOffsets;
-  var basePlacement = getBasePlacement(state.placement);
-  var axis = getMainAxisFromPlacement$1(basePlacement);
-  var isVertical = [left, right].indexOf(basePlacement) >= 0;
-  var len = isVertical ? "height" : "width";
-  if (!arrowElement || !popperOffsets2) {
-    return;
-  }
-  var paddingObject = toPaddingObject(options.padding, state);
-  var arrowRect = getLayoutRect(arrowElement);
-  var minProp = axis === "y" ? top : left;
-  var maxProp = axis === "y" ? bottom : right;
-  var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets2[axis] - state.rects.popper[len];
-  var startDiff = popperOffsets2[axis] - state.rects.reference[axis];
-  var arrowOffsetParent = getOffsetParent$1(arrowElement);
-  var clientSize = arrowOffsetParent ? axis === "y" ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
-  var centerToReference = endDiff / 2 - startDiff / 2;
-  var min2 = paddingObject[minProp];
-  var max2 = clientSize - arrowRect[len] - paddingObject[maxProp];
-  var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
-  var offset2 = within$1(min2, center, max2);
-  var axisProp = axis;
-  state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset2, _state$modifiersData$.centerOffset = offset2 - center, _state$modifiersData$);
-}
-function effect$1(_ref2) {
-  var state = _ref2.state, options = _ref2.options;
-  var _options$element = options.element, arrowElement = _options$element === void 0 ? "[data-popper-arrow]" : _options$element;
-  if (arrowElement == null) {
-    return;
-  }
-  if (typeof arrowElement === "string") {
-    arrowElement = state.elements.popper.querySelector(arrowElement);
-    if (!arrowElement) {
-      return;
-    }
-  }
-  if (!contains$1(state.elements.popper, arrowElement)) {
-    return;
-  }
-  state.elements.arrow = arrowElement;
-}
-var arrow$2 = {
-  name: "arrow",
-  enabled: true,
-  phase: "main",
-  fn: arrow$1,
-  effect: effect$1,
-  requires: ["popperOffsets"],
-  requiresIfExists: ["preventOverflow"]
-};
-function getVariation(placement) {
-  return placement.split("-")[1];
-}
-var unsetSides = {
-  top: "auto",
-  right: "auto",
-  bottom: "auto",
-  left: "auto"
-};
-function roundOffsetsByDPR(_ref) {
-  var x2 = _ref.x, y2 = _ref.y;
-  var win = window;
-  var dpr = win.devicePixelRatio || 1;
-  return {
-    x: round$1(x2 * dpr) / dpr || 0,
-    y: round$1(y2 * dpr) / dpr || 0
-  };
-}
-function mapToStyles(_ref2) {
-  var _Object$assign2;
-  var popper2 = _ref2.popper, popperRect = _ref2.popperRect, placement = _ref2.placement, variation = _ref2.variation, offsets = _ref2.offsets, position = _ref2.position, gpuAcceleration = _ref2.gpuAcceleration, adaptive = _ref2.adaptive, roundOffsets = _ref2.roundOffsets, isFixed = _ref2.isFixed;
-  var _offsets$x = offsets.x, x2 = _offsets$x === void 0 ? 0 : _offsets$x, _offsets$y = offsets.y, y2 = _offsets$y === void 0 ? 0 : _offsets$y;
-  var _ref3 = typeof roundOffsets === "function" ? roundOffsets({
-    x: x2,
-    y: y2
-  }) : {
-    x: x2,
-    y: y2
-  };
-  x2 = _ref3.x;
-  y2 = _ref3.y;
-  var hasX = offsets.hasOwnProperty("x");
-  var hasY = offsets.hasOwnProperty("y");
-  var sideX = left;
-  var sideY = top;
-  var win = window;
-  if (adaptive) {
-    var offsetParent = getOffsetParent$1(popper2);
-    var heightProp = "clientHeight";
-    var widthProp = "clientWidth";
-    if (offsetParent === getWindow$1(popper2)) {
-      offsetParent = getDocumentElement$1(popper2);
-      if (getComputedStyle$2(offsetParent).position !== "static" && position === "absolute") {
-        heightProp = "scrollHeight";
-        widthProp = "scrollWidth";
-      }
-    }
-    offsetParent = offsetParent;
-    if (placement === top || (placement === left || placement === right) && variation === end) {
-      sideY = bottom;
-      var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : offsetParent[heightProp];
-      y2 -= offsetY - popperRect.height;
-      y2 *= gpuAcceleration ? 1 : -1;
-    }
-    if (placement === left || (placement === top || placement === bottom) && variation === end) {
-      sideX = right;
-      var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : offsetParent[widthProp];
-      x2 -= offsetX - popperRect.width;
-      x2 *= gpuAcceleration ? 1 : -1;
-    }
-  }
-  var commonStyles = Object.assign({
-    position
-  }, adaptive && unsetSides);
-  var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
-    x: x2,
-    y: y2
-  }) : {
-    x: x2,
-    y: y2
-  };
-  x2 = _ref4.x;
-  y2 = _ref4.y;
-  if (gpuAcceleration) {
-    var _Object$assign;
-    return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? "0" : "", _Object$assign[sideX] = hasX ? "0" : "", _Object$assign.transform = (win.devicePixelRatio || 1) <= 1 ? "translate(" + x2 + "px, " + y2 + "px)" : "translate3d(" + x2 + "px, " + y2 + "px, 0)", _Object$assign));
-  }
-  return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y2 + "px" : "", _Object$assign2[sideX] = hasX ? x2 + "px" : "", _Object$assign2.transform = "", _Object$assign2));
-}
-function computeStyles(_ref5) {
-  var state = _ref5.state, options = _ref5.options;
-  var _options$gpuAccelerat = options.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive, _options$roundOffsets = options.roundOffsets, roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-  var commonStyles = {
-    placement: getBasePlacement(state.placement),
-    variation: getVariation(state.placement),
-    popper: state.elements.popper,
-    popperRect: state.rects.popper,
-    gpuAcceleration,
-    isFixed: state.options.strategy === "fixed"
-  };
-  if (state.modifiersData.popperOffsets != null) {
-    state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
-      offsets: state.modifiersData.popperOffsets,
-      position: state.options.strategy,
-      adaptive,
-      roundOffsets
-    })));
-  }
-  if (state.modifiersData.arrow != null) {
-    state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
-      offsets: state.modifiersData.arrow,
-      position: "absolute",
-      adaptive: false,
-      roundOffsets
-    })));
-  }
-  state.attributes.popper = Object.assign({}, state.attributes.popper, {
-    "data-popper-placement": state.placement
-  });
-}
-var computeStyles$1 = {
-  name: "computeStyles",
-  enabled: true,
-  phase: "beforeWrite",
-  fn: computeStyles,
-  data: {}
-};
-var passive = {
-  passive: true
-};
-function effect(_ref) {
-  var state = _ref.state, instance = _ref.instance, options = _ref.options;
-  var _options$scroll = options.scroll, scroll = _options$scroll === void 0 ? true : _options$scroll, _options$resize = options.resize, resize = _options$resize === void 0 ? true : _options$resize;
-  var window2 = getWindow$1(state.elements.popper);
-  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
-  if (scroll) {
-    scrollParents.forEach(function(scrollParent) {
-      scrollParent.addEventListener("scroll", instance.update, passive);
-    });
-  }
-  if (resize) {
-    window2.addEventListener("resize", instance.update, passive);
-  }
-  return function() {
-    if (scroll) {
-      scrollParents.forEach(function(scrollParent) {
-        scrollParent.removeEventListener("scroll", instance.update, passive);
-      });
-    }
-    if (resize) {
-      window2.removeEventListener("resize", instance.update, passive);
-    }
-  };
-}
-var eventListeners = {
-  name: "eventListeners",
-  enabled: true,
-  phase: "write",
-  fn: function fn() {
-  },
-  effect,
-  data: {}
-};
-var hash$3 = {
-  left: "right",
-  right: "left",
-  bottom: "top",
-  top: "bottom"
-};
-function getOppositePlacement$1(placement) {
-  return placement.replace(/left|right|bottom|top/g, function(matched) {
-    return hash$3[matched];
-  });
-}
-var hash$2 = {
-  start: "end",
-  end: "start"
-};
-function getOppositeVariationPlacement(placement) {
-  return placement.replace(/start|end/g, function(matched) {
-    return hash$2[matched];
-  });
-}
-function getWindowScroll(node) {
-  var win = getWindow$1(node);
-  var scrollLeft = win.pageXOffset;
-  var scrollTop2 = win.pageYOffset;
-  return {
-    scrollLeft,
-    scrollTop: scrollTop2
-  };
-}
-function getWindowScrollBarX$1(element) {
-  return getBoundingClientRect$1(getDocumentElement$1(element)).left + getWindowScroll(element).scrollLeft;
-}
-function getViewportRect$1(element) {
-  var win = getWindow$1(element);
-  var html2 = getDocumentElement$1(element);
-  var visualViewport = win.visualViewport;
-  var width = html2.clientWidth;
-  var height = html2.clientHeight;
-  var x2 = 0;
-  var y2 = 0;
-  if (visualViewport) {
-    width = visualViewport.width;
-    height = visualViewport.height;
-    if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
-      x2 = visualViewport.offsetLeft;
-      y2 = visualViewport.offsetTop;
-    }
-  }
-  return {
-    width,
-    height,
-    x: x2 + getWindowScrollBarX$1(element),
-    y: y2
-  };
-}
-function getDocumentRect$1(element) {
-  var _element$ownerDocumen;
-  var html2 = getDocumentElement$1(element);
-  var winScroll = getWindowScroll(element);
-  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
-  var width = max$2(html2.scrollWidth, html2.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
-  var height = max$2(html2.scrollHeight, html2.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
-  var x2 = -winScroll.scrollLeft + getWindowScrollBarX$1(element);
-  var y2 = -winScroll.scrollTop;
-  if (getComputedStyle$2(body || html2).direction === "rtl") {
-    x2 += max$2(html2.clientWidth, body ? body.clientWidth : 0) - width;
-  }
-  return {
-    width,
-    height,
-    x: x2,
-    y: y2
-  };
-}
-function isScrollParent(element) {
-  var _getComputedStyle = getComputedStyle$2(element), overflow2 = _getComputedStyle.overflow, overflowX = _getComputedStyle.overflowX, overflowY = _getComputedStyle.overflowY;
-  return /auto|scroll|overlay|hidden/.test(overflow2 + overflowY + overflowX);
-}
-function getScrollParent(node) {
-  if (["html", "body", "#document"].indexOf(getNodeName$1(node)) >= 0) {
-    return node.ownerDocument.body;
-  }
-  if (isHTMLElement$1(node) && isScrollParent(node)) {
-    return node;
-  }
-  return getScrollParent(getParentNode$1(node));
-}
-function listScrollParents(element, list) {
-  var _element$ownerDocumen;
-  if (list === void 0) {
-    list = [];
-  }
-  var scrollParent = getScrollParent(element);
-  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
-  var win = getWindow$1(scrollParent);
-  var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
-  var updatedList = list.concat(target);
-  return isBody ? updatedList : updatedList.concat(listScrollParents(getParentNode$1(target)));
-}
-function rectToClientRect$1(rect) {
-  return Object.assign({}, rect, {
-    left: rect.x,
-    top: rect.y,
-    right: rect.x + rect.width,
-    bottom: rect.y + rect.height
-  });
-}
-function getInnerBoundingClientRect$1(element) {
-  var rect = getBoundingClientRect$1(element);
-  rect.top = rect.top + element.clientTop;
-  rect.left = rect.left + element.clientLeft;
-  rect.bottom = rect.top + element.clientHeight;
-  rect.right = rect.left + element.clientWidth;
-  rect.width = element.clientWidth;
-  rect.height = element.clientHeight;
-  rect.x = rect.left;
-  rect.y = rect.top;
-  return rect;
-}
-function getClientRectFromMixedType(element, clippingParent) {
-  return clippingParent === viewport ? rectToClientRect$1(getViewportRect$1(element)) : isElement$3(clippingParent) ? getInnerBoundingClientRect$1(clippingParent) : rectToClientRect$1(getDocumentRect$1(getDocumentElement$1(element)));
-}
-function getClippingParents(element) {
-  var clippingParents2 = listScrollParents(getParentNode$1(element));
-  var canEscapeClipping = ["absolute", "fixed"].indexOf(getComputedStyle$2(element).position) >= 0;
-  var clipperElement = canEscapeClipping && isHTMLElement$1(element) ? getOffsetParent$1(element) : element;
-  if (!isElement$3(clipperElement)) {
-    return [];
-  }
-  return clippingParents2.filter(function(clippingParent) {
-    return isElement$3(clippingParent) && contains$1(clippingParent, clipperElement) && getNodeName$1(clippingParent) !== "body";
-  });
-}
-function getClippingRect$1(element, boundary, rootBoundary) {
-  var mainClippingParents = boundary === "clippingParents" ? getClippingParents(element) : [].concat(boundary);
-  var clippingParents2 = [].concat(mainClippingParents, [rootBoundary]);
-  var firstClippingParent = clippingParents2[0];
-  var clippingRect = clippingParents2.reduce(function(accRect, clippingParent) {
-    var rect = getClientRectFromMixedType(element, clippingParent);
-    accRect.top = max$2(rect.top, accRect.top);
-    accRect.right = min$2(rect.right, accRect.right);
-    accRect.bottom = min$2(rect.bottom, accRect.bottom);
-    accRect.left = max$2(rect.left, accRect.left);
-    return accRect;
-  }, getClientRectFromMixedType(element, firstClippingParent));
-  clippingRect.width = clippingRect.right - clippingRect.left;
-  clippingRect.height = clippingRect.bottom - clippingRect.top;
-  clippingRect.x = clippingRect.left;
-  clippingRect.y = clippingRect.top;
-  return clippingRect;
-}
-function computeOffsets(_ref) {
-  var reference2 = _ref.reference, element = _ref.element, placement = _ref.placement;
-  var basePlacement = placement ? getBasePlacement(placement) : null;
-  var variation = placement ? getVariation(placement) : null;
-  var commonX = reference2.x + reference2.width / 2 - element.width / 2;
-  var commonY = reference2.y + reference2.height / 2 - element.height / 2;
-  var offsets;
-  switch (basePlacement) {
-    case top:
-      offsets = {
-        x: commonX,
-        y: reference2.y - element.height
-      };
-      break;
-    case bottom:
-      offsets = {
-        x: commonX,
-        y: reference2.y + reference2.height
-      };
-      break;
-    case right:
-      offsets = {
-        x: reference2.x + reference2.width,
-        y: commonY
-      };
-      break;
-    case left:
-      offsets = {
-        x: reference2.x - element.width,
-        y: commonY
-      };
-      break;
-    default:
-      offsets = {
-        x: reference2.x,
-        y: reference2.y
-      };
-  }
-  var mainAxis = basePlacement ? getMainAxisFromPlacement$1(basePlacement) : null;
-  if (mainAxis != null) {
-    var len = mainAxis === "y" ? "height" : "width";
-    switch (variation) {
-      case start:
-        offsets[mainAxis] = offsets[mainAxis] - (reference2[len] / 2 - element[len] / 2);
-        break;
-      case end:
-        offsets[mainAxis] = offsets[mainAxis] + (reference2[len] / 2 - element[len] / 2);
-        break;
-    }
-  }
-  return offsets;
-}
-function detectOverflow$1(state, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  var _options = options, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? clippingParents : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? popper : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
-  var paddingObject = mergePaddingObject(typeof padding !== "number" ? padding : expandToHashMap(padding, basePlacements));
-  var altContext = elementContext === popper ? reference : popper;
-  var popperRect = state.rects.popper;
-  var element = state.elements[altBoundary ? altContext : elementContext];
-  var clippingClientRect = getClippingRect$1(isElement$3(element) ? element : element.contextElement || getDocumentElement$1(state.elements.popper), boundary, rootBoundary);
-  var referenceClientRect = getBoundingClientRect$1(state.elements.reference);
-  var popperOffsets2 = computeOffsets({
-    reference: referenceClientRect,
-    element: popperRect,
-    strategy: "absolute",
-    placement
-  });
-  var popperClientRect = rectToClientRect$1(Object.assign({}, popperRect, popperOffsets2));
-  var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect;
-  var overflowOffsets = {
-    top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
-    bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
-    left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
-    right: elementClientRect.right - clippingClientRect.right + paddingObject.right
-  };
-  var offsetData = state.modifiersData.offset;
-  if (elementContext === popper && offsetData) {
-    var offset2 = offsetData[placement];
-    Object.keys(overflowOffsets).forEach(function(key2) {
-      var multiply = [right, bottom].indexOf(key2) >= 0 ? 1 : -1;
-      var axis = [top, bottom].indexOf(key2) >= 0 ? "y" : "x";
-      overflowOffsets[key2] += offset2[axis] * multiply;
-    });
-  }
-  return overflowOffsets;
-}
-function computeAutoPlacement(state, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  var _options = options, placement = _options.placement, boundary = _options.boundary, rootBoundary = _options.rootBoundary, padding = _options.padding, flipVariations = _options.flipVariations, _options$allowedAutoP = _options.allowedAutoPlacements, allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
-  var variation = getVariation(placement);
-  var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function(placement2) {
-    return getVariation(placement2) === variation;
-  }) : basePlacements;
-  var allowedPlacements = placements$1.filter(function(placement2) {
-    return allowedAutoPlacements.indexOf(placement2) >= 0;
-  });
-  if (allowedPlacements.length === 0) {
-    allowedPlacements = placements$1;
-  }
-  var overflows = allowedPlacements.reduce(function(acc, placement2) {
-    acc[placement2] = detectOverflow$1(state, {
-      placement: placement2,
-      boundary,
-      rootBoundary,
-      padding
-    })[getBasePlacement(placement2)];
-    return acc;
-  }, {});
-  return Object.keys(overflows).sort(function(a2, b2) {
-    return overflows[a2] - overflows[b2];
-  });
-}
-function getExpandedFallbackPlacements(placement) {
-  if (getBasePlacement(placement) === auto) {
-    return [];
-  }
-  var oppositePlacement = getOppositePlacement$1(placement);
-  return [getOppositeVariationPlacement(placement), oppositePlacement, getOppositeVariationPlacement(oppositePlacement)];
-}
-function flip$1(_ref) {
-  var state = _ref.state, options = _ref.options, name = _ref.name;
-  if (state.modifiersData[name]._skip) {
-    return;
-  }
-  var _options$mainAxis = options.mainAxis, checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis, _options$altAxis = options.altAxis, checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis, specifiedFallbackPlacements = options.fallbackPlacements, padding = options.padding, boundary = options.boundary, rootBoundary = options.rootBoundary, altBoundary = options.altBoundary, _options$flipVariatio = options.flipVariations, flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio, allowedAutoPlacements = options.allowedAutoPlacements;
-  var preferredPlacement = state.options.placement;
-  var basePlacement = getBasePlacement(preferredPlacement);
-  var isBasePlacement = basePlacement === preferredPlacement;
-  var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [getOppositePlacement$1(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
-  var placements2 = [preferredPlacement].concat(fallbackPlacements).reduce(function(acc, placement2) {
-    return acc.concat(getBasePlacement(placement2) === auto ? computeAutoPlacement(state, {
-      placement: placement2,
-      boundary,
-      rootBoundary,
-      padding,
-      flipVariations,
-      allowedAutoPlacements
-    }) : placement2);
-  }, []);
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var checksMap = /* @__PURE__ */ new Map();
-  var makeFallbackChecks = true;
-  var firstFittingPlacement = placements2[0];
-  for (var i2 = 0; i2 < placements2.length; i2++) {
-    var placement = placements2[i2];
-    var _basePlacement = getBasePlacement(placement);
-    var isStartVariation = getVariation(placement) === start;
-    var isVertical = [top, bottom].indexOf(_basePlacement) >= 0;
-    var len = isVertical ? "width" : "height";
-    var overflow2 = detectOverflow$1(state, {
-      placement,
-      boundary,
-      rootBoundary,
-      altBoundary,
-      padding
-    });
-    var mainVariationSide = isVertical ? isStartVariation ? right : left : isStartVariation ? bottom : top;
-    if (referenceRect[len] > popperRect[len]) {
-      mainVariationSide = getOppositePlacement$1(mainVariationSide);
-    }
-    var altVariationSide = getOppositePlacement$1(mainVariationSide);
-    var checks = [];
-    if (checkMainAxis) {
-      checks.push(overflow2[_basePlacement] <= 0);
-    }
-    if (checkAltAxis) {
-      checks.push(overflow2[mainVariationSide] <= 0, overflow2[altVariationSide] <= 0);
-    }
-    if (checks.every(function(check) {
-      return check;
-    })) {
-      firstFittingPlacement = placement;
-      makeFallbackChecks = false;
-      break;
-    }
-    checksMap.set(placement, checks);
-  }
-  if (makeFallbackChecks) {
-    var numberOfChecks = flipVariations ? 3 : 1;
-    var _loop = function _loop2(_i2) {
-      var fittingPlacement = placements2.find(function(placement2) {
-        var checks2 = checksMap.get(placement2);
-        if (checks2) {
-          return checks2.slice(0, _i2).every(function(check) {
-            return check;
-          });
-        }
-      });
-      if (fittingPlacement) {
-        firstFittingPlacement = fittingPlacement;
-        return "break";
-      }
-    };
-    for (var _i = numberOfChecks; _i > 0; _i--) {
-      var _ret = _loop(_i);
-      if (_ret === "break")
-        break;
-    }
-  }
-  if (state.placement !== firstFittingPlacement) {
-    state.modifiersData[name]._skip = true;
-    state.placement = firstFittingPlacement;
-    state.reset = true;
-  }
-}
-var flip$2 = {
-  name: "flip",
-  enabled: true,
-  phase: "main",
-  fn: flip$1,
-  requiresIfExists: ["offset"],
-  data: {
-    _skip: false
-  }
-};
-function getSideOffsets$1(overflow2, rect, preventedOffsets) {
-  if (preventedOffsets === void 0) {
-    preventedOffsets = {
-      x: 0,
-      y: 0
-    };
-  }
-  return {
-    top: overflow2.top - rect.height - preventedOffsets.y,
-    right: overflow2.right - rect.width + preventedOffsets.x,
-    bottom: overflow2.bottom - rect.height + preventedOffsets.y,
-    left: overflow2.left - rect.width - preventedOffsets.x
-  };
-}
-function isAnySideFullyClipped$1(overflow2) {
-  return [top, right, bottom, left].some(function(side) {
-    return overflow2[side] >= 0;
-  });
-}
-function hide$2(_ref) {
-  var state = _ref.state, name = _ref.name;
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var preventedOffsets = state.modifiersData.preventOverflow;
-  var referenceOverflow = detectOverflow$1(state, {
-    elementContext: "reference"
-  });
-  var popperAltOverflow = detectOverflow$1(state, {
-    altBoundary: true
-  });
-  var referenceClippingOffsets = getSideOffsets$1(referenceOverflow, referenceRect);
-  var popperEscapeOffsets = getSideOffsets$1(popperAltOverflow, popperRect, preventedOffsets);
-  var isReferenceHidden = isAnySideFullyClipped$1(referenceClippingOffsets);
-  var hasPopperEscaped = isAnySideFullyClipped$1(popperEscapeOffsets);
-  state.modifiersData[name] = {
-    referenceClippingOffsets,
-    popperEscapeOffsets,
-    isReferenceHidden,
-    hasPopperEscaped
-  };
-  state.attributes.popper = Object.assign({}, state.attributes.popper, {
-    "data-popper-reference-hidden": isReferenceHidden,
-    "data-popper-escaped": hasPopperEscaped
-  });
-}
-var hide$3 = {
-  name: "hide",
-  enabled: true,
-  phase: "main",
-  requiresIfExists: ["preventOverflow"],
-  fn: hide$2
-};
-function distanceAndSkiddingToXY(placement, rects, offset2) {
-  var basePlacement = getBasePlacement(placement);
-  var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
-  var _ref = typeof offset2 === "function" ? offset2(Object.assign({}, rects, {
-    placement
-  })) : offset2, skidding = _ref[0], distance2 = _ref[1];
-  skidding = skidding || 0;
-  distance2 = (distance2 || 0) * invertDistance;
-  return [left, right].indexOf(basePlacement) >= 0 ? {
-    x: distance2,
-    y: skidding
-  } : {
-    x: skidding,
-    y: distance2
-  };
-}
-function offset$1(_ref2) {
-  var state = _ref2.state, options = _ref2.options, name = _ref2.name;
-  var _options$offset = options.offset, offset2 = _options$offset === void 0 ? [0, 0] : _options$offset;
-  var data2 = placements.reduce(function(acc, placement) {
-    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2);
-    return acc;
-  }, {});
-  var _data$state$placement = data2[state.placement], x2 = _data$state$placement.x, y2 = _data$state$placement.y;
-  if (state.modifiersData.popperOffsets != null) {
-    state.modifiersData.popperOffsets.x += x2;
-    state.modifiersData.popperOffsets.y += y2;
-  }
-  state.modifiersData[name] = data2;
-}
-var offset$2 = {
-  name: "offset",
-  enabled: true,
-  phase: "main",
-  requires: ["popperOffsets"],
-  fn: offset$1
-};
-function popperOffsets(_ref) {
-  var state = _ref.state, name = _ref.name;
-  state.modifiersData[name] = computeOffsets({
-    reference: state.rects.reference,
-    element: state.rects.popper,
-    strategy: "absolute",
-    placement: state.placement
-  });
-}
-var popperOffsets$1 = {
-  name: "popperOffsets",
-  enabled: true,
-  phase: "read",
-  fn: popperOffsets,
-  data: {}
-};
-function getAltAxis(axis) {
-  return axis === "x" ? "y" : "x";
-}
-function preventOverflow(_ref) {
-  var state = _ref.state, options = _ref.options, name = _ref.name;
-  var _options$mainAxis = options.mainAxis, checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis, _options$altAxis = options.altAxis, checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis, boundary = options.boundary, rootBoundary = options.rootBoundary, altBoundary = options.altBoundary, padding = options.padding, _options$tether = options.tether, tether = _options$tether === void 0 ? true : _options$tether, _options$tetherOffset = options.tetherOffset, tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
-  var overflow2 = detectOverflow$1(state, {
-    boundary,
-    rootBoundary,
-    padding,
-    altBoundary
-  });
-  var basePlacement = getBasePlacement(state.placement);
-  var variation = getVariation(state.placement);
-  var isBasePlacement = !variation;
-  var mainAxis = getMainAxisFromPlacement$1(basePlacement);
-  var altAxis = getAltAxis(mainAxis);
-  var popperOffsets2 = state.modifiersData.popperOffsets;
-  var referenceRect = state.rects.reference;
-  var popperRect = state.rects.popper;
-  var tetherOffsetValue = typeof tetherOffset === "function" ? tetherOffset(Object.assign({}, state.rects, {
-    placement: state.placement
-  })) : tetherOffset;
-  var normalizedTetherOffsetValue = typeof tetherOffsetValue === "number" ? {
-    mainAxis: tetherOffsetValue,
-    altAxis: tetherOffsetValue
-  } : Object.assign({
-    mainAxis: 0,
-    altAxis: 0
-  }, tetherOffsetValue);
-  var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
-  var data2 = {
-    x: 0,
-    y: 0
-  };
-  if (!popperOffsets2) {
-    return;
-  }
-  if (checkMainAxis) {
-    var _offsetModifierState$;
-    var mainSide = mainAxis === "y" ? top : left;
-    var altSide = mainAxis === "y" ? bottom : right;
-    var len = mainAxis === "y" ? "height" : "width";
-    var offset2 = popperOffsets2[mainAxis];
-    var min2 = offset2 + overflow2[mainSide];
-    var max2 = offset2 - overflow2[altSide];
-    var additive = tether ? -popperRect[len] / 2 : 0;
-    var minLen = variation === start ? referenceRect[len] : popperRect[len];
-    var maxLen = variation === start ? -popperRect[len] : -referenceRect[len];
-    var arrowElement = state.elements.arrow;
-    var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
-      width: 0,
-      height: 0
-    };
-    var arrowPaddingObject = state.modifiersData["arrow#persistent"] ? state.modifiersData["arrow#persistent"].padding : getFreshSideObject();
-    var arrowPaddingMin = arrowPaddingObject[mainSide];
-    var arrowPaddingMax = arrowPaddingObject[altSide];
-    var arrowLen = within$1(0, referenceRect[len], arrowRect[len]);
-    var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis : minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis;
-    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
-    var arrowOffsetParent = state.elements.arrow && getOffsetParent$1(state.elements.arrow);
-    var clientOffset = arrowOffsetParent ? mainAxis === "y" ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
-    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
-    var tetherMin = offset2 + minOffset - offsetModifierValue - clientOffset;
-    var tetherMax = offset2 + maxOffset - offsetModifierValue;
-    var preventedOffset = within$1(tether ? min$2(min2, tetherMin) : min2, offset2, tether ? max$2(max2, tetherMax) : max2);
-    popperOffsets2[mainAxis] = preventedOffset;
-    data2[mainAxis] = preventedOffset - offset2;
-  }
-  if (checkAltAxis) {
-    var _offsetModifierState$2;
-    var _mainSide = mainAxis === "x" ? top : left;
-    var _altSide = mainAxis === "x" ? bottom : right;
-    var _offset = popperOffsets2[altAxis];
-    var _len = altAxis === "y" ? "height" : "width";
-    var _min = _offset + overflow2[_mainSide];
-    var _max = _offset - overflow2[_altSide];
-    var isOriginSide = [top, left].indexOf(basePlacement) !== -1;
-    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
-    var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
-    var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
-    var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within$1(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
-    popperOffsets2[altAxis] = _preventedOffset;
-    data2[altAxis] = _preventedOffset - _offset;
-  }
-  state.modifiersData[name] = data2;
-}
-var preventOverflow$1 = {
-  name: "preventOverflow",
-  enabled: true,
-  phase: "main",
-  fn: preventOverflow,
-  requiresIfExists: ["offset"]
-};
-function getHTMLElementScroll(element) {
-  return {
-    scrollLeft: element.scrollLeft,
-    scrollTop: element.scrollTop
-  };
-}
-function getNodeScroll$1(node) {
-  if (node === getWindow$1(node) || !isHTMLElement$1(node)) {
-    return getWindowScroll(node);
-  } else {
-    return getHTMLElementScroll(node);
-  }
-}
-function isElementScaled(element) {
-  var rect = element.getBoundingClientRect();
-  var scaleX = round$1(rect.width) / element.offsetWidth || 1;
-  var scaleY = round$1(rect.height) / element.offsetHeight || 1;
-  return scaleX !== 1 || scaleY !== 1;
-}
-function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
-  if (isFixed === void 0) {
-    isFixed = false;
-  }
-  var isOffsetParentAnElement = isHTMLElement$1(offsetParent);
-  var offsetParentIsScaled = isHTMLElement$1(offsetParent) && isElementScaled(offsetParent);
-  var documentElement = getDocumentElement$1(offsetParent);
-  var rect = getBoundingClientRect$1(elementOrVirtualElement, offsetParentIsScaled);
-  var scroll = {
-    scrollLeft: 0,
-    scrollTop: 0
-  };
-  var offsets = {
-    x: 0,
-    y: 0
-  };
-  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-    if (getNodeName$1(offsetParent) !== "body" || isScrollParent(documentElement)) {
-      scroll = getNodeScroll$1(offsetParent);
-    }
-    if (isHTMLElement$1(offsetParent)) {
-      offsets = getBoundingClientRect$1(offsetParent, true);
-      offsets.x += offsetParent.clientLeft;
-      offsets.y += offsetParent.clientTop;
-    } else if (documentElement) {
-      offsets.x = getWindowScrollBarX$1(documentElement);
-    }
-  }
-  return {
-    x: rect.left + scroll.scrollLeft - offsets.x,
-    y: rect.top + scroll.scrollTop - offsets.y,
-    width: rect.width,
-    height: rect.height
-  };
-}
-function order(modifiers) {
-  var map = /* @__PURE__ */ new Map();
-  var visited = /* @__PURE__ */ new Set();
-  var result = [];
-  modifiers.forEach(function(modifier) {
-    map.set(modifier.name, modifier);
-  });
-  function sort(modifier) {
-    visited.add(modifier.name);
-    var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
-    requires.forEach(function(dep) {
-      if (!visited.has(dep)) {
-        var depModifier = map.get(dep);
-        if (depModifier) {
-          sort(depModifier);
-        }
-      }
-    });
-    result.push(modifier);
-  }
-  modifiers.forEach(function(modifier) {
-    if (!visited.has(modifier.name)) {
-      sort(modifier);
-    }
-  });
-  return result;
-}
-function orderModifiers(modifiers) {
-  var orderedModifiers = order(modifiers);
-  return modifierPhases.reduce(function(acc, phase) {
-    return acc.concat(orderedModifiers.filter(function(modifier) {
-      return modifier.phase === phase;
-    }));
-  }, []);
-}
-function debounce$1(fn2) {
-  var pending;
-  return function() {
-    if (!pending) {
-      pending = new Promise(function(resolve) {
-        Promise.resolve().then(function() {
-          pending = void 0;
-          resolve(fn2());
-        });
-      });
-    }
-    return pending;
-  };
-}
-function mergeByName(modifiers) {
-  var merged = modifiers.reduce(function(merged2, current) {
-    var existing = merged2[current.name];
-    merged2[current.name] = existing ? Object.assign({}, existing, current, {
-      options: Object.assign({}, existing.options, current.options),
-      data: Object.assign({}, existing.data, current.data)
-    }) : current;
-    return merged2;
-  }, {});
-  return Object.keys(merged).map(function(key2) {
-    return merged[key2];
-  });
-}
-var DEFAULT_OPTIONS = {
-  placement: "bottom",
-  modifiers: [],
-  strategy: "absolute"
-};
-function areValidElements() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-  return !args.some(function(element) {
-    return !(element && typeof element.getBoundingClientRect === "function");
-  });
-}
-function popperGenerator(generatorOptions) {
-  if (generatorOptions === void 0) {
-    generatorOptions = {};
-  }
-  var _generatorOptions = generatorOptions, _generatorOptions$def = _generatorOptions.defaultModifiers, defaultModifiers2 = _generatorOptions$def === void 0 ? [] : _generatorOptions$def, _generatorOptions$def2 = _generatorOptions.defaultOptions, defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
-  return function createPopper2(reference2, popper2, options) {
-    if (options === void 0) {
-      options = defaultOptions;
-    }
-    var state = {
-      placement: "bottom",
-      orderedModifiers: [],
-      options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
-      modifiersData: {},
-      elements: {
-        reference: reference2,
-        popper: popper2
-      },
-      attributes: {},
-      styles: {}
-    };
-    var effectCleanupFns = [];
-    var isDestroyed = false;
-    var instance = {
-      state,
-      setOptions: function setOptions(setOptionsAction) {
-        var options2 = typeof setOptionsAction === "function" ? setOptionsAction(state.options) : setOptionsAction;
-        cleanupModifierEffects();
-        state.options = Object.assign({}, defaultOptions, state.options, options2);
-        state.scrollParents = {
-          reference: isElement$3(reference2) ? listScrollParents(reference2) : reference2.contextElement ? listScrollParents(reference2.contextElement) : [],
-          popper: listScrollParents(popper2)
-        };
-        var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers2, state.options.modifiers)));
-        state.orderedModifiers = orderedModifiers.filter(function(m2) {
-          return m2.enabled;
-        });
-        runModifierEffects();
-        return instance.update();
-      },
-      forceUpdate: function forceUpdate() {
-        if (isDestroyed) {
-          return;
-        }
-        var _state$elements = state.elements, reference3 = _state$elements.reference, popper3 = _state$elements.popper;
-        if (!areValidElements(reference3, popper3)) {
-          return;
-        }
-        state.rects = {
-          reference: getCompositeRect(reference3, getOffsetParent$1(popper3), state.options.strategy === "fixed"),
-          popper: getLayoutRect(popper3)
-        };
-        state.reset = false;
-        state.placement = state.options.placement;
-        state.orderedModifiers.forEach(function(modifier) {
-          return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
-        });
-        for (var index2 = 0; index2 < state.orderedModifiers.length; index2++) {
-          if (state.reset === true) {
-            state.reset = false;
-            index2 = -1;
-            continue;
-          }
-          var _state$orderedModifie = state.orderedModifiers[index2], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
-          if (typeof fn2 === "function") {
-            state = fn2({
-              state,
-              options: _options,
-              name,
-              instance
-            }) || state;
-          }
-        }
-      },
-      update: debounce$1(function() {
-        return new Promise(function(resolve) {
-          instance.forceUpdate();
-          resolve(state);
-        });
-      }),
-      destroy: function destroy() {
-        cleanupModifierEffects();
-        isDestroyed = true;
-      }
-    };
-    if (!areValidElements(reference2, popper2)) {
-      return instance;
-    }
-    instance.setOptions(options).then(function(state2) {
-      if (!isDestroyed && options.onFirstUpdate) {
-        options.onFirstUpdate(state2);
-      }
-    });
-    function runModifierEffects() {
-      state.orderedModifiers.forEach(function(_ref3) {
-        var name = _ref3.name, _ref3$options = _ref3.options, options2 = _ref3$options === void 0 ? {} : _ref3$options, effect2 = _ref3.effect;
-        if (typeof effect2 === "function") {
-          var cleanupFn = effect2({
-            state,
-            name,
-            instance,
-            options: options2
-          });
-          var noopFn = function noopFn2() {
-          };
-          effectCleanupFns.push(cleanupFn || noopFn);
-        }
-      });
-    }
-    function cleanupModifierEffects() {
-      effectCleanupFns.forEach(function(fn2) {
-        return fn2();
-      });
-      effectCleanupFns = [];
-    }
-    return instance;
-  };
-}
-var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$2, flip$2, preventOverflow$1, arrow$2, hide$3];
-var createPopper = /* @__PURE__ */ popperGenerator({
-  defaultModifiers
-});
 function isNullOrUndef(value) {
   return value === null || typeof value === "undefined";
 }
@@ -1665,7 +178,7 @@ function merge$1(target, source, options) {
   }
   return target;
 }
-function isElement$2(obj) {
+function isElement$4(obj) {
   try {
     return obj instanceof HTMLElement;
   } catch (e) {
@@ -1675,246 +188,11 @@ function isElement$2(obj) {
 function hasOverflowEllipsis(element) {
   return element.offsetWidth < element.scrollWidth || element.offsetHeight < element.scrollHeight;
 }
-class BKPopover {
-  constructor(reference2, popperRefer, options) {
-    var _a, _b;
-    this.isShow = false;
-    this.trigger = void 0;
-    this.instance = void 0;
-    this.always = false;
-    this.reference = void 0;
-    this.referenceTarget = void 0;
-    this.popperRefer = void 0;
-    this.delay = 50;
-    this.isInnerPopper = false;
-    this.disabled = false;
-    this.afterShow = null;
-    this.afterHidden = null;
-    this.appendTo = "parent";
-    this.container = null;
-    this.fixOnBoundary = false;
-    this.instanceOptions = this.initDefaultOptions(options);
-    this.reference = this.resolveInputSelectorToHtmlElement(reference2);
-    this.popperRefer = this.resolveInputSelectorToHtmlElement(popperRefer);
-    this.referenceTarget = this.getTargetReferenceElement();
-    this.container = (_a = this.popperRefer) == null ? void 0 : _a.parentElement;
-    this.isShow = !!((_b = this.instanceOptions) == null ? void 0 : _b.isShow);
-    this.always = this.instanceOptions.always;
-    this.trigger = this.instanceOptions.trigger;
-    this.disabled = this.instanceOptions.disabled;
-    this.appendTo = this.instanceOptions.appendTo;
-    this.afterHidden = typeof options.afterHidden === "function" ? options.afterHidden : () => {
-    };
-    this.afterShow = typeof options.afterShow === "function" ? options.afterShow : () => {
-    };
-    this.fixOnBoundary = this.instanceOptions.fixOnBoundary;
-    this.initInstance();
-    this.registerEvents();
-    if (this.isShow || this.always) {
-      this.show(null);
-    }
-  }
-  forceUpdate() {
-    var _a;
-    (_a = this.instance) == null ? void 0 : _a.forceUpdate();
-  }
-  update() {
-    var _a;
-    (_a = this.instance) == null ? void 0 : _a.update();
-  }
-  updateOptions(options) {
-    var _a;
-    this.instanceOptions = this.initDefaultOptions(options);
-    this.isShow = !!((_a = this.instanceOptions) == null ? void 0 : _a.isShow);
-    this.trigger = this.instanceOptions.trigger;
-    this.disabled = this.instanceOptions.disabled;
-    this.setOptions(this.instanceOptions);
-  }
-  setOptions(options) {
-    var _a;
-    (_a = this.instance) == null ? void 0 : _a.setOptions(options);
-  }
-  destroy() {
-    var _a;
-    (_a = this.instance) == null ? void 0 : _a.destroy();
-  }
-  updateDisabled(disabled) {
-    this.disabled = disabled != null ? disabled : !this.disabled;
-    this.disabled && this.hide();
-  }
-  show(_event) {
-    var _a;
-    if (!this.disabled) {
-      (_a = this.popperRefer) == null ? void 0 : _a.setAttribute("data-show", "");
-      this.setOptions({
-        modifiers: [...this.instanceOptions.modifiers || [], { name: "eventListeners", enabled: true }]
-      });
-      this.update();
-      this.isShow = true;
-      this.afterShow();
-      if (!this.fixOnBoundary) {
-        this.appendToTarget();
-      }
-    }
-  }
-  hide() {
-    var _a;
-    if (this.always)
-      return;
-    (_a = this.popperRefer) == null ? void 0 : _a.removeAttribute("data-show");
-    this.setOptions({
-      modifiers: [...this.instanceOptions.modifiers || [], { name: "eventListeners", enabled: false }]
-    });
-    this.isShow = false;
-    this.isInnerPopper = false;
-    this.afterHidden();
-    if (!this.fixOnBoundary) {
-      this.restorePopContent();
-    }
-  }
-  restorePopContent() {
-    const target = this.getAppendToTarget();
-    if (isElement$2(target) && target.contains(this.popperRefer) && this.container && !this.container.contains(this.popperRefer)) {
-      this.container.append(this.popperRefer);
-    }
-  }
-  appendToTarget() {
-    const target = this.getAppendToTarget();
-    if (isElement$2(target) && target.contains(this.popperRefer)) {
-      target.append(this.popperRefer);
-    }
-  }
-  getAppendToTarget() {
-    const { appendTo } = this;
-    let target = appendTo;
-    if (appendTo !== "parent") {
-      if (typeof appendTo === "string") {
-        target = document.querySelector(appendTo);
-      }
-    }
-    return target;
-  }
-  initDefaultOptions(opts) {
-    const defaultCfg = {
-      placement: "top",
-      modifiers: [
-        {
-          name: "offset",
-          options: {
-            offset: [0, 8]
-          }
-        }
-      ],
-      strategy: "absolute",
-      onFirstUpdate: void 0,
-      isShow: false,
-      theme: "dark",
-      trigger: "hover",
-      disabled: false
-    };
-    const targetOptions = merge$1(defaultCfg, opts || {});
-    const sourceOnFirstUpdate = targetOptions.onFirstUpdate;
-    targetOptions.onFirstUpdate = (state) => {
-      if (typeof sourceOnFirstUpdate === "function") {
-        sourceOnFirstUpdate.call(this, state);
-        this.handleFirstUpdate();
-      }
-    };
-    return targetOptions;
-  }
-  handleFirstUpdate() {
-    if (this.fixOnBoundary) {
-      this.appendToTarget();
-    }
-  }
-  getTargetReferenceElement() {
-    if (this.isElement(this.reference)) {
-      return this.reference.childElementCount === 1 ? this.reference.firstElementChild : this.reference;
-    }
-    return this.reference;
-  }
-  initInstance() {
-    var _a, _b;
-    if (this.referenceTarget) {
-      if (this.referenceTarget && this.popperRefer) {
-        this.instance = createPopper(this.referenceTarget, this.popperRefer, this.instanceOptions);
-        (_b = this.popperRefer) == null ? void 0 : _b.setAttribute("data-theme", (_a = this.instanceOptions.theme) != null ? _a : "dark");
-      } else {
-        console.error("reference or popperRefer is null, please check html element.");
-      }
-    }
-  }
-  resolveInputSelectorToHtmlElement(refer) {
-    if (this.isElement(refer)) {
-      return refer;
-    }
-    if (typeof refer === "string") {
-      return document.querySelector(refer);
-    }
-    if (typeof refer === "object") {
-      if (Object.prototype.hasOwnProperty.call(refer, "getBoundingClientRect")) {
-        return refer;
-      }
-    } else {
-      console.error("'getBoundingClientRect' is needed when use virtual elements");
-    }
-    return null;
-  }
-  isElement(obj) {
-    return isElement$2(obj);
-  }
-  registerEvents() {
-    if (this.isElement(this.referenceTarget)) {
-      if (this.trigger === "hover") {
-        const showEvents = ["mouseenter", "focus"];
-        const hideEvents = ["mouseleave", "blur"];
-        const contentEvents = ["mouseenter", "mouseleave"];
-        showEvents.forEach((event) => {
-          this.referenceTarget.addEventListener(event, (evt) => {
-            if (event === "mouseenter")
-              this.isInnerPopper = true;
-            this.show(evt);
-          });
-        });
-        hideEvents.forEach((event) => {
-          this.referenceTarget.addEventListener(event, () => {
-            this.isInnerPopper = false;
-            setTimeout(() => {
-              !this.isInnerPopper && this.hide();
-            }, this.delay);
-          });
-        });
-        if (this.isElement(this.popperRefer)) {
-          contentEvents.forEach((event) => {
-            this.popperRefer.addEventListener(event, () => {
-              if (event === "mouseenter")
-                this.isInnerPopper = true;
-              if (event === "mouseleave")
-                this.hide();
-            });
-          });
-        }
-      }
-    }
-    if (this.trigger === "click") {
-      const showEvents = ["click"];
-      showEvents.forEach((event) => {
-        document.body.addEventListener(event, (event2) => {
-          if (this.isSameElement(event2.target, this.reference) || this.reference.contains(event2.target)) {
-            this.show(event2);
-          } else {
-            if (this.isShow && !this.isSameElement(event2.target, this.popperRefer) && !this.popperRefer.contains(event2.target)) {
-              this.hide();
-            }
-          }
-        });
-      });
-    }
-  }
-  isSameElement(source, target) {
-    return source && (source === target || source === target.firstElementChild);
-  }
-}
+const formKey = Symbol("form");
+const formItemKey = Symbol("formItem");
+const useForm = () => inject(formKey);
+const useFormItem = () => inject(formItemKey, void 0);
+var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 var lodash = { exports: {} };
 /**
  * @license
@@ -7395,6 +5673,125 @@ function checkOverflow(el) {
   }
   return isOverflow;
 }
+const BKLAYERD_INDEX_EFAULT_VALUE = {
+  ["bottom"]: 0,
+  ["content"]: 1,
+  ["navi"]: 100,
+  ["fullScreen"]: 1e3,
+  ["modal"]: 3e3,
+  ["plugins"]: 8e3,
+  ["message"]: 1e4,
+  ["popper"]: 99999
+};
+class BKZIndexManager {
+  constructor() {
+    this.storageLayerIndexValue = {};
+    this.copyDefaultValue();
+  }
+  getNextIndex(type) {
+    if (Object.prototype.hasOwnProperty.call(this.storageLayerIndexValue, type)) {
+      this.storageLayerIndexValue[type] = this.storageLayerIndexValue[type] + 1;
+      return this.storageLayerIndexValue[type];
+    }
+    this.storageLayerIndexValue["modal"] = this.storageLayerIndexValue["modal"] + 1;
+    return this.storageLayerIndexValue["modal"];
+  }
+  getModalNextIndex() {
+    return this.getNextIndex("modal");
+  }
+  getMessageNextIndex() {
+    return this.getNextIndex("message");
+  }
+  getFullScreenNextIndex() {
+    return this.getNextIndex("fullScreen");
+  }
+  getNaviNextIndex() {
+    return this.getNextIndex("navi");
+  }
+  getPopperIndex() {
+    return BKLAYERD_INDEX_EFAULT_VALUE.popper;
+  }
+  setDefaultZIndex(config) {
+    Object.keys(config || {}).forEach((key2) => {
+      if (Object.prototype.hasOwnProperty.call(this.storageLayerIndexValue.__proto__, key2)) {
+        Object.assign(this.storageLayerIndexValue.__proto__, { [key2]: config[key2] });
+      }
+    });
+    this.copyDefaultValue();
+  }
+  resetZIndex(config) {
+    Object.keys(config || {}).forEach((key2) => {
+      if (Object.prototype.hasOwnProperty.call(this.storageLayerIndexValue, key2)) {
+        Object.assign(this.storageLayerIndexValue, { [key2]: config[key2] });
+      }
+    });
+  }
+  copyDefaultValue() {
+    const properties = Object.keys(BKLAYERD_INDEX_EFAULT_VALUE).reduce((props2, key2) => Object.assign(props2, {
+      [key2]: {
+        value: BKLAYERD_INDEX_EFAULT_VALUE[key2],
+        writable: true,
+        configurable: true
+      }
+    }), {});
+    this.storageLayerIndexValue = Object.create(BKLAYERD_INDEX_EFAULT_VALUE, properties);
+  }
+}
+const bkZIndexManager = new BKZIndexManager();
+`__bk_mask_${random(16)}`;
+class MaskQueueMaker {
+  constructor() {
+    this.timer = null;
+    this.store = [];
+    this.maskMap = /* @__PURE__ */ new WeakMap();
+  }
+  appendMaker(fn2) {
+    this.store.push(fn2);
+    this.executeMaker();
+  }
+  pushMaskStyle(parentNode, style2) {
+    const value = this.getMaskMap(parentNode);
+    if (!(value == null ? void 0 : value.styles)) {
+      this.setMaskMap(parentNode, __spreadValues({ styles: [style2] }, value || {}));
+    } else {
+      value.styles.push(style2);
+    }
+  }
+  getMaskStyles(parentNode) {
+    var _a;
+    return ((_a = this.getMaskMap(parentNode)) == null ? void 0 : _a.styles) || [];
+  }
+  setMaskId(parentNode, id) {
+    const value = this.getMaskMap(parentNode);
+    if (!value) {
+      this.setMaskMap(parentNode, __spreadValues({ id }, value || {}));
+    } else {
+      Object.assign(value, { id });
+      this.setMaskMap(parentNode, value);
+    }
+  }
+  getMaskId(parentNode) {
+    var _a;
+    return (_a = this.getMaskMap(parentNode)) == null ? void 0 : _a.id;
+  }
+  setMaskMap(key2, value) {
+    this.maskMap.set(key2, value);
+  }
+  getMaskMap(key2) {
+    return this.maskMap.get(key2);
+  }
+  executeMaker() {
+    this.timer && cancelAnimationFrame(this.timer);
+    this.timer = requestAnimationFrame(() => {
+      const fn2 = this.store.pop();
+      if (typeof fn2 === "function") {
+        Reflect.apply(fn2, this, []);
+        this.executeMaker();
+      }
+    });
+  }
+}
+const bkMaskMaker = new MaskQueueMaker();
 class BkMaskManager {
   constructor(config) {
     this.multiInstance = false;
@@ -7404,7 +5801,7 @@ class BkMaskManager {
     this.zIndexStore = /* @__PURE__ */ new Map();
     this.lastUUID = null;
     this.maskStyle = {
-      position: "absolute",
+      position: "fixed",
       left: 0,
       top: 0,
       bottom: 0,
@@ -7412,21 +5809,26 @@ class BkMaskManager {
       display: "none",
       "background-color": "rgba(0,0,0,.6)"
     };
-    const { multiInstance = false, maskAttrTag = "auto", parentNode = document.body, maskStyle = {}, onClick = null } = config || {};
+    this.isInit = false;
+    this.maskAttrTag = "auto";
+    const { multiInstance = false, maskAttrTag = "auto", parentNode = document.body, maskStyle = {}, onClick = null, popInstance = null } = config || {};
+    this.parentNode = parentNode || document;
+    this.maskAttrTag = maskAttrTag;
     this.onClick = onClick;
     this.activeInstance = void 0;
     this.multiInstance = multiInstance;
+    this.popInstance = popInstance;
     this.uniqueMaskAttrTag = this.getMaskAttrTag(maskAttrTag);
-    this.parentNode = parentNode || document;
-    this.mask = this.getMask();
-    this.backupMask = this.createMask("data-bk-backup-uid");
-    this.setMaskStyle(Object.assign({}, this.maskStyle, maskStyle));
+    bkMaskMaker.appendMaker(() => {
+      this.initInstance(maskStyle);
+    });
   }
   setOption(option) {
-    const { parentNode = document.body, maskStyle = {}, onClick = null } = option || {};
+    const { parentNode = document.body, maskStyle = {}, onClick = null, maskAttrTag = this.maskAttrTag } = option || {};
     this.onClick = onClick;
     this.parentNode = parentNode || document;
     this.setMaskStyle(Object.assign({}, this.maskStyle, maskStyle));
+    this.uniqueMaskAttrTag = this.getMaskAttrTag(maskAttrTag);
   }
   show(content, zIndex, showMask = true, appendStyle = {}, uuid2 = null, transfer2 = false) {
     const uid = uuid2 != null ? uuid2 : random(16);
@@ -7435,7 +5837,9 @@ class BkMaskManager {
     if (!showMask) {
       if (this.lastUUID) {
         const preStore = this.zIndexStore.get(this.lastUUID);
-        style2 = preStore.style;
+        if (preStore) {
+          style2 = preStore == null ? void 0 : preStore.style;
+        }
       }
     }
     this.storeMaskInsCfg({
@@ -7444,10 +5848,15 @@ class BkMaskManager {
       uuid: uid,
       preUID: this.lastUUID
     });
+    Object.assign(style2, {
+      display: "block",
+      "z-index": `${localZIndex}`,
+      "pointer-events": "all"
+    });
+    this.initInstance(style2);
+    this.catchClickEvent();
     this.setMaskStyle(style2);
-    this.mask.style.setProperty("display", "block");
-    this.mask.style.setProperty("z-index", `${localZIndex}`);
-    this.mask.style.setProperty("pointer-events", "all");
+    bkMaskMaker.pushMaskStyle(this.parentNode, __spreadValues({}, style2));
     this.backupMask.style.setProperty("z-index", `${localZIndex - 1}`);
     if (!showMask) {
       this.mask.style.setProperty("pointer-events", "none");
@@ -7457,20 +5866,27 @@ class BkMaskManager {
       if (transfer2)
         content.style.setProperty("z-index", `${localZIndex + 1}`);
       this.activeInstance = content;
-      if (!transfer2)
-        this.appendContentToMask(content);
+      this.appendContentToMask(content);
     }
   }
   hide(transfer2 = false, content, uuid2) {
     var _a;
     const uid = uuid2 != null ? uuid2 : this.lastUUID;
-    this.mask.style.setProperty("display", "none");
     if (!transfer2) {
       content == null ? void 0 : content.remove();
       (_a = this.activeInstance) == null ? void 0 : _a.remove();
     }
+    this.removeClickEvent();
     this.activeInstance = void 0;
     this.popIndexStore(uid);
+    const maskList = bkMaskMaker.getMaskStyles(this.parentNode);
+    maskList == null ? void 0 : maskList.pop();
+    if (!(maskList == null ? void 0 : maskList.length)) {
+      this.mask.style.setProperty("display", "none");
+    } else {
+      const style2 = maskList.slice(-1)[0];
+      this.setMaskStyle(style2);
+    }
   }
   storeMaskInsCfg(config) {
     this.zIndexStore.set(config.uuid, config);
@@ -7497,20 +5913,52 @@ class BkMaskManager {
   getActiveContentInstance() {
     return this.activeInstance;
   }
+  initInstance(maskStyle) {
+    if (!this.isInit) {
+      this.isInit = true;
+      const { instance, isExist } = this.getMask();
+      this.mask = instance;
+      this.backupMask = this.getBackupMask();
+      !isExist && this.setMaskStyle(Object.assign({}, this.maskStyle, maskStyle));
+    }
+  }
   getMask() {
     if (this.multiInstance) {
-      return this.createMask();
+      return { instance: this.createMask(), isExist: false };
     }
-    let div = this.parentNode.querySelector(`[data-bkmask-uid='${this.uniqueMaskAttrTag}']`);
+    let isExist = true;
+    let div = this.parentNode.querySelector(`[data-bk-mask-uid='${this.uniqueMaskAttrTag}']`);
     if (!div) {
+      isExist = false;
       div = this.createMask();
-      div.addEventListener("click", (e) => {
-        if (e.target === div) {
-          if (typeof this.onClick === "function") {
-            Reflect.apply(this.onClick, this, [e]);
-          }
-        }
-      }, true);
+    }
+    return {
+      instance: div,
+      isExist
+    };
+  }
+  catchClickEvent() {
+    if (this.mask) {
+      this.mask.addEventListener("click", (e) => this.handleMaskClick(e), true);
+    }
+  }
+  removeClickEvent() {
+    if (this.mask) {
+      this.mask.removeEventListener("click", this.handleMaskClick);
+    }
+  }
+  handleMaskClick(e) {
+    if (e.target === this.mask) {
+      if (typeof this.onClick === "function") {
+        Reflect.apply(this.onClick, this.popInstance || this, [e]);
+      }
+    }
+  }
+  getBackupMask() {
+    const attrName = "data-bk-backup-uid";
+    let div = this.parentNode.querySelector(`[${attrName}]`);
+    if (!div) {
+      div = this.createMask(attrName);
     }
     return div;
   }
@@ -7527,7 +5975,10 @@ class BkMaskManager {
   }
   getMaskAttrTag(tag2) {
     if (/^(auto|\s+)$/i.test(tag2) || tag2 === null || tag2 === void 0 || tag2 === "") {
-      return `__bk_mask_${random(16)}`;
+      if (!bkMaskMaker.getMaskId(this.parentNode)) {
+        bkMaskMaker.setMaskId(this.parentNode, `__bk_mask_${random(16)}`);
+      }
+      return bkMaskMaker.getMaskId(this.parentNode);
     }
     return tag2;
   }
@@ -7535,27 +5986,32 @@ class BkMaskManager {
     this.mask.append(content);
   }
 }
-const bKMaskManager = new BkMaskManager({});
+new BkMaskManager({});
 class BKPopIndexManager {
-  constructor() {
-    this.getActiveClickFnIndex = (match2) => {
-      const filterFn = (target) => typeof match2 === "string" ? target.getAttribute(this.uuidAttrName) === match2 : target === match2;
-      return this.clickFn.findIndex(({ target }) => filterFn(target));
-    };
-    this.getActiveClickFn = (match2) => {
-      var _a;
-      return (_a = this.clickFn[this.getActiveClickFnIndex(match2)]) == null ? void 0 : _a.fn;
-    };
+  constructor(options) {
     this.popInstanceList = [];
-    this.clickFn = [];
+    this.clickFn = void 0;
     this.uuidAttrName = "data-bk-pop-uuid";
-    this.activePopId = null;
-    bKMaskManager.setOption({
-      onClick: this.onMaskClickFn.bind(this)
+    this.bKMaskManagerInstance = new BkMaskManager({
+      parentNode: this.getParentNode(options == null ? void 0 : options.transfer),
+      popInstance: this,
+      onClick: this.onMaskClickFn
     });
   }
+  getParentNode(transfer2) {
+    if (typeof transfer2 === "string") {
+      const target = document.querySelector(transfer2);
+      if (target) {
+        return target;
+      }
+    }
+    if (isElement$4(transfer2)) {
+      return transfer2;
+    }
+    return document.body;
+  }
   onMaskClick(callFn, target) {
-    this.clickFn.push({ fn: callFn, target });
+    this.clickFn = { fn: callFn, target };
   }
   show(content, showMask = true, appendStyle = {}, transfer2 = false, zindex = void 0) {
     if (!content) {
@@ -7566,35 +6022,26 @@ class BKPopIndexManager {
     const uuid2 = random(16);
     content.setAttribute(this.uuidAttrName, uuid2);
     this.popInstanceList.push({ uuid: uuid2, zIndex, content, showMask, appendStyle });
-    showMask && bKMaskManager.backupActiveInstance();
-    bKMaskManager.show(content, zIndex, showMask, appendStyle, uuid2, transfer2);
-    this.activePopId = uuid2;
+    showMask && this.bKMaskManagerInstance.backupActiveInstance();
+    this.bKMaskManagerInstance.show(content, zIndex, showMask, appendStyle, uuid2, transfer2);
   }
   destroy(content, transfer2 = false) {
-    var _a;
-    const index2 = this.getActiveClickFnIndex(content);
-    if (index2 >= 0) {
-      (_a = this.clickFn) == null ? void 0 : _a.splice(index2, 1);
-    }
+    this.clickFn = void 0;
     this.hide(content, transfer2);
   }
   popHide(removeLastContent = true) {
     if (this.popInstanceList.length) {
       if (removeLastContent) {
         const lastItem = this.popInstanceList.pop();
-        bKMaskManager.popIndexStore(lastItem.uuid);
+        this.bKMaskManagerInstance.popIndexStore(lastItem.uuid);
         lastItem.remove();
-        this.activePopId = null;
       }
       if (this.popInstanceList.length) {
         const activeItem = this.popInstanceList.slice(-1)[0];
         const { zIndex, content, showMask, appendStyle, uuid: uuid2 } = activeItem;
-        bKMaskManager.show(content, zIndex, showMask, appendStyle, uuid2);
-        this.activePopId = uuid2;
+        this.bKMaskManagerInstance.show(content, zIndex, showMask, appendStyle, uuid2);
       } else {
-        bKMaskManager.hide();
-        this.activePopId = null;
-        this.clickFn.length = 0;
+        this.bKMaskManagerInstance.hide();
       }
     }
   }
@@ -7606,11 +6053,9 @@ class BKPopIndexManager {
         if (!transfer2)
           this.popInstanceList[itemIndex].content.remove();
         this.popInstanceList.splice(itemIndex, 1);
-        bKMaskManager.popIndexStore(uuid2);
+        this.bKMaskManagerInstance.popIndexStore(uuid2);
         if (!this.popInstanceList.length) {
-          bKMaskManager.hide(transfer2);
-          this.activePopId = null;
-          this.clickFn.length = 0;
+          this.bKMaskManagerInstance.hide(transfer2);
         } else {
           this.popHide(false);
         }
@@ -7620,13 +6065,1695 @@ class BKPopIndexManager {
     }
   }
   onMaskClickFn(e) {
-    const fn2 = this.getActiveClickFn(this.activePopId);
+    const { fn: fn2 } = this.clickFn;
     if (fn2) {
       Reflect.apply(fn2, this, [e]);
     }
   }
 }
-const bkPopIndexManager = new BKPopIndexManager();
+new BKPopIndexManager();
+var rngBrowser = { exports: {} };
+var getRandomValues = typeof crypto != "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto != "undefined" && typeof window.msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto);
+if (getRandomValues) {
+  var rnds8 = new Uint8Array(16);
+  rngBrowser.exports = function whatwgRNG() {
+    getRandomValues(rnds8);
+    return rnds8;
+  };
+} else {
+  var rnds = new Array(16);
+  rngBrowser.exports = function mathRNG() {
+    for (var i2 = 0, r2; i2 < 16; i2++) {
+      if ((i2 & 3) === 0)
+        r2 = Math.random() * 4294967296;
+      rnds[i2] = r2 >>> ((i2 & 3) << 3) & 255;
+    }
+    return rnds;
+  };
+}
+var byteToHex = [];
+for (var i$1 = 0; i$1 < 256; ++i$1) {
+  byteToHex[i$1] = (i$1 + 256).toString(16).substr(1);
+}
+function bytesToUuid$2(buf, offset2) {
+  var i2 = offset2 || 0;
+  var bth = byteToHex;
+  return [
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    "-",
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    "-",
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    "-",
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    "-",
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    bth[buf[i2++]],
+    bth[buf[i2++]]
+  ].join("");
+}
+var bytesToUuid_1 = bytesToUuid$2;
+var rng$1 = rngBrowser.exports;
+var bytesToUuid$1 = bytesToUuid_1;
+var _nodeId;
+var _clockseq;
+var _lastMSecs = 0;
+var _lastNSecs = 0;
+function v1$1(options, buf, offset2) {
+  var i2 = buf && offset2 || 0;
+  var b2 = buf || [];
+  options = options || {};
+  var node = options.node || _nodeId;
+  var clockseq = options.clockseq !== void 0 ? options.clockseq : _clockseq;
+  if (node == null || clockseq == null) {
+    var seedBytes = rng$1();
+    if (node == null) {
+      node = _nodeId = [
+        seedBytes[0] | 1,
+        seedBytes[1],
+        seedBytes[2],
+        seedBytes[3],
+        seedBytes[4],
+        seedBytes[5]
+      ];
+    }
+    if (clockseq == null) {
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
+    }
+  }
+  var msecs = options.msecs !== void 0 ? options.msecs : new Date().getTime();
+  var nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
+  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
+  if (dt < 0 && options.clockseq === void 0) {
+    clockseq = clockseq + 1 & 16383;
+  }
+  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
+    nsecs = 0;
+  }
+  if (nsecs >= 1e4) {
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  }
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq;
+  msecs += 122192928e5;
+  var tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
+  b2[i2++] = tl >>> 24 & 255;
+  b2[i2++] = tl >>> 16 & 255;
+  b2[i2++] = tl >>> 8 & 255;
+  b2[i2++] = tl & 255;
+  var tmh = msecs / 4294967296 * 1e4 & 268435455;
+  b2[i2++] = tmh >>> 8 & 255;
+  b2[i2++] = tmh & 255;
+  b2[i2++] = tmh >>> 24 & 15 | 16;
+  b2[i2++] = tmh >>> 16 & 255;
+  b2[i2++] = clockseq >>> 8 | 128;
+  b2[i2++] = clockseq & 255;
+  for (var n2 = 0; n2 < 6; ++n2) {
+    b2[i2 + n2] = node[n2];
+  }
+  return buf ? buf : bytesToUuid$1(b2);
+}
+var v1_1 = v1$1;
+var rng = rngBrowser.exports;
+var bytesToUuid = bytesToUuid_1;
+function v4$1(options, buf, offset2) {
+  var i2 = buf && offset2 || 0;
+  if (typeof options == "string") {
+    buf = options === "binary" ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+  var rnds = options.random || (options.rng || rng)();
+  rnds[6] = rnds[6] & 15 | 64;
+  rnds[8] = rnds[8] & 63 | 128;
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i2 + ii] = rnds[ii];
+    }
+  }
+  return buf || bytesToUuid(rnds);
+}
+var v4_1 = v4$1;
+var v1 = v1_1;
+var v4 = v4_1;
+var uuid = v4;
+uuid.v1 = v1;
+uuid.v4 = v4;
+var uuid_1 = uuid;
+var top = "top";
+var bottom = "bottom";
+var right = "right";
+var left = "left";
+var auto = "auto";
+var basePlacements = [top, bottom, right, left];
+var start = "start";
+var end = "end";
+var clippingParents = "clippingParents";
+var viewport = "viewport";
+var popper = "popper";
+var reference = "reference";
+var variationPlacements = /* @__PURE__ */ basePlacements.reduce(function(acc, placement) {
+  return acc.concat([placement + "-" + start, placement + "-" + end]);
+}, []);
+var placements = /* @__PURE__ */ [].concat(basePlacements, [auto]).reduce(function(acc, placement) {
+  return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
+}, []);
+var beforeRead = "beforeRead";
+var read = "read";
+var afterRead = "afterRead";
+var beforeMain = "beforeMain";
+var main = "main";
+var afterMain = "afterMain";
+var beforeWrite = "beforeWrite";
+var write = "write";
+var afterWrite = "afterWrite";
+var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite];
+function getNodeName$1(element) {
+  return element ? (element.nodeName || "").toLowerCase() : null;
+}
+function getWindow$1(node) {
+  if (node == null) {
+    return window;
+  }
+  if (node.toString() !== "[object Window]") {
+    var ownerDocument = node.ownerDocument;
+    return ownerDocument ? ownerDocument.defaultView || window : window;
+  }
+  return node;
+}
+function isElement$3(node) {
+  var OwnElement = getWindow$1(node).Element;
+  return node instanceof OwnElement || node instanceof Element;
+}
+function isHTMLElement$1(node) {
+  var OwnElement = getWindow$1(node).HTMLElement;
+  return node instanceof OwnElement || node instanceof HTMLElement;
+}
+function isShadowRoot$1(node) {
+  if (typeof ShadowRoot === "undefined") {
+    return false;
+  }
+  var OwnElement = getWindow$1(node).ShadowRoot;
+  return node instanceof OwnElement || node instanceof ShadowRoot;
+}
+function applyStyles(_ref) {
+  var state = _ref.state;
+  Object.keys(state.elements).forEach(function(name) {
+    var style2 = state.styles[name] || {};
+    var attributes = state.attributes[name] || {};
+    var element = state.elements[name];
+    if (!isHTMLElement$1(element) || !getNodeName$1(element)) {
+      return;
+    }
+    Object.assign(element.style, style2);
+    Object.keys(attributes).forEach(function(name2) {
+      var value = attributes[name2];
+      if (value === false) {
+        element.removeAttribute(name2);
+      } else {
+        element.setAttribute(name2, value === true ? "" : value);
+      }
+    });
+  });
+}
+function effect$2(_ref2) {
+  var state = _ref2.state;
+  var initialStyles = {
+    popper: {
+      position: state.options.strategy,
+      left: "0",
+      top: "0",
+      margin: "0"
+    },
+    arrow: {
+      position: "absolute"
+    },
+    reference: {}
+  };
+  Object.assign(state.elements.popper.style, initialStyles.popper);
+  state.styles = initialStyles;
+  if (state.elements.arrow) {
+    Object.assign(state.elements.arrow.style, initialStyles.arrow);
+  }
+  return function() {
+    Object.keys(state.elements).forEach(function(name) {
+      var element = state.elements[name];
+      var attributes = state.attributes[name] || {};
+      var styleProperties = Object.keys(state.styles.hasOwnProperty(name) ? state.styles[name] : initialStyles[name]);
+      var style2 = styleProperties.reduce(function(style3, property) {
+        style3[property] = "";
+        return style3;
+      }, {});
+      if (!isHTMLElement$1(element) || !getNodeName$1(element)) {
+        return;
+      }
+      Object.assign(element.style, style2);
+      Object.keys(attributes).forEach(function(attribute) {
+        element.removeAttribute(attribute);
+      });
+    });
+  };
+}
+var applyStyles$1 = {
+  name: "applyStyles",
+  enabled: true,
+  phase: "write",
+  fn: applyStyles,
+  effect: effect$2,
+  requires: ["computeStyles"]
+};
+function getBasePlacement(placement) {
+  return placement.split("-")[0];
+}
+var max$2 = Math.max;
+var min$2 = Math.min;
+var round$1 = Math.round;
+function getBoundingClientRect$1(element, includeScale) {
+  if (includeScale === void 0) {
+    includeScale = false;
+  }
+  var rect = element.getBoundingClientRect();
+  var scaleX = 1;
+  var scaleY = 1;
+  if (isHTMLElement$1(element) && includeScale) {
+    var offsetHeight = element.offsetHeight;
+    var offsetWidth = element.offsetWidth;
+    if (offsetWidth > 0) {
+      scaleX = round$1(rect.width) / offsetWidth || 1;
+    }
+    if (offsetHeight > 0) {
+      scaleY = round$1(rect.height) / offsetHeight || 1;
+    }
+  }
+  return {
+    width: rect.width / scaleX,
+    height: rect.height / scaleY,
+    top: rect.top / scaleY,
+    right: rect.right / scaleX,
+    bottom: rect.bottom / scaleY,
+    left: rect.left / scaleX,
+    x: rect.left / scaleX,
+    y: rect.top / scaleY
+  };
+}
+function getLayoutRect(element) {
+  var clientRect = getBoundingClientRect$1(element);
+  var width = element.offsetWidth;
+  var height = element.offsetHeight;
+  if (Math.abs(clientRect.width - width) <= 1) {
+    width = clientRect.width;
+  }
+  if (Math.abs(clientRect.height - height) <= 1) {
+    height = clientRect.height;
+  }
+  return {
+    x: element.offsetLeft,
+    y: element.offsetTop,
+    width,
+    height
+  };
+}
+function contains$1(parent, child) {
+  var rootNode = child.getRootNode && child.getRootNode();
+  if (parent.contains(child)) {
+    return true;
+  } else if (rootNode && isShadowRoot$1(rootNode)) {
+    var next = child;
+    do {
+      if (next && parent.isSameNode(next)) {
+        return true;
+      }
+      next = next.parentNode || next.host;
+    } while (next);
+  }
+  return false;
+}
+function getComputedStyle$2(element) {
+  return getWindow$1(element).getComputedStyle(element);
+}
+function isTableElement$1(element) {
+  return ["table", "td", "th"].indexOf(getNodeName$1(element)) >= 0;
+}
+function getDocumentElement$1(element) {
+  return ((isElement$3(element) ? element.ownerDocument : element.document) || window.document).documentElement;
+}
+function getParentNode$1(element) {
+  if (getNodeName$1(element) === "html") {
+    return element;
+  }
+  return element.assignedSlot || element.parentNode || (isShadowRoot$1(element) ? element.host : null) || getDocumentElement$1(element);
+}
+function getTrueOffsetParent$1(element) {
+  if (!isHTMLElement$1(element) || getComputedStyle$2(element).position === "fixed") {
+    return null;
+  }
+  return element.offsetParent;
+}
+function getContainingBlock$1(element) {
+  var isFirefox2 = navigator.userAgent.toLowerCase().indexOf("firefox") !== -1;
+  var isIE = navigator.userAgent.indexOf("Trident") !== -1;
+  if (isIE && isHTMLElement$1(element)) {
+    var elementCss = getComputedStyle$2(element);
+    if (elementCss.position === "fixed") {
+      return null;
+    }
+  }
+  var currentNode = getParentNode$1(element);
+  if (isShadowRoot$1(currentNode)) {
+    currentNode = currentNode.host;
+  }
+  while (isHTMLElement$1(currentNode) && ["html", "body"].indexOf(getNodeName$1(currentNode)) < 0) {
+    var css = getComputedStyle$2(currentNode);
+    if (css.transform !== "none" || css.perspective !== "none" || css.contain === "paint" || ["transform", "perspective"].indexOf(css.willChange) !== -1 || isFirefox2 && css.willChange === "filter" || isFirefox2 && css.filter && css.filter !== "none") {
+      return currentNode;
+    } else {
+      currentNode = currentNode.parentNode;
+    }
+  }
+  return null;
+}
+function getOffsetParent$1(element) {
+  var window2 = getWindow$1(element);
+  var offsetParent = getTrueOffsetParent$1(element);
+  while (offsetParent && isTableElement$1(offsetParent) && getComputedStyle$2(offsetParent).position === "static") {
+    offsetParent = getTrueOffsetParent$1(offsetParent);
+  }
+  if (offsetParent && (getNodeName$1(offsetParent) === "html" || getNodeName$1(offsetParent) === "body" && getComputedStyle$2(offsetParent).position === "static")) {
+    return window2;
+  }
+  return offsetParent || getContainingBlock$1(element) || window2;
+}
+function getMainAxisFromPlacement$1(placement) {
+  return ["top", "bottom"].indexOf(placement) >= 0 ? "x" : "y";
+}
+function within$1(min2, value, max2) {
+  return max$2(min2, min$2(value, max2));
+}
+function withinMaxClamp(min2, value, max2) {
+  var v2 = within$1(min2, value, max2);
+  return v2 > max2 ? max2 : v2;
+}
+function getFreshSideObject() {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
+  };
+}
+function mergePaddingObject(paddingObject) {
+  return Object.assign({}, getFreshSideObject(), paddingObject);
+}
+function expandToHashMap(value, keys) {
+  return keys.reduce(function(hashMap, key2) {
+    hashMap[key2] = value;
+    return hashMap;
+  }, {});
+}
+var toPaddingObject = function toPaddingObject2(padding, state) {
+  padding = typeof padding === "function" ? padding(Object.assign({}, state.rects, {
+    placement: state.placement
+  })) : padding;
+  return mergePaddingObject(typeof padding !== "number" ? padding : expandToHashMap(padding, basePlacements));
+};
+function arrow$1(_ref) {
+  var _state$modifiersData$;
+  var state = _ref.state, name = _ref.name, options = _ref.options;
+  var arrowElement = state.elements.arrow;
+  var popperOffsets2 = state.modifiersData.popperOffsets;
+  var basePlacement = getBasePlacement(state.placement);
+  var axis = getMainAxisFromPlacement$1(basePlacement);
+  var isVertical = [left, right].indexOf(basePlacement) >= 0;
+  var len = isVertical ? "height" : "width";
+  if (!arrowElement || !popperOffsets2) {
+    return;
+  }
+  var paddingObject = toPaddingObject(options.padding, state);
+  var arrowRect = getLayoutRect(arrowElement);
+  var minProp = axis === "y" ? top : left;
+  var maxProp = axis === "y" ? bottom : right;
+  var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets2[axis] - state.rects.popper[len];
+  var startDiff = popperOffsets2[axis] - state.rects.reference[axis];
+  var arrowOffsetParent = getOffsetParent$1(arrowElement);
+  var clientSize = arrowOffsetParent ? axis === "y" ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
+  var centerToReference = endDiff / 2 - startDiff / 2;
+  var min2 = paddingObject[minProp];
+  var max2 = clientSize - arrowRect[len] - paddingObject[maxProp];
+  var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
+  var offset2 = within$1(min2, center, max2);
+  var axisProp = axis;
+  state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset2, _state$modifiersData$.centerOffset = offset2 - center, _state$modifiersData$);
+}
+function effect$1(_ref2) {
+  var state = _ref2.state, options = _ref2.options;
+  var _options$element = options.element, arrowElement = _options$element === void 0 ? "[data-popper-arrow]" : _options$element;
+  if (arrowElement == null) {
+    return;
+  }
+  if (typeof arrowElement === "string") {
+    arrowElement = state.elements.popper.querySelector(arrowElement);
+    if (!arrowElement) {
+      return;
+    }
+  }
+  if (!contains$1(state.elements.popper, arrowElement)) {
+    return;
+  }
+  state.elements.arrow = arrowElement;
+}
+var arrow$2 = {
+  name: "arrow",
+  enabled: true,
+  phase: "main",
+  fn: arrow$1,
+  effect: effect$1,
+  requires: ["popperOffsets"],
+  requiresIfExists: ["preventOverflow"]
+};
+function getVariation(placement) {
+  return placement.split("-")[1];
+}
+var unsetSides = {
+  top: "auto",
+  right: "auto",
+  bottom: "auto",
+  left: "auto"
+};
+function roundOffsetsByDPR(_ref) {
+  var x2 = _ref.x, y2 = _ref.y;
+  var win = window;
+  var dpr = win.devicePixelRatio || 1;
+  return {
+    x: round$1(x2 * dpr) / dpr || 0,
+    y: round$1(y2 * dpr) / dpr || 0
+  };
+}
+function mapToStyles(_ref2) {
+  var _Object$assign2;
+  var popper2 = _ref2.popper, popperRect = _ref2.popperRect, placement = _ref2.placement, variation = _ref2.variation, offsets = _ref2.offsets, position = _ref2.position, gpuAcceleration = _ref2.gpuAcceleration, adaptive = _ref2.adaptive, roundOffsets = _ref2.roundOffsets, isFixed = _ref2.isFixed;
+  var _offsets$x = offsets.x, x2 = _offsets$x === void 0 ? 0 : _offsets$x, _offsets$y = offsets.y, y2 = _offsets$y === void 0 ? 0 : _offsets$y;
+  var _ref3 = typeof roundOffsets === "function" ? roundOffsets({
+    x: x2,
+    y: y2
+  }) : {
+    x: x2,
+    y: y2
+  };
+  x2 = _ref3.x;
+  y2 = _ref3.y;
+  var hasX = offsets.hasOwnProperty("x");
+  var hasY = offsets.hasOwnProperty("y");
+  var sideX = left;
+  var sideY = top;
+  var win = window;
+  if (adaptive) {
+    var offsetParent = getOffsetParent$1(popper2);
+    var heightProp = "clientHeight";
+    var widthProp = "clientWidth";
+    if (offsetParent === getWindow$1(popper2)) {
+      offsetParent = getDocumentElement$1(popper2);
+      if (getComputedStyle$2(offsetParent).position !== "static" && position === "absolute") {
+        heightProp = "scrollHeight";
+        widthProp = "scrollWidth";
+      }
+    }
+    offsetParent = offsetParent;
+    if (placement === top || (placement === left || placement === right) && variation === end) {
+      sideY = bottom;
+      var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : offsetParent[heightProp];
+      y2 -= offsetY - popperRect.height;
+      y2 *= gpuAcceleration ? 1 : -1;
+    }
+    if (placement === left || (placement === top || placement === bottom) && variation === end) {
+      sideX = right;
+      var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : offsetParent[widthProp];
+      x2 -= offsetX - popperRect.width;
+      x2 *= gpuAcceleration ? 1 : -1;
+    }
+  }
+  var commonStyles = Object.assign({
+    position
+  }, adaptive && unsetSides);
+  var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
+    x: x2,
+    y: y2
+  }) : {
+    x: x2,
+    y: y2
+  };
+  x2 = _ref4.x;
+  y2 = _ref4.y;
+  if (gpuAcceleration) {
+    var _Object$assign;
+    return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? "0" : "", _Object$assign[sideX] = hasX ? "0" : "", _Object$assign.transform = (win.devicePixelRatio || 1) <= 1 ? "translate(" + x2 + "px, " + y2 + "px)" : "translate3d(" + x2 + "px, " + y2 + "px, 0)", _Object$assign));
+  }
+  return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y2 + "px" : "", _Object$assign2[sideX] = hasX ? x2 + "px" : "", _Object$assign2.transform = "", _Object$assign2));
+}
+function computeStyles(_ref5) {
+  var state = _ref5.state, options = _ref5.options;
+  var _options$gpuAccelerat = options.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive, _options$roundOffsets = options.roundOffsets, roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
+  var commonStyles = {
+    placement: getBasePlacement(state.placement),
+    variation: getVariation(state.placement),
+    popper: state.elements.popper,
+    popperRect: state.rects.popper,
+    gpuAcceleration,
+    isFixed: state.options.strategy === "fixed"
+  };
+  if (state.modifiersData.popperOffsets != null) {
+    state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
+      offsets: state.modifiersData.popperOffsets,
+      position: state.options.strategy,
+      adaptive,
+      roundOffsets
+    })));
+  }
+  if (state.modifiersData.arrow != null) {
+    state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
+      offsets: state.modifiersData.arrow,
+      position: "absolute",
+      adaptive: false,
+      roundOffsets
+    })));
+  }
+  state.attributes.popper = Object.assign({}, state.attributes.popper, {
+    "data-popper-placement": state.placement
+  });
+}
+var computeStyles$1 = {
+  name: "computeStyles",
+  enabled: true,
+  phase: "beforeWrite",
+  fn: computeStyles,
+  data: {}
+};
+var passive = {
+  passive: true
+};
+function effect(_ref) {
+  var state = _ref.state, instance = _ref.instance, options = _ref.options;
+  var _options$scroll = options.scroll, scroll = _options$scroll === void 0 ? true : _options$scroll, _options$resize = options.resize, resize = _options$resize === void 0 ? true : _options$resize;
+  var window2 = getWindow$1(state.elements.popper);
+  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
+  if (scroll) {
+    scrollParents.forEach(function(scrollParent) {
+      scrollParent.addEventListener("scroll", instance.update, passive);
+    });
+  }
+  if (resize) {
+    window2.addEventListener("resize", instance.update, passive);
+  }
+  return function() {
+    if (scroll) {
+      scrollParents.forEach(function(scrollParent) {
+        scrollParent.removeEventListener("scroll", instance.update, passive);
+      });
+    }
+    if (resize) {
+      window2.removeEventListener("resize", instance.update, passive);
+    }
+  };
+}
+var eventListeners = {
+  name: "eventListeners",
+  enabled: true,
+  phase: "write",
+  fn: function fn() {
+  },
+  effect,
+  data: {}
+};
+var hash$3 = {
+  left: "right",
+  right: "left",
+  bottom: "top",
+  top: "bottom"
+};
+function getOppositePlacement$1(placement) {
+  return placement.replace(/left|right|bottom|top/g, function(matched) {
+    return hash$3[matched];
+  });
+}
+var hash$2 = {
+  start: "end",
+  end: "start"
+};
+function getOppositeVariationPlacement(placement) {
+  return placement.replace(/start|end/g, function(matched) {
+    return hash$2[matched];
+  });
+}
+function getWindowScroll(node) {
+  var win = getWindow$1(node);
+  var scrollLeft = win.pageXOffset;
+  var scrollTop2 = win.pageYOffset;
+  return {
+    scrollLeft,
+    scrollTop: scrollTop2
+  };
+}
+function getWindowScrollBarX$1(element) {
+  return getBoundingClientRect$1(getDocumentElement$1(element)).left + getWindowScroll(element).scrollLeft;
+}
+function getViewportRect$1(element) {
+  var win = getWindow$1(element);
+  var html2 = getDocumentElement$1(element);
+  var visualViewport = win.visualViewport;
+  var width = html2.clientWidth;
+  var height = html2.clientHeight;
+  var x2 = 0;
+  var y2 = 0;
+  if (visualViewport) {
+    width = visualViewport.width;
+    height = visualViewport.height;
+    if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+      x2 = visualViewport.offsetLeft;
+      y2 = visualViewport.offsetTop;
+    }
+  }
+  return {
+    width,
+    height,
+    x: x2 + getWindowScrollBarX$1(element),
+    y: y2
+  };
+}
+function getDocumentRect$1(element) {
+  var _element$ownerDocumen;
+  var html2 = getDocumentElement$1(element);
+  var winScroll = getWindowScroll(element);
+  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
+  var width = max$2(html2.scrollWidth, html2.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
+  var height = max$2(html2.scrollHeight, html2.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
+  var x2 = -winScroll.scrollLeft + getWindowScrollBarX$1(element);
+  var y2 = -winScroll.scrollTop;
+  if (getComputedStyle$2(body || html2).direction === "rtl") {
+    x2 += max$2(html2.clientWidth, body ? body.clientWidth : 0) - width;
+  }
+  return {
+    width,
+    height,
+    x: x2,
+    y: y2
+  };
+}
+function isScrollParent(element) {
+  var _getComputedStyle = getComputedStyle$2(element), overflow2 = _getComputedStyle.overflow, overflowX = _getComputedStyle.overflowX, overflowY = _getComputedStyle.overflowY;
+  return /auto|scroll|overlay|hidden/.test(overflow2 + overflowY + overflowX);
+}
+function getScrollParent(node) {
+  if (["html", "body", "#document"].indexOf(getNodeName$1(node)) >= 0) {
+    return node.ownerDocument.body;
+  }
+  if (isHTMLElement$1(node) && isScrollParent(node)) {
+    return node;
+  }
+  return getScrollParent(getParentNode$1(node));
+}
+function listScrollParents(element, list) {
+  var _element$ownerDocumen;
+  if (list === void 0) {
+    list = [];
+  }
+  var scrollParent = getScrollParent(element);
+  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
+  var win = getWindow$1(scrollParent);
+  var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
+  var updatedList = list.concat(target);
+  return isBody ? updatedList : updatedList.concat(listScrollParents(getParentNode$1(target)));
+}
+function rectToClientRect$1(rect) {
+  return Object.assign({}, rect, {
+    left: rect.x,
+    top: rect.y,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
+  });
+}
+function getInnerBoundingClientRect$1(element) {
+  var rect = getBoundingClientRect$1(element);
+  rect.top = rect.top + element.clientTop;
+  rect.left = rect.left + element.clientLeft;
+  rect.bottom = rect.top + element.clientHeight;
+  rect.right = rect.left + element.clientWidth;
+  rect.width = element.clientWidth;
+  rect.height = element.clientHeight;
+  rect.x = rect.left;
+  rect.y = rect.top;
+  return rect;
+}
+function getClientRectFromMixedType(element, clippingParent) {
+  return clippingParent === viewport ? rectToClientRect$1(getViewportRect$1(element)) : isElement$3(clippingParent) ? getInnerBoundingClientRect$1(clippingParent) : rectToClientRect$1(getDocumentRect$1(getDocumentElement$1(element)));
+}
+function getClippingParents(element) {
+  var clippingParents2 = listScrollParents(getParentNode$1(element));
+  var canEscapeClipping = ["absolute", "fixed"].indexOf(getComputedStyle$2(element).position) >= 0;
+  var clipperElement = canEscapeClipping && isHTMLElement$1(element) ? getOffsetParent$1(element) : element;
+  if (!isElement$3(clipperElement)) {
+    return [];
+  }
+  return clippingParents2.filter(function(clippingParent) {
+    return isElement$3(clippingParent) && contains$1(clippingParent, clipperElement) && getNodeName$1(clippingParent) !== "body";
+  });
+}
+function getClippingRect$1(element, boundary, rootBoundary) {
+  var mainClippingParents = boundary === "clippingParents" ? getClippingParents(element) : [].concat(boundary);
+  var clippingParents2 = [].concat(mainClippingParents, [rootBoundary]);
+  var firstClippingParent = clippingParents2[0];
+  var clippingRect = clippingParents2.reduce(function(accRect, clippingParent) {
+    var rect = getClientRectFromMixedType(element, clippingParent);
+    accRect.top = max$2(rect.top, accRect.top);
+    accRect.right = min$2(rect.right, accRect.right);
+    accRect.bottom = min$2(rect.bottom, accRect.bottom);
+    accRect.left = max$2(rect.left, accRect.left);
+    return accRect;
+  }, getClientRectFromMixedType(element, firstClippingParent));
+  clippingRect.width = clippingRect.right - clippingRect.left;
+  clippingRect.height = clippingRect.bottom - clippingRect.top;
+  clippingRect.x = clippingRect.left;
+  clippingRect.y = clippingRect.top;
+  return clippingRect;
+}
+function computeOffsets(_ref) {
+  var reference2 = _ref.reference, element = _ref.element, placement = _ref.placement;
+  var basePlacement = placement ? getBasePlacement(placement) : null;
+  var variation = placement ? getVariation(placement) : null;
+  var commonX = reference2.x + reference2.width / 2 - element.width / 2;
+  var commonY = reference2.y + reference2.height / 2 - element.height / 2;
+  var offsets;
+  switch (basePlacement) {
+    case top:
+      offsets = {
+        x: commonX,
+        y: reference2.y - element.height
+      };
+      break;
+    case bottom:
+      offsets = {
+        x: commonX,
+        y: reference2.y + reference2.height
+      };
+      break;
+    case right:
+      offsets = {
+        x: reference2.x + reference2.width,
+        y: commonY
+      };
+      break;
+    case left:
+      offsets = {
+        x: reference2.x - element.width,
+        y: commonY
+      };
+      break;
+    default:
+      offsets = {
+        x: reference2.x,
+        y: reference2.y
+      };
+  }
+  var mainAxis = basePlacement ? getMainAxisFromPlacement$1(basePlacement) : null;
+  if (mainAxis != null) {
+    var len = mainAxis === "y" ? "height" : "width";
+    switch (variation) {
+      case start:
+        offsets[mainAxis] = offsets[mainAxis] - (reference2[len] / 2 - element[len] / 2);
+        break;
+      case end:
+        offsets[mainAxis] = offsets[mainAxis] + (reference2[len] / 2 - element[len] / 2);
+        break;
+    }
+  }
+  return offsets;
+}
+function detectOverflow$1(state, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  var _options = options, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? clippingParents : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? popper : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
+  var paddingObject = mergePaddingObject(typeof padding !== "number" ? padding : expandToHashMap(padding, basePlacements));
+  var altContext = elementContext === popper ? reference : popper;
+  var popperRect = state.rects.popper;
+  var element = state.elements[altBoundary ? altContext : elementContext];
+  var clippingClientRect = getClippingRect$1(isElement$3(element) ? element : element.contextElement || getDocumentElement$1(state.elements.popper), boundary, rootBoundary);
+  var referenceClientRect = getBoundingClientRect$1(state.elements.reference);
+  var popperOffsets2 = computeOffsets({
+    reference: referenceClientRect,
+    element: popperRect,
+    strategy: "absolute",
+    placement
+  });
+  var popperClientRect = rectToClientRect$1(Object.assign({}, popperRect, popperOffsets2));
+  var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect;
+  var overflowOffsets = {
+    top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
+    bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
+    left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
+    right: elementClientRect.right - clippingClientRect.right + paddingObject.right
+  };
+  var offsetData = state.modifiersData.offset;
+  if (elementContext === popper && offsetData) {
+    var offset2 = offsetData[placement];
+    Object.keys(overflowOffsets).forEach(function(key2) {
+      var multiply = [right, bottom].indexOf(key2) >= 0 ? 1 : -1;
+      var axis = [top, bottom].indexOf(key2) >= 0 ? "y" : "x";
+      overflowOffsets[key2] += offset2[axis] * multiply;
+    });
+  }
+  return overflowOffsets;
+}
+function computeAutoPlacement(state, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  var _options = options, placement = _options.placement, boundary = _options.boundary, rootBoundary = _options.rootBoundary, padding = _options.padding, flipVariations = _options.flipVariations, _options$allowedAutoP = _options.allowedAutoPlacements, allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
+  var variation = getVariation(placement);
+  var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function(placement2) {
+    return getVariation(placement2) === variation;
+  }) : basePlacements;
+  var allowedPlacements = placements$1.filter(function(placement2) {
+    return allowedAutoPlacements.indexOf(placement2) >= 0;
+  });
+  if (allowedPlacements.length === 0) {
+    allowedPlacements = placements$1;
+  }
+  var overflows = allowedPlacements.reduce(function(acc, placement2) {
+    acc[placement2] = detectOverflow$1(state, {
+      placement: placement2,
+      boundary,
+      rootBoundary,
+      padding
+    })[getBasePlacement(placement2)];
+    return acc;
+  }, {});
+  return Object.keys(overflows).sort(function(a2, b2) {
+    return overflows[a2] - overflows[b2];
+  });
+}
+function getExpandedFallbackPlacements(placement) {
+  if (getBasePlacement(placement) === auto) {
+    return [];
+  }
+  var oppositePlacement = getOppositePlacement$1(placement);
+  return [getOppositeVariationPlacement(placement), oppositePlacement, getOppositeVariationPlacement(oppositePlacement)];
+}
+function flip$1(_ref) {
+  var state = _ref.state, options = _ref.options, name = _ref.name;
+  if (state.modifiersData[name]._skip) {
+    return;
+  }
+  var _options$mainAxis = options.mainAxis, checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis, _options$altAxis = options.altAxis, checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis, specifiedFallbackPlacements = options.fallbackPlacements, padding = options.padding, boundary = options.boundary, rootBoundary = options.rootBoundary, altBoundary = options.altBoundary, _options$flipVariatio = options.flipVariations, flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio, allowedAutoPlacements = options.allowedAutoPlacements;
+  var preferredPlacement = state.options.placement;
+  var basePlacement = getBasePlacement(preferredPlacement);
+  var isBasePlacement = basePlacement === preferredPlacement;
+  var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [getOppositePlacement$1(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
+  var placements2 = [preferredPlacement].concat(fallbackPlacements).reduce(function(acc, placement2) {
+    return acc.concat(getBasePlacement(placement2) === auto ? computeAutoPlacement(state, {
+      placement: placement2,
+      boundary,
+      rootBoundary,
+      padding,
+      flipVariations,
+      allowedAutoPlacements
+    }) : placement2);
+  }, []);
+  var referenceRect = state.rects.reference;
+  var popperRect = state.rects.popper;
+  var checksMap = /* @__PURE__ */ new Map();
+  var makeFallbackChecks = true;
+  var firstFittingPlacement = placements2[0];
+  for (var i2 = 0; i2 < placements2.length; i2++) {
+    var placement = placements2[i2];
+    var _basePlacement = getBasePlacement(placement);
+    var isStartVariation = getVariation(placement) === start;
+    var isVertical = [top, bottom].indexOf(_basePlacement) >= 0;
+    var len = isVertical ? "width" : "height";
+    var overflow2 = detectOverflow$1(state, {
+      placement,
+      boundary,
+      rootBoundary,
+      altBoundary,
+      padding
+    });
+    var mainVariationSide = isVertical ? isStartVariation ? right : left : isStartVariation ? bottom : top;
+    if (referenceRect[len] > popperRect[len]) {
+      mainVariationSide = getOppositePlacement$1(mainVariationSide);
+    }
+    var altVariationSide = getOppositePlacement$1(mainVariationSide);
+    var checks = [];
+    if (checkMainAxis) {
+      checks.push(overflow2[_basePlacement] <= 0);
+    }
+    if (checkAltAxis) {
+      checks.push(overflow2[mainVariationSide] <= 0, overflow2[altVariationSide] <= 0);
+    }
+    if (checks.every(function(check) {
+      return check;
+    })) {
+      firstFittingPlacement = placement;
+      makeFallbackChecks = false;
+      break;
+    }
+    checksMap.set(placement, checks);
+  }
+  if (makeFallbackChecks) {
+    var numberOfChecks = flipVariations ? 3 : 1;
+    var _loop = function _loop2(_i2) {
+      var fittingPlacement = placements2.find(function(placement2) {
+        var checks2 = checksMap.get(placement2);
+        if (checks2) {
+          return checks2.slice(0, _i2).every(function(check) {
+            return check;
+          });
+        }
+      });
+      if (fittingPlacement) {
+        firstFittingPlacement = fittingPlacement;
+        return "break";
+      }
+    };
+    for (var _i = numberOfChecks; _i > 0; _i--) {
+      var _ret = _loop(_i);
+      if (_ret === "break")
+        break;
+    }
+  }
+  if (state.placement !== firstFittingPlacement) {
+    state.modifiersData[name]._skip = true;
+    state.placement = firstFittingPlacement;
+    state.reset = true;
+  }
+}
+var flip$2 = {
+  name: "flip",
+  enabled: true,
+  phase: "main",
+  fn: flip$1,
+  requiresIfExists: ["offset"],
+  data: {
+    _skip: false
+  }
+};
+function getSideOffsets$1(overflow2, rect, preventedOffsets) {
+  if (preventedOffsets === void 0) {
+    preventedOffsets = {
+      x: 0,
+      y: 0
+    };
+  }
+  return {
+    top: overflow2.top - rect.height - preventedOffsets.y,
+    right: overflow2.right - rect.width + preventedOffsets.x,
+    bottom: overflow2.bottom - rect.height + preventedOffsets.y,
+    left: overflow2.left - rect.width - preventedOffsets.x
+  };
+}
+function isAnySideFullyClipped$1(overflow2) {
+  return [top, right, bottom, left].some(function(side) {
+    return overflow2[side] >= 0;
+  });
+}
+function hide$2(_ref) {
+  var state = _ref.state, name = _ref.name;
+  var referenceRect = state.rects.reference;
+  var popperRect = state.rects.popper;
+  var preventedOffsets = state.modifiersData.preventOverflow;
+  var referenceOverflow = detectOverflow$1(state, {
+    elementContext: "reference"
+  });
+  var popperAltOverflow = detectOverflow$1(state, {
+    altBoundary: true
+  });
+  var referenceClippingOffsets = getSideOffsets$1(referenceOverflow, referenceRect);
+  var popperEscapeOffsets = getSideOffsets$1(popperAltOverflow, popperRect, preventedOffsets);
+  var isReferenceHidden = isAnySideFullyClipped$1(referenceClippingOffsets);
+  var hasPopperEscaped = isAnySideFullyClipped$1(popperEscapeOffsets);
+  state.modifiersData[name] = {
+    referenceClippingOffsets,
+    popperEscapeOffsets,
+    isReferenceHidden,
+    hasPopperEscaped
+  };
+  state.attributes.popper = Object.assign({}, state.attributes.popper, {
+    "data-popper-reference-hidden": isReferenceHidden,
+    "data-popper-escaped": hasPopperEscaped
+  });
+}
+var hide$3 = {
+  name: "hide",
+  enabled: true,
+  phase: "main",
+  requiresIfExists: ["preventOverflow"],
+  fn: hide$2
+};
+function distanceAndSkiddingToXY(placement, rects, offset2) {
+  var basePlacement = getBasePlacement(placement);
+  var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
+  var _ref = typeof offset2 === "function" ? offset2(Object.assign({}, rects, {
+    placement
+  })) : offset2, skidding = _ref[0], distance2 = _ref[1];
+  skidding = skidding || 0;
+  distance2 = (distance2 || 0) * invertDistance;
+  return [left, right].indexOf(basePlacement) >= 0 ? {
+    x: distance2,
+    y: skidding
+  } : {
+    x: skidding,
+    y: distance2
+  };
+}
+function offset$1(_ref2) {
+  var state = _ref2.state, options = _ref2.options, name = _ref2.name;
+  var _options$offset = options.offset, offset2 = _options$offset === void 0 ? [0, 0] : _options$offset;
+  var data2 = placements.reduce(function(acc, placement) {
+    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2);
+    return acc;
+  }, {});
+  var _data$state$placement = data2[state.placement], x2 = _data$state$placement.x, y2 = _data$state$placement.y;
+  if (state.modifiersData.popperOffsets != null) {
+    state.modifiersData.popperOffsets.x += x2;
+    state.modifiersData.popperOffsets.y += y2;
+  }
+  state.modifiersData[name] = data2;
+}
+var offset$2 = {
+  name: "offset",
+  enabled: true,
+  phase: "main",
+  requires: ["popperOffsets"],
+  fn: offset$1
+};
+function popperOffsets(_ref) {
+  var state = _ref.state, name = _ref.name;
+  state.modifiersData[name] = computeOffsets({
+    reference: state.rects.reference,
+    element: state.rects.popper,
+    strategy: "absolute",
+    placement: state.placement
+  });
+}
+var popperOffsets$1 = {
+  name: "popperOffsets",
+  enabled: true,
+  phase: "read",
+  fn: popperOffsets,
+  data: {}
+};
+function getAltAxis(axis) {
+  return axis === "x" ? "y" : "x";
+}
+function preventOverflow(_ref) {
+  var state = _ref.state, options = _ref.options, name = _ref.name;
+  var _options$mainAxis = options.mainAxis, checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis, _options$altAxis = options.altAxis, checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis, boundary = options.boundary, rootBoundary = options.rootBoundary, altBoundary = options.altBoundary, padding = options.padding, _options$tether = options.tether, tether = _options$tether === void 0 ? true : _options$tether, _options$tetherOffset = options.tetherOffset, tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
+  var overflow2 = detectOverflow$1(state, {
+    boundary,
+    rootBoundary,
+    padding,
+    altBoundary
+  });
+  var basePlacement = getBasePlacement(state.placement);
+  var variation = getVariation(state.placement);
+  var isBasePlacement = !variation;
+  var mainAxis = getMainAxisFromPlacement$1(basePlacement);
+  var altAxis = getAltAxis(mainAxis);
+  var popperOffsets2 = state.modifiersData.popperOffsets;
+  var referenceRect = state.rects.reference;
+  var popperRect = state.rects.popper;
+  var tetherOffsetValue = typeof tetherOffset === "function" ? tetherOffset(Object.assign({}, state.rects, {
+    placement: state.placement
+  })) : tetherOffset;
+  var normalizedTetherOffsetValue = typeof tetherOffsetValue === "number" ? {
+    mainAxis: tetherOffsetValue,
+    altAxis: tetherOffsetValue
+  } : Object.assign({
+    mainAxis: 0,
+    altAxis: 0
+  }, tetherOffsetValue);
+  var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
+  var data2 = {
+    x: 0,
+    y: 0
+  };
+  if (!popperOffsets2) {
+    return;
+  }
+  if (checkMainAxis) {
+    var _offsetModifierState$;
+    var mainSide = mainAxis === "y" ? top : left;
+    var altSide = mainAxis === "y" ? bottom : right;
+    var len = mainAxis === "y" ? "height" : "width";
+    var offset2 = popperOffsets2[mainAxis];
+    var min2 = offset2 + overflow2[mainSide];
+    var max2 = offset2 - overflow2[altSide];
+    var additive = tether ? -popperRect[len] / 2 : 0;
+    var minLen = variation === start ? referenceRect[len] : popperRect[len];
+    var maxLen = variation === start ? -popperRect[len] : -referenceRect[len];
+    var arrowElement = state.elements.arrow;
+    var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
+      width: 0,
+      height: 0
+    };
+    var arrowPaddingObject = state.modifiersData["arrow#persistent"] ? state.modifiersData["arrow#persistent"].padding : getFreshSideObject();
+    var arrowPaddingMin = arrowPaddingObject[mainSide];
+    var arrowPaddingMax = arrowPaddingObject[altSide];
+    var arrowLen = within$1(0, referenceRect[len], arrowRect[len]);
+    var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis : minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis;
+    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
+    var arrowOffsetParent = state.elements.arrow && getOffsetParent$1(state.elements.arrow);
+    var clientOffset = arrowOffsetParent ? mainAxis === "y" ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
+    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
+    var tetherMin = offset2 + minOffset - offsetModifierValue - clientOffset;
+    var tetherMax = offset2 + maxOffset - offsetModifierValue;
+    var preventedOffset = within$1(tether ? min$2(min2, tetherMin) : min2, offset2, tether ? max$2(max2, tetherMax) : max2);
+    popperOffsets2[mainAxis] = preventedOffset;
+    data2[mainAxis] = preventedOffset - offset2;
+  }
+  if (checkAltAxis) {
+    var _offsetModifierState$2;
+    var _mainSide = mainAxis === "x" ? top : left;
+    var _altSide = mainAxis === "x" ? bottom : right;
+    var _offset = popperOffsets2[altAxis];
+    var _len = altAxis === "y" ? "height" : "width";
+    var _min = _offset + overflow2[_mainSide];
+    var _max = _offset - overflow2[_altSide];
+    var isOriginSide = [top, left].indexOf(basePlacement) !== -1;
+    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
+    var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
+    var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
+    var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within$1(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
+    popperOffsets2[altAxis] = _preventedOffset;
+    data2[altAxis] = _preventedOffset - _offset;
+  }
+  state.modifiersData[name] = data2;
+}
+var preventOverflow$1 = {
+  name: "preventOverflow",
+  enabled: true,
+  phase: "main",
+  fn: preventOverflow,
+  requiresIfExists: ["offset"]
+};
+function getHTMLElementScroll(element) {
+  return {
+    scrollLeft: element.scrollLeft,
+    scrollTop: element.scrollTop
+  };
+}
+function getNodeScroll$1(node) {
+  if (node === getWindow$1(node) || !isHTMLElement$1(node)) {
+    return getWindowScroll(node);
+  } else {
+    return getHTMLElementScroll(node);
+  }
+}
+function isElementScaled(element) {
+  var rect = element.getBoundingClientRect();
+  var scaleX = round$1(rect.width) / element.offsetWidth || 1;
+  var scaleY = round$1(rect.height) / element.offsetHeight || 1;
+  return scaleX !== 1 || scaleY !== 1;
+}
+function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
+  if (isFixed === void 0) {
+    isFixed = false;
+  }
+  var isOffsetParentAnElement = isHTMLElement$1(offsetParent);
+  var offsetParentIsScaled = isHTMLElement$1(offsetParent) && isElementScaled(offsetParent);
+  var documentElement = getDocumentElement$1(offsetParent);
+  var rect = getBoundingClientRect$1(elementOrVirtualElement, offsetParentIsScaled);
+  var scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  var offsets = {
+    x: 0,
+    y: 0
+  };
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName$1(offsetParent) !== "body" || isScrollParent(documentElement)) {
+      scroll = getNodeScroll$1(offsetParent);
+    }
+    if (isHTMLElement$1(offsetParent)) {
+      offsets = getBoundingClientRect$1(offsetParent, true);
+      offsets.x += offsetParent.clientLeft;
+      offsets.y += offsetParent.clientTop;
+    } else if (documentElement) {
+      offsets.x = getWindowScrollBarX$1(documentElement);
+    }
+  }
+  return {
+    x: rect.left + scroll.scrollLeft - offsets.x,
+    y: rect.top + scroll.scrollTop - offsets.y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+function order(modifiers) {
+  var map = /* @__PURE__ */ new Map();
+  var visited = /* @__PURE__ */ new Set();
+  var result = [];
+  modifiers.forEach(function(modifier) {
+    map.set(modifier.name, modifier);
+  });
+  function sort(modifier) {
+    visited.add(modifier.name);
+    var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
+    requires.forEach(function(dep) {
+      if (!visited.has(dep)) {
+        var depModifier = map.get(dep);
+        if (depModifier) {
+          sort(depModifier);
+        }
+      }
+    });
+    result.push(modifier);
+  }
+  modifiers.forEach(function(modifier) {
+    if (!visited.has(modifier.name)) {
+      sort(modifier);
+    }
+  });
+  return result;
+}
+function orderModifiers(modifiers) {
+  var orderedModifiers = order(modifiers);
+  return modifierPhases.reduce(function(acc, phase) {
+    return acc.concat(orderedModifiers.filter(function(modifier) {
+      return modifier.phase === phase;
+    }));
+  }, []);
+}
+function debounce$1(fn2) {
+  var pending;
+  return function() {
+    if (!pending) {
+      pending = new Promise(function(resolve) {
+        Promise.resolve().then(function() {
+          pending = void 0;
+          resolve(fn2());
+        });
+      });
+    }
+    return pending;
+  };
+}
+function mergeByName(modifiers) {
+  var merged = modifiers.reduce(function(merged2, current) {
+    var existing = merged2[current.name];
+    merged2[current.name] = existing ? Object.assign({}, existing, current, {
+      options: Object.assign({}, existing.options, current.options),
+      data: Object.assign({}, existing.data, current.data)
+    }) : current;
+    return merged2;
+  }, {});
+  return Object.keys(merged).map(function(key2) {
+    return merged[key2];
+  });
+}
+var DEFAULT_OPTIONS = {
+  placement: "bottom",
+  modifiers: [],
+  strategy: "absolute"
+};
+function areValidElements() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+  return !args.some(function(element) {
+    return !(element && typeof element.getBoundingClientRect === "function");
+  });
+}
+function popperGenerator(generatorOptions) {
+  if (generatorOptions === void 0) {
+    generatorOptions = {};
+  }
+  var _generatorOptions = generatorOptions, _generatorOptions$def = _generatorOptions.defaultModifiers, defaultModifiers2 = _generatorOptions$def === void 0 ? [] : _generatorOptions$def, _generatorOptions$def2 = _generatorOptions.defaultOptions, defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
+  return function createPopper2(reference2, popper2, options) {
+    if (options === void 0) {
+      options = defaultOptions;
+    }
+    var state = {
+      placement: "bottom",
+      orderedModifiers: [],
+      options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
+      modifiersData: {},
+      elements: {
+        reference: reference2,
+        popper: popper2
+      },
+      attributes: {},
+      styles: {}
+    };
+    var effectCleanupFns = [];
+    var isDestroyed = false;
+    var instance = {
+      state,
+      setOptions: function setOptions(setOptionsAction) {
+        var options2 = typeof setOptionsAction === "function" ? setOptionsAction(state.options) : setOptionsAction;
+        cleanupModifierEffects();
+        state.options = Object.assign({}, defaultOptions, state.options, options2);
+        state.scrollParents = {
+          reference: isElement$3(reference2) ? listScrollParents(reference2) : reference2.contextElement ? listScrollParents(reference2.contextElement) : [],
+          popper: listScrollParents(popper2)
+        };
+        var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers2, state.options.modifiers)));
+        state.orderedModifiers = orderedModifiers.filter(function(m2) {
+          return m2.enabled;
+        });
+        runModifierEffects();
+        return instance.update();
+      },
+      forceUpdate: function forceUpdate() {
+        if (isDestroyed) {
+          return;
+        }
+        var _state$elements = state.elements, reference3 = _state$elements.reference, popper3 = _state$elements.popper;
+        if (!areValidElements(reference3, popper3)) {
+          return;
+        }
+        state.rects = {
+          reference: getCompositeRect(reference3, getOffsetParent$1(popper3), state.options.strategy === "fixed"),
+          popper: getLayoutRect(popper3)
+        };
+        state.reset = false;
+        state.placement = state.options.placement;
+        state.orderedModifiers.forEach(function(modifier) {
+          return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
+        });
+        for (var index2 = 0; index2 < state.orderedModifiers.length; index2++) {
+          if (state.reset === true) {
+            state.reset = false;
+            index2 = -1;
+            continue;
+          }
+          var _state$orderedModifie = state.orderedModifiers[index2], fn2 = _state$orderedModifie.fn, _state$orderedModifie2 = _state$orderedModifie.options, _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2, name = _state$orderedModifie.name;
+          if (typeof fn2 === "function") {
+            state = fn2({
+              state,
+              options: _options,
+              name,
+              instance
+            }) || state;
+          }
+        }
+      },
+      update: debounce$1(function() {
+        return new Promise(function(resolve) {
+          instance.forceUpdate();
+          resolve(state);
+        });
+      }),
+      destroy: function destroy() {
+        cleanupModifierEffects();
+        isDestroyed = true;
+      }
+    };
+    if (!areValidElements(reference2, popper2)) {
+      return instance;
+    }
+    instance.setOptions(options).then(function(state2) {
+      if (!isDestroyed && options.onFirstUpdate) {
+        options.onFirstUpdate(state2);
+      }
+    });
+    function runModifierEffects() {
+      state.orderedModifiers.forEach(function(_ref3) {
+        var name = _ref3.name, _ref3$options = _ref3.options, options2 = _ref3$options === void 0 ? {} : _ref3$options, effect2 = _ref3.effect;
+        if (typeof effect2 === "function") {
+          var cleanupFn = effect2({
+            state,
+            name,
+            instance,
+            options: options2
+          });
+          var noopFn = function noopFn2() {
+          };
+          effectCleanupFns.push(cleanupFn || noopFn);
+        }
+      });
+    }
+    function cleanupModifierEffects() {
+      effectCleanupFns.forEach(function(fn2) {
+        return fn2();
+      });
+      effectCleanupFns = [];
+    }
+    return instance;
+  };
+}
+var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$2, flip$2, preventOverflow$1, arrow$2, hide$3];
+var createPopper = /* @__PURE__ */ popperGenerator({
+  defaultModifiers
+});
+class BKPopover {
+  constructor(reference2, popperRefer, options) {
+    var _a, _b;
+    this.isShow = false;
+    this.trigger = void 0;
+    this.instance = void 0;
+    this.always = false;
+    this.reference = void 0;
+    this.referenceTarget = void 0;
+    this.popperRefer = void 0;
+    this.delay = 50;
+    this.isInnerPopper = false;
+    this.disabled = false;
+    this.afterShow = null;
+    this.afterHidden = null;
+    this.appendTo = "parent";
+    this.container = null;
+    this.fixOnBoundary = false;
+    this.instanceOptions = this.initDefaultOptions(options);
+    this.reference = this.resolveInputSelectorToHtmlElement(reference2);
+    this.popperRefer = this.resolveInputSelectorToHtmlElement(popperRefer);
+    this.referenceTarget = this.getTargetReferenceElement();
+    this.container = (_a = this.popperRefer) == null ? void 0 : _a.parentElement;
+    this.isShow = !!((_b = this.instanceOptions) == null ? void 0 : _b.isShow);
+    this.always = this.instanceOptions.always;
+    this.trigger = this.instanceOptions.trigger;
+    this.disabled = this.instanceOptions.disabled;
+    this.appendTo = this.instanceOptions.appendTo;
+    this.afterHidden = typeof options.afterHidden === "function" ? options.afterHidden : () => {
+    };
+    this.afterShow = typeof options.afterShow === "function" ? options.afterShow : () => {
+    };
+    this.fixOnBoundary = this.instanceOptions.fixOnBoundary;
+    this.initInstance();
+    this.registerEvents();
+    if (this.isShow || this.always) {
+      this.show(null);
+    }
+  }
+  forceUpdate() {
+    var _a;
+    (_a = this.instance) == null ? void 0 : _a.forceUpdate();
+  }
+  update() {
+    var _a;
+    (_a = this.instance) == null ? void 0 : _a.update();
+  }
+  updateOptions(options) {
+    var _a;
+    this.instanceOptions = this.initDefaultOptions(options);
+    this.isShow = !!((_a = this.instanceOptions) == null ? void 0 : _a.isShow);
+    this.trigger = this.instanceOptions.trigger;
+    this.disabled = this.instanceOptions.disabled;
+    this.setOptions(this.instanceOptions);
+  }
+  setOptions(options) {
+    var _a;
+    (_a = this.instance) == null ? void 0 : _a.setOptions(options);
+  }
+  destroy() {
+    var _a;
+    (_a = this.instance) == null ? void 0 : _a.destroy();
+  }
+  updateDisabled(disabled) {
+    this.disabled = disabled != null ? disabled : !this.disabled;
+    this.disabled && this.hide();
+  }
+  show(_event) {
+    var _a;
+    if (!this.disabled) {
+      (_a = this.popperRefer) == null ? void 0 : _a.setAttribute("data-show", "");
+      this.setOptions({
+        modifiers: [...this.instanceOptions.modifiers || [], { name: "eventListeners", enabled: true }]
+      });
+      this.update();
+      this.isShow = true;
+      this.afterShow();
+      if (!this.fixOnBoundary) {
+        this.appendToTarget();
+      }
+    }
+  }
+  hide() {
+    var _a;
+    if (this.always)
+      return;
+    (_a = this.popperRefer) == null ? void 0 : _a.removeAttribute("data-show");
+    this.setOptions({
+      modifiers: [...this.instanceOptions.modifiers || [], { name: "eventListeners", enabled: false }]
+    });
+    this.isShow = false;
+    this.isInnerPopper = false;
+    this.afterHidden();
+    if (!this.fixOnBoundary) {
+      this.restorePopContent();
+    }
+  }
+  restorePopContent() {
+    const target = this.getAppendToTarget();
+    if (isElement$4(target) && target.contains(this.popperRefer) && this.container && !this.container.contains(this.popperRefer)) {
+      this.container.append(this.popperRefer);
+    }
+  }
+  appendToTarget() {
+    const target = this.getAppendToTarget();
+    if (isElement$4(target) && target.contains(this.popperRefer)) {
+      target.append(this.popperRefer);
+    }
+  }
+  getAppendToTarget() {
+    const { appendTo } = this;
+    let target = appendTo;
+    if (appendTo !== "parent") {
+      if (typeof appendTo === "string") {
+        target = document.querySelector(appendTo);
+      }
+    }
+    return target;
+  }
+  initDefaultOptions(opts) {
+    const defaultCfg = {
+      placement: "top",
+      modifiers: [
+        {
+          name: "offset",
+          options: {
+            offset: [0, 8]
+          }
+        }
+      ],
+      strategy: "absolute",
+      onFirstUpdate: void 0,
+      isShow: false,
+      theme: "dark",
+      trigger: "hover",
+      disabled: false
+    };
+    const targetOptions = merge$1(defaultCfg, opts || {});
+    const sourceOnFirstUpdate = targetOptions.onFirstUpdate;
+    targetOptions.onFirstUpdate = (state) => {
+      if (typeof sourceOnFirstUpdate === "function") {
+        sourceOnFirstUpdate.call(this, state);
+        this.handleFirstUpdate();
+      }
+    };
+    return targetOptions;
+  }
+  handleFirstUpdate() {
+    if (this.fixOnBoundary) {
+      this.appendToTarget();
+    }
+  }
+  getTargetReferenceElement() {
+    if (this.isElement(this.reference)) {
+      return this.reference.childElementCount === 1 ? this.reference.firstElementChild : this.reference;
+    }
+    return this.reference;
+  }
+  initInstance() {
+    var _a, _b;
+    if (this.referenceTarget) {
+      if (this.referenceTarget && this.popperRefer) {
+        this.instance = createPopper(this.referenceTarget, this.popperRefer, this.instanceOptions);
+        (_b = this.popperRefer) == null ? void 0 : _b.setAttribute("data-theme", (_a = this.instanceOptions.theme) != null ? _a : "dark");
+      } else {
+        console.error("reference or popperRefer is null, please check html element.");
+      }
+    }
+  }
+  resolveInputSelectorToHtmlElement(refer) {
+    if (this.isElement(refer)) {
+      return refer;
+    }
+    if (typeof refer === "string") {
+      return document.querySelector(refer);
+    }
+    if (typeof refer === "object") {
+      if (Object.prototype.hasOwnProperty.call(refer, "getBoundingClientRect")) {
+        return refer;
+      }
+    } else {
+      console.error("'getBoundingClientRect' is needed when use virtual elements");
+    }
+    return null;
+  }
+  isElement(obj) {
+    return isElement$4(obj);
+  }
+  registerEvents() {
+    if (this.isElement(this.referenceTarget)) {
+      if (this.trigger === "hover") {
+        const showEvents = ["mouseenter", "focus"];
+        const hideEvents = ["mouseleave", "blur"];
+        const contentEvents = ["mouseenter", "mouseleave"];
+        showEvents.forEach((event) => {
+          this.referenceTarget.addEventListener(event, (evt) => {
+            if (event === "mouseenter")
+              this.isInnerPopper = true;
+            this.show(evt);
+          });
+        });
+        hideEvents.forEach((event) => {
+          this.referenceTarget.addEventListener(event, () => {
+            this.isInnerPopper = false;
+            setTimeout(() => {
+              !this.isInnerPopper && this.hide();
+            }, this.delay);
+          });
+        });
+        if (this.isElement(this.popperRefer)) {
+          contentEvents.forEach((event) => {
+            this.popperRefer.addEventListener(event, () => {
+              if (event === "mouseenter")
+                this.isInnerPopper = true;
+              if (event === "mouseleave")
+                this.hide();
+            });
+          });
+        }
+      }
+    }
+    if (this.trigger === "click") {
+      const showEvents = ["click"];
+      showEvents.forEach((event) => {
+        document.body.addEventListener(event, (event2) => {
+          if (this.isSameElement(event2.target, this.reference) || this.reference.contains(event2.target)) {
+            this.show(event2);
+          } else {
+            if (this.isShow && !this.isSameElement(event2.target, this.popperRefer) && !this.popperRefer.contains(event2.target)) {
+              this.hide();
+            }
+          }
+        });
+      });
+    }
+  }
+  isSameElement(source, target) {
+    return source && (source === target || source === target.firstElementChild);
+  }
+}
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -7936,9 +8063,7 @@ var SizeEnum = /* @__PURE__ */ ((SizeEnum2) => {
   return SizeEnum2;
 })(SizeEnum || {});
 function renderDirectiveType() {
-  return j("renderDirective", {
-    default: "show"
-  });
+  return E().def("show");
 }
 var AlignEnum = /* @__PURE__ */ ((AlignEnum2) => {
   AlignEnum2["LEFT"] = "left";
@@ -7947,9 +8072,7 @@ var AlignEnum = /* @__PURE__ */ ((AlignEnum2) => {
   return AlignEnum2;
 })(AlignEnum || {});
 function alignType() {
-  return j("align", {
-    default: "left"
-  }).def("left");
+  return E().def("left");
 }
 var ThemeEnum = /* @__PURE__ */ ((ThemeEnum2) => {
   ThemeEnum2["PRIMARY"] = "primary";
@@ -7976,11 +8099,11 @@ var PlacementEnum = /* @__PURE__ */ ((PlacementEnum2) => {
   PlacementEnum2["LEFT_END"] = "left-end";
   return PlacementEnum2;
 })(PlacementEnum || {});
-function placementType() {
-  return j("placement", {}).def("bottom");
+function placementType$1() {
+  return E().def("bottom");
 }
-function triggerType() {
-  return j("trigger", {}).def("hover");
+function triggerType$1() {
+  return E().def("hover");
 }
 var RenderType = /* @__PURE__ */ ((RenderType2) => {
   RenderType2["AUTO"] = "auto";
@@ -8047,7 +8170,6 @@ class PropTypes extends propTypesNS {
         if (!val || placements2.includes(val)) {
           return true;
         }
-        console.error(`invalid placements, ${val}, the placement must be one of \u3010${placements2.join(" | ")}\u3011`);
         return false;
       },
       default: "top"
@@ -8072,31 +8194,6 @@ class PropTypes extends propTypesNS {
     });
   }
 }
-const formKey = Symbol("form");
-const formItemKey = Symbol("formItem");
-const useForm = () => inject(formKey);
-const useFormItem = () => inject(formItemKey, void 0);
-function scrollTop(el, from = 0, to, duration = 500, endCallback) {
-  const difference = Math.abs(from - to);
-  const step = Math.ceil(difference / duration * 50);
-  function scroll(start2, end2, step2) {
-    if (start2 === end2) {
-      endCallback == null ? void 0 : endCallback();
-      return;
-    }
-    let d2 = start2 + step2 > end2 ? end2 : start2 + step2;
-    if (start2 > end2) {
-      d2 = start2 - step2 < end2 ? end2 : start2 - step2;
-    }
-    if (el === window) {
-      window.scrollTo(d2, d2);
-    } else {
-      el.scrollTop = d2;
-    }
-    window.requestAnimationFrame(() => scroll(d2, end2, step2));
-  }
-  scroll(from, to, step);
-}
 function classes(dynamicCls, constCls = "") {
   return Object.entries(dynamicCls).filter((entry) => entry[1]).map((entry) => entry[0]).join(" ").concat(constCls ? ` ${constCls}` : "");
 }
@@ -8109,9 +8206,12 @@ const withInstall = (component) => {
   };
   return component;
 };
-const withInstallProps = (component, childComponents, isProps = false) => {
+const withInstallProps = (component, childComponents, isProps = false, directive) => {
   component.install = function(app, { prefix } = {}) {
     const pre = app.config.globalProperties.bkUIPrefix || prefix || "Bk";
+    if (directive) {
+      app.directive(pre + directive.name, directive.directive);
+    }
     app.component(pre + component.name, component);
     !isProps && Object.values(childComponents).forEach((child) => {
       app.component(pre + child.name, child);
@@ -8122,7 +8222,7 @@ const withInstallProps = (component, childComponents, isProps = false) => {
   });
   return component;
 };
-function resolveClassName(clsName, prefix = "bk") {
+function resolveClassName(clsName, prefix = "lesscode-bk") {
   return `${prefix}-${clsName}`;
 }
 function debounce(delay = 300, fn2, immediate = false) {
@@ -8198,6 +8298,10 @@ const zhCn = {
     cancel: "\u53D6\u6D88",
     prev: "\u4E0A\u4E00\u6B65",
     next: "\u4E0B\u4E00\u6B65"
+  },
+  popConfirm: {
+    ok: "\u786E\u5B9A",
+    cancel: "\u53D6\u6D88"
   },
   form: {
     notBeEmpty: "\u4E0D\u80FD\u4E3A\u7A7A",
@@ -8281,34 +8385,40 @@ const zhCn = {
     placeholder: "\u8BF7\u8F93\u5165\u5E76\u6309Enter\u7ED3\u675F"
   }
 };
-const configProviderProps = {
-  locale: {
-    type: Object
-  }
-};
-const defaultRootConfig = reactive({
-  locale: zhCn
-});
 const rootProviderKey = Symbol("rootProviderData");
-function useLocale(compName) {
-  const config = inject(rootProviderKey, defaultRootConfig);
-  return computed(() => {
-    const {
-      locale: locale2
-    } = config;
-    return locale2 && compName ? locale2[compName] : {};
-  });
-}
+const defaultRootConfig = {
+  locale: zhCn,
+  prefix: "bk"
+};
+const setPrefixVariable = (prefix) => {
+  document.documentElement.style.setProperty("--bk-prefix", prefix || defaultRootConfig.prefix);
+};
 const provideGlobalConfig = (config) => {
   const configData = reactive(__spreadValues({}, lodash.exports.merge(defaultRootConfig, config)));
+  setPrefixVariable(config.prefix);
   Object.keys(config).forEach((key2) => {
     watch(() => config[key2], () => {
+      if (key2 === "prefix")
+        setPrefixVariable(config[key2]);
       configData[key2] = config[key2];
     });
   });
   provide(rootProviderKey, configData);
 };
-var Component$F = defineComponent({
+const useGlobalConfig = () => {
+  const config = inject(rootProviderKey, defaultRootConfig);
+  return computed(() => config);
+};
+const configProviderProps = {
+  locale: {
+    type: Object
+  },
+  prefix: {
+    type: String,
+    default: "bk"
+  }
+};
+var Component$G = defineComponent({
   name: "ConfigProvider",
   inheritAttrs: false,
   props: configProviderProps,
@@ -8322,7 +8432,28 @@ var Component$F = defineComponent({
     };
   }
 });
-const BkConfigProvider = withInstall(Component$F);
+function useLocale(compName) {
+  const config = inject(rootProviderKey, defaultRootConfig);
+  return computed(() => {
+    const { locale: locale2 } = config;
+    return locale2 && compName ? locale2[compName] : {};
+  });
+}
+function usePrefix() {
+  const config = inject(rootProviderKey, defaultRootConfig);
+  const prefix = computed(() => {
+    const { prefix: prefix2 } = config;
+    return "lesscode-bk";
+  });
+  function resolveClassName2(cls) {
+    return `${prefix.value}-${cls.replace(new RegExp(`^${defaultRootConfig.prefix}-`), "")}`;
+  }
+  return {
+    prefix,
+    resolveClassName: resolveClassName2
+  };
+}
+const BkConfigProvider = withInstall(Component$G);
 function generate(node, key2, rootAttrs) {
   return h$1(node.name, __spreadProps(__spreadValues({
     key: key2
@@ -8356,509 +8487,879 @@ const bkIcon = (props2, context) => {
 };
 bkIcon.inheritAttrs = false;
 bkIcon.displayName = "bkIcon";
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 744.64L789.6 462.72 880 554.56 512 928 144 554.56 234.4 462.72 512 744.64z"}},{"type":"element","name":"path","attributes":{"d":"M144 187.68L234.4 96 512 377.76 789.6 96 880 187.68 512 561.28 144 187.68z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M279.36 512L561.28 789.6 469.44 880 96 512 469.44 144 561.28 234.4 279.36 512z"}},{"type":"element","name":"path","attributes":{"d":"M836.32 144L928 234.4 646.08 512 928 789.6 836.32 880 462.72 512 836.32 144z"}}]}');
-const data$K = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M697.6 281.6l48 48-176 176 176 176-48 48-224-224L697.6 281.6z"}},{"type":"element","name":"path","attributes":{"d":"M505.6 281.6l48 48-176 176 176 176-48 48-224-224L505.6 281.6z"}}]}');
+const data$1e = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 744.64L789.6 462.72 880 554.56 512 928 144 554.56 234.4 462.72 512 744.64z"}},{"type":"element","name":"path","attributes":{"d":"M144 187.68L234.4 96 512 377.76 789.6 96 880 187.68 512 561.28 144 187.68z"}}]}');
+const angleDoubleDownLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$1e,
+    "name": "angleDoubleDownLine"
+  }), null);
+};
+angleDoubleDownLine.displayName = "angleDoubleDownLine";
+angleDoubleDownLine.inheritAttrs = false;
+const data$1d = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M279.36 512L561.28 789.6 469.44 880 96 512 469.44 144 561.28 234.4 279.36 512z"}},{"type":"element","name":"path","attributes":{"d":"M836.32 144L928 234.4 646.08 512 928 789.6 836.32 880 462.72 512 836.32 144z"}}]}');
+const angleDoubleLeftLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$1d,
+    "name": "angleDoubleLeftLine"
+  }), null);
+};
+angleDoubleLeftLine.displayName = "angleDoubleLeftLine";
+angleDoubleLeftLine.inheritAttrs = false;
+const data$1c = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M697.6 281.6l48 48-176 176 176 176-48 48-224-224L697.6 281.6z"}},{"type":"element","name":"path","attributes":{"d":"M505.6 281.6l48 48-176 176 176 176-48 48-224-224L505.6 281.6z"}}]}');
 const angleDoubleLeft = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$K,
+    "data": data$1c,
     "name": "angleDoubleLeft"
   }), null);
 };
 angleDoubleLeft.displayName = "angleDoubleLeft";
 angleDoubleLeft.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M744.64 512L462.72 789.6 554.56 880 928 512 554.56 144 462.72 234.4 744.64 512z"}},{"type":"element","name":"path","attributes":{"d":"M187.68 144L96 234.4 377.76 512 96 789.6 187.68 880 561.28 512 187.68 144z"}}]}');
-const data$J = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M358.4 729.6l-48-48 176-176-176-176 48-48 224 224L358.4 729.6z"}},{"type":"element","name":"path","attributes":{"d":"M550.4 729.6l-48-48 176-176-176-176 48-48 224 224L550.4 729.6z"}}]}');
+const data$1b = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M744.64 512L462.72 789.6 554.56 880 928 512 554.56 144 462.72 234.4 744.64 512z"}},{"type":"element","name":"path","attributes":{"d":"M187.68 144L96 234.4 377.76 512 96 789.6 187.68 880 561.28 512 187.68 144z"}}]}');
+const angleDoubleRightLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$1b,
+    "name": "angleDoubleRightLine"
+  }), null);
+};
+angleDoubleRightLine.displayName = "angleDoubleRightLine";
+angleDoubleRightLine.inheritAttrs = false;
+const data$1a = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M358.4 729.6l-48-48 176-176-176-176 48-48 224 224L358.4 729.6z"}},{"type":"element","name":"path","attributes":{"d":"M550.4 729.6l-48-48 176-176-176-176 48-48 224 224L550.4 729.6z"}}]}');
 const angleDoubleRight = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$J,
+    "data": data$1a,
     "name": "angleDoubleRight"
   }), null);
 };
 angleDoubleRight.displayName = "angleDoubleRight";
 angleDoubleRight.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 279.36L789.6 561.28 880 469.44 512 96 144 469.44 234.4 561.28 512 279.36z"}},{"type":"element","name":"path","attributes":{"d":"M144 836.32L234.4 928 512 646.08 789.6 928 880 836.32 512 462.72 144 836.32z"}}]}');
-const data$I = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 256L96 704 187.04 704 512 704 836.96 704 928 704 512 256z"}}]}');
+const data$19 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 279.36L789.6 561.28 880 469.44 512 96 144 469.44 234.4 561.28 512 279.36z"}},{"type":"element","name":"path","attributes":{"d":"M144 836.32L234.4 928 512 646.08 789.6 928 880 836.32 512 462.72 144 836.32z"}}]}');
+const angleDoubleUpLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$19,
+    "name": "angleDoubleUpLine"
+  }), null);
+};
+angleDoubleUpLine.displayName = "angleDoubleUpLine";
+angleDoubleUpLine.inheritAttrs = false;
+const data$18 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 256L96 704 187.04 704 512 704 836.96 704 928 704 512 256z"}}]}');
 const angleDownFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$I,
+    "data": data$18,
     "name": "angleDownFill"
   }), null);
 };
 angleDownFill.displayName = "angleDownFill";
 angleDownFill.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 762.56L98.72 349.28 189.28 258.72 512 581.44 834.72 258.72 925.28 349.28 512 762.56z"}}]}');
-const data$H = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M288 448L336 400 512 576 688 400 736 448 512 672z"}}]}');
+const data$17 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 762.56L98.72 349.28 189.28 258.72 512 581.44 834.72 258.72 925.28 349.28 512 762.56z"}}]}');
+const angleDownLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$17,
+    "name": "angleDownLine"
+  }), null);
+};
+angleDownLine.displayName = "angleDownLine";
+angleDownLine.inheritAttrs = false;
+const data$16 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M288 448L336 400 512 576 688 400 736 448 512 672z"}}]}');
 const angleDown = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$H,
+    "data": data$16,
     "name": "angleDown"
   }), null);
 };
 angleDown.displayName = "angleDown";
 angleDown.inheritAttrs = false;
-const data$G = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M376 504L600 280 648 328 472 504 648 680 600 728 376 504z"}}]}');
+const data$15 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M376 504L600 280 648 328 472 504 648 680 600 728 376 504z"}}]}');
 const angleLeft = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$G,
+    "data": data$15,
     "name": "angleLeft"
   }), null);
 };
 angleLeft.displayName = "angleLeft";
 angleLeft.inheritAttrs = false;
-const data$F = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M424 728L376 680 552 504 376 328 424 280 648 504 424 728z"}}]}');
+const data$14 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M424 728L376 680 552 504 376 328 424 280 648 504 424 728z"}}]}');
 const angleRight = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$F,
+    "data": data$14,
     "name": "angleRight"
   }), null);
 };
 angleRight.displayName = "angleRight";
 angleRight.inheritAttrs = false;
-const data$E = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 704L96 256 187.04 256 512 256 836.96 256 928 256 512 704z"}}]}');
+const data$13 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 704L96 256 187.04 256 512 256 836.96 256 928 256 512 704z"}}]}');
 const angleUpFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$E,
+    "data": data$13,
     "name": "angleUpFill"
   }), null);
 };
 angleUpFill.displayName = "angleUpFill";
 angleUpFill.inheritAttrs = false;
-const data$D = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 368L736 592 688 640 512 464 336 640 288 592 512 368z"}}]}');
+const data$12 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 368L736 592 688 640 512 464 336 640 288 592 512 368z"}}]}');
 const angleUp = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$D,
+    "data": data$12,
     "name": "angleUp"
   }), null);
 };
 angleUp.displayName = "angleUp";
 angleUp.inheritAttrs = false;
-const data$C = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1194.667","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M661.331584 0C696.6651477333332 0 745.9971968 20.667040213333333 770.6658858666666 45.333077333333335L978.6642816 253.3329224533333C1003.3316394666667 278.00029312 1024 327.33370112 1024 362.66728575999997L1024 1130.6680490666665C1024 1166.0002986666666 995.3336490666667 1194.6666666666665 959.9974143999999 1194.6666666666665L64 1194.6666666666665C28.666351530666663 1194.6666666666665 0 1166.0002986666666 0 1130.6680490666665L0 64C0 28.666367530666665 28.667684991999998 0 64 0L661.331584 0ZM224 522.6666666666666L138.66666666666666 522.6666666666666 138.66666666666666 818.6666666666666 309.3333333333333 818.6666666666666 309.3333333333333 605.3333333333333 224 605.3333333333333 224 522.6666666666666ZM245.33333333333331 669.3333333333333L245.33333333333331 754.6666666666666 202.66666666666666 754.6666666666666 202.66666666666666 669.3333333333333 245.33333333333331 669.3333333333333ZM309.3333333333333 437.3333333333333L224 437.3333333333333 224 522.6666666666666 309.3333333333333 522.6666666666666 309.3333333333333 437.3333333333333ZM224 352L138.66666666666666 352 138.66666666666666 437.3333333333333 224 437.3333333333333 224 352ZM309.3333333333333 266.66666666666663L224 266.66666666666663 224 352 309.3333333333333 352 309.3333333333333 266.66666666666663ZM682.6666666666666 90.66615466666667L682.6666666666666 341.33352362666665 933.3325610666667 341.33352362666665C929.3322325333334 329.9992546133333 923.3317418666667 318.66631850666664 918.6646911999999 313.9992661333333L709.9995776000001 105.33269930666667C705.3325269333333 100.66564736 693.9982634666667 94.66648490666667 682.6666666666666 90.66615466666667ZM224 181.33333333333331L138.66666666666666 181.33333333333331 138.66666666666666 266.66666666666663 224 266.66666666666663 224 181.33333333333331ZM309.3333333333333 96L224 96 224 181.33333333333331 309.3333333333333 181.33333333333331 309.3333333333333 96Z"}}]}');
+const data$11 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1194.667","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M661.331584 0C696.6651477333332 0 745.9971968 20.667040213333333 770.6658858666666 45.333077333333335L978.6642816 253.3329224533333C1003.3316394666667 278.00029312 1024 327.33370112 1024 362.66728575999997L1024 1130.6680490666665C1024 1166.0002986666666 995.3336490666667 1194.6666666666665 959.9974143999999 1194.6666666666665L64 1194.6666666666665C28.666351530666663 1194.6666666666665 0 1166.0002986666666 0 1130.6680490666665L0 64C0 28.666367530666665 28.667684991999998 0 64 0L661.331584 0ZM224 522.6666666666666L138.66666666666666 522.6666666666666 138.66666666666666 818.6666666666666 309.3333333333333 818.6666666666666 309.3333333333333 605.3333333333333 224 605.3333333333333 224 522.6666666666666ZM245.33333333333331 669.3333333333333L245.33333333333331 754.6666666666666 202.66666666666666 754.6666666666666 202.66666666666666 669.3333333333333 245.33333333333331 669.3333333333333ZM309.3333333333333 437.3333333333333L224 437.3333333333333 224 522.6666666666666 309.3333333333333 522.6666666666666 309.3333333333333 437.3333333333333ZM224 352L138.66666666666666 352 138.66666666666666 437.3333333333333 224 437.3333333333333 224 352ZM309.3333333333333 266.66666666666663L224 266.66666666666663 224 352 309.3333333333333 352 309.3333333333333 266.66666666666663ZM682.6666666666666 90.66615466666667L682.6666666666666 341.33352362666665 933.3325610666667 341.33352362666665C929.3322325333334 329.9992546133333 923.3317418666667 318.66631850666664 918.6646911999999 313.9992661333333L709.9995776000001 105.33269930666667C705.3325269333333 100.66564736 693.9982634666667 94.66648490666667 682.6666666666666 90.66615466666667ZM224 181.33333333333331L138.66666666666666 181.33333333333331 138.66666666666666 266.66666666666663 224 266.66666666666663 224 181.33333333333331ZM309.3333333333333 96L224 96 224 181.33333333333331 309.3333333333333 181.33333333333331 309.3333333333333 96Z"}}]}');
 const archiveFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$C,
+    "data": data$11,
     "name": "archiveFill"
   }), null);
 };
 archiveFill.displayName = "archiveFill";
 archiveFill.inheritAttrs = false;
-const data$B = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M416 480h320v64H416l96 96-48 48L288 512l176-176L512 384 416 480z"}}]}');
+const data$10 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M416 480h320v64H416l96 96-48 48L288 512l176-176L512 384 416 480z"}}]}');
 const arrowsLeft = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$B,
+    "data": data$10,
     "name": "arrowsLeft"
   }), null);
 };
 arrowsLeft.displayName = "arrowsLeft";
 arrowsLeft.inheritAttrs = false;
-const data$A = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M608 480H288v64H608l-96 96 48 48L736 512l-176-176L512 384Z"}}]}');
+const data$$ = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M608 480H288v64H608l-96 96 48 48L736 512l-176-176L512 384Z"}}]}');
 const arrowsRight = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$A,
+    "data": data$$,
     "name": "arrowsRight"
   }), null);
 };
 arrowsRight.displayName = "arrowsRight";
 arrowsRight.inheritAttrs = false;
-const data$z = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M664.4363636363637 0C676.8000000000001 0 688.5818181818182 4.945454545454545 697.3090909090909 13.672727272727274L697.3090909090909 13.672727272727274 1010.3272727272728 326.6909090909091C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.8 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.8 20.8 0 46.54545454545455 0L46.54545454545455 0ZM655.2545466181818 560.2713367272728L460.52727249454546 619.8349730909091C436.9818181818182 626.5804288 417.7636361309091 651.1440616727273 417.7636361309091 674.6895173818182L417.7636361309091 880.1077015272728C417.7636361309091 880.1077015272728 403.6363636363636 870.5622434909092 372.19999976727274 875.0167924363637 326 881.6349742545455 288.5818181818182 917.016790109091 288.5818181818182 954.1804264727273 288.5818181818182 991.3440628363637 326 1014.1258798545455 372.19999976727274 1007.5076980363638 418.4 1001.016790109091 452.2545454545455 966.6531560727274 452.2545454545455 929.4895197090908L452.2545454545455 754.1076992000001C452.2545454545455 737.5622469818182 472.10908858181824 730.562243490909 472.10908858181824 730.562243490909L644.3090897454546 676.5986071272727C644.3090897454546 676.5986071272727 663.4000011636364 670.2349730909091 663.4000011636364 687.7986071272728L663.4000011636364 828.689519709091C663.4000011636364 828.689519709091 645.8363624727273 818.6349707636364 614.4 822.4531549090909 568.2000011636363 828.053154909091 530.7818170181819 862.6713367272728 530.7818170181819 899.8349730909091 530.7818170181819 936.9986094545455 568.2000011636363 960.5440651636363 614.4 954.9440651636363 660.5999988363636 949.3440651636365 698.0181829818182 914.7258833454546 698.0181829818182 877.5622469818182L698.0181829818182 590.8167912727273C698.0181829818182 567.1440616727273 678.9272715636364 553.5258810181818 655.2545466181818 560.2713367272728ZM642.9090909090909 107.34545454545454L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545454Z"}}]}');
+const data$_ = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M664.4363636363637 0C676.8000000000001 0 688.5818181818182 4.945454545454545 697.3090909090909 13.672727272727274L697.3090909090909 13.672727272727274 1010.3272727272728 326.6909090909091C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.8 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.8 20.8 0 46.54545454545455 0L46.54545454545455 0ZM655.2545466181818 560.2713367272728L460.52727249454546 619.8349730909091C436.9818181818182 626.5804288 417.7636361309091 651.1440616727273 417.7636361309091 674.6895173818182L417.7636361309091 880.1077015272728C417.7636361309091 880.1077015272728 403.6363636363636 870.5622434909092 372.19999976727274 875.0167924363637 326 881.6349742545455 288.5818181818182 917.016790109091 288.5818181818182 954.1804264727273 288.5818181818182 991.3440628363637 326 1014.1258798545455 372.19999976727274 1007.5076980363638 418.4 1001.016790109091 452.2545454545455 966.6531560727274 452.2545454545455 929.4895197090908L452.2545454545455 754.1076992000001C452.2545454545455 737.5622469818182 472.10908858181824 730.562243490909 472.10908858181824 730.562243490909L644.3090897454546 676.5986071272727C644.3090897454546 676.5986071272727 663.4000011636364 670.2349730909091 663.4000011636364 687.7986071272728L663.4000011636364 828.689519709091C663.4000011636364 828.689519709091 645.8363624727273 818.6349707636364 614.4 822.4531549090909 568.2000011636363 828.053154909091 530.7818170181819 862.6713367272728 530.7818170181819 899.8349730909091 530.7818170181819 936.9986094545455 568.2000011636363 960.5440651636363 614.4 954.9440651636363 660.5999988363636 949.3440651636365 698.0181829818182 914.7258833454546 698.0181829818182 877.5622469818182L698.0181829818182 590.8167912727273C698.0181829818182 567.1440616727273 678.9272715636364 553.5258810181818 655.2545466181818 560.2713367272728ZM642.9090909090909 107.34545454545454L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545454Z"}}]}');
 const audioFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$z,
+    "data": data$_,
     "name": "audioFill"
   }), null);
 };
 audioFill.displayName = "audioFill";
 audioFill.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M384 289.28c103.50933333333333 18.986666666666665 183.89333333333332 99.37066666666666 202.62399999999997 201.344l5.3759999999999994 37.376c1.664 83.62666666666667 32.59733333333333 159.7013333333333 82.94399999999999 218.70933333333335 32.72533333333333 37.84533333333333 81.024 62.29333333333333 135.08266666666665 63.53066666666667 2.9013333333333335 0.128 6.0586666666666655 0.21333333333333332 9.216 0.21333333333333332 49.834666666666664 0 95.488-17.962666666666664 130.81599999999997-47.78666666666667 47.40266666666666-42.367999999999995 77.312-104.10666666666665 77.312-172.79999999999998 0-13.952-1.2373333333333334-27.562666666666665-3.584-40.831999999999994-15.786666666666665-115.62666666666667-96.29866666666666-210.43200000000002-203.73333333333335-246.91199999999998-5.8453333333333335-59.98933333333333-33.49333333333333-112.21333333333332-75.47733333333332-148.224-37.33333333333333-34.432-87.03999999999999-55.42399999999999-141.61066666666665-55.42399999999999-15.445333333333332 0-30.506666666666664 1.664-45.01333333333333 4.864-50.986666666666665 13.141333333333332-95.01866666666666 42.83733333333333-126.208 83.072-5.333333333333333 6.143999999999999-8.362666666666666 13.568-8.362666666666666 21.674666666666667 0 9.685333333333332 4.309333333333333 18.389333333333333 11.136 24.27733333333333l3.8826666666666663 0.042666666666666665c-16.21333333333333-4.053333333333333-34.901333333333326-6.613333333333333-54.10133333333333-7.04-6.101333333333333-0.38399999999999995-12.927999999999999-0.6399999999999999-19.797333333333334-0.6399999999999999s-13.696 0.21333333333333332-20.43733333333333 0.6826666666666666l0.9386666666666665-10.922666666666666c2.1333333333333333-25.813333333333333 17.194666666666667-47.70133333333334 38.656-59.30666666666666 9.173333333333332-6.015999999999999 14.933333333333332-15.872 14.933333333333332-27.093333333333334 0-17.749333333333333-14.378666666666668-32.128-32.128-32.128-6.528 0-12.629333333333332 1.9626666666666666-17.706666666666663 5.333333333333333-21.290666666666667 13.653333333333332-38.18666666666667 32.81066666666666-48.81066666666666 55.42399999999999-15.274666666666665-6.442666666666666-32.85333333333333-10.709333333333333-51.413333333333334-10.709333333333333-8.661333333333333 0-17.109333333333332 0.9386666666666665-25.258666666666663 2.6879999999999997-14.037333333333333 3.1999999999999997-24.959999999999997 16.256-24.959999999999997 31.872 0 18.090666666666664 14.677333333333332 32.768 32.768 32.768 2.474666666666667 0 4.906666666666666-0.29866666666666664 7.253333333333334-0.8106666666666666 2.1333333333333333-0.29866666666666664 4.8213333333333335-0.512 7.552-0.512 18.048 0 34.176 8.405333333333333 44.629333333333335 21.546666666666667l0.08533333333333333 0.128c-122.24000000000001 28.16-197.12 139.51999999999998-240 236.79999999999998-33.28 74.88-80.63999999999999 215.67999999999998-24.319999999999997 316.79999999999995 29.610666666666663 61.056 88.96 103.55199999999999 158.72 108.75733333333332l704.64 0.042666666666666665c17.663999999999998 0 32-14.336 32-32s-14.336-32-32-32h-704c-46.848-4.906666666666666-85.80266666666667-34.474666666666664-103.97866666666665-75.34933333333333-44.50133333333333-80.17066666666666 3.498666666666667-208.81066666666666 26.538666666666664-260.65066666666667 65.91999999999999-147.2 156.79999999999998-217.59999999999997 275.84-206.71999999999997zM480 229.12c22.826666666666668-30.976 55.296-53.63199999999999 92.88533333333334-63.744 10.069333333333333-2.1759999999999997 20.266666666666666-3.2426666666666666 30.72-3.2426666666666666 37.888 0 72.448 14.250666666666667 98.60266666666666 37.67466666666667 31.786666666666665 28.8 51.754666666666665 70.39999999999999 51.754666666666665 116.69333333333333 0 1.2373333333333334 0 2.474666666666667-0.042666666666666665 3.7119999999999997l0 32.46933333333333 24.959999999999997 3.84c95.27466666666666 23.296 167.25333333333333 101.50399999999999 180.992 198.4 1.92 10.495999999999999 2.944 21.119999999999997 2.944 32 0 52.522666666666666-23.59466666666667 99.49866666666665-60.75733333333333 130.98666666666665-21.503999999999998 16.554666666666666-48.512 26.368-77.824 26.368-4.224 0-8.448-0.21333333333333332-12.586666666666666-0.5973333333333333 0.512 0.042666666666666665 0.512 0.042666666666666665 0.512 0.042666666666666665-35.583999999999996 0-67.54133333333333-15.530666666666665-89.472-40.19199999999999-39.38133333333333-48.768-63.40266666666666-111.18933333333332-64.08533333333332-179.15733333333333l-5.76-42.410666666666664c-22.954666666666668-111.744-100.30933333333333-201.38666666666666-202.58133333333333-241.152-1.1093333333333333-0.6399999999999999 0.21333333333333332-0.5546666666666666 1.5359999999999998-0.5546666666666666 10.239999999999998 0 19.413333333333334-4.522666666666666 25.599999999999998-11.690666666666667z"}}]}');
-const data$y = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 0c-17.919999999999998 0-32 14.08-32 32s14.08 32 32 32c247.04 0 448 200.95999999999998 448 448 0 17.919999999999998 14.08 32 32 32s32-14.08 32-32c0-282.24-229.76-512-512-512z"}}]}');
+const data$Z = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M384 289.28c103.50933333333333 18.986666666666665 183.89333333333332 99.37066666666666 202.62399999999997 201.344l5.3759999999999994 37.376c1.664 83.62666666666667 32.59733333333333 159.7013333333333 82.94399999999999 218.70933333333335 32.72533333333333 37.84533333333333 81.024 62.29333333333333 135.08266666666665 63.53066666666667 2.9013333333333335 0.128 6.0586666666666655 0.21333333333333332 9.216 0.21333333333333332 49.834666666666664 0 95.488-17.962666666666664 130.81599999999997-47.78666666666667 47.40266666666666-42.367999999999995 77.312-104.10666666666665 77.312-172.79999999999998 0-13.952-1.2373333333333334-27.562666666666665-3.584-40.831999999999994-15.786666666666665-115.62666666666667-96.29866666666666-210.43200000000002-203.73333333333335-246.91199999999998-5.8453333333333335-59.98933333333333-33.49333333333333-112.21333333333332-75.47733333333332-148.224-37.33333333333333-34.432-87.03999999999999-55.42399999999999-141.61066666666665-55.42399999999999-15.445333333333332 0-30.506666666666664 1.664-45.01333333333333 4.864-50.986666666666665 13.141333333333332-95.01866666666666 42.83733333333333-126.208 83.072-5.333333333333333 6.143999999999999-8.362666666666666 13.568-8.362666666666666 21.674666666666667 0 9.685333333333332 4.309333333333333 18.389333333333333 11.136 24.27733333333333l3.8826666666666663 0.042666666666666665c-16.21333333333333-4.053333333333333-34.901333333333326-6.613333333333333-54.10133333333333-7.04-6.101333333333333-0.38399999999999995-12.927999999999999-0.6399999999999999-19.797333333333334-0.6399999999999999s-13.696 0.21333333333333332-20.43733333333333 0.6826666666666666l0.9386666666666665-10.922666666666666c2.1333333333333333-25.813333333333333 17.194666666666667-47.70133333333334 38.656-59.30666666666666 9.173333333333332-6.015999999999999 14.933333333333332-15.872 14.933333333333332-27.093333333333334 0-17.749333333333333-14.378666666666668-32.128-32.128-32.128-6.528 0-12.629333333333332 1.9626666666666666-17.706666666666663 5.333333333333333-21.290666666666667 13.653333333333332-38.18666666666667 32.81066666666666-48.81066666666666 55.42399999999999-15.274666666666665-6.442666666666666-32.85333333333333-10.709333333333333-51.413333333333334-10.709333333333333-8.661333333333333 0-17.109333333333332 0.9386666666666665-25.258666666666663 2.6879999999999997-14.037333333333333 3.1999999999999997-24.959999999999997 16.256-24.959999999999997 31.872 0 18.090666666666664 14.677333333333332 32.768 32.768 32.768 2.474666666666667 0 4.906666666666666-0.29866666666666664 7.253333333333334-0.8106666666666666 2.1333333333333333-0.29866666666666664 4.8213333333333335-0.512 7.552-0.512 18.048 0 34.176 8.405333333333333 44.629333333333335 21.546666666666667l0.08533333333333333 0.128c-122.24000000000001 28.16-197.12 139.51999999999998-240 236.79999999999998-33.28 74.88-80.63999999999999 215.67999999999998-24.319999999999997 316.79999999999995 29.610666666666663 61.056 88.96 103.55199999999999 158.72 108.75733333333332l704.64 0.042666666666666665c17.663999999999998 0 32-14.336 32-32s-14.336-32-32-32h-704c-46.848-4.906666666666666-85.80266666666667-34.474666666666664-103.97866666666665-75.34933333333333-44.50133333333333-80.17066666666666 3.498666666666667-208.81066666666666 26.538666666666664-260.65066666666667 65.91999999999999-147.2 156.79999999999998-217.59999999999997 275.84-206.71999999999997zM480 229.12c22.826666666666668-30.976 55.296-53.63199999999999 92.88533333333334-63.744 10.069333333333333-2.1759999999999997 20.266666666666666-3.2426666666666666 30.72-3.2426666666666666 37.888 0 72.448 14.250666666666667 98.60266666666666 37.67466666666667 31.786666666666665 28.8 51.754666666666665 70.39999999999999 51.754666666666665 116.69333333333333 0 1.2373333333333334 0 2.474666666666667-0.042666666666666665 3.7119999999999997l0 32.46933333333333 24.959999999999997 3.84c95.27466666666666 23.296 167.25333333333333 101.50399999999999 180.992 198.4 1.92 10.495999999999999 2.944 21.119999999999997 2.944 32 0 52.522666666666666-23.59466666666667 99.49866666666665-60.75733333333333 130.98666666666665-21.503999999999998 16.554666666666666-48.512 26.368-77.824 26.368-4.224 0-8.448-0.21333333333333332-12.586666666666666-0.5973333333333333 0.512 0.042666666666666665 0.512 0.042666666666666665 0.512 0.042666666666666665-35.583999999999996 0-67.54133333333333-15.530666666666665-89.472-40.19199999999999-39.38133333333333-48.768-63.40266666666666-111.18933333333332-64.08533333333332-179.15733333333333l-5.76-42.410666666666664c-22.954666666666668-111.744-100.30933333333333-201.38666666666666-202.58133333333333-241.152-1.1093333333333333-0.6399999999999999 0.21333333333333332-0.5546666666666666 1.5359999999999998-0.5546666666666666 10.239999999999998 0 19.413333333333334-4.522666666666666 25.599999999999998-11.690666666666667z"}}]}');
+const bk = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$Z,
+    "name": "bk"
+  }), null);
+};
+bk.displayName = "bk";
+bk.inheritAttrs = false;
+const data$Y = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 0c-17.919999999999998 0-32 14.08-32 32s14.08 32 32 32c247.04 0 448 200.95999999999998 448 448 0 17.919999999999998 14.08 32 32 32s32-14.08 32-32c0-282.24-229.76-512-512-512z"}}]}');
 const circle = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$y,
+    "data": data$Y,
     "name": "circle"
   }), null);
 };
 circle.displayName = "circle";
 circle.inheritAttrs = false;
-const data$x = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M902.56 166.56L857.44 121.44 512 466.72 166.56 121.44 121.44 166.56 466.72 512 121.44 857.44 166.56 902.56 512 557.28 857.44 902.56 902.56 857.44 557.28 512 902.56 166.56z"}}]}');
+const data$X = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M902.56 166.56L857.44 121.44 512 466.72 166.56 121.44 121.44 166.56 466.72 512 121.44 857.44 166.56 902.56 512 557.28 857.44 902.56 902.56 857.44 557.28 512 902.56 166.56z"}}]}');
 const closeLine = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$x,
+    "data": data$X,
     "name": "closeLine"
   }), null);
 };
 closeLine.displayName = "closeLine";
 closeLine.inheritAttrs = false;
-const data$w = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM670.4 625.1l-45.3 45.3L512 557.3 398.9 670.4l-45.3-45.3L466.7 512 353.6 398.9l45.3-45.3L512 466.7l113.1-113.1 45.3 45.3L557.3 512 670.4 625.1z"}}]}');
+const data$W = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM670.4 625.1l-45.3 45.3L512 557.3 398.9 670.4l-45.3-45.3L466.7 512 353.6 398.9l45.3-45.3L512 466.7l113.1-113.1 45.3 45.3L557.3 512 670.4 625.1z"}}]}');
 const close$1 = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$w,
+    "data": data$W,
     "name": "close"
   }), null);
 };
 close$1.displayName = "close";
 close$1.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M1011.1999999999999 489.59999999999997l-224-224c-12.799999999999999-12.799999999999999-32.64-12.799999999999999-45.44 0s-12.799999999999999 32.64 0 45.44l201.59999999999997 200.95999999999998-201.59999999999997 201.59999999999997c-12.799999999999999 12.799999999999999-12.799999999999999 32.64 0 45.44 6.3999999999999995 6.3999999999999995 14.719999999999999 9.6 22.4 9.6s16.64-3.1999999999999997 22.4-9.6l224-224c12.799999999999999-12.799999999999999 12.799999999999999-33.28 0.6399999999999999-45.44z"}},{"type":"element","name":"path","attributes":{"d":"M282.24 265.59999999999997c-12.799999999999999-12.799999999999999-32.64-12.799999999999999-45.44 0l-224 224c-12.799999999999999 12.799999999999999-12.799999999999999 32.64 0 45.44l224 224c6.3999999999999995 5.76 14.719999999999999 8.959999999999999 23.04 8.959999999999999s16.64-3.1999999999999997 22.4-9.6c12.799999999999999-12.799999999999999 12.799999999999999-32.64 0-45.44l-201.59999999999997-200.95999999999998 201.59999999999997-201.59999999999997c12.159999999999998-12.159999999999998 12.159999999999998-32.64 0-44.8z"}},{"type":"element","name":"path","attributes":{"d":"M616.3199999999999 129.27999999999997c-16.64-5.119999999999999-34.56 5.119999999999999-39.04 22.4l-192 704c-4.4799999999999995 17.28 5.119999999999999 34.56 22.4 39.04 2.5599999999999996 0.6399999999999999 5.76 1.2799999999999998 8.32 1.2799999999999998 14.08 0 26.88-9.6 30.72-23.68l192-704c4.4799999999999995-16.64-5.119999999999999-34.56-22.4-39.04z"}}]}');
-const data$v = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M608 512A96 96 0 0 1 512 608 96 96 0 0 1 416 512 96 96 0 0 1 608 512z"}},{"type":"element","name":"path","attributes":{"d":"M860.8 558.4c4.8-30.4 4.8-62.4 0-92.8l67.2-57.6c9.6-8 14.4-22.4 9.6-35.2-19.2-59.2-51.2-115.2-92.8-161.6-6.4-6.4-14.4-11.2-24-11.2-3.2 0-8 0-11.2 1.6l-83.2 30.4c-24-19.2-52.8-35.2-81.6-46.4l-16-86.4c-1.6-12.8-12.8-22.4-25.6-25.6-60.8-12.8-124.8-12.8-185.6 0-12.8 3.2-22.4 12.8-24 25.6l-16 86.4c-28.8 11.2-56 27.2-81.6 46.4l-83.2-30.4c-3.2-1.6-6.4-1.6-11.2-1.6-9.6 0-17.6 3.2-24 11.2-41.6 46.4-73.6 100.8-92.8 161.6-4.8 12.8 0 27.2 9.6 35.2l67.2 57.6C160 496 160 528 163.2 558.4L96 616c-9.6 8-14.4 22.4-9.6 35.2 19.2 59.2 51.2 115.2 92.8 161.6 6.4 6.4 14.4 11.2 24 11.2 3.2 0 8 0 11.2-1.6l83.2-30.4c24 19.2 52.8 35.2 81.6 46.4l16 86.4c1.6 12.8 12.8 22.4 25.6 25.6 60.8 12.8 124.8 12.8 185.6 0 12.8-3.2 22.4-12.8 25.6-25.6l16-86.4c28.8-11.2 56-27.2 81.6-46.4l83.2 30.4c3.2 1.6 6.4 1.6 11.2 1.6 9.6 0 17.6-3.2 24-11.2 41.6-46.4 73.6-100.8 92.8-161.6 3.2-12.8 0-27.2-11.2-35.2L860.8 558.4zM512 672c-88 0-160-72-160-160s72-160 160-160 160 72 160 160S600 672 512 672z"}}]}');
+const data$V = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M1011.1999999999999 489.59999999999997l-224-224c-12.799999999999999-12.799999999999999-32.64-12.799999999999999-45.44 0s-12.799999999999999 32.64 0 45.44l201.59999999999997 200.95999999999998-201.59999999999997 201.59999999999997c-12.799999999999999 12.799999999999999-12.799999999999999 32.64 0 45.44 6.3999999999999995 6.3999999999999995 14.719999999999999 9.6 22.4 9.6s16.64-3.1999999999999997 22.4-9.6l224-224c12.799999999999999-12.799999999999999 12.799999999999999-33.28 0.6399999999999999-45.44z"}},{"type":"element","name":"path","attributes":{"d":"M282.24 265.59999999999997c-12.799999999999999-12.799999999999999-32.64-12.799999999999999-45.44 0l-224 224c-12.799999999999999 12.799999999999999-12.799999999999999 32.64 0 45.44l224 224c6.3999999999999995 5.76 14.719999999999999 8.959999999999999 23.04 8.959999999999999s16.64-3.1999999999999997 22.4-9.6c12.799999999999999-12.799999999999999 12.799999999999999-32.64 0-45.44l-201.59999999999997-200.95999999999998 201.59999999999997-201.59999999999997c12.159999999999998-12.159999999999998 12.159999999999998-32.64 0-44.8z"}},{"type":"element","name":"path","attributes":{"d":"M616.3199999999999 129.27999999999997c-16.64-5.119999999999999-34.56 5.119999999999999-39.04 22.4l-192 704c-4.4799999999999995 17.28 5.119999999999999 34.56 22.4 39.04 2.5599999999999996 0.6399999999999999 5.76 1.2799999999999998 8.32 1.2799999999999998 14.08 0 26.88-9.6 30.72-23.68l192-704c4.4799999999999995-16.64-5.119999999999999-34.56-22.4-39.04z"}}]}');
+const code = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$V,
+    "name": "code"
+  }), null);
+};
+code.displayName = "code";
+code.inheritAttrs = false;
+const data$U = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M608 512A96 96 0 0 1 512 608 96 96 0 0 1 416 512 96 96 0 0 1 608 512z"}},{"type":"element","name":"path","attributes":{"d":"M860.8 558.4c4.8-30.4 4.8-62.4 0-92.8l67.2-57.6c9.6-8 14.4-22.4 9.6-35.2-19.2-59.2-51.2-115.2-92.8-161.6-6.4-6.4-14.4-11.2-24-11.2-3.2 0-8 0-11.2 1.6l-83.2 30.4c-24-19.2-52.8-35.2-81.6-46.4l-16-86.4c-1.6-12.8-12.8-22.4-25.6-25.6-60.8-12.8-124.8-12.8-185.6 0-12.8 3.2-22.4 12.8-24 25.6l-16 86.4c-28.8 11.2-56 27.2-81.6 46.4l-83.2-30.4c-3.2-1.6-6.4-1.6-11.2-1.6-9.6 0-17.6 3.2-24 11.2-41.6 46.4-73.6 100.8-92.8 161.6-4.8 12.8 0 27.2 9.6 35.2l67.2 57.6C160 496 160 528 163.2 558.4L96 616c-9.6 8-14.4 22.4-9.6 35.2 19.2 59.2 51.2 115.2 92.8 161.6 6.4 6.4 14.4 11.2 24 11.2 3.2 0 8 0 11.2-1.6l83.2-30.4c24 19.2 52.8 35.2 81.6 46.4l16 86.4c1.6 12.8 12.8 22.4 25.6 25.6 60.8 12.8 124.8 12.8 185.6 0 12.8-3.2 22.4-12.8 25.6-25.6l16-86.4c28.8-11.2 56-27.2 81.6-46.4l83.2 30.4c3.2 1.6 6.4 1.6 11.2 1.6 9.6 0 17.6-3.2 24-11.2 41.6-46.4 73.6-100.8 92.8-161.6 3.2-12.8 0-27.2-11.2-35.2L860.8 558.4zM512 672c-88 0-160-72-160-160s72-160 160-160 160 72 160 160S600 672 512 672z"}}]}');
 const cogShape = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$v,
+    "data": data$U,
     "name": "cogShape"
   }), null);
 };
 cogShape.displayName = "cogShape";
 cogShape.inheritAttrs = false;
-const data$u = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M496 216l-76.32 76.32 152.64 152.8H64v101.76H572.16l-152.48 152.8L496 776 775.52 496Zm362.4 0v560H960v-560Z"}}]}');
+const data$T = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M496 216l-76.32 76.32 152.64 152.8H64v101.76H572.16l-152.48 152.8L496 776 775.52 496Zm362.4 0v560H960v-560Z"}}]}');
 const collapseLeft = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$u,
+    "data": data$T,
     "name": "collapseLeft"
   }), null);
 };
 collapseLeft.displayName = "collapseLeft";
 collapseLeft.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 128H288c-17.6 0-32 14.4-32 32v96h-96c-17.6 0-32 14.4-32 32v576c0 17.6 14.4 32 32 32h576c17.6 0 32-14.4 32-32v-96h96c17.6 0 32-14.4 32-32V160C896 142.4 881.6 128 864 128zM704 704v64 64H192V320h64 64 384V704zM832 704h-64V288c0-17.6-14.4-32-32-32H320v-64h512V704z"}},{"type":"element","name":"path","attributes":{"d":"M275.2 419.2H611.2V483.2H275.2z"}},{"type":"element","name":"path","attributes":{"d":"M272 544H608V608H272z"}},{"type":"element","name":"path","attributes":{"d":"M272 672H608V736H272z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1170.2857142857142","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M176.27428571428572 248.68571428571425c100.74209523809523 24.673523809523807 216.40533333333332 38.863238095238096 335.335619047619 38.863238095238096s234.5935238095238-14.14095238095238 345.38057142857144-40.86247619047619c106.30095238095238-27.209142857142858 167.00952380952378-74.02057142857143 167.00952380952378-100.35199999999999 0-49.00571428571428-180.66285714285715-146.28571428571428-512-146.28571428571428s-512 95.81714285714285-512 146.28571428571428c0 26.33142857142857 60.70857142857143 73.14285714285714 176.27428571428572 102.4z"}},{"type":"element","name":"path","attributes":{"d":"M856.5028571428571 923.7942857142857c-99.2304761904762 25.6-213.13828571428573 40.27733333333333-330.45942857142853 40.27733333333333-4.924952380952381 0-9.849904761904762-0.04876190476190476-14.774857142857142-0.09752380952380953-3.4620952380952374 0.04876190476190476-8.387047619047618 0.09752380952380953-13.360761904761905 0.09752380952380953-117.32114285714286 0-231.18019047619046-14.677333333333332-339.87047619047615-42.37409523809524-113.37142857142858 37.156571428571425-157.98857142857142 81.77371428571428-157.98857142857142 102.25371428571428 0 49.00571428571428 180.66285714285715 146.28571428571428 512 146.28571428571428s512-95.08571428571427 512-146.28571428571428c0-20.479999999999997-44.61714285714286-65.09714285714286-167.49714285714285-100.2057142857143z"}},{"type":"element","name":"path","attributes":{"d":"M856.5028571428571 626.8342857142857c-103.37523809523809 25.063619047619046-222.0617142857143 39.44838095238095-344.16152380952377 39.44838095238095s-240.73752380952382-14.384761904761904-354.4990476190476-41.54514285714286c-113.27390476190476 37.20533333333333-157.8910476190476 82.55390476190476-157.8910476190476 106.69104761904762 0 49.00571428571428 180.66285714285715 146.28571428571428 512 146.28571428571428s512-95.08571428571427 512-146.28571428571428c0-24.137142857142855-44.61714285714286-69.48571428571428-167.49714285714285-104.5942857142857z"}},{"type":"element","name":"path","attributes":{"d":"M856.5028571428571 332.0685714285714h-13.165714285714285c-99.42552380952381 25.40495238095238-213.62590476190476 40.03352380952381-331.23961904761904 40.22857142857142-3.072 0-6.534095238095238 0.04876190476190476-10.04495238095238 0.04876190476190476-114.00533333333333 0-224.88990476190475-13.604571428571429-330.9958095238095-39.30209523809524l-2.8769523809523805 1.9504761904761905c-123.61142857142858 30.72-168.22857142857143 77.53142857142858-168.22857142857143 99.47428571428571 0 49.00571428571428 180.66285714285715 146.28571428571428 512 146.28571428571428s512-95.81714285714285 512-146.28571428571428c0-21.942857142857143-44.61714285714286-68.7542857142857-167.49714285714285-102.4z"}}]}');
-const data$t = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M928 224H672v-64c0-35.2-28.8-64-64-64H416c-35.2 0-64 28.8-64 64v64H96v64h112v576c0 35.2 28.8 64 64 64h480c35.2 0 64-28.8 64-64V288h112V224zM432 160h160c9.6 0 16 6.4 16 16v48H416v-48C416 166.4 422.4 160 432 160zM736 864H288c-9.6 0-16-6.4-16-16V288h480v560C752 857.6 745.6 864 736 864z"}},{"type":"element","name":"path","attributes":{"d":"M576 400H640V752H576V400z"}},{"type":"element","name":"path","attributes":{"d":"M384 400H448V752H384V400z"}}]}');
+const data$S = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 128H288c-17.6 0-32 14.4-32 32v96h-96c-17.6 0-32 14.4-32 32v576c0 17.6 14.4 32 32 32h576c17.6 0 32-14.4 32-32v-96h96c17.6 0 32-14.4 32-32V160C896 142.4 881.6 128 864 128zM704 704v64 64H192V320h64 64 384V704zM832 704h-64V288c0-17.6-14.4-32-32-32H320v-64h512V704z"}},{"type":"element","name":"path","attributes":{"d":"M275.2 419.2H611.2V483.2H275.2z"}},{"type":"element","name":"path","attributes":{"d":"M272 544H608V608H272z"}},{"type":"element","name":"path","attributes":{"d":"M272 672H608V736H272z"}}]}');
+const copy = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$S,
+    "name": "copy"
+  }), null);
+};
+copy.displayName = "copy";
+copy.inheritAttrs = false;
+const data$R = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1170.2857142857142","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M176.27428571428572 248.68571428571425c100.74209523809523 24.673523809523807 216.40533333333332 38.863238095238096 335.335619047619 38.863238095238096s234.5935238095238-14.14095238095238 345.38057142857144-40.86247619047619c106.30095238095238-27.209142857142858 167.00952380952378-74.02057142857143 167.00952380952378-100.35199999999999 0-49.00571428571428-180.66285714285715-146.28571428571428-512-146.28571428571428s-512 95.81714285714285-512 146.28571428571428c0 26.33142857142857 60.70857142857143 73.14285714285714 176.27428571428572 102.4z"}},{"type":"element","name":"path","attributes":{"d":"M856.5028571428571 923.7942857142857c-99.2304761904762 25.6-213.13828571428573 40.27733333333333-330.45942857142853 40.27733333333333-4.924952380952381 0-9.849904761904762-0.04876190476190476-14.774857142857142-0.09752380952380953-3.4620952380952374 0.04876190476190476-8.387047619047618 0.09752380952380953-13.360761904761905 0.09752380952380953-117.32114285714286 0-231.18019047619046-14.677333333333332-339.87047619047615-42.37409523809524-113.37142857142858 37.156571428571425-157.98857142857142 81.77371428571428-157.98857142857142 102.25371428571428 0 49.00571428571428 180.66285714285715 146.28571428571428 512 146.28571428571428s512-95.08571428571427 512-146.28571428571428c0-20.479999999999997-44.61714285714286-65.09714285714286-167.49714285714285-100.2057142857143z"}},{"type":"element","name":"path","attributes":{"d":"M856.5028571428571 626.8342857142857c-103.37523809523809 25.063619047619046-222.0617142857143 39.44838095238095-344.16152380952377 39.44838095238095s-240.73752380952382-14.384761904761904-354.4990476190476-41.54514285714286c-113.27390476190476 37.20533333333333-157.8910476190476 82.55390476190476-157.8910476190476 106.69104761904762 0 49.00571428571428 180.66285714285715 146.28571428571428 512 146.28571428571428s512-95.08571428571427 512-146.28571428571428c0-24.137142857142855-44.61714285714286-69.48571428571428-167.49714285714285-104.5942857142857z"}},{"type":"element","name":"path","attributes":{"d":"M856.5028571428571 332.0685714285714h-13.165714285714285c-99.42552380952381 25.40495238095238-213.62590476190476 40.03352380952381-331.23961904761904 40.22857142857142-3.072 0-6.534095238095238 0.04876190476190476-10.04495238095238 0.04876190476190476-114.00533333333333 0-224.88990476190475-13.604571428571429-330.9958095238095-39.30209523809524l-2.8769523809523805 1.9504761904761905c-123.61142857142858 30.72-168.22857142857143 77.53142857142858-168.22857142857143 99.47428571428571 0 49.00571428571428 180.66285714285715 146.28571428571428 512 146.28571428571428s512-95.81714285714285 512-146.28571428571428c0-21.942857142857143-44.61714285714286-68.7542857142857-167.49714285714285-102.4z"}}]}');
+const dataShape = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$R,
+    "name": "dataShape"
+  }), null);
+};
+dataShape.displayName = "dataShape";
+dataShape.inheritAttrs = false;
+const data$Q = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M928 224H672v-64c0-35.2-28.8-64-64-64H416c-35.2 0-64 28.8-64 64v64H96v64h112v576c0 35.2 28.8 64 64 64h480c35.2 0 64-28.8 64-64V288h112V224zM432 160h160c9.6 0 16 6.4 16 16v48H416v-48C416 166.4 422.4 160 432 160zM736 864H288c-9.6 0-16-6.4-16-16V288h480v560C752 857.6 745.6 864 736 864z"}},{"type":"element","name":"path","attributes":{"d":"M576 400H640V752H576V400z"}},{"type":"element","name":"path","attributes":{"d":"M384 400H448V752H384V400z"}}]}');
 const del = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$t,
+    "data": data$Q,
     "name": "del"
   }), null);
 };
 del.displayName = "del";
 del.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1097.143","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M698.6979072 34.411393901714284C704.0406784 39.04304329142857 707.1085714285714 45.76605271771429 707.1085714285714 52.83693527771428L707.1085714285714 1069.3276013714285C707.1085714285714 1076.3886738285712 704.0452278857143 1083.1024822857141 698.7138852571428 1087.7323337142855 693.3825389714286 1092.362185142857 686.3058176 1094.453295542857 679.3142857142858 1093.4647442285714L66.27961892571427 1005.9371263999999C42.24804234971429 1002.5144795428571 24.393142857142855 981.9369252571428 24.393142857142855 957.6628406857142L24.393142857142855 164.50169709714285C24.393142857142855 140.22761252571428 42.24804234971429 119.65005750857142 66.27961892571427 116.22741138285714L66.32838107428572 116.22741138285714 679.2655250285715 28.699792423131427C686.2647552000001 27.695727027199997 693.355136 29.77974452662857 698.6979072 34.411393901714284ZM950.9180964571428 122.22512566857142C977.8485504 122.22512566857142 999.68 144.05657417142857 999.68 170.9870306742857L999.68 951.1775049142856C999.68 978.1079625142856 977.8485504 999.9394121142856 950.9180964571428 999.9394121142856L755.8704749714285 999.9394121142856 755.8704749714285 902.4156013714285 902.1561892571428 902.4156013714285 902.1561892571428 219.7489353142857 755.8704749714285 219.7489353142857 755.8704749714285 122.22512566857142 950.9180964571428 122.22512566857142ZM268.25142857142856 366.03464959999997L170.72761892571427 366.03464959999997 170.72761892571427 756.1298870857141 268.25142857142856 756.1298870857141 365.7752382171428 658.606076342857 463.2990464 756.1298870857141 560.8228571428571 756.1298870857141 560.8228571428571 366.03464959999997 463.2990464 366.03464959999997 463.2990464 609.3077906285713 365.7752382171428 512.3203620571429 268.73904749714285 609.8441727999999 268.25142857142856 366.03464959999997Z"}}]}');
-const data$s = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M704 352l48 48-304 304-176-176 48-48 128 128z"}}]}');
+const data$P = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1097.143","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M698.6979072 34.411393901714284C704.0406784 39.04304329142857 707.1085714285714 45.76605271771429 707.1085714285714 52.83693527771428L707.1085714285714 1069.3276013714285C707.1085714285714 1076.3886738285712 704.0452278857143 1083.1024822857141 698.7138852571428 1087.7323337142855 693.3825389714286 1092.362185142857 686.3058176 1094.453295542857 679.3142857142858 1093.4647442285714L66.27961892571427 1005.9371263999999C42.24804234971429 1002.5144795428571 24.393142857142855 981.9369252571428 24.393142857142855 957.6628406857142L24.393142857142855 164.50169709714285C24.393142857142855 140.22761252571428 42.24804234971429 119.65005750857142 66.27961892571427 116.22741138285714L66.32838107428572 116.22741138285714 679.2655250285715 28.699792423131427C686.2647552000001 27.695727027199997 693.355136 29.77974452662857 698.6979072 34.411393901714284ZM950.9180964571428 122.22512566857142C977.8485504 122.22512566857142 999.68 144.05657417142857 999.68 170.9870306742857L999.68 951.1775049142856C999.68 978.1079625142856 977.8485504 999.9394121142856 950.9180964571428 999.9394121142856L755.8704749714285 999.9394121142856 755.8704749714285 902.4156013714285 902.1561892571428 902.4156013714285 902.1561892571428 219.7489353142857 755.8704749714285 219.7489353142857 755.8704749714285 122.22512566857142 950.9180964571428 122.22512566857142ZM268.25142857142856 366.03464959999997L170.72761892571427 366.03464959999997 170.72761892571427 756.1298870857141 268.25142857142856 756.1298870857141 365.7752382171428 658.606076342857 463.2990464 756.1298870857141 560.8228571428571 756.1298870857141 560.8228571428571 366.03464959999997 463.2990464 366.03464959999997 463.2990464 609.3077906285713 365.7752382171428 512.3203620571429 268.73904749714285 609.8441727999999 268.25142857142856 366.03464959999997Z"}}]}');
+const docFill = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$P,
+    "name": "docFill"
+  }), null);
+};
+docFill.displayName = "docFill";
+docFill.inheritAttrs = false;
+const data$O = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M704 352l48 48-304 304-176-176 48-48 128 128z"}}]}');
 const done = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$s,
+    "data": data$O,
     "name": "done"
   }), null);
 };
 done.displayName = "done";
 done.inheritAttrs = false;
-const data$r = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 768c-6.3999999999999995 0-13.44-2.5599999999999996-18.56-8.32l-356.48-384c-8.32-8.959999999999999-10.879999999999999-23.04-7.04-35.199999999999996s14.08-20.479999999999997 25.599999999999998-20.479999999999997h712.96c11.52 0 21.119999999999997 8.32 25.599999999999998 20.479999999999997s1.2799999999999998 26.24-7.04 35.199999999999996l-356.48 384c-5.119999999999999 5.76-12.159999999999998 8.32-18.56 8.32z"}}]}');
+const data$N = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 768c-6.3999999999999995 0-13.44-2.5599999999999996-18.56-8.32l-356.48-384c-8.32-8.959999999999999-10.879999999999999-23.04-7.04-35.199999999999996s14.08-20.479999999999997 25.599999999999998-20.479999999999997h712.96c11.52 0 21.119999999999997 8.32 25.599999999999998 20.479999999999997s1.2799999999999998 26.24-7.04 35.199999999999996l-356.48 384c-5.119999999999999 5.76-12.159999999999998 8.32-18.56 8.32z"}}]}');
 const downShape = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$r,
+    "data": data$N,
     "name": "downShape"
   }), null);
 };
 downShape.displayName = "downShape";
 downShape.inheritAttrs = false;
-const data$q = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M288 448L336 400 512 576 688 400 736 448 512 672z"}}]}');
+const data$M = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M288 448L336 400 512 576 688 400 736 448 512 672z"}}]}');
 const downSmall = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$q,
+    "data": data$M,
     "name": "downSmall"
   }), null);
 };
 downSmall.displayName = "downSmall";
 downSmall.inheritAttrs = false;
-const data$p = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M609.6 201.6L203.2 609.6 203.2 710.4 304 710.4 712 304z"}},{"type":"element","name":"path","attributes":{"d":"M128 800H896V896H128z"}},{"type":"element","name":"path","attributes":{"d":"M683.6717566325265 128.04165515828316L785.4933559547056 229.86680878681256 740.2377321198037 275.1208529300033 638.4161327976245 173.2956993014738z"}}]}');
+const data$L = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M609.6 201.6L203.2 609.6 203.2 710.4 304 710.4 712 304z"}},{"type":"element","name":"path","attributes":{"d":"M128 800H896V896H128z"}},{"type":"element","name":"path","attributes":{"d":"M683.6717566325265 128.04165515828316L785.4933559547056 229.86680878681256 740.2377321198037 275.1208529300033 638.4161327976245 173.2956993014738z"}}]}');
 const editLine = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$p,
+    "data": data$L,
     "name": "editLine"
   }), null);
 };
 editLine.displayName = "editLine";
 editLine.inheritAttrs = false;
-const data$o = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M320 512c0 35.199999999999996-28.8 64-64 64s-64-28.8-64-64c0-35.199999999999996 28.8-64 64-64s64 28.8 64 64zM512 448c-35.199999999999996 0-64 28.8-64 64s28.8 64 64 64 64-28.8 64-64c0-35.199999999999996-28.8-64-64-64zM768 448c-35.199999999999996 0-64 28.8-64 64s28.8 64 64 64 64-28.8 64-64c0-35.199999999999996-28.8-64-64-64z"}}]}');
+const data$K = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M320 512c0 35.199999999999996-28.8 64-64 64s-64-28.8-64-64c0-35.199999999999996 28.8-64 64-64s64 28.8 64 64zM512 448c-35.199999999999996 0-64 28.8-64 64s28.8 64 64 64 64-28.8 64-64c0-35.199999999999996-28.8-64-64-64zM768 448c-35.199999999999996 0-64 28.8-64 64s28.8 64 64 64 64-28.8 64-64c0-35.199999999999996-28.8-64-64-64z"}}]}');
 const ellipsis$1 = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$o,
+    "data": data$K,
     "name": "ellipsis"
   }), null);
 };
 ellipsis$1.displayName = "ellipsis";
 ellipsis$1.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M885.76 840.64l-148.96-149.12a344.16 344.16 0 1 0-45.28 45.28l149.12 148.96a32 32 0 1 0 45.12-45.12ZM472 752A280 280 0 1 1 752 472 280.32 280.32 0 0 1 472 752Z"}},{"type":"element","name":"path","attributes":{"d":"M576 448H496V368a32 32 0 0 0-64 0v80H352a32 32 0 0 0 0 64h80v80a32 32 0 0 0 64 0V512h80a32 32 0 0 0 0-64Z"}}]}');
-const data$n = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M452.7573333333333 510.91200000000003L225.83338666666668 737.8346666666666 286.1730133333333 798.1738666666666 513.0965333333334 571.2511999999999 739.8399999999999 797.9946666666666 797.9946666666666 739.8399999999999 571.2511999999999 513.0965333333334 798.1738666666666 286.1730133333333 737.8346666666666 225.83338666666668 510.91200000000003 452.7573333333333 283.9867733333333 225.83338666666668 225.83338666666668 283.9867733333333 452.7573333333333 510.91200000000003Z","clip-rule":"evenodd"}}]}');
+const data$J = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M885.76 840.64l-148.96-149.12a344.16 344.16 0 1 0-45.28 45.28l149.12 148.96a32 32 0 1 0 45.12-45.12ZM472 752A280 280 0 1 1 752 472 280.32 280.32 0 0 1 472 752Z"}},{"type":"element","name":"path","attributes":{"d":"M576 448H496V368a32 32 0 0 0-64 0v80H352a32 32 0 0 0 0 64h80v80a32 32 0 0 0 64 0V512h80a32 32 0 0 0 0-64Z"}}]}');
+const enlargeLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$J,
+    "name": "enlargeLine"
+  }), null);
+};
+enlargeLine.displayName = "enlargeLine";
+enlargeLine.inheritAttrs = false;
+const data$I = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M452.7573333333333 510.91200000000003L225.83338666666668 737.8346666666666 286.1730133333333 798.1738666666666 513.0965333333334 571.2511999999999 739.8399999999999 797.9946666666666 797.9946666666666 739.8399999999999 571.2511999999999 513.0965333333334 798.1738666666666 286.1730133333333 737.8346666666666 225.83338666666668 510.91200000000003 452.7573333333333 283.9867733333333 225.83338666666668 225.83338666666668 283.9867733333333 452.7573333333333 510.91200000000003Z","clip-rule":"evenodd"}}]}');
 const error = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$n,
+    "data": data$I,
     "name": "error"
   }), null);
 };
 error.displayName = "error";
 error.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1097.143","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M698.6369535999999 21.90055387428571C703.9797248 26.53220315428571 707.0476178285713 33.25521261714285 707.0476178285713 40.326095360000004L707.0476178285713 1056.8167606857141C707.0476178285713 1063.8778368 703.9842779428571 1070.5916416 698.6529316571427 1075.2214930285713 693.3215890285713 1079.8513481142857 686.2448676571429 1081.9424548571428 679.2533321142857 1080.953903542857L66.21866678857141 993.4262857142858C42.18708992 990.0036388571428 24.332190354285718 969.4260845714285 24.332190354285718 945.152L24.332190354285718 151.99085714285712C24.332190354285718 127.71677257142855 42.18708992 107.13921718857142 66.21866678857141 103.71657142857141L66.26742857142857 103.71657142857141 679.2045714285714 16.188952502857138C686.2038015999999 15.18488685714286 693.2941824 17.26890459428571 698.6369535999999 21.90055387428571ZM950.8571428571428 109.71428571428571C977.7876004571428 109.71428571428571 999.6190463999999 131.54573421714286 999.6190463999999 158.4761903542857L999.6190463999999 938.6666678857142C999.6190463999999 965.5971218285714 977.7876004571428 987.4285714285713 950.8571428571428 987.4285714285713L755.8095250285714 987.4285714285713 755.8095250285714 889.9047606857142 902.0952393142857 889.9047606857142 902.0952393142857 207.23809536 755.8095250285714 207.23809536 755.8095250285714 109.71428571428571 950.8571428571428 109.71428571428571ZM287.69523821714284 353.52381074285717L170.6666667885714 353.52381074285717 307.2 548.5714285714286 170.6666667885714 743.6190463999999 287.69523821714284 743.6190463999999 365.71428571428567 632.1493321142857 443.7333321142857 743.6190463999999 560.7619035428571 743.6190463999999 424.2285714285714 548.5714285714286 560.7619035428571 353.52381074285717 443.7333321142857 353.52381074285717 365.71428571428567 464.9935250285714 287.69523821714284 353.52381074285717Z"}}]}');
-const data$m = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM512 768c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S539.2 768 512 768zM560 308.8L544 608c0 17.6-14.4 32-32 32-17.6 0-32-14.4-32-32l-16-299.2c0-1.6 0-3.2 0-4.8 0-27.2 20.8-48 48-48 27.2 0 48 20.8 48 48C560 305.6 560 307.2 560 308.8z"}}]}');
+const data$H = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1097.143","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M698.6369535999999 21.90055387428571C703.9797248 26.53220315428571 707.0476178285713 33.25521261714285 707.0476178285713 40.326095360000004L707.0476178285713 1056.8167606857141C707.0476178285713 1063.8778368 703.9842779428571 1070.5916416 698.6529316571427 1075.2214930285713 693.3215890285713 1079.8513481142857 686.2448676571429 1081.9424548571428 679.2533321142857 1080.953903542857L66.21866678857141 993.4262857142858C42.18708992 990.0036388571428 24.332190354285718 969.4260845714285 24.332190354285718 945.152L24.332190354285718 151.99085714285712C24.332190354285718 127.71677257142855 42.18708992 107.13921718857142 66.21866678857141 103.71657142857141L66.26742857142857 103.71657142857141 679.2045714285714 16.188952502857138C686.2038015999999 15.18488685714286 693.2941824 17.26890459428571 698.6369535999999 21.90055387428571ZM950.8571428571428 109.71428571428571C977.7876004571428 109.71428571428571 999.6190463999999 131.54573421714286 999.6190463999999 158.4761903542857L999.6190463999999 938.6666678857142C999.6190463999999 965.5971218285714 977.7876004571428 987.4285714285713 950.8571428571428 987.4285714285713L755.8095250285714 987.4285714285713 755.8095250285714 889.9047606857142 902.0952393142857 889.9047606857142 902.0952393142857 207.23809536 755.8095250285714 207.23809536 755.8095250285714 109.71428571428571 950.8571428571428 109.71428571428571ZM287.69523821714284 353.52381074285717L170.6666667885714 353.52381074285717 307.2 548.5714285714286 170.6666667885714 743.6190463999999 287.69523821714284 743.6190463999999 365.71428571428567 632.1493321142857 443.7333321142857 743.6190463999999 560.7619035428571 743.6190463999999 424.2285714285714 548.5714285714286 560.7619035428571 353.52381074285717 443.7333321142857 353.52381074285717 365.71428571428567 464.9935250285714 287.69523821714284 353.52381074285717Z"}}]}');
+const excelFill = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$H,
+    "name": "excelFill"
+  }), null);
+};
+excelFill.displayName = "excelFill";
+excelFill.inheritAttrs = false;
+const data$G = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM512 768c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S539.2 768 512 768zM560 308.8L544 608c0 17.6-14.4 32-32 32-17.6 0-32-14.4-32-32l-16-299.2c0-1.6 0-3.2 0-4.8 0-27.2 20.8-48 48-48 27.2 0 48 20.8 48 48C560 305.6 560 307.2 560 308.8z"}}]}');
 const exclamationCircleShape = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$m,
+    "data": data$G,
     "name": "exclamationCircleShape"
   }), null);
 };
 exclamationCircleShape.displayName = "exclamationCircleShape";
 exclamationCircleShape.inheritAttrs = false;
-const data$l = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 384a128 128 0 1 0 128 128A128 128 0 0 0 512 384Zm0 192a64 64 0 1 1 64-64A64 64 0 0 1 512 576Z"}},{"type":"element","name":"path","attributes":{"d":"M512 240C264.64 240 64 512 64 512S264.64 784 512 784 960 512 960 512 759.36 240 512 240Zm0 480C352 720 208 580.96 147.04 512 208 442.88 352 304 512 304s304 139.04 364.96 208C816 581.12 672 720 512 720Z"}}]}');
+const data$F = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 384a128 128 0 1 0 128 128A128 128 0 0 0 512 384Zm0 192a64 64 0 1 1 64-64A64 64 0 0 1 512 576Z"}},{"type":"element","name":"path","attributes":{"d":"M512 240C264.64 240 64 512 64 512S264.64 784 512 784 960 512 960 512 759.36 240 512 240Zm0 480C352 720 208 580.96 147.04 512 208 442.88 352 304 512 304s304 139.04 364.96 208C816 581.12 672 720 512 720Z"}}]}');
 const eye = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$l,
+    "data": data$F,
     "name": "eye"
   }), null);
 };
 eye.displayName = "eye";
 eye.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M128 384L192 384 192 192 384 192 384 128 128 128 128 384Z"}},{"type":"element","name":"path","attributes":{"d":"M640 128L640 192 832 192 832 384 896 384 896 128 640 128Z"}},{"type":"element","name":"path","attributes":{"d":"M192 640L128 640 128 896 384 896 384 832 192 832 192 640Z"}},{"type":"element","name":"path","attributes":{"d":"M832 832L640 832 640 896 896 896 896 640 832 640 832 832Z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M928 320h-35.199999999999996c-15.402666666666665-73.55733333333333-79.744-128-156.75733333333332-128 0 0-0.042666666666666665 0-0.042666666666666665 0h-288v-32c0-53.034666666666666-42.96533333333333-96-96-96h-256c-53.034666666666666 0-96 42.96533333333333-96 96v640c0 88.36266666666667 71.63733333333333 160 160 160h704c0.38399999999999995 0 0.8533333333333333 0 1.3226666666666667 0 51.199999999999996 0 92.88533333333334-40.61866666666666 94.67733333333332-91.34933333333333l64-452.65066666666667c0-53.034666666666666-42.96533333333333-96-96-96zM64 800v-640c0-17.663999999999998 14.336-32 32-32h256c17.663999999999998 0 32 14.336 32 32v64c0 17.663999999999998 14.336 32 32 32h320c41.42933333333333 0.128 76.71466666666666 26.496 90.02666666666666 63.31733333333333l-538.0266666666666 0.6826666666666666c-0.38399999999999995 0-0.8533333333333333 0-1.3226666666666667 0-51.199999999999996 0-92.88533333333334 40.61866666666666-94.67733333333332 91.34933333333333l-64 452.65066666666667c0.128 9.856 1.7493333333333334 19.328 4.650666666666666 28.202666666666666-39.97866666666667-12.842666666666666-68.47999999999999-49.151999999999994-68.65066666666667-92.16zM896 864c0 17.663999999999998-14.336 32-32 32h-640c-0.08533333333333333 0-0.21333333333333332 0-0.29866666666666664 0-16.08533333333333 0-29.39733333333333-11.861333333333334-31.658666666666665-27.349333333333334l64-452.65066666666667c0-17.663999999999998 14.336-32 32-32h640c0.08533333333333333 0 0.21333333333333332 0 0.29866666666666664 0 16.08533333333333 0 29.39733333333333 11.861333333333334 31.658666666666665 27.349333333333334z"}}]}');
-const data$k = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M202.24 421.11999999999995c1.792-56.23466666666667 47.78666666666667-101.12 104.27733333333333-101.12 0.46933333333333327 0 0.9386666666666665 0 1.408 0l568.2346666666666 0c0.17066666666666666 0 0.38399999999999995 0 0.5973333333333333 0 7.082666666666666 0 12.799999999999999-5.717333333333333 12.799999999999999-12.799999999999999 0-1.3653333333333333-0.21333333333333332-2.6879999999999997-0.6399999999999999-3.925333333333333-21.205333333333332-65.024-81.40799999999999-111.27466666666666-152.40533333333332-111.27466666666666-0.17066666666666666 0-0.38399999999999995 0-0.5546666666666666 0h-287.9573333333333v-32c0-53.034666666666666-42.96533333333333-96-96-96h-256c-53.034666666666666 0-96 42.96533333333333-96 96v640c0 0.9813333333333333-0.042666666666666665 2.0906666666666665-0.042666666666666665 3.2426666666666666 0 77.056 54.44266666666667 141.39733333333334 126.976 156.58666666666664 0.896-1.92 0.8106666666666666-4.394666666666666 0.8106666666666666-6.8693333333333335s0.08533333333333333-4.949333333333334 0.256-7.381333333333332z"}},{"type":"element","name":"path","attributes":{"d":"M960 384h-652.16c-22.954666666666668 0-41.599999999999994 18.645333333333333-41.599999999999994 41.599999999999994l-74.24 521.5999999999999c-0.42666666666666664 1.92-0.6399999999999999 4.1386666666666665-0.6399999999999999 6.3999999999999995s0.256 4.4799999999999995 0.6826666666666666 6.613333333333333l703.9573333333333-0.21333333333333332c35.327999999999996 0 64-28.672 64-64l64-448c0-35.327999999999996-28.672-64-64-64z"}}]}');
+const data$E = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M128 384L192 384 192 192 384 192 384 128 128 128 128 384Z"}},{"type":"element","name":"path","attributes":{"d":"M640 128L640 192 832 192 832 384 896 384 896 128 640 128Z"}},{"type":"element","name":"path","attributes":{"d":"M192 640L128 640 128 896 384 896 384 832 192 832 192 640Z"}},{"type":"element","name":"path","attributes":{"d":"M832 832L640 832 640 896 896 896 896 640 832 640 832 832Z"}}]}');
+const filliscreenLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$E,
+    "name": "filliscreenLine"
+  }), null);
+};
+filliscreenLine.displayName = "filliscreenLine";
+filliscreenLine.inheritAttrs = false;
+const data$D = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M928 320h-35.199999999999996c-15.402666666666665-73.55733333333333-79.744-128-156.75733333333332-128 0 0-0.042666666666666665 0-0.042666666666666665 0h-288v-32c0-53.034666666666666-42.96533333333333-96-96-96h-256c-53.034666666666666 0-96 42.96533333333333-96 96v640c0 88.36266666666667 71.63733333333333 160 160 160h704c0.38399999999999995 0 0.8533333333333333 0 1.3226666666666667 0 51.199999999999996 0 92.88533333333334-40.61866666666666 94.67733333333332-91.34933333333333l64-452.65066666666667c0-53.034666666666666-42.96533333333333-96-96-96zM64 800v-640c0-17.663999999999998 14.336-32 32-32h256c17.663999999999998 0 32 14.336 32 32v64c0 17.663999999999998 14.336 32 32 32h320c41.42933333333333 0.128 76.71466666666666 26.496 90.02666666666666 63.31733333333333l-538.0266666666666 0.6826666666666666c-0.38399999999999995 0-0.8533333333333333 0-1.3226666666666667 0-51.199999999999996 0-92.88533333333334 40.61866666666666-94.67733333333332 91.34933333333333l-64 452.65066666666667c0.128 9.856 1.7493333333333334 19.328 4.650666666666666 28.202666666666666-39.97866666666667-12.842666666666666-68.47999999999999-49.151999999999994-68.65066666666667-92.16zM896 864c0 17.663999999999998-14.336 32-32 32h-640c-0.08533333333333333 0-0.21333333333333332 0-0.29866666666666664 0-16.08533333333333 0-29.39733333333333-11.861333333333334-31.658666666666665-27.349333333333334l64-452.65066666666667c0-17.663999999999998 14.336-32 32-32h640c0.08533333333333333 0 0.21333333333333332 0 0.29866666666666664 0 16.08533333333333 0 29.39733333333333 11.861333333333334 31.658666666666665 27.349333333333334z"}}]}');
+const folderOpen = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$D,
+    "name": "folderOpen"
+  }), null);
+};
+folderOpen.displayName = "folderOpen";
+folderOpen.inheritAttrs = false;
+const data$C = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M202.24 421.11999999999995c1.792-56.23466666666667 47.78666666666667-101.12 104.27733333333333-101.12 0.46933333333333327 0 0.9386666666666665 0 1.408 0l568.2346666666666 0c0.17066666666666666 0 0.38399999999999995 0 0.5973333333333333 0 7.082666666666666 0 12.799999999999999-5.717333333333333 12.799999999999999-12.799999999999999 0-1.3653333333333333-0.21333333333333332-2.6879999999999997-0.6399999999999999-3.925333333333333-21.205333333333332-65.024-81.40799999999999-111.27466666666666-152.40533333333332-111.27466666666666-0.17066666666666666 0-0.38399999999999995 0-0.5546666666666666 0h-287.9573333333333v-32c0-53.034666666666666-42.96533333333333-96-96-96h-256c-53.034666666666666 0-96 42.96533333333333-96 96v640c0 0.9813333333333333-0.042666666666666665 2.0906666666666665-0.042666666666666665 3.2426666666666666 0 77.056 54.44266666666667 141.39733333333334 126.976 156.58666666666664 0.896-1.92 0.8106666666666666-4.394666666666666 0.8106666666666666-6.8693333333333335s0.08533333333333333-4.949333333333334 0.256-7.381333333333332z"}},{"type":"element","name":"path","attributes":{"d":"M960 384h-652.16c-22.954666666666668 0-41.599999999999994 18.645333333333333-41.599999999999994 41.599999999999994l-74.24 521.5999999999999c-0.42666666666666664 1.92-0.6399999999999999 4.1386666666666665-0.6399999999999999 6.3999999999999995s0.256 4.4799999999999995 0.6826666666666666 6.613333333333333l703.9573333333333-0.21333333333333332c35.327999999999996 0 64-28.672 64-64l64-448c0-35.327999999999996-28.672-64-64-64z"}}]}');
 const folderShapeOpen = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$k,
+    "data": data$C,
     "name": "folderShapeOpen"
   }), null);
 };
 folderShapeOpen.displayName = "folderShapeOpen";
 folderShapeOpen.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 192h-416v-32c0-53.034666666666666-42.96533333333333-96-96-96h-256c-53.034666666666666 0-96 42.96533333333333-96 96v640c0 88.36266666666667 71.63733333333333 160 160 160h704c88.36266666666667 0 160-71.63733333333333 160-160v-448c0-88.36266666666667-71.63733333333333-160-160-160z"}}]}');
-const data$j = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 960h-704c-88.36266666666667 0-160-71.63733333333333-160-160v-640c0-53.034666666666666 42.96533333333333-96 96-96h256c53.034666666666666 0 96 42.96533333333333 96 96v32h416c88.36266666666667 0 160 71.63733333333333 160 160v448c0 88.36266666666667-71.63733333333333 160-160 160zM96 128c-17.663999999999998 0-32 14.336-32 32v640c0 53.034666666666666 42.96533333333333 96 96 96h704c53.034666666666666 0 96-42.96533333333333 96-96v-448c0-53.034666666666666-42.96533333333333-96-96-96h-448c-17.663999999999998 0-32-14.336-32-32v-64c0-17.663999999999998-14.336-32-32-32z"}}]}');
+const data$B = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 192h-416v-32c0-53.034666666666666-42.96533333333333-96-96-96h-256c-53.034666666666666 0-96 42.96533333333333-96 96v640c0 88.36266666666667 71.63733333333333 160 160 160h704c88.36266666666667 0 160-71.63733333333333 160-160v-448c0-88.36266666666667-71.63733333333333-160-160-160z"}}]}');
+const folderShape = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$B,
+    "name": "folderShape"
+  }), null);
+};
+folderShape.displayName = "folderShape";
+folderShape.inheritAttrs = false;
+const data$A = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 960h-704c-88.36266666666667 0-160-71.63733333333333-160-160v-640c0-53.034666666666666 42.96533333333333-96 96-96h256c53.034666666666666 0 96 42.96533333333333 96 96v32h416c88.36266666666667 0 160 71.63733333333333 160 160v448c0 88.36266666666667-71.63733333333333 160-160 160zM96 128c-17.663999999999998 0-32 14.336-32 32v640c0 53.034666666666666 42.96533333333333 96 96 96h704c53.034666666666666 0 96-42.96533333333333 96-96v-448c0-53.034666666666666-42.96533333333333-96-96-96h-448c-17.663999999999998 0-32-14.336-32-32v-64c0-17.663999999999998-14.336-32-32-32z"}}]}');
 const folder = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$j,
+    "data": data$A,
     "name": "folder"
   }), null);
 };
 folder.displayName = "folder";
 folder.inheritAttrs = false;
-const data$i = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M860.8 128H163.2a32 32 0 0 0-27.36 52l295.2 336 0.96 0V896l160-82.72V516.8l0.96 0 295.2-336A32 32 0 0 0 860.8 128Z"}}]}');
+const data$z = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M860.8 128H163.2a32 32 0 0 0-27.36 52l295.2 336 0.96 0V896l160-82.72V516.8l0.96 0 295.2-336A32 32 0 0 0 860.8 128Z"}}]}');
 const funnel = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$i,
+    "data": data$z,
     "name": "funnel"
   }), null);
 };
 funnel.displayName = "funnel";
 funnel.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512c0 57.6 11.2 113.6 32 166.4V896c0 17.6 14.4 32 32 32h217.6C576 1019.2 836.8 908.8 928 678.4S908.8 187.2 678.4 96C625.6 75.2 569.6 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 128c212.8 0 384 171.2 384 384S724.8 896 512 896 128 724.8 128 512 299.2 128 512 128M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64z"}},{"type":"element","name":"path","attributes":{"d":"M548.8 673.6A48 48 0 0 1 500.8 721.6 48 48 0 0 1 452.8 673.6 48 48 0 0 1 548.8 673.6z"}},{"type":"element","name":"path","attributes":{"d":"M513.6 302.4c80 0 132.8 44.8 132.8 110.4 0 41.6-20.8 72-60.8 96-40 24-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8C377.6 352 427.2 302.4 513.6 302.4z"}}]}');
-const data$h = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M664.4363636363637 0C676.8000000000001 0 688.5818181818182 4.945454545454545 697.3090909090909 13.672727272727274L697.3090909090909 13.672727272727274 1010.3272727272728 326.6909090909091C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.8 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.8 20.8 0 46.54545454545455 0L46.54545454545455 0ZM637.6727272727272 744.7272727272727L474.76363636363635 954.1818181818182 358.40000000000003 814.5454545454546 195.4909090909091 1024 847.1272727272727 1024 637.6727272727272 744.7272727272727ZM465.4545454545455 558.5454545454545C414.041856 558.5454545454545 372.3636363636364 600.2236741818182 372.3636363636364 651.6363636363636 372.3636363636364 703.0490530909091 414.041856 744.7272727272727 465.4545454545455 744.7272727272727 516.8672349090909 744.7272727272727 558.5454545454545 703.0490530909091 558.5454545454545 651.6363636363636 558.5454545454545 600.2236741818182 516.8672349090909 558.5454545454545 465.4545454545455 558.5454545454545ZM642.9090909090909 107.34545454545454L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545454Z"}}]}');
+const data$y = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512c0 57.6 11.2 113.6 32 166.4V896c0 17.6 14.4 32 32 32h217.6C576 1019.2 836.8 908.8 928 678.4S908.8 187.2 678.4 96C625.6 75.2 569.6 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
+const helpDocumentFill = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$y,
+    "name": "helpDocumentFill"
+  }), null);
+};
+helpDocumentFill.displayName = "helpDocumentFill";
+helpDocumentFill.inheritAttrs = false;
+const data$x = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
+const helpFill = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$x,
+    "name": "helpFill"
+  }), null);
+};
+helpFill.displayName = "helpFill";
+helpFill.inheritAttrs = false;
+const data$w = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 128c212.8 0 384 171.2 384 384S724.8 896 512 896 128 724.8 128 512 299.2 128 512 128M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64z"}},{"type":"element","name":"path","attributes":{"d":"M548.8 673.6A48 48 0 0 1 500.8 721.6 48 48 0 0 1 452.8 673.6 48 48 0 0 1 548.8 673.6z"}},{"type":"element","name":"path","attributes":{"d":"M513.6 302.4c80 0 132.8 44.8 132.8 110.4 0 41.6-20.8 72-60.8 96-40 24-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8C377.6 352 427.2 302.4 513.6 302.4z"}}]}');
+const help = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$w,
+    "name": "help"
+  }), null);
+};
+help.displayName = "help";
+help.inheritAttrs = false;
+const data$v = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M664.4363636363637 0C676.8000000000001 0 688.5818181818182 4.945454545454545 697.3090909090909 13.672727272727274L697.3090909090909 13.672727272727274 1010.3272727272728 326.6909090909091C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.8 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.8 20.8 0 46.54545454545455 0L46.54545454545455 0ZM637.6727272727272 744.7272727272727L474.76363636363635 954.1818181818182 358.40000000000003 814.5454545454546 195.4909090909091 1024 847.1272727272727 1024 637.6727272727272 744.7272727272727ZM465.4545454545455 558.5454545454545C414.041856 558.5454545454545 372.3636363636364 600.2236741818182 372.3636363636364 651.6363636363636 372.3636363636364 703.0490530909091 414.041856 744.7272727272727 465.4545454545455 744.7272727272727 516.8672349090909 744.7272727272727 558.5454545454545 703.0490530909091 558.5454545454545 651.6363636363636 558.5454545454545 600.2236741818182 516.8672349090909 558.5454545454545 465.4545454545455 558.5454545454545ZM642.9090909090909 107.34545454545454L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545454Z"}}]}');
 const imageFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$h,
+    "data": data$v,
     "name": "imageFill"
   }), null);
 };
 imageFill.displayName = "imageFill";
 imageFill.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M752 512A176 176 0 1 0 928 688 176 176 0 0 0 752 512Zm0 299.2a30.88 30.88 0 1 1 30.88-30.88A30.72 30.72 0 0 1 752 811.2Zm16.96-92.32a17.12 17.12 0 0 1-33.92 0s-13.76-118.72-13.76-123.2a30.88 30.88 0 1 1 61.6 0C782.88 600.16 768.96 718.88 768.96 718.88Z"}},{"type":"element","name":"path","attributes":{"d":"M800 176H480l-44.32 89.44-23.36 89.44-70.24 85.6 30.88-85.6-46.88-89.44L336 240h0v-0.96L359.52 176H160a96 96 0 0 0-96 96V752a96 96 0 0 0 96 96H573.44A238.88 238.88 0 0 1 512 688a243.2 243.2 0 0 1 8.16-61.44L356.8 519.84a46.72 46.72 0 0 0-70.72 2.56L128 656V272a32 32 0 0 1 32-32h118.4L272 283.36l70.08 71.52L327.36 480l108.32-107.36L530.4 240H800a32 32 0 0 1 32 32V461.92A241.92 241.92 0 0 1 896 496V272A96 96 0 0 0 800 176Z"}},{"type":"element","name":"path","attributes":{"d":"M720 400A80 80 0 0 1 640 480 80 80 0 0 1 560 400 80 80 0 0 1 720 400z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 176H160a96 96 0 0 0-96 96V752a96 96 0 0 0 96 96H864a96 96 0 0 0 96-96V272A96 96 0 0 0 864 176ZM128 272a32 32 0 0 1 32-32H864a32 32 0 0 1 32 32V688l-144-114.72a57.76 57.76 0 0 0-56.32 0L592 672 356.8 439.84a46.72 46.72 0 0 0-70.72 2.56L128 656Z"}},{"type":"element","name":"path","attributes":{"d":"M752 400A96 96 0 0 1 656 496 96 96 0 0 1 560 400 96 96 0 0 1 752 400z"}}]}');
-const data$g = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM512 896C299.2 896 128 724.8 128 512S299.2 128 512 128s384 171.2 384 384S724.8 896 512 896z"}},{"type":"element","name":"path","attributes":{"d":"M494.4 403.2c-28.8 6.4-56 20.8-76.8 41.6-24 22.4 1.6 44.8 16 27.2 9.6-12.8 24-22.4 40-28.8 11.2-1.6 17.6 1.6 19.2 9.6 1.6 14.4 0 27.2-4.8 41.6-4.8 19.2-14.4 51.2-25.6 94.4-22.4 76.8-33.6 124.8-30.4 140.8 3.2 17.6 12.8 32 28.8 41.6 17.6 8 38.4 9.6 57.6 4.8 30.4-6.4 57.6-22.4 80-44.8 25.6-25.6-3.2-43.2-17.6-28.8-9.6 12.8-24 22.4-40 25.6-14.4 3.2-22.4-3.2-25.6-16-1.6-14.4 1.6-28.8 6.4-41.6 40-136 57.6-212.8 52.8-232-3.2-14.4-12.8-27.2-25.6-33.6C532.8 398.4 512 398.4 494.4 403.2z"}},{"type":"element","name":"path","attributes":{"d":"M608 304A48 48 0 0 1 560 352 48 48 0 0 1 512 304 48 48 0 0 1 608 304z"}}]}');
+const data$u = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M752 512A176 176 0 1 0 928 688 176 176 0 0 0 752 512Zm0 299.2a30.88 30.88 0 1 1 30.88-30.88A30.72 30.72 0 0 1 752 811.2Zm16.96-92.32a17.12 17.12 0 0 1-33.92 0s-13.76-118.72-13.76-123.2a30.88 30.88 0 1 1 61.6 0C782.88 600.16 768.96 718.88 768.96 718.88Z"}},{"type":"element","name":"path","attributes":{"d":"M800 176H480l-44.32 89.44-23.36 89.44-70.24 85.6 30.88-85.6-46.88-89.44L336 240h0v-0.96L359.52 176H160a96 96 0 0 0-96 96V752a96 96 0 0 0 96 96H573.44A238.88 238.88 0 0 1 512 688a243.2 243.2 0 0 1 8.16-61.44L356.8 519.84a46.72 46.72 0 0 0-70.72 2.56L128 656V272a32 32 0 0 1 32-32h118.4L272 283.36l70.08 71.52L327.36 480l108.32-107.36L530.4 240H800a32 32 0 0 1 32 32V461.92A241.92 241.92 0 0 1 896 496V272A96 96 0 0 0 800 176Z"}},{"type":"element","name":"path","attributes":{"d":"M720 400A80 80 0 0 1 640 480 80 80 0 0 1 560 400 80 80 0 0 1 720 400z"}}]}');
+const imgError = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$u,
+    "name": "imgError"
+  }), null);
+};
+imgError.displayName = "imgError";
+imgError.inheritAttrs = false;
+const data$t = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M864 176H160a96 96 0 0 0-96 96V752a96 96 0 0 0 96 96H864a96 96 0 0 0 96-96V272A96 96 0 0 0 864 176ZM128 272a32 32 0 0 1 32-32H864a32 32 0 0 1 32 32V688l-144-114.72a57.76 57.76 0 0 0-56.32 0L592 672 356.8 439.84a46.72 46.72 0 0 0-70.72 2.56L128 656Z"}},{"type":"element","name":"path","attributes":{"d":"M752 400A96 96 0 0 1 656 496 96 96 0 0 1 560 400 96 96 0 0 1 752 400z"}}]}');
+const imgPlacehoulder = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$t,
+    "name": "imgPlacehoulder"
+  }), null);
+};
+imgPlacehoulder.displayName = "imgPlacehoulder";
+imgPlacehoulder.inheritAttrs = false;
+const data$s = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM512 896C299.2 896 128 724.8 128 512S299.2 128 512 128s384 171.2 384 384S724.8 896 512 896z"}},{"type":"element","name":"path","attributes":{"d":"M494.4 403.2c-28.8 6.4-56 20.8-76.8 41.6-24 22.4 1.6 44.8 16 27.2 9.6-12.8 24-22.4 40-28.8 11.2-1.6 17.6 1.6 19.2 9.6 1.6 14.4 0 27.2-4.8 41.6-4.8 19.2-14.4 51.2-25.6 94.4-22.4 76.8-33.6 124.8-30.4 140.8 3.2 17.6 12.8 32 28.8 41.6 17.6 8 38.4 9.6 57.6 4.8 30.4-6.4 57.6-22.4 80-44.8 25.6-25.6-3.2-43.2-17.6-28.8-9.6 12.8-24 22.4-40 25.6-14.4 3.2-22.4-3.2-25.6-16-1.6-14.4 1.6-28.8 6.4-41.6 40-136 57.6-212.8 52.8-232-3.2-14.4-12.8-27.2-25.6-33.6C532.8 398.4 512 398.4 494.4 403.2z"}},{"type":"element","name":"path","attributes":{"d":"M608 304A48 48 0 0 1 560 352 48 48 0 0 1 512 304 48 48 0 0 1 608 304z"}}]}');
 const infoLine = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$g,
+    "data": data$s,
     "name": "infoLine"
   }), null);
 };
 infoLine.displayName = "infoLine";
 infoLine.inheritAttrs = false;
-const data$f = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64A448 448 0 1 1 64 512 448 448 0 0 1 512 64ZM493.92 402.56a156 156 0 0 0-77.12 42.24c-24.32 22.88 1.44 44 16 27.52a82.56 82.56 0 0 1 40.48-28.16c11.04-2.24 17.6 1.28 19.36 10.4A118.88 118.88 0 0 1 488.16 496q-7.2 29.76-26.4 93.92-34.72 116.32-30.08 140.8a54.72 54.72 0 0 0 28.8 40.96 88 88 0 0 0 58.4 5.12 161.76 161.76 0 0 0 80-45.44c25.76-24.96-3.52-43.04-17.28-28a76.32 76.32 0 0 1-39.36 26.08c-14.24 2.88-22.72-2.4-25.28-16A104.96 104.96 0 0 1 522.88 672Q582.24 469.12 576 439.84a46.24 46.24 0 0 0-25.6-33.6A89.6 89.6 0 0 0 493.92 402.56Zm67.84-39.84A49.92 49.92 0 1 0 512 312.96 49.76 49.76 0 0 0 561.76 362.72Z"}}]}');
+const data$r = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64A448 448 0 1 1 64 512 448 448 0 0 1 512 64ZM493.92 402.56a156 156 0 0 0-77.12 42.24c-24.32 22.88 1.44 44 16 27.52a82.56 82.56 0 0 1 40.48-28.16c11.04-2.24 17.6 1.28 19.36 10.4A118.88 118.88 0 0 1 488.16 496q-7.2 29.76-26.4 93.92-34.72 116.32-30.08 140.8a54.72 54.72 0 0 0 28.8 40.96 88 88 0 0 0 58.4 5.12 161.76 161.76 0 0 0 80-45.44c25.76-24.96-3.52-43.04-17.28-28a76.32 76.32 0 0 1-39.36 26.08c-14.24 2.88-22.72-2.4-25.28-16A104.96 104.96 0 0 1 522.88 672Q582.24 469.12 576 439.84a46.24 46.24 0 0 0-25.6-33.6A89.6 89.6 0 0 0 493.92 402.56Zm67.84-39.84A49.92 49.92 0 1 0 512 312.96 49.76 49.76 0 0 0 561.76 362.72Z"}}]}');
 const info = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$f,
+    "data": data$r,
     "name": "info"
   }), null);
 };
 info.displayName = "info";
 info.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M680.96 129.92c-14.08-3.84-30.08-1.2799999999999998-40.31999999999999 7.04l-439.03999999999996 356.48c-12.799999999999999 10.239999999999998-12.799999999999999 26.88 0 37.12l439.03999999999996 356.48c7.04 5.76 16.64 8.959999999999999 26.88 8.959999999999999 4.4799999999999995 0 8.959999999999999-0.6399999999999999 13.44-1.92 14.08-3.84 23.04-14.08 23.04-25.599999999999998v-712.96c0-11.52-8.959999999999999-21.759999999999998-23.04-25.599999999999998z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M192 512a320 320 0 1 0 76.96-208H352v64H160V176h64v82.08A384 384 0 1 1 128 512Z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M886.56 841.28l-149.12-149.12a344.64 344.64 0 1 0-45.28 45.28l149.12 149.12A32 32 0 0 0 864 896a32 32 0 0 0 22.56-54.72ZM472.32 752A280.32 280.32 0 1 1 752 472.32 280.64 280.64 0 0 1 472.32 752Z"}},{"type":"element","name":"path","attributes":{"d":"M576 448H352a32 32 0 0 0 0 64H576a32 32 0 0 0 0-64Z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M896 176H128a64 64 0 0 0-64 64V784a64 64 0 0 0 64 64H896a64 64 0 0 0 64-64V240A64 64 0 0 0 896 176Zm0 608H128V240H896Z"}},{"type":"element","name":"path","attributes":{"d":"M327.84 649.28h52.64V373.28H337.76A97.12 97.12 0 0 1 304 417.28a150.56 150.56 0 0 1-44.8 25.6v48a182.56 182.56 0 0 0 68.16-40Z"}},{"type":"element","name":"path","attributes":{"d":"M480.64 450.24H533.28V502.88H480.64V450.24z"}},{"type":"element","name":"path","attributes":{"d":"M480.64 596.64H533.28V649.28H480.64V596.64z"}},{"type":"element","name":"path","attributes":{"d":"M669.28 649.28h52.64V373.28H679.2a97.12 97.12 0 0 1-33.28 44 150.56 150.56 0 0 1-44.8 25.6v48a182.56 182.56 0 0 0 68.16-40Z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M1010.3272727272728 326.8363636363636C1019.0545454545455 335.56363636363636 1024 347.3454545454546 1024 359.70909090909095L1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L46.54545454545455 1303.2727272727273C20.80000000000002 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 46.54545454545455C0 20.799999999999997 20.80000000000002 0 46.54545454545455 0L664.2909090909092 0C676.6545454545455 0 688.5818181818182 4.945454545454554 697.3090909090909 13.67272727272728L1010.3272727272728 326.8363636363636ZM916.6545454545455 381.0909090909091L642.9090909090909 107.34545454545456 642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091ZM688.3156340363636 833.8269090909091C666.2443659636364 833.1156340363638 642.7679976727273 834.8014545454546 616.0974568727273 838.1381818181819 580.7549114181819 816.3389114181817 556.9643659636364 786.3825454545455 540.0625477818182 742.389820509091 540.4698158545455 740.714179490909 541.3134568727273 737.2436386909092 541.6087272727273 736.0189114181819 542.2981818181819 733.1709114181818 542.8698158545455 730.7912750545455 543.4167295999999 728.4770909090909 549.661090909091 702.1061818181818 553.0385454545456 682.8654545454546 554.0349114181819 663.4661841454545 554.788361309091 648.8130932363637 553.9767249454546 635.2945477818182 551.3774545454546 622.7738205090909 546.5803636363637 595.7425477818182 527.4443636363637 579.933090909091 503.3469067636364 578.9541841454546 480.8799976727273 578.0421818181818 460.2210909090909 590.5803636363637 454.9381818181818 610.0421818181818 446.33745221818185 641.4778181818182 451.37454545454545 682.8712727272729 469.6 753.4341818181819 446.3796363636364 808.7883636363637 415.70618181818185 873.6683659636363 395.1229067636363 909.8545477818182 367.65381818181817 924.021820509091 346.2443659636364 936.9163636363637 328.28218181818187 951.2029090909091 304.5687296 970.0625454545454 289.7658181818182 989.4429090909091 285.6843636363637 1009.8298181818183 283.71345221818177 1019.2552727272729 286.69090909090914 1031.5985454545455 293.4807272727272 1041.7018181818182 301.184 1053.1621841454546 312.8 1060.597820509091 326.7243659636364 1061.6800023272726 361.85454312727273 1064.4101818181819 405.02254312727274 1028.1905477818182 452.6734522181818 946.3956386909091 457.4661818181818 944.8101841454546 462.5352704 943.1127272727273 468.71127040000005 941.0283659636364 472.09018181818186 939.8894545454546 483.9316340363637 935.8821841454546 486.0349114181819 935.1723659636364 496.9745454545455 931.4778205090909 504.9149114181818 928.8305477818183 512.7636340363636 926.2763659636363 546.7941794909092 915.2043659636364 572.5396340363636 908.1978181818182 595.9781794909092 904.221090909091 636.6661818181818 926.0000023272728 683.7105477818181 940.288 715.3934522181818 940.288 741.5447272727273 940.288 759.2130885818183 926.7330932363637 765.5970909090909 905.4007296 771.2072704000001 886.6574568727273 766.7520000000001 864.9294568727273 754.7272704 852.9149114181819 742.2763613090909 840.6821841454545 719.3818205090909 834.8290932363636 688.3156340363636 833.8269090909091L688.3156340363636 833.8269090909091ZM327.61017716363637 1020.6196363636365L327.61017716363637 1020.0960000000001 327.79345454545455 1019.6043636363636C329.6479976727273 1014.6283613090909 332.38545221818185 1009.4109090909092 335.93890909090914 1003.9563636363637 342.17018181818185 994.3912727272727 350.7359976727273 984.32 361.3527272727273 973.6072704000001 367.0545454545455 967.8545454545455 372.992 962.2618158545456 379.9563636363637 955.9781794909092 381.5170885818182 954.5687272727273 391.46181818181816 945.7105454545456 393.32217949090904 943.9781841454546L409.5781794909091 928.8407272727272 397.76727040000003 947.6538181818181C379.8385431272727 976.2181818181818 363.6436340363636 996.7883636363637 349.74836363636365 1010.2050909090909 344.64727039999997 1015.1316340363637 340.1483636363636 1018.7869090909091 336.52508858181824 1021.121452218182 335.0312727272727 1022.0843613090909 333.7381794909091 1022.7854522181817 332.72436363636365 1023.1927249454546 332.1294522181818 1023.4298181818182 331.6029067636364 1023.5825431272726 331.0807272727273 1023.6319976727274 330.5281303272728 1023.6968587636364 329.9681698909091 1023.6166516363637 329.4559976727273 1023.3992704 328.3361233454546 1022.9301666909092 327.6080779636364 1021.8337931636364 327.61017716363637 1020.6196363636365ZM510.7869090909091 703.1374568727272L507.4996363636364 708.9658181818182 505.47781818181824 702.5876340363636C500.94836363636364 688.2909090909092 497.6421841454545 666.7461818181819 496.72727272727275 647.3192727272727 495.6858181818182 625.2145431272728 497.44000000000005 611.9403659636364 504.416 611.9403659636364 514.2196363636363 611.9403659636364 518.715638690909 627.6610885818181 519.072 651.2901818181818 519.3861818181817 672.0610909090909 516.1192727272727 693.6785454545454 510.7869090909091 703.1374568727272ZM502.336 788.1760023272727L504.5672727272727 782.2850932363638 507.60436363636364 787.805090909091C524.6080000000001 818.7069114181819 546.6705454545455 844.4843659636364 570.9323636363636 862.4450932363636L576.1614522181818 866.3170932363636 569.7905431272727 867.6320023272727C546.0407296000001 872.5367296000001 523.9083659636365 879.9330909090909 493.6596340363636 892.1294568727272 496.82181585454543 890.8552750545455 462.20799999999997 905.021090909091 453.45890676363643 908.3752727272728L445.81963403636365 911.3032750545455 449.89527039999996 904.2094545454546C467.85891141818183 872.9425454545456 484.452361309091 835.3716363636364 502.3345477818182 788.1760023272727L502.336 788.1760023272727ZM731.6101818181818 899.1010909090909C720.1716363636365 903.616 695.5709067636365 899.5796340363637 652.2370932363636 881.0836340363636L641.2392727272727 876.3898181818182 653.1650885818183 875.5069067636365C687.0487272727273 872.9992704 711.0661818181818 874.8669067636364 725.0516340363637 879.9869067636363 731.0007249454545 882.165820509091 734.9774522181818 884.9149114181819 736.7418181818182 888.064 738.6472727272728 891.4618181818182 737.7745454545455 895.0603636363637 734.7607272727273 897.2421818181818 734.109090909091 897.8632704 733.0807295999999 898.5221818181819 731.6101818181818 899.1010909090909L731.6101818181818 899.1010909090909Z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M827.9893333333332 482.73066666666665l-585.1306666666667-474.7093333333333c-6.229333333333333-5.418666666666667-14.421333333333333-8.746666666666666-23.381333333333334-8.789333333333332-20.223999999999997 0-36.56533333333333 16.384-36.56533333333333 36.56533333333333v950.8693333333333c0 20.18133333333333 16.384 36.56533333333333 36.56533333333333 36.56533333333333 0 0 0.042666666666666665 0 0.042666666666666665 0 8.618666666666666 0 16.512-3.0293333333333328 22.698666666666668-8.106666666666666l585.088-474.66666666666663c8.874666666666666-6.741333333333333 14.506666666666668-17.28 14.506666666666668-29.184 0-11.562666666666667-5.333333333333333-21.845333333333333-13.696-28.544z"}}]}');
-const data$e = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M736 480L544 480 544 288 480 288 480 480 288 480 288 544 480 544 480 736 544 736 544 544 736 544z"}}]}');
+const data$q = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M680.96 129.92c-14.08-3.84-30.08-1.2799999999999998-40.31999999999999 7.04l-439.03999999999996 356.48c-12.799999999999999 10.239999999999998-12.799999999999999 26.88 0 37.12l439.03999999999996 356.48c7.04 5.76 16.64 8.959999999999999 26.88 8.959999999999999 4.4799999999999995 0 8.959999999999999-0.6399999999999999 13.44-1.92 14.08-3.84 23.04-14.08 23.04-25.599999999999998v-712.96c0-11.52-8.959999999999999-21.759999999999998-23.04-25.599999999999998z"}}]}');
+const leftShape = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$q,
+    "name": "leftShape"
+  }), null);
+};
+leftShape.displayName = "leftShape";
+leftShape.inheritAttrs = false;
+const data$p = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M192 512a320 320 0 1 0 76.96-208H352v64H160V176h64v82.08A384 384 0 1 1 128 512Z"}}]}');
+const leftTurnLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$p,
+    "name": "leftTurnLine"
+  }), null);
+};
+leftTurnLine.displayName = "leftTurnLine";
+leftTurnLine.inheritAttrs = false;
+const data$o = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M886.56 841.28l-149.12-149.12a344.64 344.64 0 1 0-45.28 45.28l149.12 149.12A32 32 0 0 0 864 896a32 32 0 0 0 22.56-54.72ZM472.32 752A280.32 280.32 0 1 1 752 472.32 280.64 280.64 0 0 1 472.32 752Z"}},{"type":"element","name":"path","attributes":{"d":"M576 448H352a32 32 0 0 0 0 64H576a32 32 0 0 0 0-64Z"}}]}');
+const narrowLine = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$o,
+    "name": "narrowLine"
+  }), null);
+};
+narrowLine.displayName = "narrowLine";
+narrowLine.inheritAttrs = false;
+const data$n = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M896 176H128a64 64 0 0 0-64 64V784a64 64 0 0 0 64 64H896a64 64 0 0 0 64-64V240A64 64 0 0 0 896 176Zm0 608H128V240H896Z"}},{"type":"element","name":"path","attributes":{"d":"M327.84 649.28h52.64V373.28H337.76A97.12 97.12 0 0 1 304 417.28a150.56 150.56 0 0 1-44.8 25.6v48a182.56 182.56 0 0 0 68.16-40Z"}},{"type":"element","name":"path","attributes":{"d":"M480.64 450.24H533.28V502.88H480.64V450.24z"}},{"type":"element","name":"path","attributes":{"d":"M480.64 596.64H533.28V649.28H480.64V596.64z"}},{"type":"element","name":"path","attributes":{"d":"M669.28 649.28h52.64V373.28H679.2a97.12 97.12 0 0 1-33.28 44 150.56 150.56 0 0 1-44.8 25.6v48a182.56 182.56 0 0 0 68.16-40Z"}}]}');
+const original = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$n,
+    "name": "original"
+  }), null);
+};
+original.displayName = "original";
+original.inheritAttrs = false;
+const data$m = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M1010.3272727272728 326.8363636363636C1019.0545454545455 335.56363636363636 1024 347.3454545454546 1024 359.70909090909095L1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L46.54545454545455 1303.2727272727273C20.80000000000002 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 46.54545454545455C0 20.799999999999997 20.80000000000002 0 46.54545454545455 0L664.2909090909092 0C676.6545454545455 0 688.5818181818182 4.945454545454554 697.3090909090909 13.67272727272728L1010.3272727272728 326.8363636363636ZM916.6545454545455 381.0909090909091L642.9090909090909 107.34545454545456 642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091ZM688.3156340363636 833.8269090909091C666.2443659636364 833.1156340363638 642.7679976727273 834.8014545454546 616.0974568727273 838.1381818181819 580.7549114181819 816.3389114181817 556.9643659636364 786.3825454545455 540.0625477818182 742.389820509091 540.4698158545455 740.714179490909 541.3134568727273 737.2436386909092 541.6087272727273 736.0189114181819 542.2981818181819 733.1709114181818 542.8698158545455 730.7912750545455 543.4167295999999 728.4770909090909 549.661090909091 702.1061818181818 553.0385454545456 682.8654545454546 554.0349114181819 663.4661841454545 554.788361309091 648.8130932363637 553.9767249454546 635.2945477818182 551.3774545454546 622.7738205090909 546.5803636363637 595.7425477818182 527.4443636363637 579.933090909091 503.3469067636364 578.9541841454546 480.8799976727273 578.0421818181818 460.2210909090909 590.5803636363637 454.9381818181818 610.0421818181818 446.33745221818185 641.4778181818182 451.37454545454545 682.8712727272729 469.6 753.4341818181819 446.3796363636364 808.7883636363637 415.70618181818185 873.6683659636363 395.1229067636363 909.8545477818182 367.65381818181817 924.021820509091 346.2443659636364 936.9163636363637 328.28218181818187 951.2029090909091 304.5687296 970.0625454545454 289.7658181818182 989.4429090909091 285.6843636363637 1009.8298181818183 283.71345221818177 1019.2552727272729 286.69090909090914 1031.5985454545455 293.4807272727272 1041.7018181818182 301.184 1053.1621841454546 312.8 1060.597820509091 326.7243659636364 1061.6800023272726 361.85454312727273 1064.4101818181819 405.02254312727274 1028.1905477818182 452.6734522181818 946.3956386909091 457.4661818181818 944.8101841454546 462.5352704 943.1127272727273 468.71127040000005 941.0283659636364 472.09018181818186 939.8894545454546 483.9316340363637 935.8821841454546 486.0349114181819 935.1723659636364 496.9745454545455 931.4778205090909 504.9149114181818 928.8305477818183 512.7636340363636 926.2763659636363 546.7941794909092 915.2043659636364 572.5396340363636 908.1978181818182 595.9781794909092 904.221090909091 636.6661818181818 926.0000023272728 683.7105477818181 940.288 715.3934522181818 940.288 741.5447272727273 940.288 759.2130885818183 926.7330932363637 765.5970909090909 905.4007296 771.2072704000001 886.6574568727273 766.7520000000001 864.9294568727273 754.7272704 852.9149114181819 742.2763613090909 840.6821841454545 719.3818205090909 834.8290932363636 688.3156340363636 833.8269090909091L688.3156340363636 833.8269090909091ZM327.61017716363637 1020.6196363636365L327.61017716363637 1020.0960000000001 327.79345454545455 1019.6043636363636C329.6479976727273 1014.6283613090909 332.38545221818185 1009.4109090909092 335.93890909090914 1003.9563636363637 342.17018181818185 994.3912727272727 350.7359976727273 984.32 361.3527272727273 973.6072704000001 367.0545454545455 967.8545454545455 372.992 962.2618158545456 379.9563636363637 955.9781794909092 381.5170885818182 954.5687272727273 391.46181818181816 945.7105454545456 393.32217949090904 943.9781841454546L409.5781794909091 928.8407272727272 397.76727040000003 947.6538181818181C379.8385431272727 976.2181818181818 363.6436340363636 996.7883636363637 349.74836363636365 1010.2050909090909 344.64727039999997 1015.1316340363637 340.1483636363636 1018.7869090909091 336.52508858181824 1021.121452218182 335.0312727272727 1022.0843613090909 333.7381794909091 1022.7854522181817 332.72436363636365 1023.1927249454546 332.1294522181818 1023.4298181818182 331.6029067636364 1023.5825431272726 331.0807272727273 1023.6319976727274 330.5281303272728 1023.6968587636364 329.9681698909091 1023.6166516363637 329.4559976727273 1023.3992704 328.3361233454546 1022.9301666909092 327.6080779636364 1021.8337931636364 327.61017716363637 1020.6196363636365ZM510.7869090909091 703.1374568727272L507.4996363636364 708.9658181818182 505.47781818181824 702.5876340363636C500.94836363636364 688.2909090909092 497.6421841454545 666.7461818181819 496.72727272727275 647.3192727272727 495.6858181818182 625.2145431272728 497.44000000000005 611.9403659636364 504.416 611.9403659636364 514.2196363636363 611.9403659636364 518.715638690909 627.6610885818181 519.072 651.2901818181818 519.3861818181817 672.0610909090909 516.1192727272727 693.6785454545454 510.7869090909091 703.1374568727272ZM502.336 788.1760023272727L504.5672727272727 782.2850932363638 507.60436363636364 787.805090909091C524.6080000000001 818.7069114181819 546.6705454545455 844.4843659636364 570.9323636363636 862.4450932363636L576.1614522181818 866.3170932363636 569.7905431272727 867.6320023272727C546.0407296000001 872.5367296000001 523.9083659636365 879.9330909090909 493.6596340363636 892.1294568727272 496.82181585454543 890.8552750545455 462.20799999999997 905.021090909091 453.45890676363643 908.3752727272728L445.81963403636365 911.3032750545455 449.89527039999996 904.2094545454546C467.85891141818183 872.9425454545456 484.452361309091 835.3716363636364 502.3345477818182 788.1760023272727L502.336 788.1760023272727ZM731.6101818181818 899.1010909090909C720.1716363636365 903.616 695.5709067636365 899.5796340363637 652.2370932363636 881.0836340363636L641.2392727272727 876.3898181818182 653.1650885818183 875.5069067636365C687.0487272727273 872.9992704 711.0661818181818 874.8669067636364 725.0516340363637 879.9869067636363 731.0007249454545 882.165820509091 734.9774522181818 884.9149114181819 736.7418181818182 888.064 738.6472727272728 891.4618181818182 737.7745454545455 895.0603636363637 734.7607272727273 897.2421818181818 734.109090909091 897.8632704 733.0807295999999 898.5221818181819 731.6101818181818 899.1010909090909L731.6101818181818 899.1010909090909Z"}}]}');
+const pdfFill = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$m,
+    "name": "pdfFill"
+  }), null);
+};
+pdfFill.displayName = "pdfFill";
+pdfFill.inheritAttrs = false;
+const data$l = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M827.9893333333332 482.73066666666665l-585.1306666666667-474.7093333333333c-6.229333333333333-5.418666666666667-14.421333333333333-8.746666666666666-23.381333333333334-8.789333333333332-20.223999999999997 0-36.56533333333333 16.384-36.56533333333333 36.56533333333333v950.8693333333333c0 20.18133333333333 16.384 36.56533333333333 36.56533333333333 36.56533333333333 0 0 0.042666666666666665 0 0.042666666666666665 0 8.618666666666666 0 16.512-3.0293333333333328 22.698666666666668-8.106666666666666l585.088-474.66666666666663c8.874666666666666-6.741333333333333 14.506666666666668-17.28 14.506666666666668-29.184 0-11.562666666666667-5.333333333333333-21.845333333333333-13.696-28.544z"}}]}');
+const playShape = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$l,
+    "name": "playShape"
+  }), null);
+};
+playShape.displayName = "playShape";
+playShape.inheritAttrs = false;
+const data$k = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M736 480L544 480 544 288 480 288 480 480 288 480 288 544 480 544 480 736 544 736 544 544 736 544z"}}]}');
 const plus = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$e,
+    "data": data$k,
     "name": "plus"
   }), null);
 };
 plus.displayName = "plus";
 plus.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1097.143","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M698.6857142857143 34.403266925714284C704.0284854857142 39.03491620571429 707.0963821714286 45.75792566857142 707.0963821714286 52.82880841142857L707.0963821714286 1069.3194752C707.0963821714286 1076.3805476571426 704.0330386285714 1083.0943561142856 698.7016923428572 1087.7242075428571 693.3703497142857 1092.3540589714285 686.2936283428571 1094.4451693714284 679.3020964571429 1093.4566180571428L66.26742857142857 1005.9290002285713C42.23585170285714 1002.5063533714285 24.380952502857145 981.9287990857142 24.380952502857145 957.6547145142856L24.380952502857145 164.4935701942857C24.380952502857145 140.21948562285712 42.23585170285714 119.64193024 66.26742857142857 116.21928448L66.31619035428571 116.21928448 679.2533321142857 28.691665554285713C686.252565942857 27.68759990857143 693.3429430857143 29.771617645714286 698.6857142857143 34.403266925714284ZM950.905903542857 122.21699876571428C977.8363611428571 122.21699876571428 999.6678107428571 144.04844726857144 999.6678107428571 170.97890340571428L999.6678107428571 951.1693787428571C999.6678107428571 978.0998363428571 977.8363611428571 999.931285942857 950.905903542857 999.931285942857L755.8582857142857 999.931285942857 755.8582857142857 902.4074751999999 902.1439999999999 902.4074751999999 902.1439999999999 219.74080841142853 755.8582857142857 219.74080841142853 755.8582857142857 122.21699876571428 950.905903542857 122.21699876571428ZM544.5566976 333.5185846857143L154.46146048 333.5185846857143 154.46146048 723.613824 251.98526976 723.613824 251.98526976 626.0900132571428 544.5566976 626.0900132571428 544.5566976 333.5185846857143ZM447.03289051428567 431.0423954285714L447.03289051428567 528.5662061714285 251.98526976 528.5662061714285 251.98526976 431.0423954285714 447.03289051428567 431.0423954285714Z"}}]}');
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1117.090909090909","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M314.1818181818182 1117.090909090909h-30.720000000000002c-58.78690909090909-0.6516363636363637-112.73309090909092-21.038545454545456-155.5549090909091-54.87709090909091-18.01309090909091-17.31490909090909-29.55636363636364-42.216727272727276-29.55636363636364-69.86472727272727 0-1.3032727272727274 0.04654545454545455-2.6530909090909094 0.0930909090909091-3.956363636363637 0.1861818181818182-11.776 3.025454545454546-23.04 7.866181818181819-33.09381818181818-0.1861818181818182 0.32581818181818184-0.1861818181818182 0.1861818181818182-0.1861818181818182 0 0-18.478545454545458 7.168-35.281454545454544 18.897454545454547-47.75563636363636 8.424727272727273-10.100363636363637 18.10618181818182-18.897454545454547 28.811636363636364-26.205090909090906-7.866181818181819-12.008727272727274-16.19781818181818-25.506909090909094-23.691636363636366-39.47054545454545-17.268363636363638 19.78181818181818-42.123636363636365 34.443636363636365-70.42327272727273 37.05018181818182-19.642181818181818-1.349818181818182-35.70036363636364-13.870545454545454-42.170181818181824-31.045818181818184-51.75854545454546-139.96218181818182 26.43781818181818-264.9367272727273 87.17963636363636-336.1512727272728-0.32581818181818184-3.2581818181818187-0.512-7.028363636363636-0.512-10.798545454545456s0.1861818181818182-7.586909090909091 0.5585454545454546-11.310545454545455c-0.3723636363636364-2.699636363636364-0.5585454545454546-6.3767272727272735-0.5585454545454546-10.053818181818182 0-18.990545454545455 5.12-36.77090909090909 14.056727272727272-52.08436363636364 0.4189090909090909-23.505454545454548 10.705454545454547-44.96290909090909 26.903272727272725-60.22981818181819 2.0014545454545454-203.264 167.2378181818182-367.29018181818185 370.78109090909095-367.29018181818185 0.512 0 0.9774545454545456 0 1.4894545454545456 0 104.40145454545454 1.2567272727272727 198.42327272727272 44.86981818181818 265.8210909090909 114.40872727272729 65.34981818181818 65.25672727272728 106.82181818181819 154.25163636363638 110.40581818181818 252.88145454545455 22.43490909090909 28.904727272727275 36.02618181818182 65.1170909090909 36.02618181818182 104.44800000000001 0 12.706909090909091-1.3963636363636363 25.088-4.096 37.00363636363637 51.2 64.512 134.28363636363636 203.45018181818185 70.05090909090909 343.7847272727273-7.493818181818182 17.268363636363638-24.34327272727273 29.184-43.985454545454544 29.323636363636364h0c-27.694545454545455-4.654545454545455-50.87418181818182-20.945454545454545-64.69818181818181-43.566545454545455-8.424727272727273 15.63927272727273-16.57018181818182 29.137454545454545-25.46036363636364 42.030545454545454 14.382545454545454 6.935272727272727 25.925818181818183 16.942545454545453 35.51418181818182 28.57890909090909 11.450181818181818 11.86909090909091 18.71127272727273 27.46181818181818 19.735272727272726 44.73018181818182 4.654545454545455 9.774545454545455 7.493818181818182 21.038545454545456 7.680000000000001 32.954181818181816 0.04654545454545455 1.2101818181818182 0.0930909090909091 2.5134545454545454 0.0930909090909091 3.816727272727273 0 27.601454545454544-11.543272727272727 52.54981818181818-30.06836363636364 70.23709090909091-42.30981818181819 33.466181818181816-96.256 53.85309090909091-154.90327272727274 54.50472727272727-10.14690909090909 1.2101818181818182-21.736727272727276 1.8618181818181818-33.512727272727275 1.8618181818181818-66.28072727272728 0-127.44145454545455-21.643636363636364-176.91927272727273-58.32145454545454l-33.419636363636364 0.5585454545454546c-47.19709090909091 36.25890909090909-107.14763636363637 58.088727272727276-172.17163636363637 58.088727272727276-3.3047272727272725 0-6.56290909090909-0.04654545454545455-9.821090909090909-0.1861818181818182zM187.11272727272726 946.7345454545455l18.152727272727272 11.17090909090909-38.4 30.720000000000002c0.8378181818181818 8.238545454545454 3.8632727272727276 15.63927272727273 8.471272727272726 21.736727272727276 31.232000000000003 22.900363636363636 70.51636363636364 36.72436363636364 113.01236363636363 36.910545454545456 9.588363636363637 1.442909090909091 20.57309090909091 2.280727272727273 31.744000000000003 2.280727272727273 53.061818181818175 0 101.74836363636364-18.80436363636364 139.72945454545453-50.0829090909091l10.100363636363637-9.495272727272727h21.643636363636364c6.469818181818183 0.46545454545454545 14.010181818181819 0.7447272727272728 21.643636363636364 0.7447272727272728s15.173818181818183-0.2792727272727273 22.667636363636365-0.7912727272727273l14.336 0.04654545454545455 11.17090909090909 10.472727272727273c37.376000000000005 31.09236363636364 85.9229090909091 49.98981818181819 138.8450909090909 49.98981818181819 11.636363636363637 0 23.04-0.9309090909090909 34.16436363636364-2.6530909090909094-0.6516363636363637 0.1861818181818182 0 0.1861818181818182 0.6516363636363637 0.1861818181818182 42.07709090909091 0 80.94254545454547-13.637818181818181 112.45381818181818-36.67781818181818 3.6770909090909094-4.561454545454546 6.2370909090909095-11.031272727272727 6.2370909090909095-18.10618181818182 0-1.8618181818181818-0.1861818181818182-3.6770909090909094-0.512-5.445818181818182l-38.35345454545455-30.533818181818184 18.152727272727272-9.774545454545455c-10.053818181818182-7.633454545454546-21.969454545454546-13.451636363636363-34.955636363636366-16.61672727272727l-55.80800000000001-14.103272727272728 37.70181818181818-42.58909090909091c29.649454545454546-33.18690909090909 52.1309090909091-73.49527272727273 64.41890909090908-117.99272727272728l24.948363636363638-94.25454545454545 40.49454545454545 85.87636363636364c8.843636363636364 19.456 19.316363636363636 36.21236363636364 31.744000000000003 51.386181818181825 30.39418181818182-108.63709090909092-47.104-218.25163636363638-83.40945454545455-262.2370909090909l-13.265454545454544-15.360000000000001 6.9818181818181815-18.85090909090909c3.1185454545454547-9.076363636363636 4.887272727272728-19.54909090909091 4.887272727272728-30.440727272727276 0-25.134545454545457-9.541818181818181-48.034909090909096-25.227636363636368-65.25672727272728l-9.681454545454546-10.379636363636363v-13.963636363636363c-0.32581818181818184-169.70472727272727-135.40072727272727-307.75854545454547-303.9418181818182-312.78545454545457-1.349818181818182 0-2.373818181818182-0.04654545454545455-3.444363636363636-0.04654545454545455-167.7498181818182 0-303.70909090909095 135.95927272727272-303.70909090909095 303.70909090909095 0 3.6770909090909094 0.04654545454545455 7.354181818181819 0.1861818181818182 11.031272727272727l0 20.433454545454545-17.454545454545453 13.963636363636363c-5.678545454545454 3.1650909090909094-9.448727272727274 9.076363636363636-9.448727272727274 15.918545454545455 0 1.3032727272727274 0.13963636363636364 2.5134545454545454 0.3723636363636364 3.7236363636363636l4.189090909090909 27.089454545454544-16.756363636363638 7.680000000000001c-0.3723636363636364 2.7461818181818183-0.6050909090909091 5.864727272727273-0.6050909090909091 9.076363636363636s0.23272727272727273 6.330181818181819 0.6516363636363637 9.448727272727274c0.512 6.842181818181818 2.280727272727273 13.451636363636363 4.980363636363636 19.54909090909091l8.238545454545454 19.874909090909092-14.661818181818182 16.05818181818182c-59.485090909090914 55.482181818181814-96.53527272727273 134.28363636363636-96.53527272727273 221.7890909090909 0 10.891636363636364 0.5585454545454546 21.69018181818182 1.722181818181818 32.30254545454545 12.288-14.754909090909091 23.179636363636366-29.88218181818182 32.11636363636364-46.21963636363636l41.099636363636364-70.98181818181818 23.73818181818182 78.89454545454547c13.312 44.12509090909091 35.14181818181818 82.19927272727273 63.76727272727273 114.0829090909091l36.07272727272728 40.215272727272726-52.36363636363637 16.05818181818182c-12.427636363636365 2.3272727272727276-23.458909090909092 6.935272727272727-33.14036363636364 13.451636363636363zM165.4690909090909 474.76363636363635v0z"}}]}');
-const data$d = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M822.3999999999999 493.43999999999994l-439.03999999999996-356.48c-10.239999999999998-8.32-26.24-10.879999999999999-40.31999999999999-7.04s-23.04 14.08-23.04 25.599999999999998v712.96c0 11.52 8.959999999999999 21.119999999999997 23.04 25.599999999999998 4.4799999999999995 1.2799999999999998 8.959999999999999 1.92 13.44 1.92 10.239999999999998 0 19.84-3.1999999999999997 26.88-8.959999999999999l439.03999999999996-356.48c12.799999999999999-10.239999999999998 12.799999999999999-26.88 0-37.12z"}}]}');
+const data$j = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1097.143","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M698.6857142857143 34.403266925714284C704.0284854857142 39.03491620571429 707.0963821714286 45.75792566857142 707.0963821714286 52.82880841142857L707.0963821714286 1069.3194752C707.0963821714286 1076.3805476571426 704.0330386285714 1083.0943561142856 698.7016923428572 1087.7242075428571 693.3703497142857 1092.3540589714285 686.2936283428571 1094.4451693714284 679.3020964571429 1093.4566180571428L66.26742857142857 1005.9290002285713C42.23585170285714 1002.5063533714285 24.380952502857145 981.9287990857142 24.380952502857145 957.6547145142856L24.380952502857145 164.4935701942857C24.380952502857145 140.21948562285712 42.23585170285714 119.64193024 66.26742857142857 116.21928448L66.31619035428571 116.21928448 679.2533321142857 28.691665554285713C686.252565942857 27.68759990857143 693.3429430857143 29.771617645714286 698.6857142857143 34.403266925714284ZM950.905903542857 122.21699876571428C977.8363611428571 122.21699876571428 999.6678107428571 144.04844726857144 999.6678107428571 170.97890340571428L999.6678107428571 951.1693787428571C999.6678107428571 978.0998363428571 977.8363611428571 999.931285942857 950.905903542857 999.931285942857L755.8582857142857 999.931285942857 755.8582857142857 902.4074751999999 902.1439999999999 902.4074751999999 902.1439999999999 219.74080841142853 755.8582857142857 219.74080841142853 755.8582857142857 122.21699876571428 950.905903542857 122.21699876571428ZM544.5566976 333.5185846857143L154.46146048 333.5185846857143 154.46146048 723.613824 251.98526976 723.613824 251.98526976 626.0900132571428 544.5566976 626.0900132571428 544.5566976 333.5185846857143ZM447.03289051428567 431.0423954285714L447.03289051428567 528.5662061714285 251.98526976 528.5662061714285 251.98526976 431.0423954285714 447.03289051428567 431.0423954285714Z"}}]}');
+const pptFill = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$j,
+    "name": "pptFill"
+  }), null);
+};
+pptFill.displayName = "pptFill";
+pptFill.inheritAttrs = false;
+const data$i = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1117.090909090909","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M314.1818181818182 1117.090909090909h-30.720000000000002c-58.78690909090909-0.6516363636363637-112.73309090909092-21.038545454545456-155.5549090909091-54.87709090909091-18.01309090909091-17.31490909090909-29.55636363636364-42.216727272727276-29.55636363636364-69.86472727272727 0-1.3032727272727274 0.04654545454545455-2.6530909090909094 0.0930909090909091-3.956363636363637 0.1861818181818182-11.776 3.025454545454546-23.04 7.866181818181819-33.09381818181818-0.1861818181818182 0.32581818181818184-0.1861818181818182 0.1861818181818182-0.1861818181818182 0 0-18.478545454545458 7.168-35.281454545454544 18.897454545454547-47.75563636363636 8.424727272727273-10.100363636363637 18.10618181818182-18.897454545454547 28.811636363636364-26.205090909090906-7.866181818181819-12.008727272727274-16.19781818181818-25.506909090909094-23.691636363636366-39.47054545454545-17.268363636363638 19.78181818181818-42.123636363636365 34.443636363636365-70.42327272727273 37.05018181818182-19.642181818181818-1.349818181818182-35.70036363636364-13.870545454545454-42.170181818181824-31.045818181818184-51.75854545454546-139.96218181818182 26.43781818181818-264.9367272727273 87.17963636363636-336.1512727272728-0.32581818181818184-3.2581818181818187-0.512-7.028363636363636-0.512-10.798545454545456s0.1861818181818182-7.586909090909091 0.5585454545454546-11.310545454545455c-0.3723636363636364-2.699636363636364-0.5585454545454546-6.3767272727272735-0.5585454545454546-10.053818181818182 0-18.990545454545455 5.12-36.77090909090909 14.056727272727272-52.08436363636364 0.4189090909090909-23.505454545454548 10.705454545454547-44.96290909090909 26.903272727272725-60.22981818181819 2.0014545454545454-203.264 167.2378181818182-367.29018181818185 370.78109090909095-367.29018181818185 0.512 0 0.9774545454545456 0 1.4894545454545456 0 104.40145454545454 1.2567272727272727 198.42327272727272 44.86981818181818 265.8210909090909 114.40872727272729 65.34981818181818 65.25672727272728 106.82181818181819 154.25163636363638 110.40581818181818 252.88145454545455 22.43490909090909 28.904727272727275 36.02618181818182 65.1170909090909 36.02618181818182 104.44800000000001 0 12.706909090909091-1.3963636363636363 25.088-4.096 37.00363636363637 51.2 64.512 134.28363636363636 203.45018181818185 70.05090909090909 343.7847272727273-7.493818181818182 17.268363636363638-24.34327272727273 29.184-43.985454545454544 29.323636363636364h0c-27.694545454545455-4.654545454545455-50.87418181818182-20.945454545454545-64.69818181818181-43.566545454545455-8.424727272727273 15.63927272727273-16.57018181818182 29.137454545454545-25.46036363636364 42.030545454545454 14.382545454545454 6.935272727272727 25.925818181818183 16.942545454545453 35.51418181818182 28.57890909090909 11.450181818181818 11.86909090909091 18.71127272727273 27.46181818181818 19.735272727272726 44.73018181818182 4.654545454545455 9.774545454545455 7.493818181818182 21.038545454545456 7.680000000000001 32.954181818181816 0.04654545454545455 1.2101818181818182 0.0930909090909091 2.5134545454545454 0.0930909090909091 3.816727272727273 0 27.601454545454544-11.543272727272727 52.54981818181818-30.06836363636364 70.23709090909091-42.30981818181819 33.466181818181816-96.256 53.85309090909091-154.90327272727274 54.50472727272727-10.14690909090909 1.2101818181818182-21.736727272727276 1.8618181818181818-33.512727272727275 1.8618181818181818-66.28072727272728 0-127.44145454545455-21.643636363636364-176.91927272727273-58.32145454545454l-33.419636363636364 0.5585454545454546c-47.19709090909091 36.25890909090909-107.14763636363637 58.088727272727276-172.17163636363637 58.088727272727276-3.3047272727272725 0-6.56290909090909-0.04654545454545455-9.821090909090909-0.1861818181818182zM187.11272727272726 946.7345454545455l18.152727272727272 11.17090909090909-38.4 30.720000000000002c0.8378181818181818 8.238545454545454 3.8632727272727276 15.63927272727273 8.471272727272726 21.736727272727276 31.232000000000003 22.900363636363636 70.51636363636364 36.72436363636364 113.01236363636363 36.910545454545456 9.588363636363637 1.442909090909091 20.57309090909091 2.280727272727273 31.744000000000003 2.280727272727273 53.061818181818175 0 101.74836363636364-18.80436363636364 139.72945454545453-50.0829090909091l10.100363636363637-9.495272727272727h21.643636363636364c6.469818181818183 0.46545454545454545 14.010181818181819 0.7447272727272728 21.643636363636364 0.7447272727272728s15.173818181818183-0.2792727272727273 22.667636363636365-0.7912727272727273l14.336 0.04654545454545455 11.17090909090909 10.472727272727273c37.376000000000005 31.09236363636364 85.9229090909091 49.98981818181819 138.8450909090909 49.98981818181819 11.636363636363637 0 23.04-0.9309090909090909 34.16436363636364-2.6530909090909094-0.6516363636363637 0.1861818181818182 0 0.1861818181818182 0.6516363636363637 0.1861818181818182 42.07709090909091 0 80.94254545454547-13.637818181818181 112.45381818181818-36.67781818181818 3.6770909090909094-4.561454545454546 6.2370909090909095-11.031272727272727 6.2370909090909095-18.10618181818182 0-1.8618181818181818-0.1861818181818182-3.6770909090909094-0.512-5.445818181818182l-38.35345454545455-30.533818181818184 18.152727272727272-9.774545454545455c-10.053818181818182-7.633454545454546-21.969454545454546-13.451636363636363-34.955636363636366-16.61672727272727l-55.80800000000001-14.103272727272728 37.70181818181818-42.58909090909091c29.649454545454546-33.18690909090909 52.1309090909091-73.49527272727273 64.41890909090908-117.99272727272728l24.948363636363638-94.25454545454545 40.49454545454545 85.87636363636364c8.843636363636364 19.456 19.316363636363636 36.21236363636364 31.744000000000003 51.386181818181825 30.39418181818182-108.63709090909092-47.104-218.25163636363638-83.40945454545455-262.2370909090909l-13.265454545454544-15.360000000000001 6.9818181818181815-18.85090909090909c3.1185454545454547-9.076363636363636 4.887272727272728-19.54909090909091 4.887272727272728-30.440727272727276 0-25.134545454545457-9.541818181818181-48.034909090909096-25.227636363636368-65.25672727272728l-9.681454545454546-10.379636363636363v-13.963636363636363c-0.32581818181818184-169.70472727272727-135.40072727272727-307.75854545454547-303.9418181818182-312.78545454545457-1.349818181818182 0-2.373818181818182-0.04654545454545455-3.444363636363636-0.04654545454545455-167.7498181818182 0-303.70909090909095 135.95927272727272-303.70909090909095 303.70909090909095 0 3.6770909090909094 0.04654545454545455 7.354181818181819 0.1861818181818182 11.031272727272727l0 20.433454545454545-17.454545454545453 13.963636363636363c-5.678545454545454 3.1650909090909094-9.448727272727274 9.076363636363636-9.448727272727274 15.918545454545455 0 1.3032727272727274 0.13963636363636364 2.5134545454545454 0.3723636363636364 3.7236363636363636l4.189090909090909 27.089454545454544-16.756363636363638 7.680000000000001c-0.3723636363636364 2.7461818181818183-0.6050909090909091 5.864727272727273-0.6050909090909091 9.076363636363636s0.23272727272727273 6.330181818181819 0.6516363636363637 9.448727272727274c0.512 6.842181818181818 2.280727272727273 13.451636363636363 4.980363636363636 19.54909090909091l8.238545454545454 19.874909090909092-14.661818181818182 16.05818181818182c-59.485090909090914 55.482181818181814-96.53527272727273 134.28363636363636-96.53527272727273 221.7890909090909 0 10.891636363636364 0.5585454545454546 21.69018181818182 1.722181818181818 32.30254545454545 12.288-14.754909090909091 23.179636363636366-29.88218181818182 32.11636363636364-46.21963636363636l41.099636363636364-70.98181818181818 23.73818181818182 78.89454545454547c13.312 44.12509090909091 35.14181818181818 82.19927272727273 63.76727272727273 114.0829090909091l36.07272727272728 40.215272727272726-52.36363636363637 16.05818181818182c-12.427636363636365 2.3272727272727276-23.458909090909092 6.935272727272727-33.14036363636364 13.451636363636363zM165.4690909090909 474.76363636363635v0z"}}]}');
+const qq = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$i,
+    "name": "qq"
+  }), null);
+};
+qq.displayName = "qq";
+qq.inheritAttrs = false;
+const data$h = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M822.3999999999999 493.43999999999994l-439.03999999999996-356.48c-10.239999999999998-8.32-26.24-10.879999999999999-40.31999999999999-7.04s-23.04 14.08-23.04 25.599999999999998v712.96c0 11.52 8.959999999999999 21.119999999999997 23.04 25.599999999999998 4.4799999999999995 1.2799999999999998 8.959999999999999 1.92 13.44 1.92 10.239999999999998 0 19.84-3.1999999999999997 26.88-8.959999999999999l439.03999999999996-356.48c12.799999999999999-10.239999999999998 12.799999999999999-26.88 0-37.12z"}}]}');
 const rightShape = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$d,
+    "data": data$h,
     "name": "rightShape"
   }), null);
 };
 rightShape.displayName = "rightShape";
 rightShape.inheritAttrs = false;
-const data$c = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M832 512a320 320 0 1 1-76.96-208H672v64H864V176H800v82.08A384 384 0 1 0 896 512Z"}}]}');
+const data$g = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M832 512a320 320 0 1 1-76.96-208H672v64H864V176H800v82.08A384 384 0 1 0 896 512Z"}}]}');
 const rightTurnLine = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$c,
+    "data": data$g,
     "name": "rightTurnLine"
   }), null);
 };
 rightTurnLine.displayName = "rightTurnLine";
 rightTurnLine.inheritAttrs = false;
-const data$b = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M842.56 797.28l-151.52-151.52a336 336 0 1 0-45.28 45.28l151.52 151.52a32 32 0 0 0 45.28-45.28ZM432 704A272 272 0 1 1 704 432 272 272 0 0 1 432 704Z"}}]}');
+const data$f = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M842.56 797.28l-151.52-151.52a336 336 0 1 0-45.28 45.28l151.52 151.52a32 32 0 0 0 45.28-45.28ZM432 704A272 272 0 1 1 704 432 272 272 0 0 1 432 704Z"}}]}');
 const search = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$b,
+    "data": data$f,
     "name": "search"
   }), null);
 };
 search.displayName = "search";
 search.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"icon","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M981.333333 1024H42.666667a42.666667 42.666667 0 0 1-42.666667-42.666667V42.666667a42.666667 42.666667 0 0 1 42.666667-42.666667h341.333333a42.666667 42.666667 0 0 1 0 85.333333H85.333333v853.333334h853.333334V618.666667a42.666667 42.666667 0 0 1 85.333333 0v362.666666a42.666667 42.666667 0 0 1-42.666667 42.666667z m0-576a42.666667 42.666667 0 0 1-42.666666-42.666667V152.746667L315.306667 796.8a48 48 0 0 1-67.2 0 47.36 47.36 0 0 1 0-66.133333L871.893333 85.333333H640a42.666667 42.666667 0 0 1 0-85.333333h341.333333a42.666667 42.666667 0 0 1 42.666667 42.666667v362.666666a42.666667 42.666667 0 0 1-42.666667 42.666667z"}}]}');
-const data$a = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lds-spin","preserveAspectRatio":"xMidYMid","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M874.3255040000001 512A55.125504 55.125504 0 0 1 819.2 567.125504 55.125504 55.125504 0 0 1 764.074496 512 55.125504 55.125504 0 0 1 874.3255040000001 512z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.9166666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.9166666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".917","d":"M826.5220089266763 693.5878203150381A55.978496 55.978496 0 0 1 750.0539613250309 714.0773719166838 55.978496 55.978496 0 0 1 729.5644097233852 637.6093243150382 55.978496 55.978496 0 0 1 826.5220089266763 693.5878203150381z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.8333333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.8333333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".833","d":"M694.0170969047495 827.2583983352753A56.83200000000001 56.83200000000001 0 0 1 616.3831411568723 806.4564425873981 56.83200000000001 56.83200000000001 0 0 1 637.1850969047495 728.8224868395207 56.83200000000001 56.83200000000001 0 0 1 694.0170969047495 827.2583983352753z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.75s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.75s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".75","d":"M512 876.8855040000001A57.685504 57.685504 0 0 1 454.314496 819.2 57.685504 57.685504 0 0 1 512 761.5144959999999 57.685504 57.685504 0 0 1 512 876.8855040000001z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.6666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.6666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".667","d":"M329.1269198807941 828.7408206328269A58.538495999999995 58.538495999999995 0 0 1 307.7003432454604 748.7757479974932 58.538495999999995 58.538495999999995 0 0 1 387.6654158807941 727.3491713621594 58.538495999999995 58.538495999999995 0 0 1 329.1269198807941 828.7408206328269z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.5833333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.5833333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".583","d":"M194.5170177632531 695.2980006130954A59.39199999999999 59.39199999999999 0 0 1 216.2559985448185 614.16701983153 59.39199999999999 59.39199999999999 0 0 1 297.3869793263839 635.9060006130953 59.39199999999999 59.39199999999999 0 0 1 194.5170177632531 695.2980006130954z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.5s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.5s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".5","d":"M144.55449600000003 512A60.245504000000004 60.245504000000004 0 0 1 204.80000000000004 451.754496 60.245504000000004 60.245504000000004 0 0 1 265.04550400000005 512 60.245504000000004 60.245504000000004 0 0 1 144.55449600000003 512z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.4166666666666667s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.4166666666666667s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".417","d":"M193.04947448121268 327.85151812453734A61.098496 61.098496 0 0 1 276.5115721502346 305.48791645551546 61.098496 61.098496 0 0 1 298.87517381925653 388.95001412453735 61.098496 61.098496 0 0 1 193.04947448121268 327.85151812453734z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.3333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.3333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".333","d":"M332.5476411431614 201.1754130120454A51.711999999999996 51.711999999999996 0 0 1 403.1875468236623 220.1033186925463 51.711999999999996 51.711999999999996 0 0 1 384.2596411431614 290.7432243730472 51.711999999999996 51.711999999999996 0 0 1 332.5476411431614 201.1754130120454z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.25s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.25s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".25","d":"M512 152.234496A52.565504000000004 52.565504000000004 0 0 1 564.565504 204.8 52.565504000000004 52.565504000000004 0 0 1 512 257.365504 52.565504000000004 52.565504000000004 0 0 1 512 152.234496z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.16666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.16666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".167","d":"M692.3075781671167 199.69299071449373A53.418496000000005 53.418496000000005 0 0 1 711.8601047350743 272.66401328245115 53.418496000000005 53.418496000000005 0 0 1 638.8890821671168 292.21653985040854 53.418496000000005 53.418496000000005 0 0 1 692.3075781671167 199.69299071449373z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.08333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.08333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".083","d":"M825.0362880000001 331.264A54.27213621356492 54.27213621356492 0 0 1 805.1712000000001 405.401088 54.27213621356492 54.27213621356492 0 0 1 731.034112 385.536 54.27213621356492 54.27213621356492 0 0 1 825.0362880000001 331.264z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"0s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"0s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]}]}');
+const data$e = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"icon","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M981.333333 1024H42.666667a42.666667 42.666667 0 0 1-42.666667-42.666667V42.666667a42.666667 42.666667 0 0 1 42.666667-42.666667h341.333333a42.666667 42.666667 0 0 1 0 85.333333H85.333333v853.333334h853.333334V618.666667a42.666667 42.666667 0 0 1 85.333333 0v362.666666a42.666667 42.666667 0 0 1-42.666667 42.666667z m0-576a42.666667 42.666667 0 0 1-42.666666-42.666667V152.746667L315.306667 796.8a48 48 0 0 1-67.2 0 47.36 47.36 0 0 1 0-66.133333L871.893333 85.333333H640a42.666667 42.666667 0 0 1 0-85.333333h341.333333a42.666667 42.666667 0 0 1 42.666667 42.666667v362.666666a42.666667 42.666667 0 0 1-42.666667 42.666667z"}}]}');
+const share = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$e,
+    "name": "share"
+  }), null);
+};
+share.displayName = "share";
+share.inheritAttrs = false;
+const data$d = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lds-spin","preserveAspectRatio":"xMidYMid","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M874.3255040000001 512A55.125504 55.125504 0 0 1 819.2 567.125504 55.125504 55.125504 0 0 1 764.074496 512 55.125504 55.125504 0 0 1 874.3255040000001 512z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.9166666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.9166666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".917","d":"M826.5220089266763 693.5878203150381A55.978496 55.978496 0 0 1 750.0539613250309 714.0773719166838 55.978496 55.978496 0 0 1 729.5644097233852 637.6093243150382 55.978496 55.978496 0 0 1 826.5220089266763 693.5878203150381z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.8333333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.8333333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".833","d":"M694.0170969047495 827.2583983352753A56.83200000000001 56.83200000000001 0 0 1 616.3831411568723 806.4564425873981 56.83200000000001 56.83200000000001 0 0 1 637.1850969047495 728.8224868395207 56.83200000000001 56.83200000000001 0 0 1 694.0170969047495 827.2583983352753z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.75s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.75s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".75","d":"M512 876.8855040000001A57.685504 57.685504 0 0 1 454.314496 819.2 57.685504 57.685504 0 0 1 512 761.5144959999999 57.685504 57.685504 0 0 1 512 876.8855040000001z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.6666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.6666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".667","d":"M329.1269198807941 828.7408206328269A58.538495999999995 58.538495999999995 0 0 1 307.7003432454604 748.7757479974932 58.538495999999995 58.538495999999995 0 0 1 387.6654158807941 727.3491713621594 58.538495999999995 58.538495999999995 0 0 1 329.1269198807941 828.7408206328269z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.5833333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.5833333333333334s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".583","d":"M194.5170177632531 695.2980006130954A59.39199999999999 59.39199999999999 0 0 1 216.2559985448185 614.16701983153 59.39199999999999 59.39199999999999 0 0 1 297.3869793263839 635.9060006130953 59.39199999999999 59.39199999999999 0 0 1 194.5170177632531 695.2980006130954z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.5s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.5s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".5","d":"M144.55449600000003 512A60.245504000000004 60.245504000000004 0 0 1 204.80000000000004 451.754496 60.245504000000004 60.245504000000004 0 0 1 265.04550400000005 512 60.245504000000004 60.245504000000004 0 0 1 144.55449600000003 512z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.4166666666666667s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.4166666666666667s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".417","d":"M193.04947448121268 327.85151812453734A61.098496 61.098496 0 0 1 276.5115721502346 305.48791645551546 61.098496 61.098496 0 0 1 298.87517381925653 388.95001412453735 61.098496 61.098496 0 0 1 193.04947448121268 327.85151812453734z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.3333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.3333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".333","d":"M332.5476411431614 201.1754130120454A51.711999999999996 51.711999999999996 0 0 1 403.1875468236623 220.1033186925463 51.711999999999996 51.711999999999996 0 0 1 384.2596411431614 290.7432243730472 51.711999999999996 51.711999999999996 0 0 1 332.5476411431614 201.1754130120454z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.25s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.25s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".25","d":"M512 152.234496A52.565504000000004 52.565504000000004 0 0 1 564.565504 204.8 52.565504000000004 52.565504000000004 0 0 1 512 257.365504 52.565504000000004 52.565504000000004 0 0 1 512 152.234496z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.16666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.16666666666666666s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".167","d":"M692.3075781671167 199.69299071449373A53.418496000000005 53.418496000000005 0 0 1 711.8601047350743 272.66401328245115 53.418496000000005 53.418496000000005 0 0 1 638.8890821671168 292.21653985040854 53.418496000000005 53.418496000000005 0 0 1 692.3075781671167 199.69299071449373z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"-0.08333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"-0.08333333333333333s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]},{"type":"element","name":"path","attributes":{"fill-opacity":".083","d":"M825.0362880000001 331.264A54.27213621356492 54.27213621356492 0 0 1 805.1712000000001 405.401088 54.27213621356492 54.27213621356492 0 0 1 731.034112 385.536 54.27213621356492 54.27213621356492 0 0 1 825.0362880000001 331.264z"},"elements":[{"type":"element","name":"animateTransform","attributes":{"attributeName":"transform","begin":"0s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","type":"scale","values":"1.2 1.2;1 1"}},{"type":"element","name":"animate","attributes":{"attributeName":"fill-opacity","begin":"0s","dur":"1s","keyTimes":"0;1","repeatCount":"indefinite","values":"1;0"}}]}]}');
 const spinner = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$a,
+    "data": data$d,
     "name": "spinner"
   }), null);
 };
 spinner.displayName = "spinner";
 spinner.inheritAttrs = false;
-const data$9 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM485.7 670.3l-181-181L350 444l135.8 135.8L712 353.5l45.3 45.3L485.7 670.3z"}}]}');
+const data$c = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM485.7 670.3l-181-181L350 444l135.8 135.8L712 353.5l45.3 45.3L485.7 670.3z"}}]}');
 const success = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$9,
+    "data": data$c,
     "name": "success"
   }), null);
 };
 success.displayName = "success";
 success.inheritAttrs = false;
-const data$8 = JSON.parse('{"type":"element","name":"svg","attributes":{"aria-hidden":"true","class":"anticon-spin","data-icon":"loading","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3 0.1 19.9-16 36-35.9 36z"}}]}');
+const data$b = JSON.parse('{"type":"element","name":"svg","attributes":{"aria-hidden":"true","class":"anticon-spin","data-icon":"loading","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3 0.1 19.9-16 36-35.9 36z"}}]}');
 const switcherLoading = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$8,
+    "data": data$b,
     "name": "switcherLoading"
   }), null);
 };
 switcherLoading.displayName = "switcherLoading";
 switcherLoading.inheritAttrs = false;
-const data$7 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M704 64L704 64H128v896h768V256l0 0L704 64zM704 154.5L805.5 256H704V154.5zM832 896H192V128h448v192h192V896z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 320H544V384H288V320z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 448H736V512H288V448z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 576H736V640H288V576z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 704H736V768H288V704z","class":"st0"}}]}');
+const data$a = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M704 64L704 64H128v896h768V256l0 0L704 64zM704 154.5L805.5 256H704V154.5zM832 896H192V128h448v192h192V896z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 320H544V384H288V320z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 448H736V512H288V448z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 576H736V640H288V576z","class":"st0"}},{"type":"element","name":"path","attributes":{"d":"M288 704H736V768H288V704z","class":"st0"}}]}');
 const textFile = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$7,
+    "data": data$a,
     "name": "textFile"
   }), null);
 };
 textFile.displayName = "textFile";
 textFile.inheritAttrs = false;
-const data$6 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M664.4363636363637 0C676.8000000000001 0 688.5818181818182 4.945454545454545 697.3090909090909 13.672727272727274L697.3090909090909 13.672727272727274 1010.3272727272728 326.6909090909091C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.8 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.8 20.8 0 46.54545454545455 0L46.54545454545455 0ZM721.4545454545455 930.909090909091L302.54545454545456 930.909090909091C289.6922824145455 930.909090909091 279.27272727272725 941.3286446545454 279.27272727272725 954.1818181818182L279.27272727272725 954.1818181818182 279.27272727272725 1000.7272727272727C279.27272727272725 1013.5804462545456 289.6922824145455 1024 302.54545454545456 1024L302.54545454545456 1024 721.4545454545455 1024C734.3077189818182 1024 744.7272727272727 1013.5804462545456 744.7272727272727 1000.7272727272727L744.7272727272727 1000.7272727272727 744.7272727272727 954.1818181818182C744.7272727272727 941.3286446545454 734.3077189818182 930.909090909091 721.4545454545455 930.909090909091L721.4545454545455 930.909090909091ZM628.3636363636364 744.7272727272727L302.54545454545456 744.7272727272727C289.6922824145455 744.7272727272727 279.27272727272725 755.1468264727272 279.27272727272725 768L279.27272727272725 768 279.27272727272725 814.5454545454546C279.27272727272725 827.3986280727273 289.6922824145455 837.8181818181819 302.54545454545456 837.8181818181819L302.54545454545456 837.8181818181819 628.3636363636364 837.8181818181819C641.2168098909091 837.8181818181819 651.6363636363636 827.3986280727273 651.6363636363636 814.5454545454546L651.6363636363636 814.5454545454546 651.6363636363636 768C651.6363636363636 755.1468264727272 641.2168098909091 744.7272727272727 628.3636363636364 744.7272727272727L628.3636363636364 744.7272727272727ZM442.1818181818182 558.5454545454545L302.54545454545456 558.5454545454545C289.6922824145455 558.5454545454545 279.27272727272725 568.9650082909092 279.27272727272725 581.8181818181819L279.27272727272725 581.8181818181819 279.27272727272725 628.3636363636364C279.27272727272725 641.2168098909091 289.6922824145455 651.6363636363636 302.54545454545456 651.6363636363636L302.54545454545456 651.6363636363636 442.1818181818182 651.6363636363636C455.0349903127273 651.6363636363636 465.4545454545455 641.2168098909091 465.4545454545455 628.3636363636364L465.4545454545455 628.3636363636364 465.4545454545455 581.8181818181819C465.4545454545455 568.9650082909092 455.0349903127273 558.5454545454545 442.1818181818182 558.5454545454545L442.1818181818182 558.5454545454545ZM642.9090909090909 107.34545454545454L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545454Z"}}]}');
+const data$9 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M664.4363636363637 0C676.8000000000001 0 688.5818181818182 4.945454545454545 697.3090909090909 13.672727272727274L697.3090909090909 13.672727272727274 1010.3272727272728 326.6909090909091C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.8 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.8 20.8 0 46.54545454545455 0L46.54545454545455 0ZM721.4545454545455 930.909090909091L302.54545454545456 930.909090909091C289.6922824145455 930.909090909091 279.27272727272725 941.3286446545454 279.27272727272725 954.1818181818182L279.27272727272725 954.1818181818182 279.27272727272725 1000.7272727272727C279.27272727272725 1013.5804462545456 289.6922824145455 1024 302.54545454545456 1024L302.54545454545456 1024 721.4545454545455 1024C734.3077189818182 1024 744.7272727272727 1013.5804462545456 744.7272727272727 1000.7272727272727L744.7272727272727 1000.7272727272727 744.7272727272727 954.1818181818182C744.7272727272727 941.3286446545454 734.3077189818182 930.909090909091 721.4545454545455 930.909090909091L721.4545454545455 930.909090909091ZM628.3636363636364 744.7272727272727L302.54545454545456 744.7272727272727C289.6922824145455 744.7272727272727 279.27272727272725 755.1468264727272 279.27272727272725 768L279.27272727272725 768 279.27272727272725 814.5454545454546C279.27272727272725 827.3986280727273 289.6922824145455 837.8181818181819 302.54545454545456 837.8181818181819L302.54545454545456 837.8181818181819 628.3636363636364 837.8181818181819C641.2168098909091 837.8181818181819 651.6363636363636 827.3986280727273 651.6363636363636 814.5454545454546L651.6363636363636 814.5454545454546 651.6363636363636 768C651.6363636363636 755.1468264727272 641.2168098909091 744.7272727272727 628.3636363636364 744.7272727272727L628.3636363636364 744.7272727272727ZM442.1818181818182 558.5454545454545L302.54545454545456 558.5454545454545C289.6922824145455 558.5454545454545 279.27272727272725 568.9650082909092 279.27272727272725 581.8181818181819L279.27272727272725 581.8181818181819 279.27272727272725 628.3636363636364C279.27272727272725 641.2168098909091 289.6922824145455 651.6363636363636 302.54545454545456 651.6363636363636L302.54545454545456 651.6363636363636 442.1818181818182 651.6363636363636C455.0349903127273 651.6363636363636 465.4545454545455 641.2168098909091 465.4545454545455 628.3636363636364L465.4545454545455 628.3636363636364 465.4545454545455 581.8181818181819C465.4545454545455 568.9650082909092 455.0349903127273 558.5454545454545 442.1818181818182 558.5454545454545L442.1818181818182 558.5454545454545ZM642.9090909090909 107.34545454545454L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545454Z"}}]}');
 const textFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$6,
+    "data": data$9,
     "name": "textFill"
   }), null);
 };
 textFill.displayName = "textFill";
 textFill.inheritAttrs = false;
-const data$5 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M832 448L618.6800000000001 224.00000000000003 617.0133344000001 368.9411776 192 368.94117760000006 192 448.00000000000006 832 448ZM832 576L192 576 405.34666560000005 800 407.01333439999996 655.0588224 832 655.0588224 832 576Z"}}]}');
+const data$8 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M832 448L618.6800000000001 224.00000000000003 617.0133344000001 368.9411776 192 368.94117760000006 192 448.00000000000006 832 448ZM832 576L192 576 405.34666560000005 800 407.01333439999996 655.0588224 832 655.0588224 832 576Z"}}]}');
 const transfer = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$5,
+    "data": data$8,
     "name": "transfer"
   }), null);
 };
 transfer.displayName = "transfer";
 transfer.inheritAttrs = false;
-const data$4 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M432.64 576h156.79999999999998l-79.36-260.48-77.44 260.48z"}},{"type":"element","name":"path","attributes":{"d":"M512 0c-282.75199999999995 0-512 229.248-512 512s229.248 512 512 512c282.75199999999995 0 512-229.248 512-512s-229.248-512-512-512zM681.5999999999999 768h-9.6c-0.042666666666666665 0-0.128 0-0.21333333333333332 0-14.250666666666667 0-26.325333333333333-9.301333333333332-30.464-22.186666666666667l-32.04266666666666-105.81333333333333h-192l-33.28 105.6c-4.1386666666666665 13.994666666666667-16.896 24.02133333333333-32 24.02133333333333-18.389333333333333 0-33.32266666666666-14.933333333333332-33.32266666666666-33.32266666666666 0-3.328 0.46933333333333327-6.485333333333333 1.3653333333333333-9.514666666666667l133.07733333333334-429.82399999999996c9.813333333333333-23.552 32.64-39.808 59.263999999999996-39.808 24.917333333333332 0 46.464 14.208 57.04533333333333 34.986666666666665l134.57066666666665 434.304c1.152 3.157333333333333 1.792 6.784 1.792 10.581333333333333 0 14.890666666666664-10.197333333333333 27.434666666666665-23.97866666666667 30.976z"}}]}');
+const data$7 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M432.64 576h156.79999999999998l-79.36-260.48-77.44 260.48z"}},{"type":"element","name":"path","attributes":{"d":"M512 0c-282.75199999999995 0-512 229.248-512 512s229.248 512 512 512c282.75199999999995 0 512-229.248 512-512s-229.248-512-512-512zM681.5999999999999 768h-9.6c-0.042666666666666665 0-0.128 0-0.21333333333333332 0-14.250666666666667 0-26.325333333333333-9.301333333333332-30.464-22.186666666666667l-32.04266666666666-105.81333333333333h-192l-33.28 105.6c-4.1386666666666665 13.994666666666667-16.896 24.02133333333333-32 24.02133333333333-18.389333333333333 0-33.32266666666666-14.933333333333332-33.32266666666666-33.32266666666666 0-3.328 0.46933333333333327-6.485333333333333 1.3653333333333333-9.514666666666667l133.07733333333334-429.82399999999996c9.813333333333333-23.552 32.64-39.808 59.263999999999996-39.808 24.917333333333332 0 46.464 14.208 57.04533333333333 34.986666666666665l134.57066666666665 434.304c1.152 3.157333333333333 1.792 6.784 1.792 10.581333333333333 0 14.890666666666664-10.197333333333333 27.434666666666665-23.97866666666667 30.976z"}}]}');
 const treeApplicationShape = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$4,
+    "data": data$7,
     "name": "treeApplicationShape"
   }), null);
 };
 treeApplicationShape.displayName = "treeApplicationShape";
 treeApplicationShape.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M384 896L320 896 320 704 128 704 128 640 384 640 384 896Z"}},{"type":"element","name":"path","attributes":{"d":"M896 640L896 704 704 704 704 896 640 896 640 640 896 640Z"}},{"type":"element","name":"path","attributes":{"d":"M320 128L384 128 384 384 128 384 128 320 320 320 320 128Z"}},{"type":"element","name":"path","attributes":{"d":"M704 320L896 320 896 384 640 384 640 128 704 128 704 320Z"}}]}');
-const data$3 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M500.16 304a355.04 355.04 0 0 1 128 24.8l48-48.96a426.08 426.08 0 0 0-176-39.84v64Z"}},{"type":"element","name":"path","attributes":{"d":"M763.2 328.8l-46.08 46.08a822.24 822.24 0 0 1 160 138.88 807.52 807.52 0 0 1-86.88 85.12C723.84 654.24 620.48 720 502.56 720a331.52 331.52 0 0 1-111.04-19.52l-49.44 49.28a402.4 402.4 0 0 0 160 34.24C768 784 960 512 960 512A962.56 962.56 0 0 0 763.2 328.8Z"}},{"type":"element","name":"path","attributes":{"d":"M254.88 701.12l46.08-46.08a706.56 706.56 0 0 1-156.64-144C197.44 442.88 328.16 304 500.16 304V240h0C234.72 240 64 512 64 512A838.72 838.72 0 0 0 254.88 701.12Z"}},{"type":"element","name":"path","attributes":{"d":"M512 640a128 128 0 0 0 110.24-192.96L888 181.28A32 32 0 1 0 842.72 136L576.96 401.76a128 128 0 0 0-176 176L136 842.72a32 32 0 1 0 45.28 45.28L447.04 622.24A128 128 0 0 0 512 640Zm64-128a64 64 0 0 1-64 64 60.96 60.96 0 0 1-16-2.4L573.6 496A60.96 60.96 0 0 1 576 512Zm-64-64a60.96 60.96 0 0 1 16 2.4L450.4 528A60.96 60.96 0 0 1 448 512 64 64 0 0 1 512 448Z"}}]}');
+const data$6 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M384 896L320 896 320 704 128 704 128 640 384 640 384 896Z"}},{"type":"element","name":"path","attributes":{"d":"M896 640L896 704 704 704 704 896 640 896 640 640 896 640Z"}},{"type":"element","name":"path","attributes":{"d":"M320 128L384 128 384 384 128 384 128 320 320 320 320 128Z"}},{"type":"element","name":"path","attributes":{"d":"M704 320L896 320 896 384 640 384 640 128 704 128 704 320Z"}}]}');
+const unfullScreen = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$6,
+    "name": "unfullScreen"
+  }), null);
+};
+unfullScreen.displayName = "unfullScreen";
+unfullScreen.inheritAttrs = false;
+const data$5 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M500.16 304a355.04 355.04 0 0 1 128 24.8l48-48.96a426.08 426.08 0 0 0-176-39.84v64Z"}},{"type":"element","name":"path","attributes":{"d":"M763.2 328.8l-46.08 46.08a822.24 822.24 0 0 1 160 138.88 807.52 807.52 0 0 1-86.88 85.12C723.84 654.24 620.48 720 502.56 720a331.52 331.52 0 0 1-111.04-19.52l-49.44 49.28a402.4 402.4 0 0 0 160 34.24C768 784 960 512 960 512A962.56 962.56 0 0 0 763.2 328.8Z"}},{"type":"element","name":"path","attributes":{"d":"M254.88 701.12l46.08-46.08a706.56 706.56 0 0 1-156.64-144C197.44 442.88 328.16 304 500.16 304V240h0C234.72 240 64 512 64 512A838.72 838.72 0 0 0 254.88 701.12Z"}},{"type":"element","name":"path","attributes":{"d":"M512 640a128 128 0 0 0 110.24-192.96L888 181.28A32 32 0 1 0 842.72 136L576.96 401.76a128 128 0 0 0-176 176L136 842.72a32 32 0 1 0 45.28 45.28L447.04 622.24A128 128 0 0 0 512 640Zm64-128a64 64 0 0 1-64 64 60.96 60.96 0 0 1-16-2.4L573.6 496A60.96 60.96 0 0 1 576 512Zm-64-64a60.96 60.96 0 0 1 16 2.4L450.4 528A60.96 60.96 0 0 1 448 512 64 64 0 0 1 512 448Z"}}]}');
 const unvisible = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$3,
+    "data": data$5,
     "name": "unvisible"
   }), null);
 };
 unvisible.displayName = "unvisible";
 unvisible.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M896 671.3599999999999c0-2.5599999999999996-0.6399999999999999-4.4799999999999995-1.2799999999999998-7.04-0.6399999999999999-1.92-0.6399999999999999-3.84-1.2799999999999998-5.119999999999999s-1.2799999999999998-2.5599999999999996-1.92-3.1999999999999997c-1.2799999999999998-2.5599999999999996-2.5599999999999996-4.4799999999999995-4.4799999999999995-6.3999999999999995 0 0 0 0 0-0.6399999999999999l-356.48-384c-10.239999999999998-11.52-26.88-11.52-37.12 0l-356.48 384c0 0 0 0.6399999999999999 0 0.6399999999999999-1.92 1.92-2.5599999999999996 3.84-3.84 6.3999999999999995-0.6399999999999999 1.2799999999999998-1.92 2.5599999999999996-2.5599999999999996 3.84s-0.6399999999999999 3.1999999999999997-1.2799999999999998 5.119999999999999c-0.6399999999999999 1.2799999999999998-1.2799999999999998 3.84-1.2799999999999998 6.3999999999999995 0 0 0 0.6399999999999999 0 0.6399999999999999 0 1.92 0.6399999999999999 3.1999999999999997 0.6399999999999999 4.4799999999999995 0 2.5599999999999996 0.6399999999999999 4.4799999999999995 1.2799999999999998 7.04s1.92 4.4799999999999995 3.1999999999999997 6.3999999999999995c0.6399999999999999 1.2799999999999998 1.2799999999999998 2.5599999999999996 1.92 3.84 0 0 0 0 0.6399999999999999 0.6399999999999999 1.2799999999999998 1.92 3.1999999999999997 3.1999999999999997 5.119999999999999 4.4799999999999995 1.2799999999999998 0.6399999999999999 2.5599999999999996 1.92 3.84 2.5599999999999996s2.5599999999999996 0.6399999999999999 3.84 1.2799999999999998c1.92 0 3.84 1.2799999999999998 6.3999999999999995 1.2799999999999998 0 0 0.6399999999999999 0 0.6399999999999999 0h712.96c3.84 0 7.68-0.6399999999999999 10.879999999999999-2.5599999999999996 0.6399999999999999 0 0.6399999999999999-0.6399999999999999 1.2799999999999998-0.6399999999999999 3.1999999999999997-1.92 5.76-3.84 8.32-6.3999999999999995 0 0 0 0 0.6399999999999999 0 0.6399999999999999-1.2799999999999998 1.2799999999999998-2.5599999999999996 1.92-3.84 1.2799999999999998-1.92 2.5599999999999996-3.84 3.1999999999999997-6.3999999999999995 0.6399999999999999-1.92 0.6399999999999999-4.4799999999999995 1.2799999999999998-7.04 0-1.92 0.6399999999999999-3.1999999999999997 0.6399999999999999-4.4799999999999995-0.6399999999999999-0.6399999999999999-0.6399999999999999-1.2799999999999998-0.6399999999999999-1.2799999999999998z"}}]}');
-const data$2 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M897.6 422.4c-27.2-27.2-62.4-48-100.8-57.6C768 209.6 619.2 104 462.4 131.2c-120 20.8-212.8 115.2-233.6 233.6C131.2 388.8 64 475.2 64 574.4v9.6C64 704 160 800 278.4 800H320v-64h-41.6C195.2 736 128 668.8 128 585.6v-9.6c0-83.2 67.2-150.4 150.4-150.4H288c0-3.2 0-4.8 0-8l0 0c0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-4.8 0 0 0 0 0-1.6 0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-3.2 0-1.6 0-1.6 0-3.2 0 0 0-1.6 0-1.6 1.6-9.6 3.2-20.8 6.4-30.4l0 0c30.4-120 153.6-192 272-161.6 78.4 20.8 140.8 81.6 161.6 161.6l0 0c3.2 9.6 4.8 20.8 4.8 30.4 0 0 0 1.6 0 1.6 0 0 0 1.6 0 3.2 0 1.6 0 3.2 0 3.2V400c0 1.6 0 3.2 0 3.2v1.6c0 1.6 0 3.2 0 4.8v1.6c0 1.6 0 3.2 0 4.8l0 0c0 3.2 0 4.8 0 8h9.6c83.2-1.6 152 65.6 153.6 148.8 0 1.6 0 1.6 0 3.2v9.6c0 83.2-67.2 150.4-150.4 150.4l0 0H704v64h41.6C864 800 960 704 960 585.6v-9.6C960 518.4 937.6 464 897.6 422.4z"}},{"type":"element","name":"path","attributes":{"d":"M376 603.2L420.8 648 480 588.8 480 896 544 896 544 588.8 603.2 648 648 603.2 512 467.2z"}}]}');
+const data$4 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M896 671.3599999999999c0-2.5599999999999996-0.6399999999999999-4.4799999999999995-1.2799999999999998-7.04-0.6399999999999999-1.92-0.6399999999999999-3.84-1.2799999999999998-5.119999999999999s-1.2799999999999998-2.5599999999999996-1.92-3.1999999999999997c-1.2799999999999998-2.5599999999999996-2.5599999999999996-4.4799999999999995-4.4799999999999995-6.3999999999999995 0 0 0 0 0-0.6399999999999999l-356.48-384c-10.239999999999998-11.52-26.88-11.52-37.12 0l-356.48 384c0 0 0 0.6399999999999999 0 0.6399999999999999-1.92 1.92-2.5599999999999996 3.84-3.84 6.3999999999999995-0.6399999999999999 1.2799999999999998-1.92 2.5599999999999996-2.5599999999999996 3.84s-0.6399999999999999 3.1999999999999997-1.2799999999999998 5.119999999999999c-0.6399999999999999 1.2799999999999998-1.2799999999999998 3.84-1.2799999999999998 6.3999999999999995 0 0 0 0.6399999999999999 0 0.6399999999999999 0 1.92 0.6399999999999999 3.1999999999999997 0.6399999999999999 4.4799999999999995 0 2.5599999999999996 0.6399999999999999 4.4799999999999995 1.2799999999999998 7.04s1.92 4.4799999999999995 3.1999999999999997 6.3999999999999995c0.6399999999999999 1.2799999999999998 1.2799999999999998 2.5599999999999996 1.92 3.84 0 0 0 0 0.6399999999999999 0.6399999999999999 1.2799999999999998 1.92 3.1999999999999997 3.1999999999999997 5.119999999999999 4.4799999999999995 1.2799999999999998 0.6399999999999999 2.5599999999999996 1.92 3.84 2.5599999999999996s2.5599999999999996 0.6399999999999999 3.84 1.2799999999999998c1.92 0 3.84 1.2799999999999998 6.3999999999999995 1.2799999999999998 0 0 0.6399999999999999 0 0.6399999999999999 0h712.96c3.84 0 7.68-0.6399999999999999 10.879999999999999-2.5599999999999996 0.6399999999999999 0 0.6399999999999999-0.6399999999999999 1.2799999999999998-0.6399999999999999 3.1999999999999997-1.92 5.76-3.84 8.32-6.3999999999999995 0 0 0 0 0.6399999999999999 0 0.6399999999999999-1.2799999999999998 1.2799999999999998-2.5599999999999996 1.92-3.84 1.2799999999999998-1.92 2.5599999999999996-3.84 3.1999999999999997-6.3999999999999995 0.6399999999999999-1.92 0.6399999999999999-4.4799999999999995 1.2799999999999998-7.04 0-1.92 0.6399999999999999-3.1999999999999997 0.6399999999999999-4.4799999999999995-0.6399999999999999-0.6399999999999999-0.6399999999999999-1.2799999999999998-0.6399999999999999-1.2799999999999998z"}}]}');
+const upShape = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data$4,
+    "name": "upShape"
+  }), null);
+};
+upShape.displayName = "upShape";
+upShape.inheritAttrs = false;
+const data$3 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M897.6 422.4c-27.2-27.2-62.4-48-100.8-57.6C768 209.6 619.2 104 462.4 131.2c-120 20.8-212.8 115.2-233.6 233.6C131.2 388.8 64 475.2 64 574.4v9.6C64 704 160 800 278.4 800H320v-64h-41.6C195.2 736 128 668.8 128 585.6v-9.6c0-83.2 67.2-150.4 150.4-150.4H288c0-3.2 0-4.8 0-8l0 0c0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-4.8 0 0 0 0 0-1.6 0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-3.2 0-1.6 0-1.6 0-3.2 0 0 0-1.6 0-1.6 1.6-9.6 3.2-20.8 6.4-30.4l0 0c30.4-120 153.6-192 272-161.6 78.4 20.8 140.8 81.6 161.6 161.6l0 0c3.2 9.6 4.8 20.8 4.8 30.4 0 0 0 1.6 0 1.6 0 0 0 1.6 0 3.2 0 1.6 0 3.2 0 3.2V400c0 1.6 0 3.2 0 3.2v1.6c0 1.6 0 3.2 0 4.8v1.6c0 1.6 0 3.2 0 4.8l0 0c0 3.2 0 4.8 0 8h9.6c83.2-1.6 152 65.6 153.6 148.8 0 1.6 0 1.6 0 3.2v9.6c0 83.2-67.2 150.4-150.4 150.4l0 0H704v64h41.6C864 800 960 704 960 585.6v-9.6C960 518.4 937.6 464 897.6 422.4z"}},{"type":"element","name":"path","attributes":{"d":"M376 603.2L420.8 648 480 588.8 480 896 544 896 544 588.8 603.2 648 648 603.2 512 467.2z"}}]}');
 const upload = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$2,
+    "data": data$3,
     "name": "upload"
   }), null);
 };
 upload.displayName = "upload";
 upload.inheritAttrs = false;
-const data$1 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M664.4363636363636 0C676.8 0 688.5818181818182 4.945454545454554 697.3090909090909 13.67272727272728L697.3090909090909 13.67272727272728 1010.3272727272728 326.69090909090914C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.80000000000002 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.799999999999997 20.80000000000002 0 46.54545454545455 0L46.54545454545455 0ZM397.1878772363637 614.0514816000001L397.1878772363637 848.3380922181818C397.1878772363637 912.7669108363636 440.14042298181823 936.1955746909091 494.8073006545455 901.0525835636363L650.9983744 797.5759965090909C703.7128610909091 758.5282280727272 703.7128610909091 699.9565730909092 650.9983744 664.8135819636365L494.8073006545455 561.3369949090909C442.0928139636364 526.1940037818182 397.1878772363637 549.6226676363636 397.1878772363637 614.0514816000001ZM642.9090909090909 107.34545454545456L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545456Z"}}]}');
+const data$2 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1303.273","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"fill-rule":"evenodd","d":"M664.4363636363636 0C676.8 0 688.5818181818182 4.945454545454554 697.3090909090909 13.67272727272728L697.3090909090909 13.67272727272728 1010.3272727272728 326.69090909090914C1019.0545454545455 335.41818181818184 1024 347.3454545454546 1024 359.70909090909095L1024 359.70909090909095 1024 1256.7272727272727C1024 1282.4727272727273 1003.2 1303.2727272727273 977.4545454545455 1303.2727272727273L977.4545454545455 1303.2727272727273 46.54545454545455 1303.2727272727273C20.80000000000002 1303.2727272727273 0 1282.4727272727273 0 1256.7272727272727L0 1256.7272727272727 0 46.54545454545455C0 20.799999999999997 20.80000000000002 0 46.54545454545455 0L46.54545454545455 0ZM397.1878772363637 614.0514816000001L397.1878772363637 848.3380922181818C397.1878772363637 912.7669108363636 440.14042298181823 936.1955746909091 494.8073006545455 901.0525835636363L650.9983744 797.5759965090909C703.7128610909091 758.5282280727272 703.7128610909091 699.9565730909092 650.9983744 664.8135819636365L494.8073006545455 561.3369949090909C442.0928139636364 526.1940037818182 397.1878772363637 549.6226676363636 397.1878772363637 614.0514816000001ZM642.9090909090909 107.34545454545456L642.9090909090909 381.0909090909091 916.6545454545455 381.0909090909091 642.9090909090909 107.34545454545456Z"}}]}');
 const videoFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data$1,
+    "data": data$2,
     "name": "videoFill"
   }), null);
 };
 videoFill.displayName = "videoFill";
 videoFill.inheritAttrs = false;
-const data = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM544 704h-64v-64h64V704zM544 576h-64V320h64V576z"}}]}');
+const data$1 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM544 704h-64v-64h64V704zM544 576h-64V320h64V576z"}}]}');
 const warn = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
-    "data": data,
+    "data": data$1,
     "name": "warn"
   }), null);
 };
 warn.displayName = "warn";
 warn.inheritAttrs = false;
-JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M603.52 348.8c0 26.496-22.357333333333333 48-49.919999999999995 48s-49.919999999999995-21.503999999999998-49.919999999999995-48c0-26.496 22.357333333333333-48 49.919999999999995-48s49.919999999999995 21.503999999999998 49.919999999999995 48z"}},{"type":"element","name":"path","attributes":{"d":"M357.11999999999995 348.8c0 26.496-22.357333333333333 48-49.919999999999995 48s-49.919999999999995-21.503999999999998-49.919999999999995-48c0-26.496 22.357333333333333-48 49.919999999999995-48s49.919999999999995 21.503999999999998 49.919999999999995 48z"}},{"type":"element","name":"path","attributes":{"d":"M693.12 604.16c0 15.914666666666665-13.184 28.8-29.439999999999998 28.8s-29.439999999999998-12.885333333333332-29.439999999999998-28.8c0-15.914666666666665 13.184-28.8 29.439999999999998-28.8s29.439999999999998 12.885333333333332 29.439999999999998 28.8z"}},{"type":"element","name":"path","attributes":{"d":"M951.68 832c43.775999999999996-42.410666666666664 71.29599999999999-101.41866666666665 72.32-166.86933333333332-4.608-109.696-77.35466666666666-201.0453333333333-176.72533333333334-233.30133333333333 5.674666666666667-12.117333333333331 10.154666666666666-26.282666666666664 10.154666666666666-41.471999999999994 0-4.522666666666666-0.38399999999999995-8.959999999999999-1.152-13.226666666666667-33.834666666666664-181.29066666666665-212.39466666666664-313.1306666666667-425.5146666666667-313.1306666666667-238.71999999999997 0-430.72 167.04-430.72 372.48 1.2799999999999998 107.56266666666666 50.56 203.30666666666664 127.40266666666668 267.05066666666664l-16.682666666666666 55.50933333333333c-2.1759999999999997 6.784-3.456 14.634666666666668-3.456 22.741333333333333 0 42.410666666666664 34.38933333333333 76.8 76.8 76.8 12.458666666666666 0 24.191999999999997-2.944 34.602666666666664-8.234666666666666l101.33333333333333-52.906666666666666c32.81066666666666 7.722666666666666 70.52799999999999 12.159999999999998 109.22666666666666 12.159999999999998 0.08533333333333333 0 0.17066666666666666 0 0.21333333333333332 0h28.16c13.098666666666666-0.7679999999999999 25.130666666666663-4.693333333333333 35.54133333333333-11.050666666666666 54.22933333333333 73.55733333333333 140.672 120.53333333333333 238.07999999999998 120.53333333333333 1.664 0 3.3706666666666667 0 5.034666666666666-0.042666666666666665 21.077333333333332-0.08533333333333333 41.855999999999995-2.1759999999999997 61.99466666666667-6.101333333333333l49.10933333333333 26.581333333333333c9.941333333333333 5.034666666666666 21.717333333333332 8.021333333333333 34.176 8.021333333333333 42.410666666666664 0 76.8-34.38933333333333 76.8-76.8 0-8.106666666666666-1.2799999999999998-15.957333333333333-3.584-23.296zM430.72 752.64c-0.17066666666666666 0-0.38399999999999995 0-0.5973333333333333 0-40.831999999999994 0-80.29866666666666-5.8453333333333335-117.58933333333331-16.72533333333333l-3.456 0.7253333333333334-131.2 67.19999999999999 35.199999999999996-113.27999999999999h-3.1999999999999997c-86.10133333333332-52.05333333333333-143.40266666666668-144.17066666666665-145.92-249.89866666666666 0-172.50133333333332 165.76-312.66133333333335 366.72-312.66133333333335 5.717333333333333-0.3413333333333333 12.415999999999999-0.512 19.157333333333334-0.512 163.32799999999997 0 300.58666666666664 111.40266666666668 340.0106666666667 262.4l-14.805333333333332 2.432c-183.04 0-327.03999999999996 112-327.03999999999996 285.44 0.512 26.709333333333333 5.1626666666666665 52.181333333333335 13.312 75.98933333333332zM872.96 812.8v0l21.759999999999998 67.84-81.28-40.959999999999994h-3.84c-21.119999999999997 6.101333333333333-45.397333333333336 9.6-70.48533333333333 9.6-0.17066666666666666 0-0.38399999999999995 0-0.5546666666666666 0-5.888 0.5973333333333333-12.757333333333332 0.9386666666666665-19.712 0.9386666666666665-107.09333333333332 0-195.2853333333333-80.93866666666666-206.71999999999997-184.95999999999998 10.367999999999999-106.96533333333333 99.072-189.1413333333333 206.976-189.1413333333333 5.973333333333334 0 11.861333333333334 0.256 17.706666666666663 0.7253333333333334 4.309333333333333-0.512 10.197333333333333-0.7253333333333334 16.170666666666666-0.7253333333333334 107.904 0 196.60799999999998 82.17599999999999 206.976 187.34933333333333-1.7066666666666666 63.82933333333333-35.79733333333333 118.44266666666665-86.18666666666667 148.90666666666667z"}},{"type":"element","name":"path","attributes":{"d":"M839.68 604.16c0 15.914666666666665-13.184 28.8-29.439999999999998 28.8s-29.439999999999998-12.885333333333332-29.439999999999998-28.8c0-15.914666666666665 13.184-28.8 29.439999999999998-28.8s29.439999999999998 12.885333333333332 29.439999999999998 28.8z"}}]}');
-var Component$E = defineComponent({
+const data = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M603.52 348.8c0 26.496-22.357333333333333 48-49.919999999999995 48s-49.919999999999995-21.503999999999998-49.919999999999995-48c0-26.496 22.357333333333333-48 49.919999999999995-48s49.919999999999995 21.503999999999998 49.919999999999995 48z"}},{"type":"element","name":"path","attributes":{"d":"M357.11999999999995 348.8c0 26.496-22.357333333333333 48-49.919999999999995 48s-49.919999999999995-21.503999999999998-49.919999999999995-48c0-26.496 22.357333333333333-48 49.919999999999995-48s49.919999999999995 21.503999999999998 49.919999999999995 48z"}},{"type":"element","name":"path","attributes":{"d":"M693.12 604.16c0 15.914666666666665-13.184 28.8-29.439999999999998 28.8s-29.439999999999998-12.885333333333332-29.439999999999998-28.8c0-15.914666666666665 13.184-28.8 29.439999999999998-28.8s29.439999999999998 12.885333333333332 29.439999999999998 28.8z"}},{"type":"element","name":"path","attributes":{"d":"M951.68 832c43.775999999999996-42.410666666666664 71.29599999999999-101.41866666666665 72.32-166.86933333333332-4.608-109.696-77.35466666666666-201.0453333333333-176.72533333333334-233.30133333333333 5.674666666666667-12.117333333333331 10.154666666666666-26.282666666666664 10.154666666666666-41.471999999999994 0-4.522666666666666-0.38399999999999995-8.959999999999999-1.152-13.226666666666667-33.834666666666664-181.29066666666665-212.39466666666664-313.1306666666667-425.5146666666667-313.1306666666667-238.71999999999997 0-430.72 167.04-430.72 372.48 1.2799999999999998 107.56266666666666 50.56 203.30666666666664 127.40266666666668 267.05066666666664l-16.682666666666666 55.50933333333333c-2.1759999999999997 6.784-3.456 14.634666666666668-3.456 22.741333333333333 0 42.410666666666664 34.38933333333333 76.8 76.8 76.8 12.458666666666666 0 24.191999999999997-2.944 34.602666666666664-8.234666666666666l101.33333333333333-52.906666666666666c32.81066666666666 7.722666666666666 70.52799999999999 12.159999999999998 109.22666666666666 12.159999999999998 0.08533333333333333 0 0.17066666666666666 0 0.21333333333333332 0h28.16c13.098666666666666-0.7679999999999999 25.130666666666663-4.693333333333333 35.54133333333333-11.050666666666666 54.22933333333333 73.55733333333333 140.672 120.53333333333333 238.07999999999998 120.53333333333333 1.664 0 3.3706666666666667 0 5.034666666666666-0.042666666666666665 21.077333333333332-0.08533333333333333 41.855999999999995-2.1759999999999997 61.99466666666667-6.101333333333333l49.10933333333333 26.581333333333333c9.941333333333333 5.034666666666666 21.717333333333332 8.021333333333333 34.176 8.021333333333333 42.410666666666664 0 76.8-34.38933333333333 76.8-76.8 0-8.106666666666666-1.2799999999999998-15.957333333333333-3.584-23.296zM430.72 752.64c-0.17066666666666666 0-0.38399999999999995 0-0.5973333333333333 0-40.831999999999994 0-80.29866666666666-5.8453333333333335-117.58933333333331-16.72533333333333l-3.456 0.7253333333333334-131.2 67.19999999999999 35.199999999999996-113.27999999999999h-3.1999999999999997c-86.10133333333332-52.05333333333333-143.40266666666668-144.17066666666665-145.92-249.89866666666666 0-172.50133333333332 165.76-312.66133333333335 366.72-312.66133333333335 5.717333333333333-0.3413333333333333 12.415999999999999-0.512 19.157333333333334-0.512 163.32799999999997 0 300.58666666666664 111.40266666666668 340.0106666666667 262.4l-14.805333333333332 2.432c-183.04 0-327.03999999999996 112-327.03999999999996 285.44 0.512 26.709333333333333 5.1626666666666665 52.181333333333335 13.312 75.98933333333332zM872.96 812.8v0l21.759999999999998 67.84-81.28-40.959999999999994h-3.84c-21.119999999999997 6.101333333333333-45.397333333333336 9.6-70.48533333333333 9.6-0.17066666666666666 0-0.38399999999999995 0-0.5546666666666666 0-5.888 0.5973333333333333-12.757333333333332 0.9386666666666665-19.712 0.9386666666666665-107.09333333333332 0-195.2853333333333-80.93866666666666-206.71999999999997-184.95999999999998 10.367999999999999-106.96533333333333 99.072-189.1413333333333 206.976-189.1413333333333 5.973333333333334 0 11.861333333333334 0.256 17.706666666666663 0.7253333333333334 4.309333333333333-0.512 10.197333333333333-0.7253333333333334 16.170666666666666-0.7253333333333334 107.904 0 196.60799999999998 82.17599999999999 206.976 187.34933333333333-1.7066666666666666 63.82933333333333-35.79733333333333 118.44266666666665-86.18666666666667 148.90666666666667z"}},{"type":"element","name":"path","attributes":{"d":"M839.68 604.16c0 15.914666666666665-13.184 28.8-29.439999999999998 28.8s-29.439999999999998-12.885333333333332-29.439999999999998-28.8c0-15.914666666666665 13.184-28.8 29.439999999999998-28.8s29.439999999999998 12.885333333333332 29.439999999999998 28.8z"}}]}');
+const weixin = (props2, context) => {
+  const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
+  return createVNode(bkIcon, mergeProps(p2, {
+    "data": data,
+    "name": "weixin"
+  }), null);
+};
+weixin.displayName = "weixin";
+weixin.inheritAttrs = false;
+var BkIcon = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  AngleDoubleDownLine: angleDoubleDownLine,
+  AngleDoubleLeftLine: angleDoubleLeftLine,
+  AngleDoubleLeft: angleDoubleLeft,
+  AngleDoubleRightLine: angleDoubleRightLine,
+  AngleDoubleRight: angleDoubleRight,
+  AngleDoubleUpLine: angleDoubleUpLine,
+  AngleDownFill: angleDownFill,
+  AngleDownLine: angleDownLine,
+  AngleDown: angleDown,
+  AngleLeft: angleLeft,
+  AngleRight: angleRight,
+  AngleUpFill: angleUpFill,
+  AngleUp: angleUp,
+  ArchiveFill: archiveFill,
+  ArrowsLeft: arrowsLeft,
+  ArrowsRight: arrowsRight,
+  AudioFill: audioFill,
+  Bk: bk,
+  Circle: circle,
+  CloseLine: closeLine,
+  Close: close$1,
+  Code: code,
+  CogShape: cogShape,
+  CollapseLeft: collapseLeft,
+  Copy: copy,
+  DataShape: dataShape,
+  Del: del,
+  DocFill: docFill,
+  Done: done,
+  DownShape: downShape,
+  DownSmall: downSmall,
+  EditLine: editLine,
+  Ellipsis: ellipsis$1,
+  EnlargeLine: enlargeLine,
+  Error: error,
+  ExcelFill: excelFill,
+  ExclamationCircleShape: exclamationCircleShape,
+  Eye: eye,
+  FilliscreenLine: filliscreenLine,
+  FolderOpen: folderOpen,
+  FolderShapeOpen: folderShapeOpen,
+  FolderShape: folderShape,
+  Folder: folder,
+  Funnel: funnel,
+  HelpDocumentFill: helpDocumentFill,
+  HelpFill: helpFill,
+  Help: help,
+  ImageFill: imageFill,
+  ImgError: imgError,
+  ImgPlacehoulder: imgPlacehoulder,
+  InfoLine: infoLine,
+  Info: info,
+  LeftShape: leftShape,
+  LeftTurnLine: leftTurnLine,
+  NarrowLine: narrowLine,
+  Original: original,
+  PdfFill: pdfFill,
+  PlayShape: playShape,
+  Plus: plus,
+  PptFill: pptFill,
+  Qq: qq,
+  RightShape: rightShape,
+  RightTurnLine: rightTurnLine,
+  Search: search,
+  Share: share,
+  Spinner: spinner,
+  Success: success,
+  SwitcherLoading: switcherLoading,
+  TextFile: textFile,
+  TextFill: textFill,
+  Transfer: transfer,
+  TreeApplicationShape: treeApplicationShape,
+  UnfullScreen: unfullScreen,
+  Unvisible: unvisible,
+  UpShape: upShape,
+  Upload: upload,
+  VideoFill: videoFill,
+  Warn: warn,
+  Weixin: weixin
+}, Symbol.toStringTag, { value: "Module" }));
+var Component$F = defineComponent({
   name: "Alert",
   props: {
     theme: TagThemeType().def(TagThemeEnum.INFO),
@@ -8889,34 +9390,34 @@ var Component$E = defineComponent({
     }
     const renderCloseText = Boolean(this.closeText);
     const closeButtonClasses = classes({
-      "bk-alert-close": true,
+      "lesscode-bk-alert-close": true,
       "close-text": renderCloseText,
-      "bk-alert-close-icon": !renderCloseText
+      "lesscode-bk-alert-close-icon": !renderCloseText
     });
     const typeClass = classes({
-      "bk-alert": true,
-      [`bk-alert-${this.theme}`]: true
+      "lesscode-bk-alert": true,
+      [`lesscode-bk-alert-${this.theme}`]: true
     });
     return createVNode("div", {
       "class": typeClass
     }, [createVNode("div", {
-      "class": "bk-alert-wraper"
+      "class": "lesscode-bk-alert-wraper"
     }, [this.showIcon && createVNode(infoLine, {
-      "class": "bk-alert-icon-info"
+      "class": "lesscode-bk-alert-icon-info"
     }, null), createVNode("div", {
-      "class": "bk-alert-content"
+      "class": "lesscode-bk-alert-content"
     }, [createVNode("div", {
-      "class": "bk-alert-title"
+      "class": "lesscode-bk-alert-title"
     }, [this.$slots.title ? this.$slots.title() : this.title]), createVNode("div", {
-      "class": "bk-alert-description"
+      "class": "lesscode-bk-alert-description"
     }, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)])]), this.closable && createVNode("span", {
       "class": closeButtonClasses,
       "onClick": this.handleClose
     }, [this.closeText ? this.closeText : createVNode(closeLine, null, null)])])]);
   }
 });
-const BkAlert = withInstall(Component$E);
-var Component$D = defineComponent({
+const BkAlert = withInstall(Component$F);
+var Component$E = defineComponent({
   name: "AnimateNumber",
   props: {
     value: PropTypes.number.def(0),
@@ -8964,7 +9465,7 @@ var Component$D = defineComponent({
     return () => createVNode("span", null, [formatValue.value]);
   }
 });
-const BkAnimateNumber = withInstall(Component$D);
+const BkAnimateNumber = withInstall(Component$E);
 const on$1 = (() => {
   if (document.addEventListener) {
     return (element, event, handler) => {
@@ -8993,7 +9494,7 @@ const off$1 = (() => {
     }
   };
 })();
-var Component$C = defineComponent({
+var Component$D = defineComponent({
   name: "Affix",
   props: {
     offsetTop: PropTypes.number.def(0),
@@ -9028,7 +9529,7 @@ var Component$C = defineComponent({
     });
     const affix2 = ref(false);
     const pointClass = computed(() => classes({
-      "bk-affix": affix2.value
+      "lesscode-bk-affix": affix2.value
     }));
     const offsetType = computed(() => props2.offsetBottom >= 0 ? "bottom" : "top");
     const setTargetLoop = () => {
@@ -9118,8 +9619,8 @@ var Component$C = defineComponent({
     };
   }
 });
-const BkAffix = withInstall(Component$C);
-var Component$B = defineComponent({
+const BkAffix = withInstall(Component$D);
+var Component$C = defineComponent({
   name: "Backtop",
   props: {
     visibilityHeight: PropTypes.number.def(200),
@@ -9165,12 +9666,12 @@ var Component$B = defineComponent({
       container2.value.removeEventListener("scroll", scrollHandler);
     });
     return () => createVNode(Transition, {
-      "name": "bk-fade"
+      "name": "lesscode-bk-fade"
     }, {
       default: () => {
         var _a, _b;
         return [visible.value ? createVNode("div", {
-          "class": `bk-backtop ${props2.extCls}`,
+          "class": `lesscode-bk-backtop ${props2.extCls}`,
           "style": {
             right: styleRight,
             bottom: styleBottom,
@@ -9178,14 +9679,14 @@ var Component$B = defineComponent({
           },
           "onClick": scrollTop2
         }, [(_b = (_a = slots.default) == null ? void 0 : _a.call(slots)) != null ? _b : createVNode(angleUp, {
-          "class": "bk-backtop-icon"
+          "class": "lesscode-bk-backtop-icon"
         }, null)]) : ""];
       }
     });
   }
 });
-const BkBacktop = withInstall(Component$B);
-var Component$A = defineComponent({
+const BkBacktop = withInstall(Component$C);
+var Component$B = defineComponent({
   name: "Badge",
   props: {
     theme: PropTypes.string.def("primary"),
@@ -9241,14 +9742,14 @@ var Component$A = defineComponent({
   render() {
     var _a, _b, _c, _d, _e, _f;
     const wrapperClasses = classes({
-      "bk-badge-main": true
+      "lesscode-bk-badge-main": true
     }, this.$props.extCls);
     const badgeClass = classes({
-      [`bk-badge bk-${this.$props.theme}`]: !!this.$props.theme,
+      [`lesscode-bk-badge lesscode-bk-${this.$props.theme}`]: !!this.$props.theme,
       ["pinned "]: this.$slots.default,
       ["dot"]: this.$props.dot,
       [`${this.$props.position}`]: this.$slots.default,
-      ["bk-badge-icon is-icon"]: this.$slots.icon
+      ["lesscode-bk-badge-icon is-icon"]: this.$slots.icon
     }, "");
     const number = !this.$props.dot ? createVNode("span", null, [this.numberCount]) : "";
     return createVNode("div", {
@@ -9261,8 +9762,8 @@ var Component$A = defineComponent({
     }, [(_f = (_e = (_d = this.$slots).icon) == null ? void 0 : _e.call(_d)) != null ? _f : number]) : ""]);
   }
 });
-const BkBadge = withInstall(Component$A);
-var Component$z = defineComponent({
+const BkBadge = withInstall(Component$B);
+var Component$A = defineComponent({
   name: "Breadcrumb",
   props: {
     extCls: PropTypes.string,
@@ -9280,13 +9781,13 @@ var Component$z = defineComponent({
     } = getCurrentInstance();
     provide("breadcrumb", props2);
     onMounted(() => {
-      const items = proxy.$el.querySelectorAll(".bk-breadcrumb-item");
+      const items = proxy.$el.querySelectorAll(".lesscode-bk-breadcrumb-item");
       if (items.length) {
         items[items.length - 1].setAttribute("aria-current", "page");
       }
     });
     const classCtx = classes({
-      "bk-breadcrumb": true
+      "lesscode-bk-breadcrumb": true
     }, `${props2.extCls || ""}`);
     const goBack = () => {
       const {
@@ -9307,11 +9808,11 @@ var Component$z = defineComponent({
         "aria-label": "Breadcrumb",
         "role": "navigation"
       }, [!slots.prefix && props2.backRouter ? createVNode("div", {
-        "class": "bk-breadcrumb-goback"
+        "class": "lesscode-bk-breadcrumb-goback"
       }, [createVNode(arrowsLeft, {
         "onClick": goBack
       }, null)]) : "", slots.prefix ? createVNode("div", {
-        "class": "bk-breadcrumb-goback"
+        "class": "lesscode-bk-breadcrumb-goback"
       }, [slots.prefix()]) : "", (_a = slots.default) == null ? void 0 : _a.call(slots)]);
     };
   }
@@ -9344,7 +9845,7 @@ var BreadcrumbItem = defineComponent({
       replace ? router.replace(to) : router.push(to);
     };
     const classCtx = classes({
-      "bk-breadcrumb-item": true
+      "lesscode-bk-breadcrumb-item": true
     }, `${props2.extCls || ""}`);
     const renderSeparator = () => {
       if (slots.separator) {
@@ -9352,12 +9853,12 @@ var BreadcrumbItem = defineComponent({
       }
       if (parent.separatorClass) {
         return createVNode("i", {
-          "class": `bk-breadcrumb-separator ${parent.separatorClass}`
+          "class": `lesscode-bk-breadcrumb-separator ${parent.separatorClass}`
         }, null);
       }
       if (parent.separator) {
         return createVNode("span", {
-          "class": "bk-breadcrumb-separator",
+          "class": "lesscode-bk-breadcrumb-separator",
           "role": "presentation"
         }, [parent == null ? void 0 : parent.separator]);
       }
@@ -9369,14 +9870,14 @@ var BreadcrumbItem = defineComponent({
         "class": classCtx
       }, [createVNode("span", {
         "ref": "link",
-        "class": `bk-breadcrumb-item-inner ${props2.to ? "is-link" : ""}`,
+        "class": `lesscode-bk-breadcrumb-item-inner ${props2.to ? "is-link" : ""}`,
         "role": "link",
         "onClick": handleClick
       }, [(_a = slots.default) == null ? void 0 : _a.call(slots)]), renderSeparator()]);
     };
   }
 });
-const BkBreadcrumb = withInstallProps(Component$z, { Item: BreadcrumbItem });
+const BkBreadcrumb = withInstallProps(Component$A, { Item: BreadcrumbItem });
 let BkLoadingMode;
 (function(BkLoadingMode2) {
   BkLoadingMode2["Default"] = "default";
@@ -9413,19 +9914,20 @@ const loadingTypes = {
   },
   opacity: PropTypes.number.def(0.9),
   color: PropTypes.string.def("white"),
-  zIndex: PropTypes.number.def(1)
+  zIndex: PropTypes.number.def(1),
+  isDirective: PropTypes.bool.def(false)
 };
-var Component$y = defineComponent({
+var Component$z = defineComponent({
   name: "Loading",
   props: loadingTypes,
   setup(props2, ctx) {
     const dotIndicator = createVNode("div", {
-      "class": "bk-normal-indicator"
+      "class": "lesscode-bk-normal-indicator"
     }, [[1, 2, 3, 4].map((i2) => createVNode("span", {
       "class": `dot dot-${i2}`
     }, null))]);
     const spinIndicator = createVNode("div", {
-      "class": "bk-spin-indicator"
+      "class": "lesscode-bk-spin-indicator"
     }, [[1, 2, 3, 4, 5, 6, 7, 8].map((i2) => createVNode("span", {
       "class": `oval oval-${i2}`
     }, null))]);
@@ -9437,13 +9939,14 @@ var Component$y = defineComponent({
       backgroundColor: props2.color
     }, zIndexStyle.value));
     const loadingWrapperCls = computed(() => classes({
-      "bk-loading-wrapper": props2.loading,
-      "bk-nested-loading": !!ctx.slots.default
+      "lesscode-bk-loading-wrapper": props2.loading,
+      "lesscode-bk-nested-loading": !!ctx.slots.default,
+      "lesscode-bk-directive-loading": props2.isDirective
     }));
     const containerCls = computed(() => classes({
-      [`bk-loading-size-${props2.size}`]: !!props2.size,
-      [`bk-loading-${props2.theme}`]: !!props2.theme
-    }, "bk-loading-indicator"));
+      [`lesscode-bk-loading-size-${props2.size}`]: !!props2.size,
+      [`lesscode-bk-loading-${props2.theme}`]: !!props2.theme
+    }, "lesscode-bk-loading-indicator"));
     const hasTitle = computed(() => !!props2.title);
     const indicator = computed(() => {
       const isSpinMode = props2.mode === BkLoadingMode.Spin;
@@ -9459,19 +9962,97 @@ var Component$y = defineComponent({
       var _a, _b;
       return createVNode("div", {
         "class": loadingWrapperCls.value
-      }, [props2.loading && [ctx.slots.default && createVNode("div", {
-        "class": "bk-loading-mask",
+      }, [(_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a), props2.loading && [(ctx.slots.default || props2.isDirective) && createVNode("div", {
+        "class": "lesscode-bk-loading-mask",
         "style": maskStyle.value
       }, null), createVNode("div", {
         "class": containerCls.value,
         "style": zIndexStyle.value
       }, [indicator.value, hasTitle.value && createVNode("div", {
-        "class": "bk-loading-title"
-      }, [props2.title])])], (_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a)]);
+        "class": "lesscode-bk-loading-title"
+      }, [props2.title])])]]);
     };
   }
 });
-const BkLoading = withInstallProps(Component$y, { setDefaultIndicator, BkLoadingMode, BkLoadingSize }, true);
+const INSTANCE_KEY = Symbol("vBkLoading");
+const createInstance$1 = (el, binding) => {
+  var _a, _b, _c, _d, _e;
+  const getBindingProp = (key2) => {
+    var _a2, _b2;
+    return (_b2 = (_a2 = binding.value) == null ? void 0 : _a2[key2]) != null ? _b2 : void 0;
+  };
+  const options = reactive({
+    indicator: getBindingProp("indicator"),
+    loading: (_a = getBindingProp("loading")) != null ? _a : false,
+    inline: (_b = getBindingProp("inline")) != null ? _b : false,
+    theme: getBindingProp("theme"),
+    title: (_c = getBindingProp("title")) != null ? _c : "",
+    size: (_d = getBindingProp("size")) != null ? _d : "",
+    mode: getBindingProp("mode"),
+    opacity: getBindingProp("opacity"),
+    color: (_e = getBindingProp("color")) != null ? _e : "white",
+    zIndex: getBindingProp("zIndex"),
+    isDirective: true
+  });
+  const div = document.createElement("div");
+  Object.assign(div.style, {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
+  });
+  Object.assign(el.style, {
+    position: "relative"
+  });
+  const instance = createApp({
+    render: () => h$1(Component$z, options)
+  });
+  el[INSTANCE_KEY] = {
+    options,
+    instance,
+    vm: instance.mount(div)
+  };
+  el.appendChild(div);
+};
+const updateOptions = (newOptions, originalOptions) => {
+  Object.keys(newOptions).forEach((key2) => {
+    if (newOptions[key2] !== originalOptions[key2]) {
+      originalOptions[key2] = newOptions[key2];
+    }
+  });
+};
+const vBkloading = {
+  mounted(el, binding) {
+    if (binding.value) {
+      createInstance$1(el, binding);
+    }
+  },
+  updated(el, binding) {
+    var _a, _b, _c;
+    const instance = el[INSTANCE_KEY];
+    const { value } = binding;
+    updateOptions(value, instance.options);
+    if ((_c = (_b = (_a = instance == null ? void 0 : instance.vm) == null ? void 0 : _a.$el) == null ? void 0 : _b.parentNode) == null ? void 0 : _c.style) {
+      instance.vm.$el.parentNode.style.display = value.loading ? "" : "none";
+    }
+  },
+  unmounted(el) {
+    var _a, _b, _c;
+    const instance = el[INSTANCE_KEY];
+    el == null ? void 0 : el.removeChild((_b = (_a = instance == null ? void 0 : instance.vm) == null ? void 0 : _a.$el) == null ? void 0 : _b.parentNode);
+    (_c = instance == null ? void 0 : instance.instance) == null ? void 0 : _c.unmount();
+    el[INSTANCE_KEY] = null;
+  }
+};
+const BkLoading = withInstallProps(Component$z, {
+  setDefaultIndicator,
+  BkLoadingMode,
+  BkLoadingSize
+}, true, {
+  name: "loading",
+  directive: vBkloading
+});
 const btnSizes = ["", "small", "large"];
 const buttonProps = {
   theme: PropTypes.theme(),
@@ -9497,7 +10078,7 @@ const buttonProps = {
     default: "button"
   }
 };
-var Component$x = defineComponent({
+var Component$y = defineComponent({
   name: "Button",
   props: buttonProps,
   emits: ["click", "mouseover"],
@@ -9508,7 +10089,7 @@ var Component$x = defineComponent({
     var _a;
     const isHover = ref(false);
     const showSlot = (_a = slots.default) != null ? _a : false;
-    const btnClsPrefix = "bk-button";
+    const btnClsPrefix = "lesscode-bk-button";
     const isText = computed(() => props2.text && !props2.hoverTheme);
     const btnCls = computed(() => {
       const hoverTheme = props2.hoverTheme ? `${btnClsPrefix}-hover-${props2.hoverTheme}` : "";
@@ -9577,8 +10158,8 @@ var ButtonGroup = defineComponent({
   },
   setup(props2, ctx) {
     const btnGroupCls = computed(() => classes({
-      [`bk-button-group-${props2.size}`]: !!props2.size
-    }, "bk-button-group"));
+      [`lesscode-bk-button-group-${props2.size}`]: !!props2.size
+    }, "lesscode-bk-button-group"));
     return () => {
       var _a, _b;
       return createVNode("div", {
@@ -9587,7 +10168,7 @@ var ButtonGroup = defineComponent({
     };
   }
 });
-const BkButton = withInstallProps(Component$x, { ButtonGroup });
+const BkButton = withInstallProps(Component$y, { ButtonGroup });
 var CollapseTransition = defineComponent({
   name: "CollapseTransition",
   setup(_props, {
@@ -9724,7 +10305,7 @@ const inputEmitEventsType = {
   [EVENTS$2.COMPOSITIONUPDATE]: CompositionEventFunction,
   [EVENTS$2.COMPOSITIONEND]: CompositionEventFunction
 };
-var Component$w = defineComponent({
+var Component$x = defineComponent({
   name: "Input",
   inheritAttrs: false,
   props: inputType,
@@ -9830,7 +10411,7 @@ var Component$w = defineComponent({
         if (isCNInput.value && [EVENTS$2.INPUT, EVENTS$2.CHANGE].some((e2) => eventName === e2))
           return;
         if (eventName === EVENTS$2.INPUT) {
-          ctx.emit(EVENTS$2.UPDATE, isNumberInput.value && e.target.value ? +e.target.value : e.target.value);
+          ctx.emit(EVENTS$2.UPDATE, e.target.value);
         }
         ctx.emit(eventName, e.target.value, e);
       };
@@ -9945,8 +10526,8 @@ var Component$w = defineComponent({
     };
   }
 });
-const BkInput = withInstall(Component$w);
-var Component$v = defineComponent({
+const BkInput = withInstall(Component$x);
+var Component$w = defineComponent({
   name: "Card",
   props: {
     title: PropTypes.string,
@@ -10001,7 +10582,7 @@ var Component$v = defineComponent({
   },
   render() {
     var _a, _b, _c, _d, _e, _f;
-    const wrapperName = "bk-card";
+    const wrapperName = "lesscode-bk-card";
     const cardClass = classes({
       [`${wrapperName}`]: true,
       [`${wrapperName}-border-none`]: !this.$props.border
@@ -10044,7 +10625,7 @@ var Component$v = defineComponent({
     })]);
   }
 });
-const BkCard = withInstall(Component$v);
+const BkCard = withInstall(Component$w);
 const checkboxGroupKey = Symbol("CheckboxGroup");
 function useFocus$1() {
   const isFocus = ref(false);
@@ -10154,7 +10735,7 @@ const checkboxProps = {
   size: PropTypes.size().def(SizeEnum.LARGE),
   immediateEmitChange: PropTypes.bool.def(true)
 };
-var Component$u = defineComponent({
+var Component$v = defineComponent({
   name: "Checkbox",
   props: checkboxProps,
   emits: ["update:modelValue", "change"],
@@ -10184,7 +10765,7 @@ var Component$u = defineComponent({
   },
   render() {
     const checkboxClass = classes({
-      "bk-checkbox": true,
+      "lesscode-bk-checkbox": true,
       "is-focused": this.isFocus,
       "is-checked": this.isChecked,
       "is-disabled": this.isDisabled,
@@ -10195,7 +10776,7 @@ var Component$u = defineComponent({
         return null;
       }
       return createVNode("span", {
-        "class": "bk-checkbox-label"
+        "class": "lesscode-bk-checkbox-label"
       }, [this.$slots.default ? this.$slots.default() : this.label]);
     };
     return createVNode("label", {
@@ -10206,7 +10787,7 @@ var Component$u = defineComponent({
       "ref": "inputRef",
       "role": "checkbox",
       "type": "checkbox",
-      "class": "bk-checkbox-original",
+      "class": "lesscode-bk-checkbox-original",
       "disabled": this.isDisabled,
       "checked": this.isChecked,
       "onChange": this.handleChange
@@ -10271,11 +10852,11 @@ var BkCheckboxGroup = defineComponent({
   render() {
     var _a;
     return createVNode("div", {
-      "class": "bk-checkbox-group"
+      "class": "lesscode-bk-checkbox-group"
     }, [(_a = this.$slots) == null ? void 0 : _a.default()]);
   }
 });
-const BkCheckbox = withInstallProps(Component$u, { Group: BkCheckboxGroup });
+const BkCheckbox = withInstallProps(Component$v, { Group: BkCheckboxGroup });
 const propsCollapse = {
   list: PropTypes.arrayOf(PropTypes.any).def([]),
   idFiled: PropTypes.string.def("$index"),
@@ -10286,7 +10867,12 @@ const propsCollapse = {
     PropTypes.arrayOf(PropTypes.string).def([]),
     PropTypes.number.def(-1)
   ]),
-  accordion: PropTypes.bool.def(false)
+  accordion: PropTypes.bool.def(false),
+  hasHeaderBorder: PropTypes.bool.def(false),
+  hasHeaderHover: PropTypes.bool.def(true),
+  headerIcon: PropTypes.string.def(""),
+  useCardTheme: PropTypes.bool.def(false),
+  headerIconAlign: PropTypes.string.def("left")
 };
 const CollapsePanelEventProps = {
   itemClick: {
@@ -10301,9 +10887,10 @@ const propsCollapsePanel = __spreadValues({
   isFormList: PropTypes.bool.def(false),
   renderDirective: renderDirectiveType(),
   modelValue: PropTypes.bool.def(false),
-  alone: PropTypes.bool.def(false)
+  alone: PropTypes.bool.def(false),
+  icon: PropTypes.string.def("angle-right")
 }, CollapsePanelEventProps);
-function _isSlot$7(s2) {
+function _isSlot$8(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
 var CollapsePanel = defineComponent({
@@ -10331,12 +10918,17 @@ var CollapsePanel = defineComponent({
         immediate: true
       });
     }
-    function clickItem(props3) {
+    function toCamelCase(str) {
+      const words = str.split("-");
+      const camelCaseWords = words.map((word2) => word2.charAt(0).toUpperCase() + word2.slice(1));
+      return camelCaseWords.join("");
+    }
+    function clickItem() {
       const {
         disabled,
         name,
         itemClick
-      } = props3;
+      } = props2;
       if (disabled)
         return;
       const data2 = {
@@ -10367,10 +10959,10 @@ var CollapsePanel = defineComponent({
         return "";
       }
       return withDirectives(createVNode("div", {
-        "class": `bk-collapse-content ${isActive.value && "active" || ""}`
+        "class": `lesscode-bk-collapse-content ${isActive.value && "active" || ""}`
       }, [getContent()]), [[vShow, isActive.value]]);
     }
-    function renderHeader() {
+    function renderHeader(icon) {
       if (slots.header) {
         if (typeof slots.header === "function") {
           return slots.header(h$1);
@@ -10387,24 +10979,31 @@ var CollapsePanel = defineComponent({
       } else {
         title = props2.title;
       }
-      return createVNode("div", {
-        "class": "bk-collapse-header"
+      return createVNode(Fragment, null, [createVNode("div", {
+        "class": "lesscode-bk-collapse-header"
       }, [createVNode("span", {
-        "class": "bk-collapse-title"
-      }, [title]), createVNode(angleRight, {
-        "class": `bk-collapse-icon ${isActive.value && "rotate-icon" || ""}`
-      }, null)]);
+        "class": "lesscode-bk-collapse-title"
+      }, [title]), icon])]);
     }
-    return () => {
-      let _slot;
-      return createVNode("div", {
-        "class": `bk-collapse-item ${props2.disabled ? "is-disabled" : ""} ${isActive.value ? "bk-collapse-item-active" : ""}`
-      }, [createVNode("div", {
-        "onClick": () => clickItem(props2)
-      }, [renderHeader()]), createVNode(CollapseTransition, null, _isSlot$7(_slot = renderPanel()) ? _slot : {
-        default: () => [_slot]
-      })]);
+    return {
+      isActive,
+      collapseIcon: BkIcon[`${toCamelCase(props2.icon)}`],
+      clickItem,
+      renderPanel,
+      renderHeader
     };
+  },
+  render() {
+    let _slot;
+    return createVNode("div", {
+      "class": `lesscode-bk-collapse-item ${this.disabled ? "is-disabled" : ""} ${this.isActive ? "lesscode-bk-collapse-item-active" : ""}`
+    }, [createVNode("div", {
+      "onClick": () => this.clickItem()
+    }, [this.renderHeader(createVNode(this.collapseIcon, {
+      "class": `lesscode-bk-collapse-icon ${this.isActive && "rotate-icon" || ""}`
+    }, null))]), createVNode(CollapseTransition, null, _isSlot$8(_slot = this.renderPanel()) ? _slot : {
+      default: () => [_slot]
+    })]);
   }
 });
 var Collapse = defineComponent({
@@ -10452,7 +11051,21 @@ var Collapse = defineComponent({
     };
     provide("localActiveItems", localActiveItems);
     provide("handleItemClick", handleItemClick);
-    const className = "bk-collapse-wrapper";
+    let className = "lesscode-bk-collapse-wrapper";
+    if (props2.hasHeaderBorder) {
+      className += " lesscode-bk-collapse-header-border";
+    }
+    if (props2.hasHeaderHover) {
+      className += " lesscode-bk-collapse-header-hover";
+    }
+    if (props2.useCardTheme) {
+      className += " lesscode-bk-collapse-card";
+    }
+    if (props2.headerIconAlign === "left") {
+      className += " lesscode-bk-collapse-icon-left";
+    } else {
+      className += " lesscode-bk-collapse-icon-right";
+    }
     if (!Array.isArray(props2.list) || !props2.list.length) {
       return () => createVNode("div", {
         class: className
@@ -10477,6 +11090,7 @@ var Collapse = defineComponent({
       var _a, _b, _c;
       const name = item[props2.idFiled] || index2;
       let title = item[props2.titleField];
+      const icon = props2.headerIcon || "angle-right";
       if (slots.title) {
         if (typeof slots.title === "function") {
           title = slots.title(item, index2);
@@ -10492,6 +11106,7 @@ var Collapse = defineComponent({
         "item-click": handleItemClick,
         "disabled": item.disabled,
         "name": name,
+        "icon": icon,
         "isFormList": true,
         "title": title,
         "content": (_c = (_b = slots.content) == null ? void 0 : _b.call(slots, item, index2)) != null ? _c : item[props2.contentField]
@@ -10516,7 +11131,7 @@ const propsMixin$1 = {
   size: j("size", {}),
   draggable: PropTypes.bool.def(true),
   quickClose: PropTypes.bool.def(true),
-  transfer: PropTypes.bool.def(false),
+  transfer: PropTypes.oneOfType([Boolean, String, HTMLElement]).def(false),
   zIndex: PropTypes.oneOfType([String, Number]).def("inherit"),
   maxHeight: PropTypes.string,
   direction: PropTypes.string,
@@ -10528,14 +11143,15 @@ const propsMixin$1 = {
   multiInstance: PropTypes.bool.def(true),
   infoType: PropTypes.theme()
 };
-var Component$t = defineComponent({
+var Component$u = defineComponent({
   name: "Modal",
   props: __spreadValues({}, propsMixin$1),
   emits: ["quick-close", "quickClose", "hidden", "shown", "close"],
   data() {
     return {
       visible: false,
-      closeTimer: null
+      closeTimer: null,
+      bkPopIndexManager: null
     };
   },
   computed: {
@@ -10579,30 +11195,41 @@ var Component$t = defineComponent({
     },
     visible: {
       handler(val) {
+        var _a, _b;
         if (val) {
           this.$nextTick(() => {
-            bkPopIndexManager.onMaskClick((_e) => {
+            this.bkPopIndexManager.onMaskClick((_e) => {
               this.handleClickOutSide();
             }, this.$el);
             const hideMaskStyle = {
               "background-color": "rgba(0,0,0,0)"
             };
             const appendStyle = this.showMask ? {} : hideMaskStyle;
-            bkPopIndexManager.show(this.$el, this.showMask, appendStyle, this.transfer, this.zIndex);
+            this.bkPopIndexManager.show(this.$el, this.showMask, appendStyle, !!this.transfer, this.zIndex);
             this.$emit("shown");
           });
         } else {
-          bkPopIndexManager == null ? void 0 : bkPopIndexManager.hide(this.$el, this.transfer);
-          bkPopIndexManager == null ? void 0 : bkPopIndexManager.destroy();
+          (_a = this.bkPopIndexManager) == null ? void 0 : _a.hide(this.$el, !!this.transfer);
+          (_b = this.bkPopIndexManager) == null ? void 0 : _b.destroy();
         }
       },
       immediate: true
     }
   },
+  created() {
+  },
+  mounted() {
+    var _a;
+    const popConfig = __spreadValues(__spreadValues({}, this.$props), {
+      transfer: this.transfer === "parent" ? (_a = this.$el) == null ? void 0 : _a.parentElement : this.transfer
+    });
+    this.bkPopIndexManager = new BKPopIndexManager(popConfig);
+  },
   beforeUnmount() {
+    var _a, _b;
     if (this.visible) {
-      bkPopIndexManager == null ? void 0 : bkPopIndexManager.hide(this.$el);
-      bkPopIndexManager == null ? void 0 : bkPopIndexManager.destroy();
+      (_a = this.bkPopIndexManager) == null ? void 0 : _a.hide(this.$el);
+      (_b = this.bkPopIndexManager) == null ? void 0 : _b.destroy();
     }
   },
   methods: {
@@ -10643,7 +11270,7 @@ var Component$t = defineComponent({
     })]);
   }
 });
-const BkModal = withInstallProps(Component$t, { propsMixin: propsMixin$1 }, true);
+const BkModal = withInstallProps(Component$u, { propsMixin: propsMixin$1 }, true);
 const props$1 = __spreadProps(__spreadValues({}, propsMixin$1), {
   width: PropTypes.oneOfType([String, Number]).def(""),
   height: PropTypes.oneOfType([String, Number]).def(""),
@@ -10660,7 +11287,7 @@ const props$1 = __spreadProps(__spreadValues({}, propsMixin$1), {
   dialogType: dialogTypeUnion(),
   isLoading: PropTypes.bool.def(false)
 });
-function _isSlot$6(s2) {
+function _isSlot$7(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
 var Dialog = defineComponent({
@@ -10913,7 +11540,7 @@ var Dialog = defineComponent({
       "onClose": this.handleClose,
       "isShow": this.isModalShow,
       "style": this.data.moveStyle
-    }), _isSlot$6(dialogSlot) ? dialogSlot : {
+    }), _isSlot$7(dialogSlot) ? dialogSlot : {
       default: () => [dialogSlot]
     });
   }
@@ -10964,12 +11591,12 @@ var Exception = defineComponent({
     const renderImg = () => {
       if (_$1.isFunction(slots.type)) {
         return createVNode("div", {
-          "class": "bk-exception-img"
+          "class": "lesscode-bk-exception-img"
         }, [slots.type()]);
       }
       const imgSrc = images[props2.type] ? images[props2.type] : empty;
       return createVNode("div", {
-        "class": "bk-exception-img"
+        "class": "lesscode-bk-exception-img"
       }, [createVNode("img", {
         "class": "exception-image",
         "src": imgSrc,
@@ -10979,12 +11606,12 @@ var Exception = defineComponent({
     const renderTitle = () => {
       if (_$1.isFunction(slots.title)) {
         return createVNode("div", {
-          "class": "bk-exception-title"
+          "class": "lesscode-bk-exception-title"
         }, [slots.title()]);
       }
       if (props2.title) {
         return createVNode("div", {
-          "class": "bk-exception-title"
+          "class": "lesscode-bk-exception-title"
         }, [props2.title]);
       }
       return null;
@@ -10992,12 +11619,12 @@ var Exception = defineComponent({
     const renderDescription = () => {
       if (_$1.isFunction(slots.description)) {
         return createVNode("div", {
-          "class": "bk-exception-description"
+          "class": "lesscode-bk-exception-description"
         }, [slots.description()]);
       }
       if (props2.description) {
         return createVNode("div", {
-          "class": "bk-exception-description"
+          "class": "lesscode-bk-exception-description"
         }, [props2.description]);
       }
       return null;
@@ -11005,15 +11632,15 @@ var Exception = defineComponent({
     const renderFooter = () => {
       if (_$1.isFunction(slots.default)) {
         return createVNode("div", {
-          "class": "bk-exception-footer"
+          "class": "lesscode-bk-exception-footer"
         }, [slots.default()]);
       }
       return null;
     };
     return () => {
       const rootClass = classes({
-        "bk-exception": true,
-        [`bk-exception-${props2.scene}`]: true
+        "lesscode-bk-exception": true,
+        [`lesscode-bk-exception-${props2.scene}`]: true
       });
       return createVNode("div", {
         "class": rootClass
@@ -11022,7 +11649,7 @@ var Exception = defineComponent({
   }
 });
 const BkException = withInstall(Exception);
-var Component$s = defineComponent({
+var Component$t = defineComponent({
   name: "FixedNavbar",
   props: {
     navItems: PropTypes.array.def([]),
@@ -11049,7 +11676,7 @@ var Component$s = defineComponent({
       item.action();
     };
     return () => props2.modelValue && createVNode("div", {
-      "class": `bk-fixed-navbar ${props2.extCls} ${props2.position}`,
+      "class": `lesscode-bk-fixed-navbar ${props2.extCls} ${props2.position}`,
       "style": {
         zIndex
       }
@@ -11063,7 +11690,7 @@ var Component$s = defineComponent({
     }, [item.text]) : ""]))]);
   }
 });
-const BkFixedNavbar = withInstall(Component$s);
+const BkFixedNavbar = withInstall(Component$t);
 var LinkThemeEnum;
 (function(LinkThemeEnum2) {
   LinkThemeEnum2["DANGER"] = "danger";
@@ -11072,7 +11699,7 @@ var LinkThemeEnum;
   LinkThemeEnum2["WARNING"] = "warning";
   LinkThemeEnum2["DEFAULT"] = "default";
 })(LinkThemeEnum || (LinkThemeEnum = {}));
-var Component$r = defineComponent({
+var Component$s = defineComponent({
   name: "Link",
   props: {
     theme: j("linkTheme", {}).def(LinkThemeEnum.DEFAULT),
@@ -11101,7 +11728,7 @@ var Component$r = defineComponent({
     const linkClass = classes({
       "is-disabled": this.disabled,
       "has-underline": this.underline
-    }, `${this.theme} bk-link`);
+    }, `${this.theme} lesscode-bk-link`);
     return createVNode("a", {
       "href": this.href,
       "target": this.target,
@@ -11110,8 +11737,8 @@ var Component$r = defineComponent({
     }, [createVNode("span", null, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)])]);
   }
 });
-const BkLink = withInstall(Component$r);
-const isElement$1 = (e) => {
+const BkLink = withInstall(Component$s);
+const isElement$2 = (e) => {
   if (typeof Element === "undefined")
     return false;
   return e instanceof Element;
@@ -11130,7 +11757,7 @@ function createDocumentHandler(el, binding) {
   let excludes = [];
   if (Array.isArray(binding.arg)) {
     excludes = binding.arg;
-  } else if (isElement$1(binding.arg)) {
+  } else if (isElement$2(binding.arg)) {
     excludes.push(binding.arg);
   }
   return function(mouseup, mousedown) {
@@ -11214,7 +11841,8 @@ var Content = defineComponent({
   props: {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto"),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto"),
-    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto")
+    maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto"),
+    extCls: PropTypes.string.def("")
   },
   setup(props2) {
     const resolveValToPix = (val) => {
@@ -11234,7 +11862,7 @@ var Content = defineComponent({
   },
   render() {
     var _a, _b, _c, _d, _e, _f;
-    const className = [resolveClassName("popover"), resolveClassName("pop2-content")];
+    const className = [resolveClassName("popover"), resolveClassName("pop2-content"), this.extCls];
     return createVNode("div", {
       "class": className,
       "tabindex": "-1",
@@ -11253,10 +11881,11 @@ const PopoverProps = __spreadValues({
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto"),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto"),
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto"),
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def(""),
-  placement: PropTypes.oneOfType([placementType().def(PlacementEnum.TOP), PropTypes.string]).def(PlacementEnum.TOP),
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.any]).def(""),
+  allowHtml: PropTypes.bool.def(false),
+  placement: placementType$1().def(PlacementEnum.TOP_START),
   theme: PropTypes.string.def("dark"),
-  trigger: PropTypes.oneOfType([triggerType(), PropTypes.string]).def("hover"),
+  trigger: triggerType$1(),
   renderType: renderType(),
   arrow: PropTypes.bool.def(true),
   padding: PropTypes.number.def(5),
@@ -11270,7 +11899,8 @@ const PopoverProps = __spreadValues({
   disableTransform: PropTypes.bool.def(false),
   reference: PropTypes.any.def(null),
   modifiers: PropTypes.array.def([]),
-  popoverDelay: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).def(100)
+  popoverDelay: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).def(100),
+  extCls: PropTypes.string.def("")
 }, EventProps$1);
 var Reference = defineComponent({
   name: "PopReference",
@@ -12093,7 +12723,7 @@ function getUAString() {
 function isHTMLElement(value) {
   return value instanceof getWindow(value).HTMLElement;
 }
-function isElement(value) {
+function isElement$1(value) {
   return value instanceof getWindow(value).Element;
 }
 function isNode(value) {
@@ -12143,7 +12773,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy) {
     scaleX = element.offsetWidth > 0 ? round(clientRect.width) / element.offsetWidth || 1 : 1;
     scaleY = element.offsetHeight > 0 ? round(clientRect.height) / element.offsetHeight || 1 : 1;
   }
-  const win = isElement(element) ? getWindow(element) : window;
+  const win = isElement$1(element) ? getWindow(element) : window;
   const addVisualOffsets = !isLayoutViewport() && isFixedStrategy;
   const x2 = (clientRect.left + (addVisualOffsets ? (_win$visualViewport$o = (_win$visualViewport = win.visualViewport) == null ? void 0 : _win$visualViewport.offsetLeft) != null ? _win$visualViewport$o : 0 : 0)) / scaleX;
   const y2 = (clientRect.top + (addVisualOffsets ? (_win$visualViewport$o2 = (_win$visualViewport2 = win.visualViewport) == null ? void 0 : _win$visualViewport2.offsetTop) != null ? _win$visualViewport$o2 : 0 : 0)) / scaleY;
@@ -12164,7 +12794,7 @@ function getDocumentElement(node) {
   return ((isNode(node) ? node.ownerDocument : node.document) || window.document).documentElement;
 }
 function getNodeScroll(element) {
-  if (isElement(element)) {
+  if (isElement$1(element)) {
     return {
       scrollLeft: element.scrollLeft,
       scrollTop: element.scrollTop
@@ -12396,7 +13026,7 @@ function getClientRectFromClippingAncestor(element, clippingParent, strategy) {
   if (clippingParent === "viewport") {
     return rectToClientRect(getViewportRect(element, strategy));
   }
-  if (isElement(clippingParent)) {
+  if (isElement$1(clippingParent)) {
     return getInnerBoundingClientRect(clippingParent, strategy);
   }
   return rectToClientRect(getDocumentRect(getDocumentElement(element)));
@@ -12405,10 +13035,10 @@ function getClippingAncestors(element) {
   const clippingAncestors = getOverflowAncestors(element);
   const canEscapeClipping = ["absolute", "fixed"].includes(getComputedStyle$1$1(element).position);
   const clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
-  if (!isElement(clipperElement)) {
+  if (!isElement$1(clipperElement)) {
     return [];
   }
-  return clippingAncestors.filter((clippingAncestors2) => isElement(clippingAncestors2) && contains(clippingAncestors2, clipperElement) && getNodeName(clippingAncestors2) !== "body");
+  return clippingAncestors.filter((clippingAncestors2) => isElement$1(clippingAncestors2) && contains(clippingAncestors2, clipperElement) && getNodeName(clippingAncestors2) !== "body");
 }
 function getClippingRect(_ref) {
   let {
@@ -12438,7 +13068,7 @@ function getClippingRect(_ref) {
 const platform = {
   getClippingRect,
   convertOffsetParentRelativeRectToViewportRelativeRect,
-  isElement,
+  isElement: isElement$1,
   getDimensions,
   getOffsetParent,
   getDocumentElement,
@@ -12471,7 +13101,7 @@ function autoUpdate(reference2, floating, update, options) {
   } = options;
   const ancestorScroll = _ancestorScroll && !animationFrame;
   const ancestorResize = _ancestorResize && !animationFrame;
-  const ancestors = ancestorScroll || ancestorResize ? [...isElement(reference2) ? getOverflowAncestors(reference2) : [], ...getOverflowAncestors(floating)] : [];
+  const ancestors = ancestorScroll || ancestorResize ? [...isElement$1(reference2) ? getOverflowAncestors(reference2) : [], ...getOverflowAncestors(floating)] : [];
   ancestors.forEach((ancestor) => {
     ancestorScroll && ancestor.addEventListener("scroll", update, {
       passive: true
@@ -12481,7 +13111,7 @@ function autoUpdate(reference2, floating, update, options) {
   let observer = null;
   if (elementResize) {
     observer = new ResizeObserver(update);
-    isElement(reference2) && !animationFrame && observer.observe(reference2);
+    isElement$1(reference2) && !animationFrame && observer.observe(reference2);
     observer.observe(floating);
   }
   let frameId;
@@ -12567,6 +13197,41 @@ var usePlatform = (fullscreenTarget) => {
     getClippingRect: getClippingRect2
   };
 };
+const CachedConst = {};
+const isAvailableId = (query) => {
+  const container2 = document.querySelector(query);
+  return container2 instanceof HTMLElement;
+};
+const getFullscreenUid = () => {
+  if (!CachedConst.fullscreenReferId) {
+    CachedConst.fullscreenReferId = `id_${uuid_1.v4()}`;
+  }
+  return CachedConst.fullscreenReferId;
+};
+const isElement = (element) => element instanceof Element || element instanceof HTMLDocument;
+const contentAsHTMLElement = (content) => {
+  if (isElement(content)) {
+    return {
+      isElement: true,
+      content,
+      vNode: void 0
+    };
+  }
+  if (/^(#|\.)/.test(content)) {
+    const target = document.querySelector(content);
+    const isEle = isElement(target);
+    return {
+      isElement: isEle,
+      content: isEle ? target : content,
+      vNode: isEle ? void 0 : content
+    };
+  }
+  return {
+    isElement: false,
+    content,
+    vNode: content
+  };
+};
 var useFloating = (props2, ctx, {
   refReference,
   refContent,
@@ -12612,6 +13277,13 @@ var useFloating = (props2, ctx, {
     const elContent = resolveTargetElement((_b = refContent.value) == null ? void 0 : _b.$el);
     const elArrow = props2.arrow ? resolveTargetElement((_c = refArrow.value) == null ? void 0 : _c.$el) : null;
     const root = resolveTargetElement((_d = refRoot.value) == null ? void 0 : _d.$el);
+    const {
+      isElement: isElement2,
+      content
+    } = contentAsHTMLElement(props2.content);
+    if (elContent && isElement2 && !(elContent == null ? void 0 : elContent.contains(content))) {
+      elContent.append(content);
+    }
     return {
       elReference,
       elContent,
@@ -12891,6 +13563,9 @@ var useFloating = (props2, ctx, {
   const updateFullscreenTarget = (val) => {
     fullScreenTarget.value = val;
   };
+  watch(() => props2.isShow, (val) => {
+    localIsShow.value = val;
+  });
   watch(localIsShow, (val) => {
     if (val) {
       hanldePopoverShow();
@@ -12921,17 +13596,6 @@ var useFloating = (props2, ctx, {
     localIsShow,
     cleanup
   };
-};
-const CachedConst = {};
-const isAvailableId = (query) => {
-  const container2 = document.querySelector(query);
-  return container2 instanceof HTMLElement;
-};
-const getFullscreenUid = () => {
-  if (!CachedConst.fullscreenReferId) {
-    CachedConst.fullscreenReferId = `id_${uuid_1.v4()}`;
-  }
-  return CachedConst.fullscreenReferId;
 };
 let popContainerId = null;
 let parentNodeReferId = null;
@@ -13131,7 +13795,7 @@ var usePopoverInit = (props2, ctx, { refReference, refContent, refArrow, refRoot
     localIsShow
   };
 };
-var Component$q = defineComponent({
+var Component$r = defineComponent({
   name: "Popover",
   components: {
     Content,
@@ -13208,6 +13872,15 @@ var Component$q = defineComponent({
       }
       return localIsShow.value;
     });
+    const renderContent2 = () => {
+      if (props2.allowHtml) {
+        const {
+          vNode
+        } = contentAsHTMLElement(props2.content);
+        return vNode;
+      }
+      return content;
+    };
     return {
       boundary,
       arrow: props2.arrow,
@@ -13222,7 +13895,8 @@ var Component$q = defineComponent({
       hide: hide2,
       show: show2,
       stopHide,
-      contentIsShow
+      contentIsShow,
+      renderContent: renderContent2
     };
   },
   render() {
@@ -13243,13 +13917,14 @@ var Component$q = defineComponent({
         default: () => [withDirectives(createVNode(Content, {
           "ref": "refContent",
           "data-theme": this.theme,
+          "extCls": this.extCls,
           "width": this.width,
           "height": this.height,
           "maxHeight": this.maxHeight
         }, {
           default: () => {
             var _a, _b, _c;
-            return [this.contentIsShow ? (_c = (_b = (_a = this.$slots).content) == null ? void 0 : _b.call(_a)) != null ? _c : this.content : ""];
+            return [this.contentIsShow ? (_c = (_b = (_a = this.$slots).content) == null ? void 0 : _b.call(_a)) != null ? _c : this.renderContent() : ""];
           },
           arrow: () => this.arrow ? createVNode(Arrow, {
             "ref": "refArrow"
@@ -13275,7 +13950,6 @@ function createPopoverComponent(options) {
   }, options), {
     trigger: "manual"
   });
-  const isElement2 = (element) => element instanceof Element || element instanceof HTMLDocument;
   const popoverComponent = {
     name: "$popover",
     setup(_2, {
@@ -13293,7 +13967,7 @@ function createPopoverComponent(options) {
         transform: ""
       });
       const updateStyle = (target) => {
-        if (isElement2(target)) {
+        if (isElement(target)) {
           const {
             x: x2,
             y: y2,
@@ -13360,7 +14034,7 @@ function createPopoverComponent(options) {
         updateTarget,
         stopHide
       });
-      return () => createVNode(Component$q, mergeProps(attrs.value, {
+      return () => createVNode(Component$r, mergeProps(attrs.value, {
         "ref": refReference,
         "onContentMouseenter": handleContentMouseenter,
         "onContentMouseleave": handleContentMouseleave
@@ -13376,7 +14050,7 @@ function createPopoverComponent(options) {
       return document.body;
     }
     if (/^parent$/i.test(boundary)) {
-      if (isElement2(resolvedOptions.target)) {
+      if (isElement(resolvedOptions.target)) {
         return resolvedOptions.target.parentNode;
       }
       return resolvedOptions.target.target.parentNode;
@@ -13422,7 +14096,7 @@ function createPopoverComponent(options) {
     }
   };
 }
-const BkPopover = withInstall(Component$q);
+const BkPopover = withInstall(Component$r);
 var popover = defineComponent({
   name: "Popover2",
   setup() {
@@ -13488,7 +14162,7 @@ const Circle = (_2, {
     "stroke-linecap": strokeLinecap,
     "stroke-width": percent > 0 && circleStrokeWidth || 0,
     "fill-opacity": "0",
-    class: `process-circle-path bk-${theme}-circle-trail`,
+    class: `process-circle-path lesscode-bk-${theme}-circle-trail`,
     style: pathStyle
   };
   return createVNode("div", {
@@ -13536,23 +14210,23 @@ const Line = (_2, {
   return createVNode("div", {
     "class": "progress-outer"
   }, [createVNode("div", {
-    "class": `bk-progress-${size || "normal"} progress-bar`,
+    "class": `lesscode-bk-progress-${size || "normal"} progress-bar`,
     "style": percentStyle
   }, [createVNode("div", {
     "style": barStyle,
     "class": {
       "progress-inner": true,
-      [`bk-${theme}`]: true
+      [`lesscode-bk-${theme}`]: true
     }
   }, [createVNode("div", {
     "class": "inner-text",
     "style": titleStyle
   }, [showDefault()])])]), showDefault(false)]);
 };
-function _isSlot$5(s2) {
+function _isSlot$6(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
-var Component$p = defineComponent({
+var Component$q = defineComponent({
   name: "Progress",
   props: {
     extCls: PropTypes.string,
@@ -13614,23 +14288,23 @@ var Component$p = defineComponent({
     const $props = __spreadProps(__spreadValues({}, this.$props), {
       percent: this.validPercent(this.percent)
     });
-    let progress2 = createVNode(Line, $props, _isSlot$5(progressInfo) ? progressInfo : {
+    let progress2 = createVNode(Line, $props, _isSlot$6(progressInfo) ? progressInfo : {
       default: () => [progressInfo]
     });
     if (this.type === "circle" || this.type === "dashboard") {
-      progress2 = createVNode(Circle, $props, _isSlot$5(progressInfo) ? progressInfo : {
+      progress2 = createVNode(Circle, $props, _isSlot$6(progressInfo) ? progressInfo : {
         default: () => [progressInfo]
       });
     }
     const progressProps = {
       class: classes({
         extCls: !!this.extCls
-      }, `bk-progress bk-progress-${this.type}`)
+      }, `lesscode-bk-progress lesscode-bk-progress-${this.type}`)
     };
     return createVNode("div", progressProps, [progress2]);
   }
 });
-const BkProgress = withInstall(Component$p);
+const BkProgress = withInstall(Component$q);
 const radioGroupKey = Symbol("RadioGroup");
 function useFocus() {
   const isFocused = ref(false);
@@ -13724,7 +14398,7 @@ const radioProps = {
   checked: PropTypes.bool.def(false),
   disabled: PropTypes.bool.def(false)
 };
-var Component$o = defineComponent({
+var Component$p = defineComponent({
   name: "Radio",
   props: radioProps,
   emits: ["change", "update:modelValue"],
@@ -13751,7 +14425,7 @@ var Component$o = defineComponent({
   },
   render() {
     const radioClass = classes({
-      "bk-radio": true,
+      "lesscode-bk-radio": true,
       "is-focused": this.isFocused,
       "is-disabled": this.isDisabled,
       "is-checked": this.isChecked
@@ -13761,14 +14435,14 @@ var Component$o = defineComponent({
         return null;
       }
       return createVNode("span", {
-        "class": "bk-radio-label"
+        "class": "lesscode-bk-radio-label"
       }, [this.$slots.default ? this.$slots.default() : this.label]);
     };
     return createVNode("label", {
       "class": radioClass,
       "tabindex": "0"
     }, [createVNode("input", {
-      "class": "bk-radio-input",
+      "class": "lesscode-bk-radio-input",
       "type": "radio",
       "tabindex": "0",
       "value": this.label,
@@ -13815,7 +14489,7 @@ var RadioButton = defineComponent({
   },
   render() {
     const radioClass = classes({
-      "bk-radio-item": true,
+      "lesscode-bk-radio-button": true,
       "is-focused": this.isFocused,
       "is-disabled": this.isDisabled,
       "is-checked": this.isChecked
@@ -13825,14 +14499,14 @@ var RadioButton = defineComponent({
         return null;
       }
       return createVNode("div", {
-        "class": "bk-radio-item-label"
+        "class": "lesscode-bk-radio-button-label"
       }, [this.$slots.default ? this.$slots.default() : this.label]);
     };
     return createVNode("label", {
       "class": radioClass,
       "tabindex": "0"
     }, [createVNode("input", {
-      "class": "bk-radio-item-input",
+      "class": "lesscode-bk-radio-button-input",
       "type": "radio",
       "tabindex": "0",
       "value": this.label,
@@ -13849,7 +14523,7 @@ const radioGroupProps = {
   modelValue: PropTypes.oneOfType([String, Number, Boolean]),
   disabled: PropTypes.bool,
   withValidate: PropTypes.bool.def(true),
-  type: PropTypes.oneOf(["button", "capsule"]).def("button")
+  type: PropTypes.oneOf(["tab", "capsule", "card"]).def("tab")
 };
 var RadioGroup = defineComponent({
   name: "RadioGroup",
@@ -13902,11 +14576,11 @@ var RadioGroup = defineComponent({
   render() {
     var _a;
     return createVNode("div", {
-      "class": ["bk-radio-group", `bk-radio-${this.type}`]
+      "class": ["lesscode-bk-radio-group", `lesscode-bk-radio-${this.type}`]
     }, [(_a = this.$slots) == null ? void 0 : _a.default()]);
   }
 });
-const BkRadio = withInstallProps(Component$o, { Group: RadioGroup, Button: RadioButton });
+const BkRadio = withInstallProps(Component$p, { Group: RadioGroup, Button: RadioButton });
 var star = defineComponent({
   name: "Star",
   props: {
@@ -13934,9 +14608,9 @@ var star = defineComponent({
       emit("changeHover", rate2);
     };
     const starClass = (index2) => classes({
-      "bk-is-select": index2 < Math.floor(displayRate.value),
-      "bk-is-edit": props2.editable,
-      "bk-rate-star": true
+      "lesscode-bk-is-select": index2 < Math.floor(displayRate.value),
+      "lesscode-bk-is-edit": props2.editable,
+      "lesscode-bk-rate-star": true
     });
     const displayRate = computed(() => props2.hoverRate || props2.rate);
     const starStyle = {
@@ -13945,7 +14619,7 @@ var star = defineComponent({
       minWidth: `${props2.width}px`
     };
     return () => createVNode("p", {
-      "class": "bk-rate-stars"
+      "class": "lesscode-bk-rate-stars"
     }, [Array(props2.max).fill(1).map((_2, index2) => createVNode("svg", {
       "class": starClass(index2),
       "style": starStyle,
@@ -13968,7 +14642,7 @@ var star = defineComponent({
     }, null)])])])])]))]);
   }
 });
-var Component$n = defineComponent({
+var Component$o = defineComponent({
   name: "Rate",
   components: {
     star
@@ -13995,7 +14669,7 @@ var Component$n = defineComponent({
       hoverRate.value = val;
     };
     const rateClass = classes({
-      "bk-rate": true
+      "lesscode-bk-rate": true
     });
     const sizeMap = {
       small: {
@@ -14040,7 +14714,7 @@ var Component$n = defineComponent({
     }, commonAttrs), null) : [createVNode(star, mergeProps({
       "rate": 5,
       "style": starStyle.value,
-      "class": "bk-score-real",
+      "class": "lesscode-bk-score-real",
       "editable": false
     }, commonAttrs), null), createVNode(star, mergeProps({
       "rate": 0,
@@ -14048,8 +14722,8 @@ var Component$n = defineComponent({
     }, commonAttrs), null)]]);
   }
 });
-const BkRate = withInstall(Component$n);
-var Component$m = defineComponent({
+const BkRate = withInstall(Component$o);
+var Component$n = defineComponent({
   name: "Swiper",
   props: {
     isLoop: PropTypes.bool.def(true),
@@ -14106,15 +14780,15 @@ var Component$m = defineComponent({
         return;
       window.open(link2, "_blank");
     };
-    const getRenderItemClass = (renderData) => ["bk-swiper-img", {
-      "bk-swiper-link": renderData.link
+    const getRenderItemClass = (renderData) => ["lesscode-bk-swiper-img", {
+      "lesscode-bk-swiper-link": renderData.link
     }, renderData.class];
     const getRenderItemStyle = (renderData) => ({
       "background-image": `url(${renderData.url})`,
       "background-color": renderData.color
     });
     const getRenderIndexStyle = (index2) => ({
-      "bk-current-index": swiperIndex.value === index2
+      "lesscode-bk-current-index": swiperIndex.value === index2
     });
     const startLoop = () => {
       if (isLoop.value) {
@@ -14174,16 +14848,16 @@ var Component$m = defineComponent({
       endWatchParentSizeChange();
     });
     return () => createVNode("section", {
-      "class": "bk-swiper-home",
+      "class": "lesscode-bk-swiper-home",
       "ref": swiperRef,
       "style": computedSwiperRenderStyle.value
     }, [createVNode("hgroup", {
       "style": computedSwiperTranslateStyle.value,
-      "class": "bk-transition bk-swiper-main"
+      "class": "lesscode-bk-transition lesscode-bk-swiper-main"
     }, [computedRenderDataList.value.map((renderData) => {
       var _a, _b;
       return createVNode("h3", {
-        "class": "bk-swiper-card",
+        "class": "lesscode-bk-swiper-card",
         "style": computedSwiperRenderStyle.value
       }, [(_b = (_a = slots.default) == null ? void 0 : _a.call(slots, renderData)) != null ? _b : createVNode("span", {
         "class": getRenderItemClass(renderData),
@@ -14191,24 +14865,24 @@ var Component$m = defineComponent({
         "onClick": () => goToLink(renderData.link)
       }, null)]);
     })]), createVNode("ul", {
-      "class": "bk-swiper-index"
+      "class": "lesscode-bk-swiper-index"
     }, [computedRenderDataList.value.map((_2, index2) => createVNode("li", {
       "class": getRenderIndexStyle(index2),
       "onMouseover": () => changeIndex(index2)
     }, null))]), createVNode("span", {
-      "class": "bk-swiper-nav bk-nav-prev",
+      "class": "lesscode-bk-swiper-nav lesscode-bk-nav-prev",
       "onClick": () => changeIndex(swiperIndex.value - 1)
     }, [createVNode("i", {
-      "class": "bk-swiper-nav-icon"
+      "class": "lesscode-bk-swiper-nav-icon"
     }, null)]), createVNode("span", {
-      "class": "bk-swiper-nav bk-nav-next",
+      "class": "lesscode-bk-swiper-nav lesscode-bk-nav-next",
       "onClick": () => changeIndex(swiperIndex.value + 1)
     }, [createVNode("i", {
-      "class": "bk-swiper-nav-icon"
+      "class": "lesscode-bk-swiper-nav-icon"
     }, null)])]);
   }
 });
-const BkSwiper = withInstall(Component$m);
+const BkSwiper = withInstall(Component$n);
 const selectKey = Symbol("BkSelect");
 const optionGroupKey = Symbol("BkOptionGroup");
 function useHover() {
@@ -14328,7 +15002,10 @@ function toLowerCase(value = "") {
 var BkOption = defineComponent({
   name: "Option",
   props: {
-    value: PropTypes.any,
+    value: {
+      type: [String, Number, Object],
+      require: true
+    },
     label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).def(""),
     disabled: PropTypes.bool.def(false)
   },
@@ -14479,17 +15156,16 @@ var OptionGroup = defineComponent({
     }, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)]), [[vShow, !this.groupCollapse]])]), [[vShow, this.visible]]);
   }
 });
+function placementType() {
+  return E().def("bottom");
+}
 var props = {
-  content: String,
-  type: {
-    type: String,
-    default: "title"
-  },
-  calType: {
-    type: String,
-    default: "dom"
-  },
-  resizeable: Boolean
+  content: PropTypes.string,
+  type: PropTypes.oneOf(["tips", "title"]).def("title"),
+  calType: PropTypes.oneOf(["dom", "canvas"]).def("dom"),
+  boundary: PropTypes.oneOfType([PropTypes.string.def("parent"), PropTypes.instanceOf(HTMLElement)]).def(document.body),
+  placement: placementType().def("top-start"),
+  resizeable: PropTypes.bool
 };
 function getActualWidthByCanvas(text, options) {
   const { fontSize = 14, fontFamily = "Microsoft YaHei" } = options;
@@ -14568,9 +15244,9 @@ var OverflowTitle = defineComponent({
       if (props2.resizeable) {
         const observer = new ResizeObserver(resizeHandler);
         observer.observe(boxRef.value);
-        onUnmounted(() => {
-          observer.unobserve(boxRef.value);
-          observer.disconnect();
+        onBeforeUnmount(() => {
+          boxRef.value && (observer == null ? void 0 : observer.unobserve(boxRef.value));
+          observer == null ? void 0 : observer.disconnect();
         });
       }
     });
@@ -14587,7 +15263,9 @@ var OverflowTitle = defineComponent({
       "ref": "boxRef",
       "class": "position-relative"
     }, [createVNode(BkPopover, {
-      "disabled": this.type === "title"
+      "disabled": this.type === "title" || !this.isShowTips,
+      "placement": this.placement,
+      "boundary": this.boundary || document.body
     }, {
       default: () => createVNode("div", mergeProps({
         "ref": "textRef",
@@ -15040,6 +15718,7 @@ const createInstance = (el, binding) => {
       const targetOptions = resolveOptions(el, binding);
       targetOptions.isShow = true;
       targetOptions.content = targetOptions.content || el.innerHTML;
+      targetOptions.allowHtml = true;
       Object.assign(targetOptions, {
         onContentMouseenter: handleContentEnter,
         onContentMouseleave: handleContentLeave
@@ -15237,7 +15916,7 @@ var virtualRender = {
     }
   }
 };
-var Component$l = defineComponent({
+var Component$m = defineComponent({
   name: "VirtualRender",
   directives: {
     bkVirtualRender: virtualRender
@@ -15409,14 +16088,14 @@ var Component$l = defineComponent({
     };
   }
 });
-const BkVirtualRender = withInstall(Component$l);
+const BkVirtualRender = withInstall(Component$m);
 var TagStrokeType;
 (function(TagStrokeType2) {
   TagStrokeType2["UNKNOWN"] = "";
   TagStrokeType2["FILLED"] = "filled";
   TagStrokeType2["STROKE"] = "stroke";
 })(TagStrokeType || (TagStrokeType = {}));
-var Component$k = defineComponent({
+var Component$l = defineComponent({
   name: "Tag",
   props: {
     theme: TagThemeType(),
@@ -15433,13 +16112,13 @@ var Component$k = defineComponent({
     emit
   }) {
     const wrapperCls = computed(() => classes({
-      "bk-tag-closable": props2.closable,
-      "bk-tag-checkable": props2.checkable,
-      "bk-tag-check": props2.checked,
-      [`bk-tag-${props2.type}`]: props2.type,
-      [`bk-tag-${props2.theme}`]: props2.theme,
+      "lesscode-bk-tag-closable": props2.closable,
+      "lesscode-bk-tag-checkable": props2.checkable,
+      "lesscode-bk-tag-check": props2.checked,
+      [`lesscode-bk-tag-${props2.type}`]: props2.type,
+      [`lesscode-bk-tag-${props2.theme}`]: props2.theme,
       [props2.extCls]: !!props2.extCls
-    }, "bk-tag"));
+    }, "lesscode-bk-tag"));
     const wrapperStyle = computed(() => ({
       borderRadius: props2.radius
     }));
@@ -15469,16 +16148,16 @@ var Component$k = defineComponent({
       "style": this.wrapperStyle,
       "onClick": this.handleClick
     }, [this.$slots.icon ? createVNode("span", {
-      "class": "bk-tag-icon"
+      "class": "lesscode-bk-tag-icon"
     }, [this.$slots.icon()]) : "", createVNode("span", {
-      "class": "bk-tag-text"
+      "class": "lesscode-bk-tag-text"
     }, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)]), this.closable ? createVNode(error, {
-      "class": "bk-tag-close",
+      "class": "lesscode-bk-tag-close",
       "onClick": this.handleClose
     }, null) : ""]);
   }
 });
-const BkTag = withInstall(Component$k);
+const BkTag = withInstall(Component$l);
 var SelectTagInput = defineComponent({
   name: "SelectTagInput",
   props: {
@@ -15538,7 +16217,7 @@ var SelectTagInput = defineComponent({
       emit("keydown", e.target.value, e);
     };
     const getTagDOM = (index2) => {
-      const tags = [...proxy.$el.querySelectorAll(".bk-tag")];
+      const tags = [...proxy.$el.querySelectorAll(".lesscode-bk-tag")];
       return typeof index2 === "number" ? tags[index2] : tags;
     };
     const calcOverflow = () => {
@@ -15569,12 +16248,17 @@ var SelectTagInput = defineComponent({
     };
   },
   render() {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _i;
+    const prefix = (_b = (_a = this.$slots) == null ? void 0 : _a.prefix) == null ? void 0 : _b.call(_a);
     const selectTagClass = classes({
       [resolveClassName("select-tag")]: true,
       [resolveClassName("select-tag--default")]: true,
       "is-disabled": this.disabled,
-      "collapse-tag": this.collapseTags
+      "collapse-tag": this.collapseTags,
+      "has-prefix": !!prefix && (prefix == null ? void 0 : prefix.every((item) => {
+        var _a2;
+        return !!((_a2 = item.children) == null ? void 0 : _a2.length);
+      }))
     });
     const tagWrapperClass = classes({
       [resolveClassName("select-tag-wrapper")]: true
@@ -15584,9 +16268,9 @@ var SelectTagInput = defineComponent({
     };
     return createVNode("div", {
       "class": selectTagClass
-    }, [(_b = (_a = this.$slots) == null ? void 0 : _a.prefix) == null ? void 0 : _b.call(_a), createVNode("span", {
+    }, [(_d = (_c = this.$slots) == null ? void 0 : _c.prefix) == null ? void 0 : _d.call(_c), createVNode("span", {
       "class": tagWrapperClass
-    }, [(_e = (_d = (_c = this.$slots).default) == null ? void 0 : _d.call(_c)) != null ? _e : this.selected.map((item, index2) => createVNode(BkTag, {
+    }, [(_g = (_f = (_e = this.$slots).default) == null ? void 0 : _f.call(_e)) != null ? _g : this.selected.map((item, index2) => createVNode(BkTag, {
       "closable": true,
       "theme": this.tagTheme,
       "style": {
@@ -15602,7 +16286,7 @@ var SelectTagInput = defineComponent({
       "class": resolveClassName("select-overflow-tag")
     }, {
       default: () => [createTextVNode("+"), this.selected.length - this.overflowTagIndex]
-    })]), createVNode("input", {
+    }), createVNode("input", {
       "class": resolveClassName("select-tag-input"),
       "ref": "inputRef",
       "type": "text",
@@ -15613,10 +16297,10 @@ var SelectTagInput = defineComponent({
       "value": !this.filterable ? "" : this.value,
       "onInput": this.handleInput,
       "onKeydown": this.handleKeydown
-    }, null), (_g = (_f = this.$slots) == null ? void 0 : _f.suffix) == null ? void 0 : _g.call(_f)]);
+    }, null)]), (_i = (_h = this.$slots) == null ? void 0 : _h.suffix) == null ? void 0 : _i.call(_h)]);
   }
 });
-var Component$j = defineComponent({
+var Component$k = defineComponent({
   name: "Select",
   directives: {
     clickoutside: ClickOutside
@@ -15647,7 +16331,7 @@ var Component$j = defineComponent({
     selectAllText: PropTypes.string,
     scrollLoading: PropTypes.bool.def(false),
     allowCreate: PropTypes.bool.def(false),
-    popoverOptions: PropTypes.object.def({}),
+    popoverOptions: Object,
     customContent: PropTypes.bool.def(false),
     list: PropTypes.array.def([]),
     idKey: PropTypes.string.def("value"),
@@ -15658,7 +16342,8 @@ var Component$j = defineComponent({
     enableVirtualRender: PropTypes.bool.def(false),
     allowEmptyValues: PropTypes.array.def([]),
     autoFocus: PropTypes.bool.def(false),
-    keepSearchValue: PropTypes.bool.def(false)
+    keepSearchValue: PropTypes.bool.def(false),
+    prefix: PropTypes.string
   },
   emits: ["update:modelValue", "change", "toggle", "clear", "scroll-end", "focus", "blur"],
   setup(props2, {
@@ -15684,6 +16369,7 @@ var Component$j = defineComponent({
       scrollHeight,
       list,
       displayKey,
+      idKey,
       collapseTags,
       autoHeight,
       popoverOptions,
@@ -15744,6 +16430,10 @@ var Component$j = defineComponent({
       return pre;
     }, {}));
     const activeOptionValue = ref();
+    const listMap = computed(() => list.value.reduce((pre, item) => {
+      pre[item[idKey.value]] = item[displayKey.value];
+      return pre;
+    }, {}));
     watch(modelValue, () => {
       var _a;
       handleSetSelectedData();
@@ -15764,7 +16454,7 @@ var Component$j = defineComponent({
     const isDisabled = computed(() => disabled.value || loading2.value);
     const selectedLabel = computed(() => selected.value.map((item) => {
       var _a, _b;
-      return ((_b = (_a = optionsMap.value) == null ? void 0 : _a.get(item.value)) == null ? void 0 : _b.label) || item.label;
+      return ((_b = (_a = optionsMap.value) == null ? void 0 : _a.get(item.value)) == null ? void 0 : _b.label) || item.label || listMap.value[item.value];
     }));
     const isAllSelected = computed(() => {
       const normalSelectedValues = options.value.reduce((pre, option) => {
@@ -15796,7 +16486,7 @@ var Component$j = defineComponent({
     });
     const isCollapseTags = computed(() => autoHeight.value ? collapseTags.value && !isPopoverShow.value : collapseTags.value);
     const popoverConfig = computed(() => lodash.exports.merge({
-      theme: "light bk-select-popover",
+      theme: "light lesscode-bk-select-popover",
       trigger: "manual",
       width: popperWidth.value,
       arrow: false,
@@ -16015,7 +16705,7 @@ var Component$j = defineComponent({
           }
         }
       }
-      return ((_b = (_a = optionsMap.value) == null ? void 0 : _a.get(tmpValue)) == null ? void 0 : _b.label) || cacheSelectedMap.value[tmpValue] || tmpValue;
+      return ((_b = (_a = optionsMap.value) == null ? void 0 : _a.get(tmpValue)) == null ? void 0 : _b.label) || cacheSelectedMap.value[tmpValue] || listMap.value[tmpValue] || tmpValue;
     };
     const handleSetSelectedData = () => {
       if (Array.isArray(modelValue.value)) {
@@ -16204,11 +16894,19 @@ var Component$j = defineComponent({
           "onRemove": this.handleDeleteTag,
           "collapseTags": this.isCollapseTags,
           "onEnter": this.handleInputEnter,
-          "onKeydown": (_v, e) => this.handleKeydown(e)
+          "onKeydown": (_2, e) => this.handleKeydown(e)
         }, {
           prefix: () => {
             var _a, _b;
-            return (_b = (_a = this.$slots).prefix) == null ? void 0 : _b.call(_a);
+            if (typeof this.$slots.prefix === "function") {
+              return (_b = (_a = this.$slots).prefix) == null ? void 0 : _b.call(_a);
+            }
+            if (this.prefix) {
+              return createVNode("div", {
+                "class": "lesscode-bk-select--prefix-area"
+              }, [createVNode("span", null, [this.prefix])]);
+            }
+            return "";
           },
           default: this.$slots.tag && (() => this.$slots.tag({
             selected: this.selected
@@ -16216,7 +16914,7 @@ var Component$j = defineComponent({
           suffix: () => suffixIcon()
         });
       }
-      return createVNode(BkInput, {
+      return createVNode(BkInput, mergeProps({
         "ref": "inputRef",
         "type": "text",
         "modelValue": this.isInput ? this.searchKey : this.selectedLabel.join(","),
@@ -16229,14 +16927,17 @@ var Component$j = defineComponent({
         "withValidate": false,
         "onInput": this.handleInputChange,
         "onEnter": this.handleInputEnter,
-        "onKeydown": (_v, e) => this.handleKeydown(e)
-      }, {
+        "onKeydown": (_2, e) => this.handleKeydown(e)
+      }, this.prefix ? {
+        prefix: this.prefix
+      } : null), __spreadProps(__spreadValues({}, typeof this.$slots.prefix === "function" ? {
         prefix: () => {
           var _a, _b;
           return (_b = (_a = this.$slots).prefix) == null ? void 0 : _b.call(_a);
-        },
+        }
+      } : null), {
         suffix: () => suffixIcon()
-      });
+      }));
     };
     const renderSelectTrigger = () => {
       var _a, _b;
@@ -16331,8 +17032,8 @@ var Component$j = defineComponent({
     })]);
   }
 });
-const BkSelect = withInstallProps(Component$j, { Option: BkOption, Group: OptionGroup });
-function _isSlot$4(s2) {
+const BkSelect = withInstallProps(Component$k, { Option: BkOption, Group: OptionGroup });
+function _isSlot$5(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
 const {
@@ -16341,7 +17042,7 @@ const {
 const sliderPops = Object.assign({}, propsMixin);
 sliderPops.width.default = "400";
 sliderPops.height.default = "100%";
-var Component$i = defineComponent({
+var Component$j = defineComponent({
   name: "Sideslider",
   components: {
     BkModal,
@@ -16394,14 +17095,14 @@ var Component$i = defineComponent({
         header: () => {
           var _a, _b;
           return createVNode(Fragment, null, [createVNode("div", {
-            "class": "bk-sideslider-header"
+            "class": "lesscode-bk-sideslider-header"
           }, [createVNode("div", {
-            "class": `bk-sideslider-close ${props2.direction}`,
+            "class": `lesscode-bk-sideslider-close ${props2.direction}`,
             "onClick": () => {
               handleClose();
             }
           }, null), createVNode("div", {
-            "class": `bk-sideslider-title ${props2.direction}`
+            "class": `lesscode-bk-sideslider-title ${props2.direction}`
           }, [(_b = (_a = slots.header) == null ? void 0 : _a.call(slots)) != null ? _b : props2.title])])]);
         },
         default: () => {
@@ -16411,13 +17112,13 @@ var Component$i = defineComponent({
         footer: () => {
           if (slots.footer) {
             return createVNode("div", {
-              "class": "bk-sideslider-footer"
+              "class": "lesscode-bk-sideslider-footer"
             }, [slots.footer()]);
           }
           return null;
         }
       };
-      const className = `bk-sideslider-wrapper ${props2.scrollable ? "scroll-able" : ""} ${props2.extCls}`;
+      const className = `lesscode-bk-sideslider-wrapper ${props2.scrollable ? "scroll-able" : ""} ${props2.extCls}`;
       const maxHeight = slots.footer ? "calc(100vh - 106px)" : "calc(100vh - 52px)";
       return createVNode(BkModal, mergeProps(props2, {
         "maxHeight": maxHeight,
@@ -16426,13 +17127,13 @@ var Component$i = defineComponent({
         "onHidden": handleHidden,
         "onShown": handleShown,
         "onClose": handleClose
-      }), _isSlot$4(dialogSlot) ? dialogSlot : {
+      }), _isSlot$5(dialogSlot) ? dialogSlot : {
         default: () => [dialogSlot]
       });
     };
   }
 });
-const BkSideslider = withInstall(Component$i);
+const BkSideslider = withInstall(Component$j);
 var StatusEnum;
 (function(StatusEnum2) {
   StatusEnum2["UNKNOWN"] = "";
@@ -16452,7 +17153,7 @@ const stepsProps = {
   steps: PropTypes.array.def([]),
   beforeChange: PropTypes.func
 };
-var Component$h = defineComponent({
+var Component$i = defineComponent({
   name: "Steps",
   props: stepsProps,
   emits: ["update:curStep", "click"],
@@ -16535,13 +17236,13 @@ var Component$h = defineComponent({
     };
   },
   render() {
-    const stepsClsPrefix = "bk-steps";
+    const stepsClsPrefix = "lesscode-bk-steps";
     const stepsThemeCls = this.theme ? `${stepsClsPrefix}-${this.theme}` : "";
     const stepsSizeCls = this.size ? `${stepsClsPrefix}-${this.size}` : "";
     const stepsCls = classes({
       [`${this.extCls}`]: !!this.extCls,
-      [`bk-steps-${this.direction}`]: this.direction,
-      [`bk-steps-${this.lineType}`]: this.lineType
+      [`lesscode-bk-steps-${this.direction}`]: this.direction,
+      [`lesscode-bk-steps-${this.lineType}`]: this.lineType
     }, `${stepsThemeCls} ${stepsClsPrefix} ${stepsSizeCls}`);
     const isDone = (index2) => this.curStep > index2 + 1 || this.defaultSteps[index2].status === "done";
     const isCurrent = (index2) => this.curStep === index2 + 1;
@@ -16565,17 +17266,17 @@ var Component$h = defineComponent({
     const renderIcon = (index2, step) => {
       if (isCurrent(index2) && this.status === "loading" || isLoadingStatus(step)) {
         return createVNode(circle, {
-          "class": "bk-icon bk-steps-icon icon-loading"
+          "class": "lesscode-bk-icon lesscode-bk-steps-icon icon-loading"
         }, null);
       }
       if (isCurrent(index2) && this.status === "error" || isErrorStatus(step)) {
         return createVNode(error, {
-          "class": "bk-steps-icon"
+          "class": "lesscode-bk-steps-icon"
         }, null);
       }
       if (isDone(index2)) {
         return createVNode(done, {
-          "class": "bk-steps-icon"
+          "class": "lesscode-bk-steps-icon"
         }, null);
       }
       return createVNode("span", null, [isNumberIcon(index2, step) ? index2 + 1 : createVNode(step.icon, null, null)]);
@@ -16585,9 +17286,9 @@ var Component$h = defineComponent({
     }, [this.defaultSteps.map((step, index2) => {
       var _a, _b, _c;
       return createVNode("div", {
-        "class": ["bk-step", !step.title ? "bk-step-no-content" : "", isDone(index2) ? "done" : "", isCurrent(index2) ? "current" : "", isCurrent(index2) && this.status === "error" ? "isError" : "", step.status && isCurrent(index2) ? [`bk-step-${step.status}`] : ""]
+        "class": ["lesscode-bk-step", !step.title ? "lesscode-bk-step-no-content" : "", isDone(index2) ? "done" : "", isCurrent(index2) ? "current" : "", isCurrent(index2) && this.status === "error" ? "isError" : "", step.status && isCurrent(index2) ? [`lesscode-bk-step-${step.status}`] : ""]
       }, [createVNode("span", {
-        "class": ["bk-step-indicator", `bk-step-${iconType(step) ? "icon" : "number"}`, `bk-step-icon${step.status}`],
+        "class": ["lesscode-bk-step-indicator", `lesscode-bk-step-${iconType(step) ? "icon" : "number"}`, `lesscode-bk-step-icon${step.status}`],
         "style": {
           cursor: this.controllable ? "pointer" : ""
         },
@@ -16595,9 +17296,9 @@ var Component$h = defineComponent({
           this.jumpTo(index2 + 1);
         }
       }, [(_c = (_b = (_a = this.$slots)[index2 + 1]) == null ? void 0 : _b.call(_a)) != null ? _c : renderIcon(index2, step)]), step.title ? createVNode("div", {
-        "class": "bk-step-content"
+        "class": "lesscode-bk-step-content"
       }, [createVNode("div", {
-        "class": "bk-step-title",
+        "class": "lesscode-bk-step-title",
         "style": {
           cursor: this.controllable ? "pointer" : ""
         },
@@ -16605,14 +17306,14 @@ var Component$h = defineComponent({
           this.jumpTo(index2 + 1);
         }
       }, [step.title]), step.description && createVNode("div", {
-        "class": "bk-step-description",
+        "class": "lesscode-bk-step-description",
         "title": step.description
       }, [step.description])]) : ""]);
     })]);
   }
 });
-const BkSteps = withInstall(Component$h);
-var Component$g = defineComponent({
+const BkSteps = withInstall(Component$i);
+var Component$h = defineComponent({
   name: "Switcher",
   props: {
     theme: PropTypes.theme(),
@@ -16643,18 +17344,18 @@ var Component$g = defineComponent({
     const classObject = computed(() => {
       const cls = {
         [props2.extCls]: !!props2.extCls,
-        "bk-switcher": true,
-        "bk-switcher-outline": props2.isOutline,
-        "bk-switcher-square": props2.isSquare,
+        "lesscode-bk-switcher": true,
+        "lesscode-bk-switcher-outline": props2.isOutline,
+        "lesscode-bk-switcher-square": props2.isSquare,
         "show-label": props2.showText,
         "is-disabled": props2.disabled,
         "is-checked": isChecked.value,
         "is-unchecked": !isChecked.value,
         "is-loading": isLoading.value,
-        "bk-primary": props2.theme === "primary"
+        "lesscode-bk-primary": props2.theme === "primary"
       };
       if (props2.size && !props2.showText) {
-        const sizeStr = `bk-switcher-${props2.size}`;
+        const sizeStr = `lesscode-bk-switcher-${props2.size}`;
         cls[sizeStr] = true;
       }
       return cls;
@@ -16708,13 +17409,13 @@ var Component$g = defineComponent({
       "tabindex": "0",
       "onKeydown": handleKeydown
     }, [isLoading.value ? createVNode(switcherLoading, {
-      "class": "bk-switcher-loading"
+      "class": "lesscode-bk-switcher-loading"
     }, null) : "", props2.showText ? createVNode("span", {
       "class": "switcher-text"
     }, [isChecked.value ? props2.onText : props2.offText]) : ""]);
   }
 });
-const BkSwitcher = withInstall(Component$g);
+const BkSwitcher = withInstall(Component$h);
 var BORDER_OPTION = /* @__PURE__ */ ((BORDER_OPTION2) => {
   BORDER_OPTION2["NONE"] = "none";
   BORDER_OPTION2["ROW"] = "row";
@@ -16752,6 +17453,8 @@ var EMIT_EVENTS = /* @__PURE__ */ ((EMIT_EVENTS2) => {
   EMIT_EVENTS2["ROW_CLICK"] = "rowClick";
   EMIT_EVENTS2["ROW_DBL_CLICK"] = "rowDblclick";
   EMIT_EVENTS2["ROW_EXPAND_CLICK"] = "rowExpand";
+  EMIT_EVENTS2["ROW_MOUSE_ENTER"] = "rowMouseEnter";
+  EMIT_EVENTS2["ROW_MOUSE_LEAVE"] = "rowMouseLeave";
   EMIT_EVENTS2["PAGE_LIMIT_CHANGE"] = "pageLimitChange";
   EMIT_EVENTS2["PAGE_VALUE_CHANGE"] = "pageValueChange";
   EMIT_EVENTS2["SETTING_CHANGE"] = "settingChange";
@@ -16811,6 +17514,8 @@ const createDefaultSizeList = (t2) => [
   { value: "large", label: t2.value.setting.lineHeight.large, height: SETTING_SIZE.large }
 ];
 const PROVIDE_KEY_INIT_COL = "InitColumns";
+const PROVIDE_KEY_TB_CACHE = "BKTableCahce";
+const BK_COLUMN_UPDATE_DEFINE = "Bk_COlumn_Update_Define";
 var SORT_OPTION = /* @__PURE__ */ ((SORT_OPTION2) => {
   SORT_OPTION2["ASC"] = "asc";
   SORT_OPTION2["DESC"] = "desc";
@@ -16831,6 +17536,9 @@ const overflowModeType = j("showOverflowTooltipMode", {
 const columnType = j("columnType", {
   default: "none"
 });
+const TableAlign = j("columnType", {
+  default: ""
+});
 const fullType = j("full", {
   default: "full"
 });
@@ -16843,7 +17551,7 @@ var SettingSizeEnum = /* @__PURE__ */ ((SettingSizeEnum2) => {
 const settingSizeType = j("columnSize", {
   default: "small"
 });
-const fixedType = j("columnSize", {});
+const fixedType = E();
 const sortScopeType = j("sortScope", {}).def("current");
 var ResizerWay = /* @__PURE__ */ ((ResizerWay2) => {
   ResizerWay2["DEBOUNCE"] = "debounce";
@@ -16883,6 +17591,7 @@ const IColumnType = {
       list: PropTypes.arrayOf(PropTypes.any).def([]),
       filterFn: PropTypes.func.def(void 0),
       match: fullType,
+      checked: PropTypes.arrayOf(PropTypes.any).def([]),
       filterScope: sortScopeType,
       btnSave: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).def("\u786E\u5B9A"),
       btnReset: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).def("\u91CD\u7F6E")
@@ -16891,7 +17600,9 @@ const IColumnType = {
     PropTypes.string
   ]).def(false),
   colspan: PropTypes.oneOfType([PropTypes.func.def(() => 1), PropTypes.number.def(1)]),
-  rowspan: PropTypes.oneOfType([PropTypes.func.def(() => 1), PropTypes.number.def(1)])
+  rowspan: PropTypes.oneOfType([PropTypes.func.def(() => 1), PropTypes.number.def(1)]),
+  align: TableAlign,
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 const tableProps = {
   data: PropTypes.arrayOf(PropTypes.any).def([]),
@@ -16915,7 +17626,7 @@ const tableProps = {
     PropTypes.string
   ]).def([BORDER_OPTION.ROW]),
   pagination: PropTypes.oneOfType([PropTypes.bool.def(false), PropTypes.object.def({})]).def(false),
-  paginationHeihgt: PropTypes.number.def(LINE_HEIGHT),
+  paginationHeight: PropTypes.number.def(60),
   remotePagination: PropTypes.bool.def(false),
   emptyText: PropTypes.string,
   settings: PropTypes.oneOfType([
@@ -16964,36 +17675,110 @@ const tableProps = {
   resizerWay: j("ResizerWay", {
     default: "debounce"
   }),
-  observerResize: PropTypes.bool.def(true)
+  observerResize: PropTypes.bool.def(true),
+  align: TableAlign,
+  headerAlign: TableAlign
 };
 var Column = defineComponent({
   name: "TableColumn",
   props: __spreadProps(__spreadValues({}, IColumnType), {
-    prop: PropTypes.oneOfType([PropTypes.func.def(() => ""), PropTypes.string.def("")])
+    prop: PropTypes.oneOfType([PropTypes.func.def(() => ""), PropTypes.string.def("")]),
+    index: PropTypes.number.def(void 0)
   }),
-  setup(props2, {
-    slots
-  }) {
-    const initColumns = inject(PROVIDE_KEY_INIT_COL, (_column) => {
+  setup(props2) {
+    const initColumns = inject(PROVIDE_KEY_INIT_COL, (_col, _rm = false) => {
     }, false);
-    onBeforeMount(() => {
-      const column = reactive(__spreadProps(__spreadValues({}, props2), {
-        field: props2.prop || props2.field
-      }));
-      initColumns(column);
-      column.render = slots.default ? (args) => {
-        var _a;
-        return (_a = slots.default) == null ? void 0 : _a.call(slots, args);
-      } : void 0;
+    const bkTableCache = inject(PROVIDE_KEY_TB_CACHE, {
+      queueStack: (_2, fn2) => fn2 == null ? void 0 : fn2()
     });
-    return () => {
-      var _a;
-      return createVNode(Fragment, null, [(_a = slots.default) == null ? void 0 : _a.call(slots, {
-        row: {}
-      })]);
+    const column = reactive(__spreadProps(__spreadValues({}, props2), {
+      field: props2.prop || props2.field
+    }));
+    return {
+      initColumns,
+      bkTableCache,
+      column
     };
+  },
+  unmounted() {
+    this.updateColumnDefine(true);
+  },
+  mounted() {
+    this.updateColumnDefine();
+  },
+  methods: {
+    updateColumnDefine(unmounted = false) {
+      if (this.$props.index !== void 0 && typeof this.$props.index === "number") {
+        this.updateColumnDefineByIndex(unmounted);
+        return;
+      }
+      this.updateColumnDefineByParent();
+    },
+    updateColumnDefineByParent() {
+      const fn2 = () => {
+        const selfVnode = this._;
+        const colList = selfVnode.parent.vnode.children.default() || [];
+        const sortColumns = [];
+        const reduceColumns = (nodes) => {
+          if (!Array.isArray(nodes)) {
+            return;
+          }
+          nodes.forEach((node) => {
+            var _a, _b, _c;
+            if (Array.isArray(node)) {
+              reduceColumns(node);
+              return;
+            }
+            let skipValidateKey0 = true;
+            if (((_a = node.type) == null ? void 0 : _a.name) === "TableColumn") {
+              skipValidateKey0 = Object.hasOwnProperty.call(node.props || {}, "key");
+              const resolveProp = __spreadProps(__spreadValues({}, node.props), {
+                field: node.props.prop || node.props.field,
+                render: (_b = node.children) == null ? void 0 : _b.default
+              });
+              sortColumns.push(unref(resolveProp));
+            }
+            if (((_c = node.children) == null ? void 0 : _c.length) && skipValidateKey0) {
+              reduceColumns(node.children);
+            }
+          });
+        };
+        reduceColumns(colList);
+        this.initColumns(sortColumns);
+      };
+      if (typeof this.bkTableCache.queueStack === "function") {
+        this.bkTableCache.queueStack(BK_COLUMN_UPDATE_DEFINE, fn2);
+      }
+    },
+    updateColumnDefineByIndex(unmounted = false) {
+      const resolveProp = __spreadProps(__spreadValues({}, this.$props), {
+        field: this.$props.prop || this.$props.field,
+        render: this.$slots.default
+      });
+      this.initColumns(unref(resolveProp), unmounted);
+    }
+  },
+  render() {
+    var _a, _b;
+    return createVNode(Fragment, null, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a, {
+      row: {}
+    })]);
   }
 });
+class BkTableCache {
+  constructor() {
+    this.storage = void 0;
+    this.storage = {};
+  }
+  queueStack(methodName, fn2 = () => {
+  }) {
+    this.storage[methodName] && clearTimeout(this.storage[methodName]);
+    this.storage[methodName] = setTimeout(() => fn2());
+  }
+  clearQueueStack(methodName) {
+    this.storage[methodName] && clearTimeout(this.storage[methodName]);
+  }
+}
 const resolvePaginationOption = (propPagination, defVal) => {
   if (!!propPagination) {
     if (typeof propPagination === "object") {
@@ -17119,7 +17904,7 @@ var useScrollLoading = (props2, ctx) => {
     renderScrollLoading
   };
 };
-function _isSlot$3(s2) {
+function _isSlot$4(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
 var useLimit = (t2) => {
@@ -17152,21 +17937,21 @@ var useLimit = (t2) => {
     }
     return createVNode("div", mergeProps({
       "class": {
-        "bk-pagination-limit": true,
+        "lesscode-bk-pagination-limit": true,
         "is-first": isFirst,
         "is-last": isLast
       }
     }, {
       disabled: proxy.disabled
     }), [createVNode("div", null, [t2.value.eachPage]), createVNode(BkSelect, {
-      "class": "bk-pagination-limit-select",
+      "class": "lesscode-bk-pagination-limit-select",
       "clearable": false,
       "size": "small",
       "withValidate": false,
       "modelValue": localLimit.value,
       "onChange": handleLimitChange,
       "disabled": proxy.disabled
-    }, _isSlot$3(_slot = proxy.limitList.map((num, index2) => createVNode(BkOption, {
+    }, _isSlot$4(_slot = proxy.limitList.map((num, index2) => createVNode(BkOption, {
       "value": num,
       "label": `${num}`,
       "key": `${index2}_${num}`
@@ -17259,48 +18044,48 @@ var useList = () => {
     isLast
   }) => createVNode("div", {
     "class": {
-      "bk-pagination-list": true,
+      "lesscode-bk-pagination-list": true,
       "is-first": isFirst,
       "is-last": isLast
     }
   }, [createVNode("div", {
     "class": {
-      "bk-pagination-list-pre": true,
+      "lesscode-bk-pagination-list-pre": true,
       "is-disabled": isPagePreDisabled.value
     },
     "onClick": handlePrePage
   }, [proxy.prevText || createVNode(angleLeft, null, null)]), createVNode("div", {
     "class": {
-      "bk-pagination-list-item": true,
+      "lesscode-bk-pagination-list-item": true,
       "is-active": localCurrent.value === 1
     },
     "key": "1",
     "onClick": () => handleItemClick(1)
   }, [createTextVNode("1")]), showPreBatch.value && createVNode("div", {
     "key": "pre-batch",
-    "class": "bk-pagination-list-pre-batch",
+    "class": "lesscode-bk-pagination-list-pre-batch",
     "onClick": handlePreBatch
   }, [createVNode(ellipsis$1, null, null)]), list.value.map((num) => createVNode("div", {
     "class": {
-      "bk-pagination-list-item": true,
+      "lesscode-bk-pagination-list-item": true,
       "is-active": localCurrent.value === num
     },
     "key": num,
     "onClick": () => handleItemClick(num)
   }, [num])), showNextBatch.value && createVNode("div", {
     "key": "next-batch",
-    "class": "bk-pagination-list-next-batch",
+    "class": "lesscode-bk-pagination-list-next-batch",
     "onClick": handleNextBatch
   }, [createVNode(ellipsis$1, null, null)]), proxy.totalPageNum > 1 && createVNode("div", {
     "class": {
-      "bk-pagination-list-item": true,
+      "lesscode-bk-pagination-list-item": true,
       "is-active": localCurrent.value === proxy.totalPageNum
     },
     "key": "last",
     "onClick": () => handleItemClick(proxy.totalPageNum)
   }, [proxy.totalPageNum]), createVNode("div", {
     "class": {
-      "bk-pagination-list-pre": true,
+      "lesscode-bk-pagination-list-pre": true,
       "is-disabled": isPageNextDisabled.value
     },
     "onClick": handleNextPage
@@ -17389,10 +18174,10 @@ var useSmallList = () => {
     handlePageEditorBlur();
   };
   const render2 = () => createVNode("div", {
-    "class": "bk-pagination-small-list"
+    "class": "lesscode-bk-pagination-small-list"
   }, [createVNode("div", {
     "class": {
-      "bk-pagination-btn-pre": true,
+      "lesscode-bk-pagination-btn-pre": true,
       "is-disabled": isPagePreDisabled.value
     },
     "onClick": handlePrePage
@@ -17406,12 +18191,12 @@ var useSmallList = () => {
   }, {
     default: () => createVNode("div", {
       "class": {
-        "bk-pagination-picker": true,
+        "lesscode-bk-pagination-picker": true,
         "is-focused": isFocused.value
       }
     }, [createVNode("span", {
       "ref": inputRef,
-      "class": "bk-pagination-editor",
+      "class": "lesscode-bk-pagination-editor",
       "contenteditable": true,
       "spellcheck": "false",
       "onFocus": handlePageEditorFocus,
@@ -17419,10 +18204,10 @@ var useSmallList = () => {
       "onInput": handlePageEditorInput,
       "onKeydown": handlePageEditorKeydown
     }, [localCurrent.value]), createVNode("span", null, [createTextVNode("/")]), createVNode("span", {
-      "class": "bk-pagination-small-list-total"
+      "class": "lesscode-bk-pagination-small-list-total"
     }, [proxy.totalPageNum])]),
     content: () => createVNode("div", {
-      "class": "bk-pagination-picker-list"
+      "class": "lesscode-bk-pagination-picker-list"
     }, [list.value.map((item) => createVNode("div", {
       "class": {
         item: true,
@@ -17433,7 +18218,7 @@ var useSmallList = () => {
     }, [item]))])
   }), createVNode("div", {
     "class": {
-      "bk-pagination-btn-next": true,
+      "lesscode-bk-pagination-btn-next": true,
       "is-disabled": isPageNextDisabled.value
     },
     "onClick": handleNextPage
@@ -17455,14 +18240,14 @@ var useTotal = (t2) => ({
   }
   return createVNode("div", mergeProps({
     "class": {
-      "bk-pagination-total": true,
+      "lesscode-bk-pagination-total": true,
       "is-first": isFirst,
       "is-last": isLast
     }
   }, {
     disabled: props2.disabled
   }), [t2.value.total, createVNode("div", {
-    "class": "bk-pagination-total-num"
+    "class": "lesscode-bk-pagination-total-num"
   }, [props2.count]), t2.value.strip]);
 };
 const paginationProps = {
@@ -17490,7 +18275,7 @@ const paginationProps = {
     return value.some((item) => layoutNameMap[item]);
   }, "layout \u7684\u503C\u53EA\u652F\u6301 * total\u3001list\u3001limit *").def(["total", "list", "limit"])
 };
-var Component$f = defineComponent({
+var Component$g = defineComponent({
   name: "Pagination",
   props: paginationProps,
   emits: ["update:modelValue", "change", "update:limit", "limitChange"],
@@ -17544,8 +18329,8 @@ var Component$f = defineComponent({
   },
   render() {
     const paginationClass = classes({
-      "bk-pagination": true,
-      [`bk-pagination--${this.size}`]: true,
+      "lesscode-bk-pagination": true,
+      [`lesscode-bk-pagination--${this.size}`]: true,
       [`is-align-${this.align}`]: true
     });
     const layoutMap = {
@@ -17561,7 +18346,7 @@ var Component$f = defineComponent({
     }))]);
   }
 });
-const BkPagination = withInstall(Component$f);
+const BkPagination = withInstall(Component$g);
 var MapShim = function() {
   if (typeof Map !== "undefined") {
     return Map;
@@ -18367,6 +19152,9 @@ var TableCell = defineComponent({
   }) {
     const refRoot = ref();
     const isTipsEnabled = ref(false);
+    const cellStyle = computed(() => ({
+      textAlign: props2.column.textAlign
+    }));
     const resolveSetting = () => {
       if (/boolean|object/.test(typeof props2.column.showOverflowTooltip) && props2.column.showOverflowTooltip !== null) {
         return props2.column;
@@ -18412,7 +19200,7 @@ var TableCell = defineComponent({
       };
     };
     const resolveOverflowTooltip = () => {
-      if (!refRoot.value || !isElement$2(refRoot.value)) {
+      if (!refRoot.value || !isElement$4(refRoot.value)) {
         return;
       }
       const {
@@ -18467,6 +19255,7 @@ var TableCell = defineComponent({
       var _a;
       return createVNode("div", {
         "class": ["cell", props2.column.type],
+        "style": cellStyle.value,
         "ref": refRoot,
         "title": props2.title
       }, [(_a = slots.default) == null ? void 0 : _a.call(slots)]);
@@ -18480,6 +19269,14 @@ var TableRow = defineComponent({
     return createVNode(Fragment, null, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)]);
   }
 });
+class TablePlugins {
+  constructor(props2, ctx) {
+    __publicField(this, "props", null);
+    __publicField(this, "ctx", null);
+    this.props = props2;
+    this.ctx = ctx;
+  }
+}
 var BodyEmpty = defineComponent({
   name: "BodyEmpty",
   props: {
@@ -18514,13 +19311,18 @@ var HeadFilter = defineComponent({
   setup(props2, {
     emit
   }) {
+    var _a, _b;
     const t2 = useLocale("table");
     const {
       column
     } = props2;
+    const {
+      filter
+    } = toRefs(props2.column);
+    const checked = ref((_b = (_a = filter.value) == null ? void 0 : _a.checked) != null ? _b : []);
     const state = reactive({
       isOpen: false,
-      checked: []
+      checked: checked.value
     });
     const headClass = computed(() => classes({
       [resolveClassName("table-head-action")]: true,
@@ -18543,21 +19345,21 @@ var HeadFilter = defineComponent({
     const localData = computed(() => {
       const {
         list = []
-      } = column.filter;
+      } = filter.value;
       return list;
     });
     const getRegExp = (searchValue, flags = "ig") => new RegExp(`${searchValue}`.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), flags);
-    const defaultFilterFn = (checked, row) => {
+    const defaultFilterFn = (checked2, row) => {
       const {
         match: match2
-      } = column.filter;
+      } = filter.value;
       const matchText = getRowText(row, resolvePropVal(column, "field", [column, row]), column);
       if (match2 === "full") {
-        checked.includes(matchText);
+        checked2.includes(matchText);
       }
-      return checked.some((str) => getRegExp(str, "img").test(matchText));
+      return checked2.some((str) => getRegExp(str, "img").test(matchText));
     };
-    const filterFn = typeof column.filter.filterFn === "function" ? (checked, row, index2, data2) => column.filter.filterFn(checked, row, props2.column, index2, data2) : (checked, row) => checked.length ? defaultFilterFn(checked, row) : true;
+    const filterFn = typeof filter.value.filterFn === "function" ? (checked2, row, index2, data2) => filter.value.filterFn(checked2, row, props2.column, index2, data2) : (checked2, row) => checked2.length ? defaultFilterFn(checked2, row) : true;
     const handleBtnSaveClick = () => {
       handleFilterChange(true);
       emit("filterSave", [...state.checked]);
@@ -18568,11 +19370,12 @@ var HeadFilter = defineComponent({
         disabled
       } = resolveBtnOption(btnSave, t2.value.confirm);
       if (disabled || btnSaveClick) {
-        if (props2.column.filter === "custom") {
+        if (filter.value === "custom") {
           emit("change", [...state.checked], null);
           state.isOpen = false;
           return;
         }
+        filter.value.checked = state.checked;
         emit("change", [...state.checked], filterFn);
       }
     };
@@ -18594,7 +19397,7 @@ var HeadFilter = defineComponent({
     const {
       btnSave,
       btnReset
-    } = column.filter;
+    } = filter.value;
     const renderSaveBtn = () => {
       const {
         disabled,
@@ -18696,7 +19499,8 @@ var HeadSort = defineComponent({
   name: "HeadSort",
   props: {
     column: PropTypes.any.def({}),
-    defaultSort: PropTypes.oneOf(SORT_OPTIONS).def(SORT_OPTION.NULL)
+    defaultSort: PropTypes.oneOf(SORT_OPTIONS).def(SORT_OPTION.NULL),
+    active: PropTypes.bool
   },
   emits: ["change"],
   setup(props2, {
@@ -18709,6 +19513,7 @@ var HeadSort = defineComponent({
       sortType.value = val;
     });
     const handleSortClick = (e, type) => {
+      var _a2;
       e.stopImmediatePropagation();
       e.stopPropagation();
       e.preventDefault();
@@ -18719,35 +19524,29 @@ var HeadSort = defineComponent({
       if (sortType.value === type) {
         currentSort = SORT_OPTION.NULL;
       }
+      const execFn = getSortFn(props2.column, currentSort);
       const sort = resolveSort(props2.column.sort);
       if ((sort == null ? void 0 : sort.value) === "custom") {
-        emit("change", sort == null ? void 0 : sort.sortFn, currentSort);
+        emit("change", (_a2 = sort == null ? void 0 : sort.sortFn) != null ? _a2 : execFn, currentSort);
         return;
       }
-      const execFn = getSortFn(props2.column, currentSort);
       emit("change", execFn, currentSort);
     };
     return () => createVNode("span", {
       "class": resolveClassName("head-cell-sort"),
       "onClick": (e) => handleSortClick(e, SORT_OPTION.NULL)
     }, [createVNode(angleDownFill, {
-      "class": ["sort-action", "sort-asc", sortType.value === SORT_OPTION.ASC ? "active" : ""],
+      "class": ["sort-action", "sort-asc", props2.active && sortType.value === SORT_OPTION.ASC ? "active" : ""],
+      "style": "align-items: flex-end;",
       "onClick": (e) => handleSortClick(e, SORT_OPTION.ASC)
     }, null), createVNode(angleUpFill, {
-      "class": ["sort-action", "sort-desc", sortType.value === SORT_OPTION.DESC ? "active" : ""],
+      "class": ["sort-action", "sort-desc", props2.active && sortType.value === SORT_OPTION.DESC ? "active" : ""],
+      "style": "align-items: flex-start;",
       "onClick": (e) => handleSortClick(e, SORT_OPTION.DESC)
     }, null)]);
   }
 });
-class TablePlugins {
-  constructor(props2, ctx) {
-    __publicField(this, "props", null);
-    __publicField(this, "ctx", null);
-    this.props = props2;
-    this.ctx = ctx;
-  }
-}
-function _isSlot$2(s2) {
+function _isSlot$3(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
 var Settings = defineComponent({
@@ -18931,7 +19730,7 @@ var Settings = defineComponent({
           "class": "setting-body-fields",
           "modelValue": checkedFields.value,
           "onUpdate:modelValue": ($event) => checkedFields.value = $event
-        }, _isSlot$2(_slot2 = renderFields.value.map((item, index2) => {
+        }, _isSlot$3(_slot2 = renderFields.value.map((item, index2) => {
           let _slot;
           return createVNode("div", {
             "class": "field-item"
@@ -18939,7 +19738,7 @@ var Settings = defineComponent({
             "checked": checkedFields.value.includes(resolvedColVal(item, index2)),
             "label": resolvedColVal(item, index2),
             "disabled": isItemReadonly(item, index2)
-          }, _isSlot$2(_slot = resolvePropVal(item, "label", [item, index2])) ? _slot : {
+          }, _isSlot$3(_slot = resolvePropVal(item, "label", [item, index2])) ? _slot : {
             default: () => [_slot]
           })]);
         })) ? _slot2 : {
@@ -19050,7 +19849,7 @@ var useFixedColumn = (_props, colgroups, hasScrollY) => {
     resolveColumnClass
   };
 };
-function _isSlot$1(s2) {
+function _isSlot$2(s2) {
   return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
 }
 class TableRender {
@@ -19083,6 +19882,7 @@ class TableRender {
     this.events = /* @__PURE__ */ new Map();
     this.styleRef = styleRef;
     this.t = t2;
+    this.activeSortIndex = ref(-1);
   }
   get propActiveCols() {
     return this.reactiveProp.activeColumns;
@@ -19208,6 +20008,7 @@ class TableRender {
         [columnName]: nextSort
       });
       const sortFn = getSortFn(column, nextSort);
+      this.activeSortIndex.value = index2;
       this.emitEvent(EVENTS$1.ON_SORT_BY_CLICK, [{
         sortFn,
         column,
@@ -19222,6 +20023,7 @@ class TableRender {
       Object.assign(this.reactiveProp.defaultSort, {
         [columnName]: type
       });
+      this.activeSortIndex.value = index2;
       this.emitEvent(EVENTS$1.ON_SORT_BY_CLICK, [{
         sortFn,
         column,
@@ -19233,6 +20035,7 @@ class TableRender {
     return createVNode(HeadSort, {
       "column": column,
       "defaultSort": nextSort,
+      "active": this.activeSortIndex.value === index2,
       "onChange": handleSortClick
     }, null);
   }
@@ -19292,11 +20095,16 @@ class TableRender {
         "class": "head-text"
       }, [cellText]));
       const showTitle = typeof cellText === "string" ? cellText : void 0;
+      const headClass = {
+        "has-sort": !!column.sort,
+        "has-filter": !!column.filter
+      };
       return createVNode(TableCell, {
+        "class": headClass,
         "title": showTitle,
         "observerResize": this.props.observerResize,
         "resizerWay": this.props.resizerWay
-      }, _isSlot$1(cells) ? cells : {
+      }, _isSlot$2(cells) ? cells : {
         default: () => [cells]
       });
     };
@@ -19323,17 +20131,29 @@ class TableRender {
         }, null);
       }
     };
-    return createVNode("thead", {
+    return createVNode(Fragment, null, [createVNode("thead", {
       "style": rowStyle
     }, [createVNode(TableRow, null, {
-      default: () => [createVNode("tr", null, [this.filterColgroups.map((column, index2) => createVNode("th", mergeProps({
+      default: () => [createVNode("tr", null, [this.filterColGroups.map((column, index2) => createVNode("th", mergeProps({
         "colspan": 1,
         "rowspan": 1,
-        "class": this.getHeadColumnClass(column, index2),
+        "class": [this.getHeadColumnClass(column, index2), this.getColumnCustomClass(column), column.align || this.props.headerAlign || this.props.align],
         "style": resolveFixedColumnStyle(column, this.styleRef.value.hasScrollY),
         "onClick": () => this.handleColumnHeadClick(index2, column)
       }, resolveEventListener(column)), [renderHeadCell(column, index2)])), getScrollFix()])]
-    })]);
+    })])]);
+  }
+  getColumnCustomClass(column, row) {
+    const rowClass = column.className;
+    if (rowClass) {
+      if (typeof rowClass === "function") {
+        return rowClass(row);
+      }
+      if (typeof rowClass === "string") {
+        return rowClass;
+      }
+    }
+    return "";
   }
   renderTBody(rows) {
     const {
@@ -19353,8 +20173,10 @@ class TableRender {
           "style": rowStyle,
           "class": rowClass,
           "onClick": (e) => this.handleRowClick(e, row, rowIndex, rows),
-          "onDblclick": (e) => this.handleRowDblClick(e, row, rowIndex, rows)
-        }, [this.filterColgroups.map((column, index2) => {
+          "onDblclick": (e) => this.handleRowDblClick(e, row, rowIndex, rows),
+          "onMouseenter": (e) => this.handleRowEnter(e, row, rowIndex, rows),
+          "onMouseleave": (e) => this.handleRowLeave(e, row, rowIndex, rows)
+        }, [this.filterColGroups.map((column, index2) => {
           var _a, _b;
           const cellStyle = [resolveFixedColumnStyle(column), ...formatPropAsArray(this.props.cellStyle, [column, index2, row, rowIndex, this])];
           const tdCtxClass = {
@@ -19373,7 +20195,7 @@ class TableRender {
           } = (_b = (_a = row[skipRowKey]) == null ? void 0 : _a[columnIdKey]) != null ? _b : {};
           if (!skipRow && !skipCol) {
             let _slot;
-            const cellClass = [this.getColumnClass(column, index2), ...formatPropAsArray(this.props.cellClass, [column, index2, row, rowIndex, this]), {
+            const cellClass = [this.getColumnClass(column, index2), this.getColumnCustomClass(column, row), column.align || this.props.align, ...formatPropAsArray(this.props.cellClass, [column, index2, row, rowIndex, this]), {
               "expand-row": row[TABLE_ROW_ATTRIBUTE.ROW_EXPAND],
               "is-last": rowIndex + rowspan >= rowLength
             }];
@@ -19404,7 +20226,7 @@ class TableRender {
               "row": row,
               "parentSetting": this.props.showOverflowTooltip,
               "observerResize": this.props.observerResize
-            }, _isSlot$1(_slot = this.renderCell(row, column, rowIndex, rows)) ? _slot : {
+            }, _isSlot$2(_slot = this.renderCell(row, column, rowIndex, rows)) ? _slot : {
               default: () => [_slot]
             })]);
           }
@@ -19429,7 +20251,7 @@ class TableRender {
           return [createVNode("tr", {
             "class": resovledClass
           }, [createVNode("td", {
-            "colspan": this.filterColgroups.length,
+            "colspan": this.filterColGroups.length,
             "rowspan": 1
           }, [(_c = (_b = (_a = this.context.slots).expandRow) == null ? void 0 : _b.call(_a, getRowSourceData(row))) != null ? _c : createVNode("div", {
             "class": "expand-cell-ctx"
@@ -19443,6 +20265,12 @@ class TableRender {
   }
   handleRowDblClick(e, row, index2, rows) {
     this.context.emit(EMIT_EVENTS.ROW_DBL_CLICK, e, row, index2, rows, this);
+  }
+  handleRowEnter(e, row, index2, rows) {
+    this.context.emit(EMIT_EVENTS.ROW_MOUSE_ENTER, e, row, index2, rows, this);
+  }
+  handleRowLeave(e, row, index2, rows) {
+    this.context.emit(EMIT_EVENTS.ROW_MOUSE_LEAVE, e, row, index2, rows, this);
   }
   getExpandCell(row) {
     const isExpand = !!row[TABLE_ROW_ATTRIBUTE.ROW_EXPAND];
@@ -19518,6 +20346,9 @@ class TableRender {
       if (typeof column.render === "function") {
         return this.renderCellCallbackFn(row, column, index2, rows);
       }
+      if (typeof cell === "object") {
+        return JSON.stringify(unref(cell));
+      }
       return cell;
     };
     const renderFn = {
@@ -19530,7 +20361,7 @@ class TableRender {
     return this.props.columnPick !== "disabled" && this.propActiveCols.some((col) => col.index === colIndex && col.active);
   }
   renderColGroup() {
-    return createVNode("colgroup", null, [(this.filterColgroups || []).map((column, index2) => {
+    return createVNode("colgroup", null, [(this.filterColGroups || []).map((column, index2) => {
       const colCls = classes({
         active: this.isColActive(index2)
       });
@@ -19541,7 +20372,7 @@ class TableRender {
       }, null);
     })]);
   }
-  get filterColgroups() {
+  get filterColGroups() {
     return this.colgroups.filter((col) => !col.isHidden);
   }
   get setting() {
@@ -19549,20 +20380,46 @@ class TableRender {
   }
 }
 var useColumn = (props2, targetColumns) => {
-  const initColumns = (column) => {
+  const initColumns = (column, remove = false) => {
     let resolveColumns = [];
     if (!Array.isArray(column)) {
       resolveColumns = [column];
     } else {
       resolveColumns = column;
     }
-    resolveColumns.forEach((col) => {
-      const matchCol = targetColumns.find((c2) => c2.label === col.label && c2.field === col.field);
-      if (!matchCol) {
-        const unrefCol = unref(col);
-        targetColumns.push(unrefCol);
+    if (!remove) {
+      let needToSort = false;
+      resolveColumns.forEach((col) => {
+        if (col.index !== void 0 && col.index >= 0) {
+          needToSort = true;
+          const oldIndex = targetColumns.findIndex((tc) => tc.label === col.label && tc.field === col.field);
+          if (oldIndex >= 0) {
+            targetColumns.splice(oldIndex, 1);
+          }
+          targetColumns.push(col);
+        } else {
+          const index2 = targetColumns.findIndex((tc) => tc.label === col.label && tc.field === col.field);
+          if (index2 >= 0) {
+            targetColumns.splice(index2, 1, col);
+          } else {
+            targetColumns.push(col);
+          }
+        }
+      });
+      if (needToSort) {
+        targetColumns.sort((col1, col2) => col1.index - col2.index);
       }
-    });
+    } else {
+      resolveColumns.forEach((col) => {
+        const matchColIndex = targetColumns.findIndex((c2) => c2.label === col.label && c2.field === col.field);
+        if (remove) {
+          if (matchColIndex >= 0) {
+            targetColumns.splice(matchColIndex, 1);
+          }
+          return;
+        }
+      });
+    }
   };
   const getColumns = () => {
     var _a;
@@ -19766,6 +20623,7 @@ const useClass = (props2, targetColumns, root, reactiveProp, pageData) => {
     [resolveClassName("table-head")]: true,
     "has-settings": !!props2.settings
   });
+  const resolvedColumns = computed(() => getColumns());
   const config = resolveHeadConfig(props2);
   const headStyle = computed(() => ({
     "--row-height": `${resolvePropVal(config, "height", ["thead"])}px`,
@@ -19779,10 +20637,18 @@ const useClass = (props2, targetColumns, root, reactiveProp, pageData) => {
     [resolveClassName("table-footer")]: true,
     ["is-hidden"]: !props2.pagination || !props2.data.length
   }));
+  const getTableHeight = () => {
+    if (props2.height === "number") {
+      return `${props2.height}px`;
+    }
+    if (typeof props2.height === "string") {
+      return props2.height;
+    }
+    return "";
+  };
   const resolveWidth2 = () => {
-    const columns = getColumns();
-    if (columns.every((col) => /^\d+\.?\d*(px)?$/ig.test(`${col.width}`))) {
-      const rectWidth = columns.reduce((width, col) => width + Number(`${col.width}`.replace(/px/ig, "")), 0);
+    if (resolvedColumns.value.every((col) => /^\d+\.?\d*(px)?$/ig.test(`${col.width}`))) {
+      const rectWidth = resolvedColumns.value.reduce((width, col) => width + Number(`${col.width}`.replace(/px/ig, "")), 0);
       const offset2 = hasScrollY.value ? SCROLLY_WIDTH : 0;
       return `${rectWidth + offset2}px`;
     }
@@ -19791,7 +20657,8 @@ const useClass = (props2, targetColumns, root, reactiveProp, pageData) => {
   const wrapperStyle = computed(() => ({
     minHeight: resolveNumberOrStringToPix(props2.minHeight, "auto"),
     width: resolveWidth2(),
-    maxWidth: "100%"
+    maxWidth: "100%",
+    height: getTableHeight()
   }));
   const resolvePropHeight = (height, defaultValue) => {
     const strHeight = String(height);
@@ -19818,7 +20685,7 @@ const useClass = (props2, targetColumns, root, reactiveProp, pageData) => {
     const resolveHeight = resolvePropHeight(props2.height, autoHeight.value);
     const resolveHeadHeight = getHeadHeight();
     const resolveMinHeight = resolvePropHeight(props2.minHeight, autoHeight.value);
-    const resolveFooterHeight = props2.pagination && props2.data.length ? props2.paginationHeihgt : 0;
+    const resolveFooterHeight = props2.pagination && props2.data.length ? props2.paginationHeight : 0;
     const contentHeight = resolveHeight - resolveHeadHeight - resolveFooterHeight;
     const height = props2.height !== "auto" ? `${contentHeight}px` : false;
     const minHeight = resolveMinHeight - resolveHeadHeight - resolveFooterHeight;
@@ -19847,7 +20714,7 @@ const useClass = (props2, targetColumns, root, reactiveProp, pageData) => {
       return;
     }
     const querySelector = props2.virtualEnabled ? `.${resolveClassName("virtual-section")}` : `.${resolveClassName("table-body-content")}`;
-    const rootBody = root2.querySelector(".bk-table-body");
+    const rootBody = root2.querySelector(`.${resolveClassName("table-body")}`);
     hasScrollY.value = hasRootScrollY(rootBody, querySelector, 0);
   };
   const getColumnsWidthOffsetWidth = () => {
@@ -19893,12 +20760,13 @@ const useInit = (props2, targetColumns) => {
     }
     return minWidth;
   };
+  const resolvedColumns = computed(() => getColumns());
   const updateColGroups = (settings) => {
     var _a2, _b2;
     const checked = (settings == null ? void 0 : settings.checked) || ((_a2 = props2.settings) == null ? void 0 : _a2.checked) || [];
     const settingFields = (settings == null ? void 0 : settings.fields) || ((_b2 = props2.settings) == null ? void 0 : _b2.fields) || [];
     colgroups.length = 0;
-    colgroups.push(...getColumns().map((col) => __spreadProps(__spreadValues({}, col), {
+    colgroups.push(...resolvedColumns.value.map((col) => __spreadProps(__spreadValues({}, col), {
       calcWidth: null,
       resizeWidth: null,
       minWidth: resolveMinWidth(col),
@@ -19924,7 +20792,7 @@ const useInit = (props2, targetColumns) => {
     resetResizeEvents();
     registerResizeEvent();
   }, 120);
-  watch(() => [props2.columns, targetColumns], () => {
+  watch(() => resolvedColumns, () => {
     debounceColUpdate();
   }, { immediate: true, deep: true });
   const defSort = props2.columns.reduce((out, col, index2) => {
@@ -20231,7 +21099,7 @@ const useInit = (props2, targetColumns) => {
     clearSort
   };
 };
-var Component$e = defineComponent({
+var Component$f = defineComponent({
   name: "Table",
   props: tableProps,
   emits: EMIT_EVENT_TYPES,
@@ -20240,11 +21108,13 @@ var Component$e = defineComponent({
     let columnSortFn = null;
     let activeSortColumn = null;
     let columnFilterFn = null;
+    const bkTableCache = new BkTableCache();
     const targetColumns = reactive([]);
     const {
       initColumns
     } = useColumn(props2, targetColumns);
     provide(PROVIDE_KEY_INIT_COL, initColumns);
+    provide(PROVIDE_KEY_TB_CACHE, bkTableCache);
     const root = ref();
     const refVirtualRender = ref();
     const tableOffsetRight = ref(0);
@@ -20292,7 +21162,7 @@ var Component$e = defineComponent({
     }));
     const tableRender = new TableRender(props2, ctx, reactiveSchema, colgroups, styleRef, t2);
     const updateOffsetRight = () => {
-      const $tableContent = root.value.querySelector(".bk-table-body-content");
+      const $tableContent = root.value.querySelector(".lesscode-bk-table-body-content");
       const $table = $tableContent.querySelector("table");
       if ($table) {
         const $tableScrollWidth = $table.scrollWidth;
@@ -20479,6 +21349,7 @@ var Component$e = defineComponent({
     onBeforeUnmount(() => {
       tableRender.destroy();
     });
+    const getRoot = () => root.value;
     ctx.expose({
       setRowExpand,
       clearSelection,
@@ -20486,7 +21357,8 @@ var Component$e = defineComponent({
       toggleRowSelection,
       getSelection,
       clearSort,
-      scrollTo
+      scrollTo,
+      getRoot
     });
     const tableBodyClass = computed(() => __spreadProps(__spreadValues({}, contentClass), {
       "__is-empty": !pageData.length
@@ -20517,7 +21389,7 @@ var Component$e = defineComponent({
       display: "none"
     };
     const footerStyle = computed(() => ({
-      "--footer-height": hasFooter.value ? `${props2.paginationHeihgt}px` : "0"
+      "--footer-height": hasFooter.value ? `${props2.paginationHeight}px` : "0"
     }));
     const fixedContainerStyle = computed(() => __spreadValues({
       right: hasScrollYRef.value ? `${SCROLLY_WIDTH}px` : 0
@@ -20566,13 +21438,10 @@ var Component$e = defineComponent({
           isExist,
           colPos,
           column
-        }) => {
-          console.log("fixedWrapperClass");
-          return isExist ? "" : createVNode("div", {
-            "class": resolveColumnClass(column, reactiveSchema.scrollTranslateX, tableOffsetRight.value),
-            "style": resolveColumnStyle(colPos)
-          }, null);
-        }), createVNode("div", {
+        }) => isExist ? "" : createVNode("div", {
+          "class": resolveColumnClass(column, reactiveSchema.scrollTranslateX, tableOffsetRight.value),
+          "style": resolveColumnStyle(colPos)
+        }, null)), createVNode("div", {
           "class": resizeColumnClass,
           "style": resizeColumnStyle.value
         }, null), createVNode("div", {
@@ -20589,7 +21458,7 @@ var Component$e = defineComponent({
     };
   }
 });
-const BkTable = withInstall(Component$e);
+const BkTable = withInstall(Component$f);
 withInstall(Column);
 const BkTableColumn = withInstall(Column);
 const INPUT_MIN_WIDTH = 12;
@@ -20724,7 +21593,7 @@ var ListTagRender = defineComponent({
     }
     const displayText = this.node[this.displayKey];
     return createVNode("div", {
-      "class": "bk-selector-node"
+      "class": "lesscode-bk-selector-node"
     }, [createVNode("span", {
       "class": "text",
       "innerHTML": highlightKeyword(displayText)
@@ -20753,6 +21622,7 @@ const tagProps = () => ({
   allowNextFocus: PropTypes.bool.def(true),
   allowAutoMatch: PropTypes.bool.def(false),
   showClearOnlyHover: PropTypes.bool.def(false),
+  isAsyncList: PropTypes.bool.def(false),
   leftSpace: PropTypes.number.def(0),
   createTagValidator: {
     type: Function
@@ -20836,7 +21706,7 @@ var TagRender = defineComponent({
     }, [this.node[this.displayKey]])]), [[resolveDirective("bk-tooltips"), this.overflowTips]]);
   }
 });
-var Component$d = defineComponent({
+var Component$e = defineComponent({
   name: "TagInput",
   directives: {
     bkTooltips: tooltips
@@ -20882,7 +21752,7 @@ var Component$d = defineComponent({
     const placeholderText = computed(() => props2.placeholder || t2.value.placeholder);
     const isShowClear = computed(() => props2.clearable && !props2.disabled && listState.selectedTagList.length !== 0 && (props2.showClearOnlyHover ? state.isHover : true));
     const triggerClass = computed(() => ({
-      "bk-tag-input-trigger": true,
+      "lesscode-bk-tag-input-trigger": true,
       active: state.isEdit,
       disabled: props2.disabled
     }));
@@ -20994,7 +21864,7 @@ var Component$d = defineComponent({
         const {
           className
         } = e.target;
-        if (className.indexOf("bk-tag-input-trigger") > -1 || className.indexOf("tag-list") > -1) {
+        if (className.indexOf("lesscode-bk-tag-input-trigger") > -1 || className.indexOf("tag-list") > -1) {
           tagListRef.value.appendChild(tagInputItemRef.value);
         }
       }
@@ -21026,7 +21896,8 @@ var Component$d = defineComponent({
         modelValue,
         displayKey,
         allowCreate,
-        trigger
+        trigger,
+        isAsyncList
       } = props2;
       listState.selectedTagList = [];
       listState.localList = flatList.value;
@@ -21046,6 +21917,13 @@ var Component$d = defineComponent({
         if (!isSingleSelect.value) {
           listState.localList = listState.localList.filter((val) => !modelValueMap[val[saveKey]]);
         }
+      }
+      if (isAsyncList && curInputValue.value) {
+        filterData(curInputValue.value);
+        if (pageState.curPageList.length) {
+          popoverProps.isShow = true;
+        }
+        return;
       }
       if (trigger === "focus") {
         filterData();
@@ -21075,13 +21953,13 @@ var Component$d = defineComponent({
     };
     const activeClass = (data2, index2) => {
       const style2 = {
-        "bk-selector-actived": false,
-        "bk-selector-selected": tagList.value.includes(data2[props2.saveKey])
+        "lesscode-bk-selector-actived": false,
+        "lesscode-bk-selector-selected": tagList.value.includes(data2[props2.saveKey])
       };
       if (props2.useGroup) {
-        style2["bk-selector-actived"] = data2.__index__ === state.focusItemIndex;
+        style2["lesscode-bk-selector-actived"] = data2.__index__ === state.focusItemIndex;
       } else {
-        style2["bk-selector-actived"] = index2 === state.focusItemIndex;
+        style2["lesscode-bk-selector-actived"] = index2 === state.focusItemIndex;
       }
       return style2;
     };
@@ -21223,7 +22101,7 @@ var Component$d = defineComponent({
         yAxis: selectorListRef.value.getBoundingClientRect().y
       };
       nextTick(() => {
-        const activeObj = selectorListRef.value.querySelector(".bk-selector-actived");
+        const activeObj = selectorListRef.value.querySelector(".lesscode-bk-selector-actived");
         if (!activeObj) {
           return;
         }
@@ -21512,13 +22390,13 @@ var Component$d = defineComponent({
   },
   render() {
     return createVNode("div", {
-      "class": "bk-tag-input",
+      "class": "lesscode-bk-tag-input",
       "ref": "bkTagSelectorRef",
       "onClick": this.focusInputTrigger,
       "onMouseenter": () => this.isHover = true,
       "onMouseleave": () => this.isHover = false
     }, [createVNode(BkPopover, mergeProps({
-      "theme": "light bk-tag-input-popover-content",
+      "theme": "light lesscode-bk-tag-input-popover-content",
       "trigger": "manual",
       "placement": "bottom-start",
       "arrow": false
@@ -21587,7 +22465,7 @@ var Component$d = defineComponent({
         }, null)]);
       },
       content: () => createVNode("div", {
-        "class": "bk-selector-list"
+        "class": "lesscode-bk-selector-list"
       }, [createVNode("ul", {
         "ref": "selectorListRef",
         "style": {
@@ -21595,13 +22473,13 @@ var Component$d = defineComponent({
         },
         "class": "outside-ul"
       }, [this.renderList.map((group, index2) => this.useGroup ? createVNode("li", {
-        "class": "bk-selector-group-item"
+        "class": "lesscode-bk-selector-group-item"
       }, [createVNode("span", {
         "class": "group-name"
       }, [group.name, createTextVNode(" ("), group.children.length, createTextVNode(")")]), createVNode("ul", {
-        "class": "bk-selector-group-list-item"
+        "class": "lesscode-bk-selector-group-list-item"
       }, [group.children.map((item, index3) => createVNode("li", {
-        "class": ["bk-selector-list-item", {
+        "class": ["lesscode-bk-selector-list-item", {
           disabled: item.disabled
         }, this.activeClass(item, index3)],
         "onClick": this.handleTagSelected.bind(this, item, "select")
@@ -21612,7 +22490,7 @@ var Component$d = defineComponent({
         "searchKey": this.searchKey,
         "searchKeyword": this.curInputValue
       }, null)]))])]) : createVNode("li", {
-        "class": ["bk-selector-list-item", {
+        "class": ["lesscode-bk-selector-list-item", {
           disabled: group.disabled
         }, this.activeClass(group, index2)],
         "onClick": this.handleTagSelected.bind(this, group, "select")
@@ -21623,7 +22501,7 @@ var Component$d = defineComponent({
         "searchKey": this.searchKey,
         "searchKeyword": this.curInputValue
       }, null)])), this.isPageLoading ? createVNode("li", {
-        "class": "bk-selector-list-item loading"
+        "class": "lesscode-bk-selector-list-item loading"
       }, [createVNode(BkLoading, {
         "theme": "primary",
         "size": BkLoadingSize.Small
@@ -21631,7 +22509,7 @@ var Component$d = defineComponent({
     })]);
   }
 });
-const TagInput = withInstall(Component$d);
+const TagInput = withInstall(Component$e);
 const dividerProps = {
   direction: directionType(),
   align: alignType().def(AlignEnum.CENTER),
@@ -21709,6 +22587,17 @@ const tabNavEventProps = {
     default: () => ({})
   }
 };
+const tabPanelProps = {
+  name: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).def(""),
+  label: PropTypes.string || PropTypes.func,
+  tips: PropTypes.string,
+  closable: PropTypes.bool,
+  visible: PropTypes.bool.def(true),
+  disabled: PropTypes.bool,
+  sortable: PropTypes.bool,
+  renderDirective: renderDirectiveType(),
+  panel: PropTypes.string || PropTypes.func
+};
 const tabProps = {
   active: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).def(""),
   type: j("type", {}).def("border-card"),
@@ -21747,18 +22636,11 @@ const tabNavProps = __spreadValues({
   changeOnHover: PropTypes.bool.def(false),
   changeOnHoverDelay: PropTypes.number.def(1e3)
 }, tabNavEventProps);
-const tabPanelProps = {
-  name: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).def(""),
-  label: PropTypes.string || PropTypes.func,
-  closable: PropTypes.bool,
-  visible: PropTypes.bool.def(true),
-  disabled: PropTypes.bool,
-  sortable: PropTypes.bool,
-  renderDirective: renderDirectiveType(),
-  panel: PropTypes.string || PropTypes.func
-};
 var TabNav = defineComponent({
   name: "TabNav",
+  directives: {
+    bkTooltips: tooltips
+  },
   props: tabNavProps,
   setup(props2) {
     const activeRef = ref(null);
@@ -21821,7 +22703,8 @@ var TabNav = defineComponent({
           closable,
           visible,
           disabled,
-          sortable
+          sortable,
+          tips
         } = item.props;
         if (!visible) {
           return false;
@@ -21850,6 +22733,7 @@ var TabNav = defineComponent({
           visible,
           disabled,
           sortable,
+          tips,
           tabLabel: renderLabel(label)
         });
         return true;
@@ -21940,10 +22824,10 @@ var TabNav = defineComponent({
         }
         return classNames.join(" ");
       };
-      const getValue = (curentValue, parentValue) => curentValue || parentValue;
-      return createVNode("div", {
+      const getValue = (curentValue, parentValue) => !disabled && (curentValue || parentValue);
+      return withDirectives(createVNode("div", {
         "key": name,
-        "onClick": () => this.handleTabChange(name),
+        "onClick": () => !disabled && this.handleTabChange(name),
         "draggable": getValue(item.sortable, sortable),
         "onDragstart": (e) => dragstart(index2, e),
         "ref": active === name ? "activeRef" : "",
@@ -21969,7 +22853,10 @@ var TabNav = defineComponent({
       }, [createVNode("div", null, [tabLabel]), getValue(item.closable, closable) ? createVNode("span", {
         "class": resolveClassName("tab-header--close"),
         "onClick": () => this.handleTabRemove(index2, item)
-      }, [createVNode(close$1, null, null)]) : ""]);
+      }, [createVNode(close$1, null, null)]) : ""]), [[resolveDirective("bk-tooltips"), {
+        content: item.tips,
+        disabled: !item.tips
+      }]]);
     });
     const renderOperation = () => {
       var _a, _b;
@@ -22079,9 +22966,9 @@ var Tab = defineComponent({
     onMounted(() => {
       setPanelInstances();
       isMounted.value = true;
-    });
-    onUpdated(() => {
-      setPanelInstances();
+      onUpdated(() => {
+        setPanelInstances();
+      });
     });
     const methods = {
       tabAdd(e) {
@@ -22268,7 +23155,7 @@ const Message$1 = (constructor, options) => {
   render$1(vm, container2);
   instances[position].push(vm);
   let target;
-  if (vm.props.getContainer && isElement$2(vm.props.getContainer)) {
+  if (vm.props.getContainer && isElement$4(vm.props.getContainer)) {
     target = vm.props.getContainer;
   } else {
     target = document.body;
@@ -22319,9 +23206,9 @@ var MessageConstructor = defineComponent({
   setup(props2, {
     emit
   }) {
-    const classNames = computed(() => ["bk-message", `bk-message-${props2.theme}`, `${props2.extCls}`]);
+    const classNames = computed(() => ["lesscode-bk-message", `lesscode-bk-message-${props2.theme}`, `${props2.extCls}`]);
     const zIndex = bkZIndexManager.getMessageNextIndex();
-    const isGetContainer = computed(() => props2.getContainer && isElement$2(props2.getContainer));
+    const isGetContainer = computed(() => props2.getContainer && isElement$4(props2.getContainer));
     const styles = computed(() => ({
       top: `${props2.offsetY}px`,
       zIndex,
@@ -22369,17 +23256,17 @@ var MessageConstructor = defineComponent({
       return iconMap[this.theme];
     };
     return createVNode(Transition, {
-      "name": "bk-message-fade"
+      "name": "lesscode-bk-message-fade"
     }, {
       default: () => [withDirectives(createVNode("div", {
         "class": this.classNames,
         "style": this.styles
       }, [createVNode("div", {
-        "class": "bk-message-content"
+        "class": "lesscode-bk-message-content"
       }, [createVNode("div", {
-        "class": "bk-message-icon"
+        "class": "lesscode-bk-message-icon"
       }, [renderIcon()]), this.message]), this.dismissable && createVNode(error, {
-        "class": "bk-message-close",
+        "class": "lesscode-bk-message-close",
         "onClick": this.close
       }, null)]), [[vShow, this.visible]])]
     });
@@ -22513,7 +23400,7 @@ var NotifyConstructor = defineComponent({
       [verticalProperty.value]: `${props2.offsetY}px`,
       zIndex
     }));
-    const classNames = computed(() => ["bk-notify", `bk-notify-${props2.theme}`, horizontalClass.value]);
+    const classNames = computed(() => ["lesscode-bk-notify", `lesscode-bk-notify-${props2.theme}`, horizontalClass.value]);
     const renderMessage = computed(() => {
       if (typeof props2.message === "function") {
         return props2.message();
@@ -22561,21 +23448,21 @@ var NotifyConstructor = defineComponent({
       return iconMap[this.theme];
     };
     return createVNode(Transition, {
-      "name": "bk-notify-fade"
+      "name": "lesscode-bk-notify-fade"
     }, {
       default: () => [withDirectives(createVNode("div", {
         "class": this.classNames,
         "style": this.styles
       }, [createVNode("div", {
-        "class": "bk-notify-content"
+        "class": "lesscode-bk-notify-content"
       }, [createVNode("div", {
-        "class": "bk-notify-icon"
+        "class": "lesscode-bk-notify-icon"
       }, [renderIcon()]), this.title ? createVNode("div", {
-        "class": "bk-notify-content-header"
+        "class": "lesscode-bk-notify-content-header"
       }, [this.title]) : "", createVNode("div", {
-        "class": "bk-notify-content-text"
+        "class": "lesscode-bk-notify-content-text"
       }, [this.renderMessage])]), this.dismissable && createVNode(error, {
-        "class": "bk-notify-icon bk-notify-close",
+        "class": "lesscode-bk-notify-icon lesscode-bk-notify-close",
         "onClick": this.handleClose
       }, null)]), [[vShow, this.visible]])]
     });
@@ -22699,7 +23586,7 @@ const menuProps = {
     default: true
   }
 };
-var Component$c = defineComponent({
+var Component$d = defineComponent({
   name: "Menu",
   props: menuProps,
   emits: ["update:activeKey", "update:openKeys", "click", "openChange"],
@@ -22779,7 +23666,7 @@ var Component$c = defineComponent({
       var _a;
       return createVNode("div", {
         "class": {
-          "bk-menu": true,
+          "lesscode-bk-menu": true,
           "is-collapse": collapse2.value
         }
       }, [(_a = slots.default) == null ? void 0 : _a.call(slots)]);
@@ -22800,7 +23687,7 @@ var Group = defineComponent({
     return () => {
       var _a;
       return createVNode("div", {
-        "class": "bk-menu-group"
+        "class": "lesscode-bk-menu-group"
       }, [createVNode("div", {
         "class": "group-name"
       }, [props2.name]), createVNode("ul", {
@@ -22850,7 +23737,7 @@ var Item = defineComponent({
       var _a2, _b2;
       return createVNode("li", {
         "class": {
-          "bk-menu-item": true,
+          "lesscode-bk-menu-item": true,
           "is-active": isActive.value
         },
         "onClick": handleClick
@@ -22915,7 +23802,7 @@ var Submenu = defineComponent({
       var _a2;
       return createVNode("li", {
         "class": {
-          "bk-menu-submenu": true,
+          "lesscode-bk-menu-submenu": true,
           "is-opened": isShow.value
         }
       }, [createVNode("div", {
@@ -22946,7 +23833,7 @@ var Submenu = defineComponent({
     };
   }
 });
-const BkMenu = withInstallProps(Component$c, { Item, Submenu, Group });
+const BkMenu = withInstallProps(Component$d, { Item, Submenu, Group });
 const TitleProps = {
   sideTitle: {
     type: String,
@@ -22966,14 +23853,14 @@ var NavigationTitle = defineComponent({
     return () => {
       var _a, _b;
       return createVNode("div", {
-        "class": "bk-navigation-title",
+        "class": "lesscode-bk-navigation-title",
         "style": {
           borderBottomWidth: props2.navigationType === "left-right" ? "0" : "1px"
         }
       }, [((_a = slots.default) == null ? void 0 : _a.call(slots)) || [createVNode("span", {
         "class": "title-icon"
       }, [((_b = slots["side-icon"]) == null ? void 0 : _b.call(slots)) || createVNode("i", {
-        "class": "bk-icon icon-rtx"
+        "class": "lesscode-bk-icon icon-rtx"
       }, null)]), createVNode("span", {
         "class": "title-desc"
       }, [props2.sideTitle])]]);
@@ -23026,7 +23913,7 @@ const NavigationProps = {
     default: true
   }
 };
-var Component$b = defineComponent({
+var Component$c = defineComponent({
   name: "Navigation",
   props: NavigationProps,
   emits: ["leave", "toggle", "hover", "toggle-click"],
@@ -23090,9 +23977,9 @@ var Component$b = defineComponent({
   render() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
     return createVNode("div", {
-      "class": "bk-navigation"
+      "class": "lesscode-bk-navigation"
     }, [this.navigationType === "top-bottom" && createVNode("div", {
-      "class": "bk-navigation-header",
+      "class": "lesscode-bk-navigation-header",
       "style": {
         flexBasis: `${this.headHeight}px`
       }
@@ -23104,7 +23991,7 @@ var Component$b = defineComponent({
     }), createVNode("div", {
       "class": "header-right"
     }, [(_b = (_a = this.$slots).header) == null ? void 0 : _b.call(_a)])]), createVNode("div", {
-      "class": "bk-navigation-wrapper"
+      "class": "lesscode-bk-navigation-wrapper"
     }, [this.needMenu && createVNode("div", {
       "class": "navigation-nav",
       "style": {
@@ -23168,7 +24055,7 @@ var Component$b = defineComponent({
     }, [(_l = (_k = this.$slots).footer) == null ? void 0 : _l.call(_k)])])])])]);
   }
 });
-const Navigation = withInstall(Component$b);
+const Navigation = withInstall(Component$c);
 const pickerDropdownProps = {
   placement: {
     type: String,
@@ -25738,6 +26625,228 @@ var DateTable = defineComponent({
     }, [createVNode("em", null, [cell.desc])]))]);
   }
 });
+const monthTableProps = {
+  tableDate: {
+    type: Date,
+    required: true
+  },
+  disabledDate: {
+    type: Function
+  },
+  selectionMode: {
+    type: String,
+    required: true
+  },
+  modelValue: {
+    type: [Date, String, Number, Array],
+    required: true
+  },
+  rangeState: {
+    type: Object,
+    default: () => ({
+      from: null,
+      to: null,
+      selecting: false
+    })
+  },
+  focusedDate: {
+    type: Date,
+    required: true
+  },
+  cellClass: {
+    type: Function,
+    default: () => ""
+  }
+};
+var MonthTable = defineComponent({
+  name: "MonthTable",
+  props: monthTableProps,
+  emits: ["pick", "pick-click", "change-range"],
+  setup(props2, {
+    emit
+  }) {
+    const dates = computed(() => {
+      const {
+        selectionMode,
+        modelValue,
+        rangeState
+      } = props2;
+      const rangeSelecting = selectionMode === "range" && rangeState.selecting;
+      return rangeSelecting ? [rangeState.from] : modelValue;
+    });
+    const cells = computed(() => {
+      const cells2 = [];
+      const cellTmpl = {
+        text: "",
+        selected: false,
+        disabled: false
+      };
+      const tableYear = props2.tableDate.getFullYear();
+      const selectedDays = dates.value.filter(Boolean).map((date) => clearHours(new Date(date.getFullYear(), date.getMonth(), 1)));
+      const focusedDate = clearHours(new Date(props2.focusedDate.getFullYear(), props2.focusedDate.getMonth(), 1));
+      for (let i2 = 0; i2 < 12; i2++) {
+        const cell = JSON.parse(JSON.stringify(cellTmpl));
+        cell.date = new Date(tableYear, i2, 1);
+        cell.text = tCell(i2 + 1);
+        const day = clearHours(cell.date);
+        cell.disabled = typeof props2.disabledDate === "function" && props2.disabledDate(cell.date) && props2.selectionMode === "month";
+        cell.selected = selectedDays.includes(day);
+        cell.focused = day === focusedDate;
+        cells2.push(cell);
+      }
+      return cells2;
+    });
+    const tCell = (nr) => String(nr).length > 1 ? nr : `0${nr}`;
+    const getCellCls = (cell) => [resolveClassName("date-picker-cells-cell"), {
+      [resolveClassName("date-picker-cells-cell-selected")]: cell.selected,
+      [resolveClassName("date-picker-cells-cell-disabled")]: cell.disabled,
+      [resolveClassName("date-picker-cells-cell-range")]: cell.range && !cell.start && !cell.end
+    }];
+    const handleClick = (cell) => {
+      if (cell.disabled || cell.type === "weekLabel") {
+        return;
+      }
+      const newDate = new Date(clearHours(cell.date));
+      emit("pick", newDate);
+      emit("pick-click");
+    };
+    const handleMouseMove = (cell) => {
+      if (!props2.rangeState.selecting) {
+        return;
+      }
+      if (cell.disabled) {
+        return;
+      }
+      const newDate = cell.date;
+      emit("change-range", newDate);
+    };
+    return {
+      cells,
+      getCellCls,
+      handleClick,
+      handleMouseMove
+    };
+  },
+  render() {
+    return createVNode("div", {
+      "class": [resolveClassName("date-picker-cells"), resolveClassName("date-picker-cells-month")]
+    }, [this.cells.map((cell) => createVNode("span", {
+      "class": this.getCellCls(cell),
+      "onClick": () => this.handleClick(cell),
+      "onMouseenter": () => this.handleMouseMove(cell)
+    }, [createVNode("em", null, [cell.text])]))]);
+  }
+});
+const yearTableProps = {
+  tableDate: {
+    type: Date,
+    required: true
+  },
+  disabledDate: {
+    type: Function
+  },
+  selectionMode: {
+    type: String,
+    required: true
+  },
+  modelValue: {
+    type: [Date, String, Number, Array],
+    required: true
+  },
+  rangeState: {
+    type: Object,
+    default: () => ({
+      from: null,
+      to: null,
+      selecting: false
+    })
+  },
+  focusedDate: {
+    type: Date,
+    required: true
+  },
+  cellClass: {
+    type: Function,
+    default: () => ""
+  }
+};
+var YearTable = defineComponent({
+  name: "YearTable",
+  props: yearTableProps,
+  emits: ["pick", "pick-click", "change-range"],
+  setup(props2, {
+    emit
+  }) {
+    const dates = computed(() => {
+      const {
+        selectionMode,
+        modelValue,
+        rangeState
+      } = props2;
+      const rangeSelecting = selectionMode === "range" && rangeState.selecting;
+      return rangeSelecting ? [rangeState.from] : modelValue;
+    });
+    const startYear = computed(() => Math.floor(props2.tableDate.getFullYear() / 10) * 10);
+    const cells = computed(() => {
+      const cells2 = [];
+      const cellTmpl = {
+        text: "",
+        selected: false,
+        disabled: false
+      };
+      const selectedDays = dates.value.filter(Boolean).map((date) => clearHours(new Date(date.getFullYear(), 0, 1)));
+      const focusedDate = clearHours(new Date(props2.focusedDate.getFullYear(), 0, 1));
+      for (let i2 = 0; i2 < 10; i2++) {
+        const cell = JSON.parse(JSON.stringify(cellTmpl));
+        cell.date = new Date(startYear.value + i2, 0, 1);
+        cell.disabled = typeof props2.disabledDate === "function" && props2.disabledDate(cell.date) && props2.selectionMode === "year";
+        const day = clearHours(cell.date);
+        cell.selected = selectedDays.includes(day);
+        cell.focused = day === focusedDate;
+        cells2.push(cell);
+      }
+      return cells2;
+    });
+    const getCellCls = (cell) => [resolveClassName("date-picker-cells-cell"), {
+      [resolveClassName("date-picker-cells-cell-selected")]: cell.selected,
+      [resolveClassName("date-picker-cells-cell-disabled")]: cell.disabled,
+      [resolveClassName("date-picker-cells-cell-range")]: cell.range && !cell.start && !cell.end
+    }];
+    const handleClick = (cell) => {
+      if (cell.disabled || cell.type === "weekLabel") {
+        return;
+      }
+      const newDate = new Date(clearHours(cell.date));
+      emit("pick", newDate);
+      emit("pick-click");
+    };
+    const handleMouseMove = (cell) => {
+      if (!props2.rangeState.selecting) {
+        return;
+      }
+      if (cell.disabled) {
+        return;
+      }
+      const newDate = cell.date;
+      emit("change-range", newDate);
+    };
+    return {
+      cells,
+      getCellCls,
+      handleClick,
+      handleMouseMove
+    };
+  },
+  render() {
+    return createVNode("div", {
+      "class": [resolveClassName("date-picker-cells"), resolveClassName("date-picker-cells-year")]
+    }, [this.cells.map((cell) => createVNode("span", {
+      "class": this.getCellCls(cell),
+      "onClick": () => this.handleClick(cell),
+      "onMouseenter": () => this.handleMouseMove(cell)
+    }, [createVNode("em", null, [cell.date.getFullYear()])]))]);
+  }
+});
 const datePickerProps = {
   type: {
     type: String,
@@ -26615,7 +27724,7 @@ var DatePanel = defineComponent({
         e.preventDefault();
       }
     }, [this.shortcuts.length ? createVNode("div", {
-      "class": "bk-picker-panel-sidebar"
+      "class": "lesscode-bk-picker-panel-sidebar"
     }, [this.shortcuts.map((shortcut) => createVNode("div", {
       "class": resolveClassName("picker-panel-shortcut"),
       "onClick": () => this.handleShortcutClick(shortcut)
@@ -26630,7 +27739,8 @@ var DatePanel = defineComponent({
     }, [createVNode(angleDoubleLeft, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), this.pickerTable === "date-table" ? withDirectives(createVNode("span", {
       "class": iconBtnCls("prev"),
@@ -26638,7 +27748,8 @@ var DatePanel = defineComponent({
     }, [createVNode(angleLeft, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), [[vShow, this.currentView === "date"]]) : "", this.datePanelLabel && Object.keys(this.datePanelLabel).length > 0 ? createVNode("span", null, [withDirectives(createVNode("span", {
       "class": resolveClassName("date-picker-header-label"),
@@ -26652,7 +27763,8 @@ var DatePanel = defineComponent({
     }, [createVNode(angleDoubleRight, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), this.pickerTable === "date-table" ? withDirectives(createVNode("span", {
       "class": iconBtnCls("next"),
@@ -26660,7 +27772,8 @@ var DatePanel = defineComponent({
     }, [createVNode(angleRight, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), [[vShow, this.currentView === "date"]]) : ""]), [[vShow, this.currentView !== "time"]]), createVNode("div", {
       "class": resolveClassName("picker-panel-content")
@@ -26668,6 +27781,24 @@ var DatePanel = defineComponent({
       switch (this.pickerTable) {
         case "date-table":
           return createVNode(DateTable, {
+            "tableDate": this.panelDate,
+            "disabledDate": this.disabledDate,
+            "selectionMode": this.selectionMode,
+            "modelValue": this.dates,
+            "focusedDate": this.focusedDate,
+            "onPick": this.panelPickerHandlers
+          }, null);
+        case "year-table":
+          return createVNode(YearTable, {
+            "tableDate": this.panelDate,
+            "disabledDate": this.disabledDate,
+            "selectionMode": this.selectionMode,
+            "modelValue": this.dates,
+            "focusedDate": this.focusedDate,
+            "onPick": this.panelPickerHandlers
+          }, null);
+        case "month-table":
+          return createVNode(MonthTable, {
             "tableDate": this.panelDate,
             "disabledDate": this.disabledDate,
             "selectionMode": this.selectionMode,
@@ -26812,7 +27943,7 @@ var TimeRangePanel = defineComponent({
         width: `${this.width}px`
       }
     }, [this.showDate ? createVNode("div", {
-      "class": "bk-time-picker-header"
+      "class": "lesscode-bk-time-picker-header"
     }, [this.leftDatePanelLabel]) : "", createVNode(TimeSpinner, {
       "ref": "timeSpinnerRef",
       "steps": this.steps,
@@ -27257,7 +28388,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleDoubleLeft, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), this.leftPickerTable === "date-table" ? withDirectives(createVNode("span", {
       "class": iconBtnCls("prev"),
@@ -27265,7 +28397,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleLeft, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), [[vShow, this.currentView === "date"]]) : "", this.leftDatePanelLabel && Object.keys(this.leftDatePanelLabel).length > 0 ? createVNode("span", null, [withDirectives(createVNode("span", {
       "class": resolveClassName("date-picker-header-label"),
@@ -27279,7 +28412,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleDoubleRight, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]) : "", this.splitPanels || this.leftPickerTable === "date-table" ? withDirectives(createVNode("span", {
       "class": iconBtnCls("next"),
@@ -27287,7 +28421,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleRight, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), [[vShow, this.currentView === "date"]]) : ""]), [[vShow, this.currentView !== "time"]]), this.currentView !== "time" ? (() => {
       switch (this.leftPickerTable) {
@@ -27316,7 +28451,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleDoubleLeft, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]) : "", this.splitPanels && this.rightPickerTable === "date-table" ? withDirectives(createVNode("span", {
       "class": iconBtnCls("prev", "-double"),
@@ -27324,7 +28460,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleLeft, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), [[vShow, this.currentView === "date"]]) : "", this.rightDatePanelLabel && Object.keys(this.rightDatePanelLabel).length > 0 ? createVNode("span", null, [withDirectives(createVNode("span", {
       "class": resolveClassName("date-picker-header-label"),
@@ -27348,7 +28485,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleDoubleRight, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), this.rightPickerTable === "date-table" ? withDirectives(createVNode("span", {
       "class": iconBtnCls("next"),
@@ -27356,7 +28494,8 @@ var DateRangePanel = defineComponent({
     }, [createVNode(angleRight, {
       "style": {
         fontSize: "20px",
-        lineHeight: 1
+        lineHeight: 1,
+        verticalAlign: "text-bottom"
       }
     }, null)]), [[vShow, this.currentView === "date"]]) : ""]), [[vShow, this.currentView !== "time"]]), this.currentView !== "time" ? (() => {
       switch (this.rightPickerTable) {
@@ -27395,7 +28534,7 @@ var DateRangePanel = defineComponent({
     }, this.$slots) : ""]), shortcuts]);
   }
 });
-var Component$a = defineComponent({
+var Component$b = defineComponent({
   name: "DatePicker",
   directives: {
     clickoutside: ClickOutside
@@ -27440,6 +28579,7 @@ var Component$a = defineComponent({
       shortcut,
       onSelectionModeChange
     });
+    onSelectionModeChange(props2.type);
     function onSelectionModeChange(_type) {
       let type = _type;
       if (_type.match(/^date/)) {
@@ -28231,7 +29371,7 @@ var TimePicker = defineComponent({
           e.stopPropagation();
           e.preventDefault();
           if (isConfirm.value) {
-            const selector = ".bk-picker-confirm > *";
+            const selector = ".lesscode-bk-picker-confirm > *";
             const tabbable = pickerDropdownRef.value.$el.querySelectorAll(selector);
             state.internalFocus = true;
             const element = [...tabbable][e.shiftKey ? "pop" : "shift"]();
@@ -28433,7 +29573,7 @@ var TimePicker = defineComponent({
       "disabled": !this.appendToBody
     }, {
       default: () => [createVNode(Transition, {
-        "name": "bk-fade-down-transition"
+        "name": "lesscode-bk-fade-down-transition"
       }, {
         default: () => [withDirectives(createVNode(PickerDropdown, {
           "class": [this.appendToBody ? resolveClassName("date-picker-transfer") : ""],
@@ -28488,7 +29628,7 @@ var TimePicker = defineComponent({
     })]), [[resolveDirective("clickoutside"), this.handleClose]]);
   }
 });
-const BkDatePicker = withInstall(Component$a);
+const BkDatePicker = withInstall(Component$b);
 var ArrayType = /* @__PURE__ */ ((ArrayType2) => {
   ArrayType2["OBJECT_ARRAY"] = "objectArray";
   ArrayType2["BASE_ARRAY"] = "baseArray";
@@ -28507,8 +29647,12 @@ const transferProps = {
   sortable: PropTypes.bool.def(false),
   sourceList: PropTypes.arrayOf(PropTypes.any).def([]),
   targetList: PropTypes.arrayOf(PropTypes.any).def([]),
-  emptyContent: PropTypes.arrayOf(PropTypes.string).def([])
+  emptyContent: PropTypes.arrayOf(PropTypes.string).def([]),
+  multiple: PropTypes.bool.def(false)
 };
+function _isSlot$1(s2) {
+  return typeof s2 === "function" || Object.prototype.toString.call(s2) === "[object Object]" && !isVNode(s2);
+}
 function useTransferData(sourceData, targetList, settingCode) {
   const selectList = ref([]);
   const selectedList = ref([]);
@@ -28552,7 +29696,7 @@ function useSelectListSearch(selectList, displayCode) {
     selectListSearch
   };
 }
-var Component$9 = defineComponent({
+var Component$a = defineComponent({
   name: "Transfer",
   props: transferProps,
   emits: ["change", "update:targetList"],
@@ -28560,6 +29704,14 @@ var Component$9 = defineComponent({
     emit
   }) {
     const t2 = useLocale("transfer");
+    const multipleSelectAllValue = ref({
+      source: false,
+      target: false
+    });
+    const multipleSelectList = ref({
+      source: [],
+      target: []
+    });
     const sourceListType = computed(() => {
       if (Array.isArray(props2.sourceList)) {
         const isObjectArray = props2.sourceList.every((s2) => s2.toString().includes("[object Object]"));
@@ -28608,7 +29760,9 @@ var Component$9 = defineComponent({
       });
     });
     watch(() => [selectList, selectedList], () => {
-      handleEmitUpdateTargetList();
+      if (!props2.multiple) {
+        handleEmitUpdateTargetList();
+      }
     }, {
       deep: true
     });
@@ -28650,6 +29804,25 @@ var Component$9 = defineComponent({
       emit("update:targetList", targetList2);
       emit("change", sourceListType.value === ArrayType.BASE_ARRAY ? restList : selectList.value.map((v2) => toRaw(v2)), sourceListType.value === ArrayType.BASE_ARRAY ? targetList2 : selectedList.value.map((v2) => toRaw(v2)), targetList2);
     };
+    const handleItemChecked = (dirct) => {
+      const target = dirct === "source" ? selectList : selectedList;
+      multipleSelectAllValue.value[dirct] = multipleSelectList.value[dirct].length === target.value.length;
+    };
+    const handleAllChecked = (value, dirct) => {
+      const target = dirct === "source" ? selectList : selectedList;
+      multipleSelectList.value[dirct] = value ? target.value.map((item) => item[settingCode.value]) : [];
+    };
+    const handleMultipleChange = (dirct) => {
+      const isLeft = dirct === "left";
+      const from = isLeft ? selectList : selectedList;
+      const to = isLeft ? selectedList : selectList;
+      const checkeds = multipleSelectList.value[isLeft ? "source" : "target"];
+      const items = from.value.filter((val) => checkeds.includes(val[settingCode.value]));
+      from.value = from.value.filter((val) => !checkeds.includes(val[settingCode.value]));
+      to.value.push(...items);
+      multipleSelectList.value[isLeft ? "source" : "target"] = [];
+      handleEmitUpdateTargetList();
+    };
     return {
       selectSearchQuery,
       selectListSearch,
@@ -28661,17 +29834,28 @@ var Component$9 = defineComponent({
       allToRight,
       allToLeft,
       handleItemClick,
-      t: t2
+      t: t2,
+      handleAllChecked,
+      multipleSelectAllValue,
+      multipleSelectList,
+      handleMultipleChange,
+      handleItemChecked
     };
   },
   render() {
+    const {
+      multiple
+    } = this.$props;
     const leftList = this.sortable ? this.selectListSort : this.selectListSearch;
     const rightList = this.sortable ? this.selectedListSort : this.selectedList;
     const getHeaderHtml = (dirct) => {
       var _a, _b;
       const isLeft = dirct === "left-header";
+      const selectField = isLeft ? "source" : "target";
       const titleText = isLeft ? `${(_a = this.title[0]) != null ? _a : this.t.sourceList}` : `${(_b = this.title[1]) != null ? _b : this.t.targetList}`;
       const isDisabled = isLeft ? !leftList.length : !rightList.length;
+      const isIndeterminate = !!this.multipleSelectList[selectField].length && !this.multipleSelectAllValue[selectField];
+      const selectCount = this.multipleSelectList[selectField].length;
       const headerClick = () => {
         if (isDisabled)
           return;
@@ -28681,8 +29865,24 @@ var Component$9 = defineComponent({
         "class": "slot-header"
       }, [this.$slots[dirct]()]) : createVNode("div", {
         "class": "header"
-      }, [`${titleText}\uFF08${isLeft ? leftList.length : rightList.length}\uFF09`, createVNode("span", {
+      }, [this.multiple ? createVNode(BkCheckbox, {
+        "class": "header-checkbox",
+        "label": titleText,
+        "modelValue": this.multipleSelectAllValue[selectField],
+        "onUpdate:modelValue": ($event) => this.multipleSelectAllValue[selectField] = $event,
+        "indeterminate": isIndeterminate,
+        "onChange": (val) => this.handleAllChecked(val, selectField)
+      }, null) : createVNode(Fragment, null, [`${titleText}\uFF08${isLeft ? leftList.length : rightList.length}\uFF09`]), this.multiple ? createVNode("div", {
+        "class": "select-total-count"
+      }, [createVNode("span", {
+        "class": "select-count"
+      }, [selectCount]), createVNode("span", {
+        "class": "count-delimiter"
+      }, [createTextVNode("/")]), createVNode("span", {
+        "class": "total-count"
+      }, [isLeft ? leftList.length : rightList.length])]) : createVNode("span", {
         "class": {
+          "select-all": true,
           disabled: isDisabled
         },
         "onClick": () => headerClick()
@@ -28704,20 +29904,37 @@ var Component$9 = defineComponent({
       }, [createVNode("span", {
         "class": "content-text",
         "title": item[this.displayCode]
-      }, [item[this.displayCode]]), createVNode("span", {
+      }, [item[this.displayCode]]), !multiple && createVNode("span", {
         "class": "icon-wrapper"
       }, [isLeft ? createVNode(arrowsRight, {
-        "class": "bk-icon icon-move"
+        "class": "lesscode-bk-icon icon-move"
       }, null) : createVNode(error, {
-        "class": "bk-icon icon-delete"
+        "class": "lesscode-bk-icon icon-delete"
       }, null)])]);
     };
     const getListContentHtml = (dirct) => {
+      let _slot;
       const isLeft = dirct === "left";
+      const selectField = dirct === "left" ? "source" : "target";
       const list = isLeft ? leftList : rightList;
       const slotName = isLeft ? "source-option" : "target-option";
       const emptySlotName = isLeft ? "left-empty-content" : "right-empty-content";
-      return list.length ? createVNode("ul", {
+      const contentMode = multiple ? createVNode(BkCheckboxGroup, {
+        "class": "content is-flex",
+        "modelValue": this.multipleSelectList[selectField],
+        "onUpdate:modelValue": ($event) => this.multipleSelectList[selectField] = $event,
+        "onChange": () => this.handleItemChecked(selectField)
+      }, _isSlot$1(_slot = list.map((item) => createVNode("div", null, [createVNode(BkCheckbox, {
+        "class": "checkbox-item",
+        "label": item[this.settingCode]
+      }, {
+        default: () => {
+          var _a, _b, _c;
+          return [(_c = (_b = (_a = this.$slots)[slotName]) == null ? void 0 : _b.call(_a, item)) != null ? _c : getDefaultListHtml(item, isLeft)];
+        }
+      })]))) ? _slot : {
+        default: () => [_slot]
+      }) : createVNode("ul", {
         "class": ["content", this.searchable && isLeft ? "is-search" : ""]
       }, [list.map((item) => {
         var _a, _b, _c;
@@ -28726,10 +29943,11 @@ var Component$9 = defineComponent({
           "class": [this.$slots[slotName] ? "custom-item" : ""],
           "onClick": () => this.handleItemClick(item, isLeft)
         }, [(_c = (_b = (_a = this.$slots)[slotName]) == null ? void 0 : _b.call(_a, item)) != null ? _c : getDefaultListHtml(item, isLeft)]);
-      })]) : getEmptyHtml(emptySlotName);
+      })]);
+      return list.length ? contentMode : getEmptyHtml(emptySlotName);
     };
     return createVNode("div", {
-      "class": ["bk-transfer", this.extCls]
+      "class": ["lesscode-bk-transfer", this.extCls]
     }, [createVNode("div", {
       "class": "source-list"
     }, [getHeaderHtml("left-header"), this.searchable && createVNode(BkInput, {
@@ -28742,14 +29960,26 @@ var Component$9 = defineComponent({
       prefix: () => createVNode(search, {
         "class": "icon-search"
       }, null)
-    }), getListContentHtml("left")]), createVNode(transfer, {
+    }), getListContentHtml("left")]), multiple ? createVNode("div", {
+      "class": "transfer-button-group"
+    }, [createVNode("div", {
+      "class": ["transfer-button", {
+        disabled: !this.multipleSelectList.source.length
+      }],
+      "onClick": () => this.handleMultipleChange("left")
+    }, [createVNode(angleRight, null, null)]), createVNode("div", {
+      "class": ["transfer-button", {
+        disabled: !this.multipleSelectList.target.length
+      }],
+      "onClick": () => this.handleMultipleChange("right")
+    }, [createVNode(angleLeft, null, null)])]) : createVNode(transfer, {
       "class": "transfer"
     }, null), createVNode("div", {
       "class": "target-list"
     }, [getHeaderHtml("right-header"), getListContentHtml("right")])]);
   }
 });
-const Transfer = withInstall(Component$9);
+const Transfer = withInstall(Component$a);
 var EVENTS = /* @__PURE__ */ ((EVENTS2) => {
   EVENTS2["NODE_CLICK"] = "nodeClick";
   EVENTS2["NODE_COLLAPSE"] = "nodeCollapse";
@@ -28842,10 +30072,10 @@ const treeProps = {
         PropTypes.bool
       ]).def(""),
       match: PropTypes.oneOfType([
-        j("TreeSearchMatchType", {}).def("fuzzy"),
+        E(),
         PropTypes.func
-      ]),
-      resultType: j("treeSearchResultType", {}).def("tree"),
+      ]).def("fuzzy"),
+      resultType: E().def("tree"),
       openResultNode: PropTypes.bool
     }),
     PropTypes.string,
@@ -29047,7 +30277,7 @@ const getNodeItemClass = (item, schema, props2) => {
   const { __is_root, __is_open } = getSchemaVal(schema, item[NODE_ATTRIBUTES.UUID]) || {};
   return {
     "is-root": __is_root,
-    "bk-tree-node": true,
+    "lesscode-bk-tree-node": true,
     "is-open": __is_open,
     "is-virtual-render": props2.virtualRender,
     "level-line": props2.levelLine
@@ -29511,7 +30741,7 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
     const targetNode = getTargetTreeNode(e);
     const data2 = getNodeByTargetTreeNode(targetNode);
     if (data2.draggable === false || isNeedCheckDraggable.value && props2.disableDrag(data2)) {
-      targetNode.classList.add("bk-tree-drag-disabled");
+      targetNode.classList.add("lesscode-bk-tree-drag-disabled");
       return;
     }
     targetNode.setAttribute("draggable", "true");
@@ -29525,10 +30755,10 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
     if (isNeedCheckDroppable.value && (props2 == null ? void 0 : props2.disableDrop(data2))) {
       e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.dropEffect = "none";
-      targetNode.classList.add("bk-tree-drop-disabled");
+      targetNode.classList.add("lesscode-bk-tree-drop-disabled");
       return;
     }
-    targetNode.classList.add("bk-tree-drop-active");
+    targetNode.classList.add("lesscode-bk-tree-drop-active");
     const sourceNodeId = e.dataTransfer.getData("node-id");
     const targetNodeId = targetNode.getAttribute("data-tree-node");
     const transferEffect = isNodeSortable(sourceNodeId, targetNodeId) ? "move" : "none";
@@ -29547,7 +30777,7 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
     e.preventDefault();
     e.stopPropagation();
     const targetNode = getTargetTreeNode(e);
-    targetNode.classList.remove("bk-tree-drop-active", "bk-tree-drop-disabled");
+    targetNode.classList.remove("lesscode-bk-tree-drop-active", "lesscode-bk-tree-drop-disabled");
     const data2 = getNodeByTargetTreeNode(targetNode);
     if (isNeedCheckDroppable.value && props2.disableDrop(data2)) {
       return;
@@ -29614,7 +30844,7 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
   const handleTreeNodeDragLeave = (e) => {
     e.preventDefault();
     const targetNode = getTargetTreeNode(e);
-    targetNode.classList.remove("bk-tree-drop-active", "bk-tree-drop-disabled");
+    targetNode.classList.remove("lesscode-bk-tree-drop-active", "lesscode-bk-tree-drop-disabled");
     ctx.emit(EVENTS.NODE_DRAG_LEAVE, e, targetNode);
   };
   onMounted(() => {
@@ -29936,7 +31166,7 @@ var useTreeInit = (props2) => {
     onSelected
   };
 };
-var Component$8 = defineComponent({
+var Component$9 = defineComponent({
   name: "Tree",
   props: treeProps,
   emits: TreeEmitEventsType,
@@ -30048,7 +31278,7 @@ var Component$8 = defineComponent({
     });
   }
 });
-const BkTree = withInstall(Component$8);
+const BkTree = withInstall(Component$9);
 const isCustomComponent = (node) => node.__v_isVNode;
 var ComposeFormItem = defineComponent({
   name: "ComposeFormItem",
@@ -30088,7 +31318,7 @@ var ComposeFormItem = defineComponent({
         if (!headChildren.props) {
           headChildren.props = {};
         }
-        let headChildClass = "bk-compose-form-item-head";
+        let headChildClass = "lesscode-bk-compose-form-item-head";
         if (headChildren.props.class) {
           headChildClass += ` ${headChildren.props.class}`;
         }
@@ -30101,7 +31331,7 @@ var ComposeFormItem = defineComponent({
         if (!tailChildren.props) {
           tailChildren.props = {};
         }
-        let tailChildStaticClass = "bk-compose-form-item-tail";
+        let tailChildStaticClass = "lesscode-bk-compose-form-item-tail";
         if (tailChildren.props.class) {
           tailChildStaticClass += ` ${tailChildren.props.class}`;
         }
@@ -30114,7 +31344,7 @@ var ComposeFormItem = defineComponent({
       }
     }
     return h$1("div", {
-      class: "bk-compose-form-item"
+      class: "lesscode-bk-compose-form-item"
     }, childrenArr);
   }
 });
@@ -30125,10 +31355,14 @@ const formProps = {
   model: PropTypes.object,
   rules: PropTypes.object
 };
+const formEvents = {
+  submit: null,
+  validate: (property, result, message2) => lodash.exports.isString(property) && lodash.exports.isBoolean(result) && lodash.exports.isString(message2)
+};
 var Form = defineComponent({
   name: "Form",
   props: formProps,
-  emits: ["submit"],
+  emits: formEvents,
   setup(props2, context) {
     let formItemInstanceList = [];
     const register = (formItemInstance) => {
@@ -30144,6 +31378,7 @@ var Form = defineComponent({
     };
     provide(formKey, {
       props: props2,
+      emit: context.emit,
       register,
       unregister
     });
@@ -30175,6 +31410,7 @@ var Form = defineComponent({
         return result;
       }, [])).then(() => Promise.resolve(props2.model));
     };
+    const getValidateResult = () => Promise.all(formItemInstanceList.map((formItem) => formItem.validate(void 0, false))).then(() => true).catch(() => false);
     const clearValidate = (fields) => {
       let fieldMap = {};
       if (fields) {
@@ -30192,14 +31428,15 @@ var Form = defineComponent({
     return {
       handleSubmit,
       validate,
+      getValidateResult,
       clearValidate
     };
   },
   render() {
     var _a, _b;
     const formClasses = classes({
-      "bk-form": true,
-      [`bk-form--${this.formType}`]: true
+      "lesscode-bk-form": true,
+      [`lesscode-bk-form--${this.formType}`]: true
     });
     return createVNode("form", {
       "class": formClasses,
@@ -30391,7 +31628,7 @@ var FormItem = defineComponent({
     const contentStyles = computed(() => ({
       ["margin-left"]: labelStyles.value.width
     }));
-    const validate = (trigger) => {
+    const validate = (trigger, showError = true) => {
       if (!props2.property || isForm && !form2.props.model) {
         return Promise.resolve(true);
       }
@@ -30403,7 +31640,7 @@ var FormItem = defineComponent({
         rules = props2.rules;
       }
       rules = getTriggerRules(trigger, mergeRules(rules, getRulesFromProps(props2, t2), t2));
-      if (rules.length > 0) {
+      if (rules.length > 0 && showError) {
         state.isError = false;
         state.errorMessage = "";
       }
@@ -30413,25 +31650,33 @@ var FormItem = defineComponent({
         return () => {
           stepIndex = stepIndex + 1;
           if (stepIndex >= rules.length) {
+            form2.emit("validate", props2.property, true, "");
             return Promise.resolve(true);
           }
           const rule = rules[stepIndex];
           return Promise.resolve().then(() => {
             const result = rule.validator(value);
+            const errorMessage = getRuleMessage(rule);
             if (typeof result !== "boolean" && typeof result.then === "function") {
               return result.then((data2) => {
                 if (data2 === false) {
-                  return Promise.reject(getRuleMessage(rule));
+                  return Promise.reject(errorMessage);
                 }
               }).then(() => doValidate(), () => {
-                state.isError = true;
-                state.errorMessage = getRuleMessage(rule);
+                if (showError) {
+                  state.isError = true;
+                  state.errorMessage = errorMessage;
+                }
+                form2.emit("validate", props2.property, false, errorMessage);
                 return Promise.reject(state.errorMessage);
               });
             }
             if (!result) {
-              state.isError = true;
-              state.errorMessage = typeof result === "string" ? result : getRuleMessage(rule);
+              if (showError) {
+                state.isError = true;
+                state.errorMessage = typeof result === "string" ? result : errorMessage;
+              }
+              form2.emit("validate", props2.property, false, errorMessage);
               return Promise.reject(state.errorMessage);
             }
             return doValidate();
@@ -30470,7 +31715,7 @@ var FormItem = defineComponent({
   render() {
     var _a, _b, _c, _d;
     const itemClassees = classes({
-      "bk-form-item": true,
+      "lesscode-bk-form-item": true,
       "is-error": this.isError,
       "is-required": this.required
     });
@@ -30481,7 +31726,7 @@ var FormItem = defineComponent({
       if (this.description) {
         return withDirectives(createVNode("span", {
           "class": {
-            "bk-form-label-description": Boolean(this.description)
+            "lesscode-bk-form-label-description": Boolean(this.description)
           }
         }, [this.label]), [[resolveDirective("bk-tooltips"), this.description]]);
       }
@@ -30493,20 +31738,20 @@ var FormItem = defineComponent({
       }
       if (this.errorDisplayType === "tooltips") {
         return withDirectives(createVNode("div", {
-          "class": "bk-form-error-tips"
+          "class": "lesscode-bk-form-error-tips"
         }, [createVNode(exclamationCircleShape, null, null)]), [[resolveDirective("bk-tooltips"), this.errorMessage]]);
       }
       return createVNode("div", {
-        "class": "bk-form-error"
+        "class": "lesscode-bk-form-error"
       }, [this.$slots.error ? this.$slots.error(this.errorMessage) : this.errorMessage]);
     };
     return createVNode("div", {
       "class": itemClassees
     }, [this.isShowLabel && createVNode("div", {
-      "class": "bk-form-label",
+      "class": "lesscode-bk-form-label",
       "style": this.labelStyles
     }, [renderLabel(), this.isFormTypeVertical && ((_b = (_a = this.$slots).labelAppend) == null ? void 0 : _b.call(_a))]), createVNode("div", {
-      "class": "bk-form-content",
+      "class": "lesscode-bk-form-content",
       "style": this.contentStyles
     }, [(_d = (_c = this.$slots).default) == null ? void 0 : _d.call(_c), renderError()])]);
   }
@@ -30554,7 +31799,7 @@ var Col = defineComponent({
     return () => {
       var _a, _b;
       return createVNode("div", {
-        "class": "bk-grid-col",
+        "class": "lesscode-bk-grid-col",
         "style": style2.value
       }, [(_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a)]);
     };
@@ -30583,7 +31828,7 @@ var Container = defineComponent({
       gutter,
       flex
     });
-    const classes2 = computed(() => extCls ? `bk-grid-container ${extCls}` : "bk-grid-container");
+    const classes2 = computed(() => extCls ? `lesscode-bk-grid-container ${extCls}` : "lesscode-bk-grid-container");
     const style2 = computed(() => {
       const {
         margin
@@ -30628,7 +31873,7 @@ var Row = defineComponent({
     return () => {
       var _a, _b;
       return createVNode("div", {
-        "class": "bk-grid-row",
+        "class": "lesscode-bk-grid-row",
         "style": style2.value
       }, [(_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a)]);
     };
@@ -30639,8 +31884,8 @@ var Dropdown = defineComponent({
   name: "Dropdown",
   props: {
     isShow: PropTypes.bool.def(false),
-    placement: placementType(),
-    trigger: triggerType(),
+    placement: placementType$1(),
+    trigger: triggerType$1(),
     disabled: PropTypes.bool.def(false),
     popoverOptions: PropTypes.object.def({}),
     extCls: PropTypes.string
@@ -30669,10 +31914,10 @@ var Dropdown = defineComponent({
   },
   render() {
     const wrapperClasses = classes({
-      "bk-dropdown": true
+      "lesscode-bk-dropdown": true
     }, this.$props.extCls);
     const basePopoverOptions = {
-      theme: "light bk-dropdown-popover",
+      theme: "light lesscode-bk-dropdown-popover",
       trigger: this.trigger,
       arrow: false,
       placement: this.placement,
@@ -30691,13 +31936,13 @@ var Dropdown = defineComponent({
       default: () => {
         var _a, _b;
         return createVNode("div", {
-          "class": "bk-dropdown-reference"
+          "class": "lesscode-bk-dropdown-reference"
         }, [createTextVNode(" "), (_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a), createTextVNode(" ")]);
       },
       content: () => {
         var _a, _b;
         return createVNode("div", {
-          "class": "bk-dropdown-content"
+          "class": "lesscode-bk-dropdown-content"
         }, [createTextVNode(" "), (_b = (_a = this.$slots).content) == null ? void 0 : _b.call(_a), createTextVNode(" ")]);
       }
     })]);
@@ -30716,7 +31961,7 @@ var DropdownItem = defineComponent({
       evt.stopPropagation();
       emit("click", evt);
     };
-    const wrapperCLasses = computed(() => ["bk-dropdown-item", props2.extCls]);
+    const wrapperCLasses = computed(() => ["lesscode-bk-dropdown-item", props2.extCls]);
     return {
       wrapperCLasses,
       handleClick
@@ -30736,7 +31981,7 @@ var DropdownMenu = defineComponent({
     extCls: PropTypes.string
   },
   setup(props2) {
-    const wrapperCLasses = computed(() => ["bk-dropdown-menu", props2.extCls]);
+    const wrapperCLasses = computed(() => ["lesscode-bk-dropdown-menu", props2.extCls]);
     return {
       wrapperCLasses
     };
@@ -30765,6 +32010,7 @@ var CascaderPanel = defineComponent({
   setup(props2, {
     emit
   }) {
+    const t2 = useLocale("select");
     const {
       store
     } = props2;
@@ -30862,6 +32108,7 @@ var CascaderPanel = defineComponent({
       };
       return events;
     };
+    const noDataText = t2.value.noData;
     const isNodeInPath = (node) => {
       const currentLevel = activePath.value[node.level - 1] || {};
       return currentLevel.id === node.id;
@@ -30904,13 +32151,14 @@ var CascaderPanel = defineComponent({
       iconRender,
       panelWidth,
       panelHeight,
-      searchPanelEvents
+      searchPanelEvents,
+      noDataText
     };
   },
   render() {
     const emptyWidth = parseInt(this.panelWidth, 10) > 200 ? this.panelWidth : `${200}px`;
     const searchPanelRender = () => this.suggestions.length ? createVNode("ul", {
-      "class": [resolveClassName("cascader-panel"), "bk-scroll-y"],
+      "class": [resolveClassName("cascader-panel"), "lesscode-bk-scroll-y"],
       "style": {
         height: this.panelHeight,
         width: this.panelWidth
@@ -30932,12 +32180,12 @@ var CascaderPanel = defineComponent({
     return createVNode("div", {
       "class": resolveClassName("cascader-panel-wrapper")
     }, [this.isFiltering ? searchPanelRender() : this.menus.list.map((menu2) => createVNode("ul", {
-      "class": [resolveClassName("cascader-panel"), "bk-scroll-y"],
+      "class": [resolveClassName("cascader-panel"), "lesscode-bk-scroll-y"],
       "style": {
         height: this.panelHeight,
         width: this.panelWidth
       }
-    }, [menu2.map((node) => {
+    }, [menu2.length ? menu2.map((node) => {
       var _a, _b;
       return createVNode("li", mergeProps({
         "class": [resolveClassName("cascader-node"), {
@@ -30958,7 +32206,9 @@ var CascaderPanel = defineComponent({
         node,
         data: node.data
       }), !node.isLeaf ? this.iconRender(node) : ""]);
-    })]))]);
+    }) : createVNode("div", {
+      "class": resolveClassName("cascader-panel-empty-wrapper")
+    }, [this.noDataText])]))]);
   }
 });
 function isNodeDisabled(node) {
@@ -31131,7 +32381,7 @@ class Store {
     nodeDataList.forEach((node) => this.appendNode(node, parentNode));
   }
 }
-var Component$7 = defineComponent({
+var Component$8 = defineComponent({
   name: "Cascader",
   directives: {
     bkTooltips: tooltips
@@ -31144,7 +32394,7 @@ var Component$7 = defineComponent({
   props: {
     modelValue: PropTypes.arrayOf(PropTypes.oneOfType([q(), String, Number])),
     list: PropTypes.array.def([]),
-    placeholder: PropTypes.string.def("\u8BF7\u9009\u62E9"),
+    placeholder: PropTypes.string.def(""),
     behavior: PropTypes.string.def("normal"),
     filterable: PropTypes.bool.def(false),
     multiple: PropTypes.bool.def(false),
@@ -31176,6 +32426,7 @@ var Component$7 = defineComponent({
   setup(props2, {
     emit
   }) {
+    const t2 = useLocale("select");
     const {
       separator: separator2,
       multiple
@@ -31206,6 +32457,7 @@ var Component$7 = defineComponent({
     const popover2 = ref(null);
     const bkCascaderRef = ref(null);
     const inputRef = ref(null);
+    const placeholder = computed(() => props2.placeholder ? props2.placeholder : t2.value.pleaseSelect);
     const getShowText = (node) => props2.showCompleteName ? node.pathNames.join(separator2) : node.pathNames[node.pathNames.length - 1];
     const updateSearchKey = () => {
       searchKey.value = selectedText.value;
@@ -31310,6 +32562,7 @@ var Component$7 = defineComponent({
       overflowTagIndex
     } = useTagsOverflow(bkCascaderRef, isEditMode, tagList);
     return {
+      calcuPlaceholder: placeholder,
       bkCascaderRef,
       inputRef,
       overflowTagIndex,
@@ -31388,23 +32641,7 @@ var Component$7 = defineComponent({
       }), [[resolveDirective("bk-tooltips"), collapseTooltip.join(", ")]])]);
     };
     const textRender = () => this.multiple ? null : createVNode("span", null, [this.selectedText]);
-    return createVNode("div", {
-      "class": [resolveClassName("cascader-wrapper"), this.floatMode ? "float-mode" : ""]
-    }, [createVNode("div", {
-      "class": [resolveClassName("cascader"), this.extCls, {
-        "is-unselected": this.modelValue.length === 0,
-        "is-hover": this.isHover,
-        "is-filterable": this.filterable,
-        "is-focus": this.isFocus,
-        "is-disabled": this.disabled,
-        "is-simplicity": this.behavior === "simplicity"
-      }],
-      "tabindex": "0",
-      "data-placeholder": this.placeholder,
-      "onMouseenter": this.setHover,
-      "onMouseleave": this.cancelHover,
-      "ref": "bkCascaderRef"
-    }, [suffixIcon(), createVNode(BkPopover, {
+    const popoverRender = () => createVNode(BkPopover, {
       "placement": "bottom-start",
       "theme": `light ${resolveClassName("cascader-popover")}`,
       "trigger": "click",
@@ -31416,15 +32653,17 @@ var Component$7 = defineComponent({
       "onAfterShow": this.popoverChangeEmitter,
       "boundary": "body"
     }, {
-      default: () => createVNode("div", {
-        "class": [resolveClassName("cascader-name"), "bk-scroll-y"]
+      default: () => this.$slots.trigger ? this.$slots.trigger({
+        selected: this.modelValue
+      }) : createVNode("div", {
+        "class": [resolveClassName("cascader-name"), "lesscode-bk-scroll-y"]
       }, [this.multiple && this.selectedTags.length > 0 && renderTags(), this.filterable ? (this.isCollapse || this.selectedTags.length === 0) && createVNode("input", {
         "class": [resolveClassName("cascader-search-input"), {
           "is-disabled": this.disabled
         }],
         "type": "text",
         "onInput": this.searchInputHandler,
-        "placeholder": this.placeholder,
+        "placeholder": this.calcuPlaceholder,
         "value": this.searchKey,
         "disabled": this.disabled,
         "ref": "inputRef"
@@ -31447,10 +32686,27 @@ var Component$7 = defineComponent({
           "class": resolveClassName("cascader-node-name")
         }, [scope.node.name])
       })])
-    })])]);
+    });
+    return createVNode("div", {
+      "class": [resolveClassName("cascader-wrapper"), this.floatMode ? "float-mode" : ""]
+    }, [this.$slots.trigger ? popoverRender() : createVNode("div", {
+      "class": [resolveClassName("cascader"), this.extCls, {
+        "is-unselected": this.modelValue.length === 0,
+        "is-hover": this.isHover,
+        "is-filterable": this.filterable,
+        "is-focus": this.isFocus,
+        "is-disabled": this.disabled,
+        "is-simplicity": this.behavior === "simplicity"
+      }],
+      "tabindex": "0",
+      "data-placeholder": this.calcuPlaceholder,
+      "onMouseenter": this.setHover,
+      "onMouseleave": this.cancelHover,
+      "ref": "bkCascaderRef"
+    }, [suffixIcon(), popoverRender()])]);
   }
 });
-const BkCascader = withInstallProps(Component$7, { CascaderPanel });
+const BkCascader = withInstallProps(Component$8, { CascaderPanel });
 var SliderButton = defineComponent({
   name: "SliderButton",
   props: {
@@ -31575,7 +32831,7 @@ var SliderButton = defineComponent({
       }
     };
     const renderDom = () => createVNode("div", {
-      "class": ["bk-slider-button", props2.params.vertical ? "vertical" : "horizontal", {
+      "class": ["lesscode-bk-slider-button", props2.params.vertical ? "vertical" : "horizontal", {
         grabbing: dragging.value
       }],
       "ref": button2,
@@ -31621,7 +32877,7 @@ const off = (element, event, handler) => {
     element.removeEventListener(event, handler, false);
   }
 };
-var Component$6 = defineComponent({
+var Component$7 = defineComponent({
   name: "Slider",
   props: {
     modelValue: PropTypes.oneOfType([PropTypes.array, PropTypes.number]),
@@ -31969,31 +33225,31 @@ var Component$6 = defineComponent({
     const renderDom = () => {
       var _a, _b;
       return createVNode("div", {
-        "class": ["bk-slider", props2.extCls]
+        "class": ["lesscode-bk-slider", props2.extCls]
       }, [(_a = slots.start) == null ? void 0 : _a.call(slots), createVNode("div", {
-        "class": "bk-slider-runway",
+        "class": "lesscode-bk-slider-runway",
         "ref": slider2,
         "style": runwayStyle.value,
         "onClick": setButtonPos
       }, [createVNode("div", {
-        "class": ["bk-slider-bar", props2.vertical ? "vertical" : "horizontal", {
+        "class": ["lesscode-bk-slider-bar", props2.vertical ? "vertical" : "horizontal", {
           disable: props2.disable
         }],
         "style": barStyle.value
       }, null), props2.showInterval ? intervals.value.map((interval, index2) => createVNode("div", {
         "key": index2,
-        "class": ["bk-slider-interval", {
+        "class": ["lesscode-bk-slider-interval", {
           vertical: props2.vertical
         }],
         "style": getIntervalStyle(interval)
       }, null)) : void 0, props2.customContent ? customList.value.map((custom, index2) => createVNode("div", {
         "key": index2,
-        "class": ["bk-slider-interval", {
+        "class": ["lesscode-bk-slider-interval", {
           vertical: props2.vertical
         }],
         "style": getIntervalStyle(custom.percent)
       }, null)) : void 0, props2.showBetweenLabel || props2.showIntervalLabel || props2.customContent ? createVNode("div", {
-        "class": ["bk-slider-labels", props2.vertical ? "vertical" : "horizontal"]
+        "class": ["lesscode-bk-slider-labels", props2.vertical ? "vertical" : "horizontal"]
       }, [function() {
         if (props2.showBetweenLabel) {
           return [createVNode("div", {
@@ -32010,14 +33266,14 @@ var Component$6 = defineComponent({
         }
         if (props2.showIntervalLabel) {
           return intervalLabels.value.map((intervalLabel, index2) => createVNode("div", {
-            "class": ["bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
+            "class": ["lesscode-bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
             "key": index2,
             "style": getIntervalStyle(intervalLabel.stepWidth)
           }, [intervalLabel.stepLabel]));
         }
         if (props2.customContent) {
           return customList.value.map((item, index2) => createVNode("div", {
-            "class": ["bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
+            "class": ["lesscode-bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
             "key": index2,
             "style": getIntervalStyle(item.percent)
           }, [item.label]));
@@ -32038,7 +33294,7 @@ var Component$6 = defineComponent({
         "onEmitChange": emitChange,
         "onResetSize": resetSize
       }, null) : void 0]), props2.showInput && !props2.vertical ? createVNode("div", {
-        "class": "bk-slider-input"
+        "class": "lesscode-bk-slider-input"
       }, [createVNode("div", {
         "class": "input-item"
       }, [createVNode(BkInput, {
@@ -32067,8 +33323,8 @@ var Component$6 = defineComponent({
     return this.renderDom();
   }
 });
-const Slider = withInstall(Component$6);
-var Component$5 = defineComponent({
+const Slider = withInstall(Component$7);
+var Component$6 = defineComponent({
   name: "ResizeLayout",
   props: {
     placement: PropTypes.placement().def("left"),
@@ -32248,7 +33504,7 @@ var Component$5 = defineComponent({
       setupAsideListener(!collapsed.value);
       if (collapsed.value) {
         asideRef.value.setAttribute(`data-${cssPropKey.value}`, `${asideRect[cssPropKey.value]}px`);
-        asideRef.value.style[cssPropKey.value] = "5px";
+        asideRef.value.style[cssPropKey.value] = props2.collapsible ? "0px" : "5px";
       } else {
         asideContentVisible.value = true;
         asideRef.value.style[cssPropKey.value] = asideRef.value.getAttribute(`data-${cssPropKey.value}`);
@@ -32289,47 +33545,48 @@ var Component$5 = defineComponent({
   },
   render() {
     var _a, _b, _c, _d, _e, _f;
-    const bkResizeLayoutClass = ["bk-resize-layout", `bk-resize-layout-${this.placement}`, {
-      "bk-resize-layout-collapsed": this.collapsed,
-      "bk-resize-layout-border": this.border
+    const bkResizeLayoutClass = ["lesscode-bk-resize-layout", `lesscode-bk-resize-layout-${this.placement}`, {
+      "lesscode-bk-resize-layout-collapsed": this.collapsed,
+      "lesscode-bk-resize-layout-border": this.border,
+      "lesscode-bk-resize-layout-collapsible": this.collapsible
     }];
     return createVNode("div", {
       "ref": "bkResizeLayoutRef",
       "class": bkResizeLayoutClass
     }, [createVNode("aside", {
-      "class": "bk-resize-layout-aside",
+      "class": "lesscode-bk-resize-layout-aside",
       "ref": "asideRef",
       "style": this.asideStyle
     }, [withDirectives(createVNode("div", {
-      "class": "bk-resize-layout-aside-content"
+      "class": "lesscode-bk-resize-layout-aside-content"
     }, [(_b = (_a = this.$slots).aside) == null ? void 0 : _b.call(_a)]), [[vShow, this.asideContentVisible]]), withDirectives(createVNode("i", {
-      "class": "bk-resize-trigger",
+      "class": "lesscode-bk-resize-trigger",
       "style": this.triggerStyle,
       "onMousedown": withModifiers(this.handleMousedown, ["left"])
     }, null), [[vShow, !this.disabled && (!this.collapsed || this.autoMinimize)]]), withDirectives(createVNode("i", {
-      "class": ["bk-resize-proxy", this.placement],
+      "class": ["lesscode-bk-resize-proxy", this.placement],
       "ref": "resizeProxyRef"
     }, null), [[vShow, !this.collapsed || this.autoMinimize]]), this.collapsible && (((_d = (_c = this.$slots)["collapse-trigger"]) == null ? void 0 : _d.call(_c)) || (this.collapsed ? createVNode(angleRight, {
-      "class": "bk-resize-collapse",
+      "class": "lesscode-bk-resize-collapse",
       "onClick": this.setCollapse
     }, null) : createVNode(angleLeft, {
-      "class": "bk-resize-collapse",
+      "class": "lesscode-bk-resize-collapse",
       "onClick": this.setCollapse
     }, null)))]), createVNode("main", {
-      "class": "bk-resize-layout-main"
+      "class": "lesscode-bk-resize-layout-main"
     }, [(_f = (_e = this.$slots).main) == null ? void 0 : _f.call(_e)]), createVNode("div", {
-      "class": "bk-resize-mask",
+      "class": "lesscode-bk-resize-mask",
       "ref": "resizeMaskRef"
     }, null)]);
   }
 });
-const BkResizeLayout = withInstall(Component$5);
+const BkResizeLayout = withInstall(Component$6);
 const timelineProps = {
   list: PropTypes.array.def([]),
   titleAble: PropTypes.bool.def(false),
   extCls: PropTypes.string
 };
-var Component$4 = defineComponent({
+var Component$5 = defineComponent({
   name: "Timeline",
   props: timelineProps,
   emits: ["select"],
@@ -32399,7 +33656,7 @@ var Component$4 = defineComponent({
       return false;
     };
     const makeClass = (item) => {
-      const timelineClsPrefix = "bk-timeline";
+      const timelineClsPrefix = "lesscode-bk-timeline";
       const dotColors = ["blue", "red", "green", "yellow", "gray"];
       const timelineThemeCls = item.type ? `${timelineClsPrefix}-${item.type}` : `${timelineClsPrefix}-default`;
       const timelineSizeCls = item.size ? `${timelineClsPrefix}-${item.size}` : "";
@@ -32410,29 +33667,29 @@ var Component$4 = defineComponent({
       return timelinesCls;
     };
     const getContent = (item) => this.$slots.content ? createVNode("div", {
-      "class": "bk-timeline-content"
+      "class": "lesscode-bk-timeline-content"
     }, [this.$slots.content(item)]) : createVNode("div", {
-      "class": "bk-timeline-content",
+      "class": "lesscode-bk-timeline-content",
       "innerHTML": item.content
     }, null);
     return createVNode("ul", {
-      "class": ["bk-timeline", this.extCls]
+      "class": ["lesscode-bk-timeline", this.extCls]
     }, [this.defaultTimelines.map((item) => {
       var _a, _b, _c;
       return createVNode("li", {
-        "class": ["bk-timeline-dot", makeClass(item)]
+        "class": ["lesscode-bk-timeline-dot", makeClass(item)]
       }, [isIcon(item) ? createVNode("div", {
-        "class": "bk-timeline-icon",
+        "class": "lesscode-bk-timeline-icon",
         "style": {
           border: item.border ? `2px solid ${item.color}` : "0px",
           borderRadius: item.border ? "50%" : "0"
         }
       }, [createVNode("span", {
-        "class": "bk-timeline-icon-inner"
+        "class": "lesscode-bk-timeline-icon-inner"
       }, [typeof item.icon === "function" ? createVNode(item.icon, null, null) : item.icon])]) : "", createVNode("div", {
-        "class": "bk-timeline-section"
+        "class": "lesscode-bk-timeline-section"
       }, [createVNode("div", {
-        "class": "bk-timeline-title",
+        "class": "lesscode-bk-timeline-title",
         "onClick": () => {
           this.titleSelect(item);
         }
@@ -32442,7 +33699,7 @@ var Component$4 = defineComponent({
     })]);
   }
 });
-const BkTimeline = withInstall(Component$4);
+const BkTimeline = withInstall(Component$5);
 const processProps = {
   list: PropTypes.array.def([]),
   controllable: PropTypes.bool.def(false),
@@ -32451,7 +33708,7 @@ const processProps = {
   displayKey: PropTypes.string.def("content"),
   extCls: PropTypes.string
 };
-var Component$3 = defineComponent({
+var Component$4 = defineComponent({
   name: "Process",
   props: processProps,
   emits: ["update:curProcess", "click"],
@@ -32498,7 +33755,7 @@ var Component$3 = defineComponent({
     };
   },
   render() {
-    const processClsPrefix = "bk-process";
+    const processClsPrefix = "lesscode-bk-process";
     const processCls = classes({
       [`${this.extCls}`]: !!this.extCls
     }, `${processClsPrefix}`);
@@ -32509,22 +33766,22 @@ var Component$3 = defineComponent({
     const renderIcon = (index2, item) => {
       if (index2 === this.curProcess - 1 && isLoadingStatus(item)) {
         return createVNode(circle, {
-          "class": "bk-icon bk-process-icon icon-loading"
+          "class": "lesscode-bk-icon lesscode-bk-process-icon icon-loading"
         }, null);
       }
       if (index2 === this.curProcess - 1 && isErrorStatus(item)) {
         return createVNode(error, {
-          "class": "bk-process-icon icon-error"
+          "class": "lesscode-bk-process-icon icon-error"
         }, null);
       }
       if (index2 === this.curProcess - 1 && isIcon(item)) {
         return createVNode("span", {
-          "class": "bk-process-icon-custom"
+          "class": "lesscode-bk-process-icon-custom"
         }, [createVNode(item.icon, null, null)]);
       }
       if (isDone(index2)) {
         return createVNode(done, {
-          "class": "bk-process-icon-done"
+          "class": "lesscode-bk-process-icon-done"
         }, null);
       }
     };
@@ -32551,8 +33808,8 @@ var Component$3 = defineComponent({
     }, [item[this.displayKey]]), renderIcon(index2, item)])]))])]);
   }
 });
-const BkProcess = withInstall(Component$3);
-const CLASS_PREFIX = "bk-upload";
+const BkProcess = withInstall(Component$4);
+const CLASS_PREFIX = "lesscode-bk-upload";
 var EThemes = /* @__PURE__ */ ((EThemes2) => {
   EThemes2["BUTTON"] = "button";
   EThemes2["DRAGGABLE"] = "draggable";
@@ -33828,7 +35085,7 @@ var useFileHandler = (props2, hooks) => {
     handleProgress
   };
 };
-var Component$2 = defineComponent({
+var Component$3 = defineComponent({
   name: "Upload",
   props: uploadProps,
   emits: ["exceed", "progress", "success", "error", "delete", "done"],
@@ -34033,7 +35290,7 @@ var Component$2 = defineComponent({
     })]);
   }
 });
-const Upload = withInstall(Component$2);
+const Upload = withInstall(Component$3);
 function Diff$1() {
 }
 Diff$1.prototype = {
@@ -36089,8 +37346,8 @@ var compiler = {};
       }
       return this.makeTemplate(context, text, options);
     };
-    Hogan2.wrapMain = function(code) {
-      return 'var t=this;t.b(i=i||"");' + code + "return t.fl();";
+    Hogan2.wrapMain = function(code2) {
+      return 'var t=this;t.b(i=i||"");' + code2 + "return t.fl();";
     };
     Hogan2.template = Hogan2.Template;
     Hogan2.makeTemplate = function(codeObj, text, options) {
@@ -36921,7 +38178,7 @@ var CodeDiff = defineComponent({
     const diffHtml = ref("");
     const diffBoxCls = computed(() => classes({
       dark: props2.theme === themesEnum.dark
-    }, "hljs bk-code-diff"));
+    }, "hljs lesscode-bk-code-diff"));
     function highlightElement() {
       nextTick(() => {
         if (diffBox.value) {
@@ -37895,9 +39152,9 @@ var InputContainer = defineComponent({
     };
     const colorPickerCls = computed(() => classes({
       error: props2.info.error
-    }, "bk-color-picker-input-value"));
+    }, "lesscode-bk-color-picker-input-value"));
     return () => createVNode("div", {
-      "class": "bk-color-picker-input-part"
+      "class": "lesscode-bk-color-picker-input-part"
     }, [createVNode("input", {
       "type": props2.info.name === "HEX" ? "text" : "number",
       "class": colorPickerCls.value,
@@ -37905,7 +39162,7 @@ var InputContainer = defineComponent({
       "onKeydown": handleTab,
       "onInput": handleInput
     }, null), createVNode("span", {
-      "class": "bk-color-picker-input-text"
+      "class": "lesscode-bk-color-picker-input-text"
     }, [props2.info.name])]);
   }
 });
@@ -38006,14 +39263,14 @@ var ColorInput = defineComponent({
       return result;
     };
     return () => createVNode("div", {
-      "class": "bk-color-picker-input"
+      "class": "lesscode-bk-color-picker-input"
     }, [createVNode("div", {
-      "class": "bk-color-picker-input-hex"
+      "class": "lesscode-bk-color-picker-input-hex"
     }, [createVNode(InputContainer, {
       "info": hex,
       "onInput": handleInput
     }, null)]), createVNode("div", {
-      "class": "bk-color-picker-input-rgba"
+      "class": "lesscode-bk-color-picker-input-rgba"
     }, [createVNode(InputContainer, {
       "info": r2,
       "onInput": handleInput
@@ -38158,7 +39415,7 @@ var HueSlider = defineComponent({
     return () => createVNode("div", {
       "ref": containerRef,
       "tabindex": "0",
-      "class": "bk-color-picker-hue",
+      "class": "lesscode-bk-color-picker-hue",
       "onKeydown": handleArrowKeydown,
       "onMousedown": (e) => {
         e.stopPropagation();
@@ -38166,10 +39423,10 @@ var HueSlider = defineComponent({
         handleMouseDown(e);
       }
     }, [createVNode("div", {
-      "class": "bk-color-picker-hue-pointer",
+      "class": "lesscode-bk-color-picker-hue-pointer",
       "style": pointerStyle.value
     }, [createVNode("div", {
-      "class": "bk-color-picker-hue-rectangle"
+      "class": "lesscode-bk-color-picker-hue-rectangle"
     }, null)])]);
   }
 });
@@ -38194,9 +39451,9 @@ var RecommendColors = defineComponent({
     });
     const colors = computed(() => getColorsFromRecommend(props2.recommend));
     const getColorClass = (color, index2) => classes({
-      "bk-color-picker-empty": color === "",
-      "bk-color-picker-recommend-selected-color": isFocused.value && selectedIndex.value === index2
-    }, "bk-color-picker-recommend-color");
+      "lesscode-bk-color-picker-empty": color === "",
+      "lesscode-bk-color-picker-recommend-selected-color": isFocused.value && selectedIndex.value === index2
+    }, "lesscode-bk-color-picker-recommend-color");
     const handleKeydown = (e) => {
       if (e.code === "Tab") {
         emit("tab", e);
@@ -38245,7 +39502,7 @@ var RecommendColors = defineComponent({
     };
     return () => createVNode("div", {
       "tabindex": "0",
-      "class": "bk-color-picker-recommend",
+      "class": "lesscode-bk-color-picker-recommend",
       "onFocus": () => isFocused.value = true,
       "onBlur": () => isFocused.value = false,
       "onKeydown": handleKeydown
@@ -38254,9 +39511,9 @@ var RecommendColors = defineComponent({
       "class": getColorClass(color, index2),
       "onClick": () => selectColor(index2)
     }, [selectedIndex.value === index2 ? createVNode("div", {
-      "class": "bk-color-picker-pointer"
+      "class": "lesscode-bk-color-picker-pointer"
     }, [createVNode("div", {
-      "class": "bk-color-picker-circle"
+      "class": "lesscode-bk-color-picker-circle"
     }, null)]) : void 0]))]);
   }
 });
@@ -38351,7 +39608,7 @@ var SaturationPanel = defineComponent({
     return () => createVNode("div", {
       "ref": containerRef,
       "tabindex": "0",
-      "class": "bk-color-picker-saturation",
+      "class": "lesscode-bk-color-picker-saturation",
       "style": backgroundStyle.value,
       "onKeydown": handleArrowKeydown,
       "onMousedown": (e) => {
@@ -38359,14 +39616,14 @@ var SaturationPanel = defineComponent({
         handleMouseDown(e);
       }
     }, [createVNode("div", {
-      "class": "bk-color-picker-saturation-white"
+      "class": "lesscode-bk-color-picker-saturation-white"
     }, null), createVNode("div", {
-      "class": "bk-color-picker-saturation-black"
+      "class": "lesscode-bk-color-picker-saturation-black"
     }, null), createVNode("div", {
-      "class": "bk-color-picker-pointer",
+      "class": "lesscode-bk-color-picker-pointer",
       "style": pointerStyle.value
     }, [createVNode("div", {
-      "class": "bk-color-picker-circle"
+      "class": "lesscode-bk-color-picker-circle"
     }, null)])]);
   }
 });
@@ -38388,7 +39645,7 @@ const colorPickerProps = {
   withValidate: PropTypes.bool.def(true)
 };
 const whiteColorObj = formatColor("#FFFFFF");
-var Component$1 = defineComponent({
+var Component$2 = defineComponent({
   name: "ColorPicker",
   directives: {
     clickoutside: ClickOutside
@@ -38406,11 +39663,11 @@ var Component$1 = defineComponent({
     const saturationPanelRef = ref(null);
     const referenceRef = ref(null);
     const colorPickerCls = computed(() => classes({
-      [`bk-color-picker-${props2.size}`]: props2.size,
-      "bk-color-picker-show-dropdown": showDropdown.value,
-      "bk-color-picker-show-value": props2.showValue,
-      "bk-color-picker-disabled": props2.disabled || props2.readonly
-    }, `bk-color-picker ${props2.extCls}`));
+      [`lesscode-bk-color-picker-${props2.size}`]: props2.size,
+      "lesscode-bk-color-picker-show-dropdown": showDropdown.value,
+      "lesscode-bk-color-picker-show-value": props2.showValue,
+      "lesscode-bk-color-picker-disabled": props2.disabled || props2.readonly
+    }, `lesscode-bk-color-picker ${props2.extCls}`));
     const isRenderRecommend = computed(() => Boolean(props2.recommend === true || Array.isArray(props2.recommend) && props2.recommend.length));
     onBeforeMount(() => {
       changeColorFromProps({
@@ -38457,7 +39714,7 @@ var Component$1 = defineComponent({
       showDropdown.value = true;
       (_a = dropRef.value) == null ? void 0 : _a.updateDropdown();
       setTimeout(() => {
-        const hexInput = dropRef.value.$el.querySelector(".bk-color-picker-input-hex .bk-color-picker-input-value");
+        const hexInput = dropRef.value.$el.querySelector(".lesscode-bk-color-picker-input-hex .lesscode-bk-color-picker-input-value");
         hexInput.select();
       }, 100);
     };
@@ -38529,27 +39786,27 @@ var Component$1 = defineComponent({
       "onKeydown": handleTriggerKeydown,
       "onClick": toggleDropdown
     }, [createVNode("div", {
-      "class": "bk-color-picker-color"
+      "class": "lesscode-bk-color-picker-color"
     }, [createVNode("span", {
-      "class": `bk-color-picker-color-square ${!colorStr.value && "bk-color-picker-empty"}`,
+      "class": `lesscode-bk-color-picker-color-square ${!colorStr.value && "lesscode-bk-color-picker-empty"}`,
       "style": `background: ${colorStr.value || "#FFF"}`
     }, null)]), props2.showValue ? createVNode("div", {
-      "class": "bk-color-picker-text"
+      "class": "lesscode-bk-color-picker-text"
     }, [createVNode("span", null, [colorStr.value])]) : void 0, createVNode("div", {
-      "class": "bk-color-picker-icon"
+      "class": "lesscode-bk-color-picker-icon"
     }, [createVNode(angleUp, {
       "class": "icon-angle-down"
     }, null)]), createVNode(Transition, {
-      "name": "bk-fade-down-transition"
+      "name": "lesscode-bk-fade-down-transition"
     }, {
       default: () => [withDirectives(createVNode(PickerDropdown, {
         "ref": dropRef,
         "triggerRef": referenceRef.value
       }, {
         default: () => [createVNode("div", {
-          "class": "bk-color-dropdown-container"
+          "class": "lesscode-bk-color-dropdown-container"
         }, [createVNode("div", {
-          "class": "bk-color-picker-dropdown",
+          "class": "lesscode-bk-color-picker-dropdown",
           "onClick": (e) => {
             e.stopPropagation();
           },
@@ -38569,7 +39826,7 @@ var Component$1 = defineComponent({
           "onTab": handleTabInput,
           "onChange": handleColorChange
         }, null), isRenderRecommend.value ? createVNode("div", {
-          "class": "bk-color-picker-recommend-container"
+          "class": "lesscode-bk-color-picker-recommend-container"
         }, [createVNode(RecommendColors, {
           "colorObj": colorObj,
           "recommend": props2.recommend,
@@ -38580,7 +39837,7 @@ var Component$1 = defineComponent({
     })]), [[resolveDirective("clickoutside"), hideDropDown]]);
   }
 });
-const BkColorPicker = withInstall(Component$1);
+const BkColorPicker = withInstall(Component$2);
 const BkTimePicker = withInstall(TimePicker);
 var raf = null;
 function requestAnimationFrame$1(callback) {
@@ -38868,6 +40125,9 @@ var SearchSelectMenu = defineComponent({
     emit
   }) {
     const t2 = useLocale("searchSelect");
+    const {
+      resolveClassName: resolveClassName2
+    } = usePrefix();
     const localFooterBtns = computed(() => {
       if (props2.footerBtns === void 0 || props2.footerBtns.length === 0) {
         return [{
@@ -38941,13 +40201,14 @@ var SearchSelectMenu = defineComponent({
       handleClickFooterBtn,
       filterList,
       getSearchNode,
-      localFooterBtns
+      localFooterBtns,
+      resolveClassName: resolveClassName2
     };
   },
   render() {
     var _a, _b, _c;
     return createVNode("div", {
-      "class": "bk-search-select-menu"
+      "class": this.resolveClassName("search-select-menu")
     }, [!!((_a = this.conditions) == null ? void 0 : _a.length) && createVNode("ul", {
       "class": "menu-header"
     }, [this.conditions.map((item) => createVNode("li", {
@@ -39086,6 +40347,7 @@ var SearchSelectInput = defineComponent({
     showInputBefore: Boolean,
     showCondition: Boolean,
     clickOutside: Function,
+    placeholder: String,
     conditions: {
       type: Array,
       default: () => []
@@ -39105,6 +40367,9 @@ var SearchSelectInput = defineComponent({
     expose
   }) {
     const t2 = useLocale("searchSelect");
+    const {
+      resolveClassName: resolveClassName2
+    } = usePrefix();
     const inputRef = ref(null);
     const popoverRef = ref(null);
     const keyword = ref("");
@@ -39559,6 +40824,7 @@ var SearchSelectInput = defineComponent({
       handleSelectItem,
       handleSelectCondtionItem,
       handleMenuFooterClick,
+      resolveClassName: resolveClassName2,
       t: t2
     };
   },
@@ -39589,7 +40855,7 @@ var SearchSelectInput = defineComponent({
           "input-after": showInputAfter
         },
         "contenteditable": true,
-        "data-placeholder": !inputInnerHtml && !this.keyword ? this.t.pleaseSelect : "",
+        "data-placeholder": !inputInnerHtml && !this.keyword ? this.placeholder : "",
         "data-tips": placeholder || "",
         "spellcheck": "false",
         "onFocus": this.handleInputFocus,
@@ -39607,7 +40873,7 @@ var SearchSelectInput = defineComponent({
       }
       return ((_a2 = this.menuList) == null ? void 0 : _a2.length) ? createVNode("div", {
         "ref": "popoverRef",
-        "class": "bk-search-select-popover"
+        "class": this.resolveClassName("search-select-popover")
       }, [createVNode(SearchSelectMenu, {
         "list": this.menuList,
         "keyword": this.keyword,
@@ -39768,6 +41034,7 @@ const SearchSelectProps = {
     type: Boolean,
     default: true
   },
+  placeholder: String,
   getMenuList: Function,
   validateValues: Function,
   valueSplitCode: {
@@ -39786,17 +41053,20 @@ const SearchSelectProps = {
     }
   }
 };
-var Component = defineComponent({
+var Component$1 = defineComponent({
   name: "SearchSelect",
   directives: {
     clickoutside: ClickOutside
   },
   props: SearchSelectProps,
-  emits: ["update:modelValue"],
+  emits: ["update:modelValue", "search"],
   setup(props2, {
     emit
   }) {
     const t2 = useLocale("searchSelect");
+    const {
+      resolveClassName: resolveClassName2
+    } = usePrefix();
     const localConditions = computed(() => {
       if (props2.conditions === void 0) {
         return [{
@@ -39868,10 +41138,10 @@ var Component = defineComponent({
       deep: true
     });
     onMounted(() => {
-      addListener(wrapRef.value.querySelector(".bk-search-select-container"), debounceResize);
+      addListener(wrapRef.value.querySelector(`.${resolveClassName2("search-select-container")}`), debounceResize);
     });
     onBeforeUnmount(() => {
-      removeListener(wrapRef.value.querySelector(".bk-search-select-container"), debounceResize);
+      removeListener(wrapRef.value.querySelector(`.${resolveClassName2("search-select-container")}`), debounceResize);
     });
     useSearchSelectProvider({
       onEditClick,
@@ -39902,7 +41172,7 @@ var Component = defineComponent({
         overflowIndex.value = -1;
         return;
       }
-      const inputEl = wrapRef.value.querySelector(".bk-search-select-container");
+      const inputEl = wrapRef.value.querySelector(`.${resolveClassName2("search-select-container")}`);
       const maxWidth = wrapRef.value.querySelector(".search-container").clientWidth - SELETED_MARGING_RIGHT - 2;
       const tagList = inputEl.querySelectorAll(".search-container-selected:not(.overflow-selected)");
       let width = 0;
@@ -39953,8 +41223,15 @@ var Component = defineComponent({
       emit("update:modelValue", list.map((item) => item.toValue()));
     }
     function handleInputFocus(v2) {
+      var _a;
       v2 && (overflowIndex.value = -1);
+      if (v2 === false) {
+        (_a = wrapRef.value.querySelector(`.${resolveClassName2("search-select-container")}`)) == null ? void 0 : _a.scrollTo(0, 0);
+      }
       isFocus.value = v2;
+    }
+    function handleClickSearch(e) {
+      emit("search", e);
     }
     return {
       inputRef,
@@ -39974,7 +41251,10 @@ var Component = defineComponent({
       handleInputOutside,
       handleAddSelected,
       handleDeleteSelected,
-      localConditions
+      handleClickSearch,
+      localConditions,
+      resolveClassName: resolveClassName2,
+      t: t2
     };
   },
   render() {
@@ -39988,11 +41268,11 @@ var Component = defineComponent({
       }
     } : {});
     return createVNode("div", {
-      "class": "bk-search-select",
+      "class": this.resolveClassName("search-select"),
       "ref": "wrapRef"
     }, [createVNode("div", {
       "class": {
-        "bk-search-select-container": true,
+        [this.resolveClassName("search-select-container")]: true,
         "is-focus": this.isFocus
       },
       "onClick": this.handleWrapClick
@@ -40020,6 +41300,7 @@ var Component = defineComponent({
       "showInputBefore": !this.selectedList.length,
       "showCondition": showCondition,
       "conditions": this.localConditions,
+      "placeholder": this.placeholder || this.t.pleaseSelect,
       "clickOutside": this.handleInputOutside,
       "getMenuList": this.getMenuList,
       "validateValues": this.validateValues,
@@ -40033,15 +41314,96 @@ var Component = defineComponent({
       "class": "search-clear",
       "onClick": this.handleClearAll
     }, null), this.$slots.append ? this.$slots.append() : createVNode(search, {
+      "onClick": this.handleClickSearch,
       "class": `search-nextfix-icon ${this.isFocus ? "is-focus" : ""}`
     }, null)])]), !!this.validateStr.length && createVNode("div", {
-      "class": "bk-search-select-tips"
+      "class": this.resolveClassName("search-select-tips")
     }, [this.$slots.validate ? this.$slots.validate() : createVNode(Fragment, null, [createVNode(exclamationCircleShape, {
       "class": "select-tips"
     }, null), this.validateStr || ""])])]);
   }
 });
-const BkSearchSelect = withInstall(Component);
+const BkSearchSelect = withInstall(Component$1);
+function triggerType() {
+  return j("trigger", {}).def("hover");
+}
+const PopConfirmProps = {
+  trigger: triggerType(),
+  title: PropTypes.string.def(""),
+  content: PropTypes.string.def(""),
+  confirmText: PropTypes.string.def(""),
+  cancelText: PropTypes.string.def(""),
+  placement: PropTypes.oneOfType([placementType$1().def(PlacementEnum.TOP), PropTypes.string]).def(PlacementEnum.TOP),
+  theme: PropTypes.string.def("light "),
+  icon: PropTypes.string.def(""),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).def("auto")
+};
+var Component = defineComponent({
+  name: "PopConfirm",
+  components: {
+    BkPopover,
+    BkButton
+  },
+  props: PopConfirmProps,
+  emits: ["confirm", "cancel"],
+  setup(props2, {
+    emit,
+    slots
+  }) {
+    const visible = ref(false);
+    const t2 = useLocale("popConfirm");
+    function ensure(e) {
+      visible.value = false;
+      emit("confirm");
+      e.stopPropagation();
+    }
+    function cancel(e) {
+      visible.value = false;
+      emit("cancel");
+      e.stopPropagation();
+    }
+    function renderIcon() {
+      if (typeof slots.icon === "function") {
+        return slots.icon();
+      }
+      return props2.icon;
+    }
+    const icon = renderIcon();
+    return () => createVNode(BkPopover, {
+      "isShow": visible.value,
+      "trigger": props2.trigger,
+      "theme": props2.theme,
+      "width": props2.width,
+      "onAfterShow": () => visible.value = true,
+      "extCls": "lesscode-bk-pop-confirm-box"
+    }, {
+      default: () => slots.default(),
+      content: () => createVNode("div", {
+        "class": "lesscode-bk-pop-confirm"
+      }, [typeof slots.content === "function" ? slots.content() : createVNode(Fragment, null, [props2.title ? createVNode("div", {
+        "class": "lesscode-bk-pop-confirm-title"
+      }, [icon ? createVNode("span", {
+        "class": "lesscode-bk-pop-confirm-icon"
+      }, [icon]) : "", createVNode("span", null, [props2.title])]) : "", createVNode("div", {
+        "class": "lesscode-bk-pop-confirm-content"
+      }, [!props2.title ? icon : "", props2.content])]), createVNode("div", {
+        "class": "lesscode-bk-pop-confirm-footer"
+      }, [createVNode(BkButton, {
+        "onClick": ensure,
+        "size": "small",
+        "theme": "primary"
+      }, {
+        default: () => [t2.value.ok]
+      }), createVNode(BkButton, {
+        "onClick": cancel,
+        "size": "small"
+      }, {
+        default: () => [t2.value.cancel]
+      })])])
+    });
+  }
+});
+const BKPopConfirm = withInstall(Component);
 var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   Alert: BkAlert,
@@ -40103,7 +41465,8 @@ var components = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   SearchSelect: BkSearchSelect,
   OverflowTitle: BkOverflowTitle,
   $bkPopover: createPopoverComponent,
-  ConfigProvider: BkConfigProvider
+  ConfigProvider: BkConfigProvider,
+  PopConfirm: BKPopConfirm
 }, Symbol.toStringTag, { value: "Module" }));
 const createInstall = (prefix = "Bk") => (app, options) => {
   const pre = app.config.globalProperties.bkUIPrefix || prefix;
@@ -40124,4 +41487,4 @@ var preset = {
   install: createInstall(),
   version: "0.0.1"
 };
-export { createPopoverComponent as $bkPopover, BkAffix as Affix, BkAlert as Alert, BkAnimateNumber as AnimateNumber, BkBacktop as Backtop, BkBadge as Badge, BkBreadcrumb as Breadcrumb, BkButton as Button, BkCard as Card, BkCascader as Cascader, BkCheckbox as Checkbox, BkCodeDiff as CodeDiff, BkCollapse as Collapse, BkColorPicker as ColorPicker, BkConfigProvider as ConfigProvider, BkContainer as Container, BkDatePicker as DatePicker, BkDialog as Dialog, BkDivider as Divider, BkDropdown as Dropdown, BkException as Exception, BkFixedNavbar as FixedNavbar, BkForm as Form, BkInfoBox as InfoBox, BkInput as Input, BkLink as Link, BkLoading as Loading, BkMenu as Menu, Message, BkModal as Modal, Navigation, Notify, BkOverflowTitle as OverflowTitle, BkPagination as Pagination, BkPopover as Popover, BkPopover2 as Popover2, BkProcess as Process, BkProgress as Progress, BkRadio as Radio, BkRate as Rate, BkResizeLayout as ResizeLayout, BkSearchSelect as SearchSelect, BkSelect as Select, BkSideslider as Sideslider, Slider, BkSteps as Steps, BkSwiper as Swiper, BkSwitcher as Switcher, BkTab as Tab, BkTable as Table, BkTableColumn as TableColumn, BkTag as Tag, TagInput, BkTimeline as TimeLine, BkTimePicker as TimePicker, Transfer, BkTree as Tree, Upload, BkVirtualRender as VirtualRender, ellipsis as bkEllipsis, createInstance as bkEllipsisInstance, tooltips as bkTooltips, ClickOutside as clickoutside, configProviderProps, BkContainer as containerProps, preset as default, defaultRootConfig, mousewheel, overflowTitle, provideGlobalConfig, rootProviderKey, useLocale };
+export { createPopoverComponent as $bkPopover, BkAffix as Affix, BkAlert as Alert, BkAnimateNumber as AnimateNumber, BkBacktop as Backtop, BkBadge as Badge, BkBreadcrumb as Breadcrumb, BkButton as Button, BkCard as Card, BkCascader as Cascader, BkCheckbox as Checkbox, BkCodeDiff as CodeDiff, BkCollapse as Collapse, BkColorPicker as ColorPicker, BkConfigProvider as ConfigProvider, BkContainer as Container, BkDatePicker as DatePicker, BkDialog as Dialog, BkDivider as Divider, BkDropdown as Dropdown, BkException as Exception, BkFixedNavbar as FixedNavbar, BkForm as Form, BkInfoBox as InfoBox, BkInput as Input, BkLink as Link, BkLoading as Loading, BkMenu as Menu, Message, BkModal as Modal, Navigation, Notify, BkOverflowTitle as OverflowTitle, BkPagination as Pagination, BKPopConfirm as PopConfirm, BkPopover as Popover, BkPopover2 as Popover2, BkProcess as Process, BkProgress as Progress, BkRadio as Radio, BkRate as Rate, BkResizeLayout as ResizeLayout, BkSearchSelect as SearchSelect, BkSelect as Select, BkSideslider as Sideslider, Slider, BkSteps as Steps, BkSwiper as Swiper, BkSwitcher as Switcher, BkTab as Tab, BkTable as Table, BkTableColumn as TableColumn, BkTag as Tag, TagInput, BkTimeline as TimeLine, BkTimePicker as TimePicker, Transfer, BkTree as Tree, Upload, BkVirtualRender as VirtualRender, ellipsis as bkEllipsis, createInstance as bkEllipsisInstance, tooltips as bkTooltips, ClickOutside as clickoutside, BkContainer as containerProps, preset as default, mousewheel, overflowTitle, provideGlobalConfig, setPrefixVariable, useGlobalConfig, useLocale, usePrefix };
