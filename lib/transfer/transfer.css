@@ -1,0 +1,161 @@
+.bk-transfer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.bk-transfer .transfer {
+  margin: 0 8px;
+  font-size: 24px;
+  color: #c4c6cc;
+}
+.bk-transfer .source-list,
+.bk-transfer .target-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  min-width: 200px;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #dcdee5;
+  border-radius: 2px;
+}
+.bk-transfer .source-list .slot-header,
+.bk-transfer .target-list .slot-header,
+.bk-transfer .source-list .header,
+.bk-transfer .target-list .header {
+  height: 40px;
+  padding: 0 16px;
+  background-color: #fafbfd;
+  border-bottom: 1px solid #dcdee5;
+}
+.bk-transfer .source-list .header,
+.bk-transfer .target-list .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.bk-transfer .source-list .header span,
+.bk-transfer .target-list .header span {
+  font-size: 12px;
+  font-weight: normal;
+  color: #3a84ff;
+  cursor: pointer;
+}
+.bk-transfer .source-list .header span.disabled,
+.bk-transfer .target-list .header span.disabled {
+  color: #c4c6cc;
+  cursor: not-allowed;
+}
+.bk-transfer .source-list .transfer-search-input,
+.bk-transfer .target-list .transfer-search-input {
+  width: calc(100% - 32px);
+  height: 30px;
+  margin: 8px 16px 0;
+  border-bottom: 1px solid #dcdee5;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  outline: none;
+}
+.bk-transfer .source-list .transfer-search-input.is-focused,
+.bk-transfer .target-list .transfer-search-input.is-focused {
+  box-shadow: none;
+}
+.bk-transfer .source-list .transfer-search-input .icon-search,
+.bk-transfer .target-list .transfer-search-input .icon-search {
+  font-size: 18px;
+  line-height: 28px;
+  color: #c4c6cc;
+}
+.bk-transfer .source-list .transfer-search-input input,
+.bk-transfer .target-list .transfer-search-input input {
+  padding-left: 4px;
+}
+.bk-transfer .source-list .empty,
+.bk-transfer .target-list .empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  color: #c4c6cc;
+  cursor: default;
+}
+.bk-transfer .source-list .content,
+.bk-transfer .target-list .content {
+  flex: 1;
+  margin: 8px 0;
+  overflow-y: auto;
+}
+.bk-transfer .source-list .content li.custom-item,
+.bk-transfer .target-list .content li.custom-item,
+.bk-transfer .source-list .content li .item-content,
+.bk-transfer .target-list .content li .item-content {
+  display: flex;
+  height: 32px;
+  padding: 0 10px 0 16px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  align-items: center;
+}
+.bk-transfer .source-list .content li.custom-item:hover:not(.is-disabled),
+.bk-transfer .target-list .content li.custom-item:hover:not(.is-disabled),
+.bk-transfer .source-list .content li .item-content:hover:not(.is-disabled),
+.bk-transfer .target-list .content li .item-content:hover:not(.is-disabled) {
+  color: #3a84ff;
+  background-color: #e1ecff;
+}
+.bk-transfer .source-list .content li.custom-item:hover:not(.is-disabled) .icon-wrapper,
+.bk-transfer .target-list .content li.custom-item:hover:not(.is-disabled) .icon-wrapper,
+.bk-transfer .source-list .content li .item-content:hover:not(.is-disabled) .icon-wrapper,
+.bk-transfer .target-list .content li .item-content:hover:not(.is-disabled) .icon-wrapper {
+  visibility: visible;
+}
+.bk-transfer .source-list .content li.custom-item .content-text,
+.bk-transfer .target-list .content li.custom-item .content-text,
+.bk-transfer .source-list .content li .item-content .content-text,
+.bk-transfer .target-list .content li .item-content .content-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bk-transfer .source-list .content li.custom-item .icon-wrapper,
+.bk-transfer .target-list .content li.custom-item .icon-wrapper,
+.bk-transfer .source-list .content li .item-content .icon-wrapper,
+.bk-transfer .target-list .content li .item-content .icon-wrapper {
+  visibility: hidden;
+}
+.bk-transfer .source-list .content li.custom-item .icon-wrapper .bk-icon,
+.bk-transfer .target-list .content li.custom-item .icon-wrapper .bk-icon,
+.bk-transfer .source-list .content li .item-content .icon-wrapper .bk-icon,
+.bk-transfer .target-list .content li .item-content .icon-wrapper .bk-icon {
+  display: flex;
+  font-size: 30px;
+}
+.bk-transfer .source-list .content li.custom-item .icon-wrapper .icon-delete,
+.bk-transfer .target-list .content li.custom-item .icon-wrapper .icon-delete,
+.bk-transfer .source-list .content li .item-content .icon-wrapper .icon-delete,
+.bk-transfer .target-list .content li .item-content .icon-wrapper .icon-delete {
+  margin-right: 6px;
+  font-size: 16px;
+}
+.bk-transfer .source-list .content li.custom-item.is-disabled,
+.bk-transfer .target-list .content li.custom-item.is-disabled,
+.bk-transfer .source-list .content li .item-content.is-disabled,
+.bk-transfer .target-list .content li .item-content.is-disabled {
+  color: #c4c6cc;
+  cursor: not-allowed;
+}
+.bk-transfer .source-list .content::-webkit-scrollbar,
+.bk-transfer .target-list .content::-webkit-scrollbar {
+  width: 4px;
+}
+.bk-transfer .source-list .content::-webkit-scrollbar-thumb,
+.bk-transfer .target-list .content::-webkit-scrollbar-thumb {
+  height: 5px;
+  background-color: #dcdee5;
+  border-radius: 2px;
+}

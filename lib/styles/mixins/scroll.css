@@ -1,0 +1,17 @@
+.bk-F-scroll-x {
+  overflow-x: auto;
+  scrollbar-color: #a0a0a0 transparent;
+  scrollbar-width: thin;
+}
+.bk-F-scroll-x::-webkit-scrollbar {
+  height: 6px;
+}
+.bk-F-scroll-y {
+  overflow-y: auto;
+}
+.bk-F-scroll-y::-webkit-scrollbar {
+  width: 4px;
+}
+.bk-F-scroll-y::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}

@@ -1,0 +1,137 @@
+.bk-form {
+  text-align: left;
+}
+.bk-form--vertical .bk-form-label {
+  float: unset;
+  width: auto;
+  padding-right: 0;
+  margin-bottom: 8px;
+  line-height: 20px;
+  text-align: left;
+}
+.bk-form--vertical .bk-form-content {
+  text-align: left;
+}
+.bk-form-item {
+  margin-bottom: 24px;
+}
+.bk-form-item.is-required .bk-form-label:after {
+  position: absolute;
+  top: 0;
+  width: 14px;
+  color: #ea3636;
+  text-align: center;
+  content: '*';
+}
+.bk-form-item.is-error .bk-input,
+.bk-form-item.is-error .bk-textarea,
+.bk-form-item.is-error .bk-date-picker-editor,
+.bk-form-item.is-error .bk-tag-input {
+  border-color: #ea3636;
+}
+.bk-form-item:after,
+.bk-form-item:before {
+  display: table;
+  content: '';
+}
+.bk-form-item:after {
+  clear: both;
+}
+.bk-form-label {
+  position: relative;
+  float: left;
+  padding-right: 24px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 32px;
+  color: #63656e;
+  text-align: right;
+  vertical-align: middle;
+}
+.bk-form-label-description {
+  cursor: pointer;
+  border-bottom: 1px dashed #979ba5;
+}
+.bk-form-content {
+  position: relative;
+  line-height: 32px;
+}
+.bk-form-error {
+  position: absolute;
+  left: 0;
+  padding-top: 4px;
+  font-size: 12px;
+  line-height: 1;
+  color: #ea3636;
+  text-align: left;
+}
+.bk-form-error-tips {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 16px;
+  line-height: 1;
+  color: #ea3636;
+}
+.bk-compose-form-item {
+  display: inline-block;
+}
+.bk-compose-form-item > .bk-input,
+.bk-compose-form-item > .bk-textarea,
+.bk-compose-form-item > .bk-select,
+.bk-compose-form-item > .bk-cascade,
+.bk-compose-form-item > .bk-color-picker,
+.bk-compose-form-item > .bk-date-picker,
+.bk-compose-form-item > .bk-tag-input,
+.bk-compose-form-item > .bk-tag-selector,
+.bk-compose-form-item > .bk-search-select {
+  float: left;
+  width: auto;
+  margin-left: -1px;
+}
+.bk-compose-form-item .bk-input,
+.bk-compose-form-item .bk-form-password,
+.bk-compose-form-item .bk-textarea,
+.bk-compose-form-item .bk-select,
+.bk-compose-form-item .bk-cascade,
+.bk-compose-form-item .bk-color-picker,
+.bk-compose-form-item .bk-date-picker .bk-date-picker-editor,
+.bk-compose-form-item .bk-tag-input,
+.bk-compose-form-item .bk-search-select {
+  border-radius: 0;
+}
+.bk-compose-form-item .bk-input.control-active,
+.bk-compose-form-item .bk-select.is-focus,
+.bk-compose-form-item .bk-cascade.is-focus,
+.bk-compose-form-item .bk-color-picker.bk-color-picker-show-dropdown,
+.bk-compose-form-item .bk-color-picker:hover,
+.bk-compose-form-item .bk-date-picker .bk-date-picker-editor:focus,
+.bk-compose-form-item .bk-tag-input.active,
+.bk-compose-form-item .bk-tag-selector,
+.bk-compose-form-item .bk-search-select.is-focus {
+  z-index: 1;
+  opacity: 1;
+}
+.bk-compose-form-item .bk-compose-form-item-head.bk-input,
+.bk-compose-form-item .bk-compose-form-item-head.bk-select,
+.bk-compose-form-item .bk-compose-form-item-head.bk-cascade,
+.bk-compose-form-item .bk-compose-form-item-head.bk-color-picker,
+.bk-compose-form-item .bk-compose-form-item-head.bk-date-picker .bk-date-picker-editor,
+.bk-compose-form-item .bk-compose-form-item-head.bk-tag-input,
+.bk-compose-form-item .bk-compose-form-item-head.bk-tag-input,
+.bk-compose-form-item .bk-compose-form-item-head.bk-search-select {
+  margin-left: 0;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.bk-compose-form-item .bk-compose-form-item-tail.bk-input,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-select,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-cascade,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-color-picker,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-date-picker,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-tag-input,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-tag-input,
+.bk-compose-form-item .bk-compose-form-item-tail.bk-search-select {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}

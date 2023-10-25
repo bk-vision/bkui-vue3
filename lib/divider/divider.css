@@ -1,0 +1,38 @@
+.bk-divider {
+  position: relative;
+  background: #c4c6cc;
+}
+.bk-divider-horizontal {
+  width: 100%;
+  height: 1px;
+  margin: 1em 0;
+}
+.bk-divider-info {
+  position: absolute;
+  top: 50%;
+  padding: 0 1.4em;
+  color: #63656e;
+  background-color: white;
+  transform: translateY(-50%);
+}
+.bk-divider-info-center {
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.bk-divider-info .bk-divider-horizontal-left {
+  left: 2em;
+}
+.bk-divider-info .bk-divider-horizontal-right {
+  right: 2em;
+}
+.bk-divider-vertical .bk-divider-info {
+  padding: 20px 0;
+}
+.bk-divider-vertical {
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  min-height: 1em;
+  margin: 0 8px;
+  vertical-align: middle;
+}

@@ -1,0 +1,55 @@
+.bk-link {
+  font-size: 14px;
+  text-decoration: none;
+}
+.bk-link.is-disabled {
+  cursor: not-allowed;
+}
+.bk-link.has-underline {
+  text-decoration: underline;
+}
+.bk-link.default {
+  color: #63656e;
+}
+.bk-link.default:hover {
+  color: #979ba5;
+}
+.bk-link.default.is-disabled {
+  color: #dcdee5;
+}
+.bk-link.primary {
+  color: #3a84ff;
+}
+.bk-link.primary:hover {
+  color: #699df4;
+}
+.bk-link.primary.is-disabled {
+  color: #a3c5fd;
+}
+.bk-link.success {
+  color: #2dcb56;
+}
+.bk-link.success:hover {
+  color: #45e35f;
+}
+.bk-link.success.is-disabled {
+  color: #94f5a4;
+}
+.bk-link.warning {
+  color: #ff9c01;
+}
+.bk-link.warning:hover {
+  color: #ffb848;
+}
+.bk-link.warning.is-disabled {
+  color: #ffd695;
+}
+.bk-link.danger {
+  color: #ea3636;
+}
+.bk-link.danger:hover {
+  color: #ff5656;
+}
+.bk-link.danger.is-disabled {
+  color: #fd9c9c;
+}

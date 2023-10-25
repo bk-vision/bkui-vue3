@@ -1,0 +1,91 @@
+@keyframes loading-scale-animate {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.6);
+  }
+}
+@keyframes fade {
+  100% {
+    background-color: transparent;
+  }
+}
+.bk-fade-transtion .bk-fade-enter-active,
+.bk-fade-transtion .bk-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.bk-fade-transtion .bk-fade-enter,
+.bk-fade-transtion .bk-fade-leave-to {
+  opacity: 0;
+}
+.clearfix-style::after {
+  display: block;
+  height: 0;
+  clear: both;
+  font-size: 0;
+  content: '';
+  visibility: hidden;
+}
+.bk-popper {
+  display: none;
+  padding: 7px 14px;
+  font-size: 12px;
+  color: #fff;
+  background: #333;
+  border-radius: 4px;
+}
+.bk-popper.light {
+  color: #63656e;
+  background: #fff;
+  box-shadow: #dcdee5 0 0 6px 0;
+}
+.bk-popper .bk-popper-arrow,
+.bk-popper .bk-popper-arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+.bk-popper .bk-popper-arrow {
+  visibility: hidden;
+}
+.bk-popper .bk-popper-arrow::before {
+  content: '';
+  visibility: visible;
+  transform: rotate(45deg);
+}
+.bk-popper[data-show] {
+  display: block;
+}
+.bk-popper[data-popper-placement^='top'] > .bk-popper-arrow {
+  bottom: -4px;
+}
+.bk-popper[data-popper-placement^='bottom'] > .bk-popper-arrow {
+  top: -4px;
+}
+.bk-popper[data-popper-placement^='left'] > .bk-popper-arrow {
+  right: -4px;
+}
+.bk-popper[data-popper-placement^='right'] > .bk-popper-arrow {
+  left: -4px;
+}
+.bk-grid-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+.bk-grid-row::after {
+  display: block;
+  height: 0;
+  clear: both;
+  font-size: 0;
+  content: '';
+  visibility: hidden;
+}
+.bk-grid-row .bk-grid-col > .bk-grid-row {
+  margin: 0 auto;
+}
+.bk-grid-col {
+  position: relative;
+  float: left;
+}

@@ -1,0 +1,180 @@
+.bk-modal-wrapper.bk-info-wrapper {
+  width: 440px;
+}
+.bk-modal-wrapper.bk-info-wrapper.normal {
+  width: 440px;
+}
+.bk-modal-wrapper.bk-info-wrapper.small {
+  width: 400px;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-modal-body {
+  border-radius: 2px;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-dialog-header {
+  padding: 24px 24px 0;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-dialog-header .bk-dialog-title {
+  height: 27px;
+  margin: 15px 0 10px;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-modal-content {
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  padding: 0 50px 10px;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-modal-content .bk-info-sub-title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-modal-footer {
+  padding: 0 65px 33px;
+  background-color: #fff;
+  border-top: none;
+}
+.bk-modal-wrapper.bk-info-wrapper .bk-modal-footer .bk-dialog-footer button {
+  min-width: 88px;
+}
+.bk-modal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+}
+.bk-modal-wrapper .bk-modal-outside {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.bk-modal-wrapper.normal {
+  width: 480px;
+  height: 240px;
+}
+.bk-modal-wrapper.small {
+  width: 400px;
+  height: 200px;
+}
+.bk-modal-wrapper.medium {
+  width: 640px;
+  height: 400px;
+}
+.bk-modal-wrapper.large {
+  width: 960px;
+  height: 720px;
+}
+.bk-modal-wrapper .bk-modal-body {
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.bk-modal-wrapper.bk-dialog-wrapper {
+  position: relative;
+}
+.bk-modal-wrapper.bk-dialog-wrapper * {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.bk-modal-wrapper.bk-dialog-wrapper.scroll-able .bk-modal-content {
+  overflow: auto;
+}
+.bk-modal-wrapper.bk-dialog-wrapper.multi-instance {
+  position: absolute;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-tool {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 30px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .move {
+  cursor: move;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .content-dragging {
+  user-select: none;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header {
+  padding: 24px;
+  font-size: 20px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header .bk-header-icon {
+  text-align: center;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header .bk-header-icon .bk-info-icon {
+  display: inline-block;
+  font-size: 48px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header .bk-header-icon .bk-info-icon.success {
+  color: #2dcb56;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header .bk-header-icon .bk-info-icon.warning {
+  color: #ff9c01;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header .bk-header-icon .bk-info-icon.danger {
+  color: #ea3636;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-dialog-header .bk-dialog-title {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  color: #313238;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-content {
+  height: calc(100% - 79px);
+  max-height: calc(100vh - 300px);
+  min-height: 100px;
+  padding: 3px 24px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #63656e;
+}
+.bk-modal-wrapper.bk-dialog-wrapper.fullscreen .bk-modal-content {
+  max-height: calc(100vh - 137px);
+}
+.bk-modal-wrapper.bk-dialog-wrapper.fullscreen.no-footer {
+  max-height: calc(100vh - 79px);
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-body {
+  padding-bottom: 58px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper.no-footer .bk-modal-body {
+  padding-bottom: 0;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 48px;
+  padding: 8px 24px;
+  background-color: #fafbfd;
+  border-top: 1px solid #dcdee5;
+  border-radius: 2px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-footer .bk-dialog-perv {
+  float: left;
+  margin-right: 8px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-footer .bk-dialog-next {
+  float: left;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-footer .bk-dialog-cancel {
+  margin-left: 8px;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 18px;
+  color: #c4c6cc;
+  cursor: pointer;
+}
+.bk-modal-wrapper.bk-dialog-wrapper .bk-modal-close:hover {
+  color: #979ba5;
+}

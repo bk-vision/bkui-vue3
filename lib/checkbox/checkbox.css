@@ -1,0 +1,100 @@
+.bk-checkbox-group {
+  display: inline-flex;
+  letter-spacing: normal;
+}
+.bk-checkbox {
+  display: inline-flex;
+  justify-self: center;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: normal;
+  color: #63656e;
+  cursor: pointer;
+  user-select: none;
+}
+.bk-checkbox ~ .bk-checkbox {
+  margin-left: 30px;
+}
+.bk-checkbox.is-checked .bk-checkbox-input {
+  background: #3a84ff;
+  border-color: #3a84ff;
+  transition: all 0.1s;
+}
+.bk-checkbox.is-checked .bk-checkbox-input.small::after {
+  width: 3px;
+  height: 6px;
+}
+.bk-checkbox.is-checked .bk-checkbox-input::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border: 2px solid #fff;
+  border-top: 0;
+  border-left: 0;
+  content: '';
+  transform: translate(-50%, -60%) scaleY(1) rotate(45deg);
+  transform-origin: center;
+}
+.bk-checkbox.is-indeterminated .bk-checkbox-input {
+  background: #3a84ff;
+  border-color: #3a84ff;
+  transition: all 0.1s;
+}
+.bk-checkbox.is-indeterminated .bk-checkbox-input.small::after {
+  width: 6px;
+  height: 2px;
+}
+.bk-checkbox.is-indeterminated .bk-checkbox-input::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 2px;
+  background: #fff;
+  border: none;
+  border-radius: 2px;
+  content: '';
+  transform: translate(-50%, -50%);
+}
+.bk-checkbox.is-disabled {
+  color: #c4c6cc;
+  cursor: not-allowed;
+}
+.bk-checkbox.is-disabled .bk-checkbox-input {
+  background: #fafbfd;
+  border-color: #dcdee5;
+}
+.bk-checkbox.is-disabled .bk-checkbox-input::after {
+  background: #dcdee5;
+}
+.bk-checkbox.is-disabled.is-checked .bk-checkbox-input {
+  background: #dcdee5;
+}
+.bk-checkbox-input {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  border: 1px solid #979ba5;
+  border-radius: 2px;
+}
+.bk-checkbox-input.small {
+  width: 14px;
+  height: 14px;
+}
+.bk-checkbox-original {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 0;
+  height: 0;
+}
+.bk-checkbox-label {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+}

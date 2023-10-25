@@ -1,0 +1,50 @@
+@keyframes loading-scale-animate {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.6);
+  }
+}
+@keyframes fade {
+  100% {
+    background-color: transparent;
+  }
+}
+.bk-fade-transtion .bk-fade-enter-active,
+.bk-fade-transtion .bk-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.bk-fade-transtion .bk-fade-enter,
+.bk-fade-transtion .bk-fade-leave-to {
+  opacity: 0;
+}
+.bk-backtop {
+  position: fixed;
+  display: flex;
+  width: 52px;
+  height: 52px;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 1;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  justify-content: center;
+}
+.bk-backtop:hover .bk-backtop-icon {
+  color: #3a84ff;
+}
+.bk-backtop .bk-backtop-icon {
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+}
+.bk-fade-enter-active,
+.bk-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.bk-fade-enter,
+.bk-fade-leave-to {
+  opacity: 0;
+}

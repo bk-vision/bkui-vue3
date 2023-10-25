@@ -1,0 +1,205 @@
+.bk-tag-input {
+  position: relative;
+  min-height: 32px;
+}
+.bk-tag-input .bk-tag-input-trigger {
+  position: relative;
+  display: flex;
+  min-height: 32px;
+  padding: 0 0 0 5px;
+  overflow: hidden;
+  font-size: 12px;
+  cursor: pointer;
+  background: white;
+  border: 1px solid #c4c6cc;
+  border-radius: 2px;
+  align-items: center;
+  justify-content: space-between;
+}
+.bk-tag-input .bk-tag-input-trigger.active {
+  border-color: #3a84ff;
+}
+.bk-tag-input .bk-tag-input-trigger.disabled {
+  cursor: not-allowed;
+  background: #fafbfd;
+  border-color: #dcdee5;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list {
+  display: inline-flex;
+  max-height: 135px;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list > li {
+  display: inline-flex;
+  height: 22px;
+  margin: 4px 5px 4px 0;
+  overflow: hidden;
+  font-size: 12px;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  align-items: center;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list > li.tag-item {
+  background: #f0f1f5;
+  border-color: #f0f1f5;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list .remove-tag {
+  flex-shrink: 0;
+  margin-right: 5px;
+  font-size: 14px;
+  line-height: 0;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list .tag {
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+  flex: 1;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list .text {
+  padding: 0 5px;
+  line-height: 20px;
+  color: #63656e;
+  background-color: #f0f1f5;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+.bk-tag-input .bk-tag-input-trigger .tag-list .tag-input {
+  width: 10px;
+  height: 22px;
+  max-width: 295px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+.bk-tag-input .bk-tag-input-trigger .placeholder {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  padding: 0;
+  margin: 0;
+  line-height: 30px;
+  color: #c4c6cc;
+}
+.bk-tag-input .bk-tag-input-trigger .clear-icon {
+  margin-right: 5px;
+  font-size: 14px;
+  line-height: 0;
+  color: #c4c6cc;
+  cursor: pointer;
+}
+.bk-tag-input .bk-tag-input-trigger .clear-icon:hover {
+  color: #979ba5;
+}
+.bk-tag-input-popover-content.bk-popover {
+  padding: 0;
+}
+.bk-tag-input-popover-content .bk-selector-list {
+  min-width: 150px;
+}
+.bk-tag-input-popover-content .bk-selector-list .outside-ul {
+  max-height: 160px;
+  padding: 0;
+  padding: 6px 0;
+  margin: 0;
+  overflow-y: auto;
+  list-style: none;
+  background-color: white;
+  border: 1px solid #dcdee5;
+  border-radius: 2px;
+}
+.bk-tag-input-popover-content .bk-selector-list .outside-ul::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.bk-tag-input-popover-content .bk-selector-list .outside-ul::-webkit-scrollbar-thumb {
+  min-height: 24px;
+  background-color: #dcdee5;
+  border-radius: 3px;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-group-item {
+  list-style: none;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-group-item .group-name {
+  padding-left: 11px;
+  font-size: 12px;
+  line-height: 32px;
+  color: #979ba5;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-group-list-item {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  background-color: white;
+  border-right: #c4c6cc;
+  border-left: #c4c6cc;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item:first-child {
+  border-top: #c4c6cc;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item:last-child {
+  border-bottom: #c4c6cc;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item.bk-selector-selected {
+  background-color: #f4f6fa;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item.bk-selector-selected .selected-icon {
+  display: inline-block;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item.bk-selector-actived {
+  background-color: #f4f6fa;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item:hover {
+  background-color: #eaf3ff;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item.disabled {
+  cursor: not-allowed;
+  background: white;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item.disabled .text {
+  color: #c4c6cc;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item.loading {
+  padding: 5px 0 3px;
+  text-align: center;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item .loading {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  cursor: default;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item .text {
+  padding: 0 10px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 32px;
+  color: #63656e;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item .bk-selector-tools {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: none;
+  font-size: 12px;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item .bk-selector-tools .bk-selector-list-icon {
+  margin-right: 14px;
+}
+.bk-tag-input-popover-content .bk-selector-list .bk-selector-list-item .highlight-text {
+  color: #3a84ff;
+}

@@ -1,0 +1,118 @@
+.bk-badge-main {
+  position: relative;
+  display: inline-block;
+}
+.bk-badge-main .bk-badge {
+  position: relative;
+  display: inline-block;
+  height: 18px;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  background-color: white;
+  border-radius: 18px;
+}
+.bk-badge-main .bk-badge.pinned {
+  position: absolute;
+}
+.bk-badge-main .bk-badge.pinned.top-right {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%) scale(1, 1);
+}
+.bk-badge-main .bk-badge.pinned.top-right.fade-center-enter,
+.bk-badge-main .bk-badge.pinned.top-right.fade-center-leave-active {
+  opacity: 0;
+  transform: translate(50%, -50%) scale(0, 0);
+}
+.bk-badge-main .bk-badge.pinned.right {
+  top: 4px;
+  right: 4px;
+}
+.bk-badge-main .bk-badge.pinned.right.fade-center-enter,
+.bk-badge-main .bk-badge.pinned.right.fade-center-leave-active {
+  opacity: 0;
+  transform: translate(50%, -50%) scale(0, 0);
+}
+.bk-badge-main .bk-badge.pinned.bottom-right {
+  right: 0;
+  bottom: 0;
+}
+.bk-badge-main .bk-badge.pinned.bottom-right.fade-center-enter,
+.bk-badge-main .bk-badge.pinned.bottom-right.fade-center-leave-active {
+  opacity: 0;
+}
+.bk-badge-main .bk-badge.pinned.top-left {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%) scale(1, 1);
+}
+.bk-badge-main .bk-badge.pinned.top-left.fade-center-enter,
+.bk-badge-main .bk-badge.pinned.top-left.fade-center-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0, 0);
+}
+.bk-badge-main .bk-badge.pinned.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%) scale(1, 1);
+}
+.bk-badge-main .bk-badge.pinned.bottom-left.fade-center-enter,
+.bk-badge-main .bk-badge.pinned.bottom-left.fade-center-leave-active {
+  opacity: 0;
+  transform: translate(-50%, 50%) scale(0, 0);
+}
+.bk-badge-main .bk-badge.bk-danger {
+  color: white;
+  background-color: #ea3636;
+  border: 2px solid white;
+}
+.bk-badge-main .bk-badge.bk-danger.is-icon {
+  color: #ea3636;
+  background-color: white;
+  border-color: white;
+}
+.bk-badge-main .bk-badge.bk-warning {
+  color: white;
+  background-color: #ff9c01;
+  border: 2px solid white;
+}
+.bk-badge-main .bk-badge.bk-warning.is-icon {
+  color: #ff9c01;
+  background-color: white;
+  border-color: white;
+}
+.bk-badge-main .bk-badge.bk-success {
+  color: white;
+  background-color: #2dcb56;
+  border: 2px solid white;
+}
+.bk-badge-main .bk-badge.bk-success.is-icon {
+  color: #2dcb56;
+  background-color: white;
+  border-color: white;
+}
+.bk-badge-main .bk-badge.bk-primary {
+  color: white;
+  background-color: #3a84ff;
+  border: 2px solid white;
+}
+.bk-badge-main .bk-badge.bk-primary.is-icon {
+  color: #3a84ff;
+  background-color: white;
+  border-color: white;
+}
+.bk-badge-main .bk-badge.dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  padding: 0;
+  border: 1px solid white;
+}
+.bk-badge-main .bk-badge.bk-badge-icon {
+  display: inline-block;
+  padding: 0;
+  padding-bottom: 1px;
+  font-size: 16px;
+}

@@ -1,0 +1,84 @@
+.bk-table-head-action {
+  display: flex;
+  height: var(--row-height);
+  padding: 0 10px 0 6px;
+  font-size: 12px;
+  color: #c4c6cc;
+  cursor: pointer;
+  align-items: center;
+}
+.bk-table-head-action.active {
+  color: #3a84ff;
+}
+.bk-table-head-action.opened {
+  color: inherit;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter {
+  padding: 5px 0 0 0;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list {
+  display: inline-block;
+  max-width: 300px;
+  min-width: 200px;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list .content-items {
+  max-height: 200px;
+  min-height: 40px;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list .content-items .list-item {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 32px;
+  color: #63656e;
+  text-align: left;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list .content-items .list-item:hover {
+  background: #f0f1f5;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list .content-items .list-item label:hover {
+  background: #f0f1f5;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list .content-items .list-item .bk-checkbox-label {
+  white-space: nowrap;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-list .content-items .list-item .bk-checkbox {
+  margin-left: 0;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-footer {
+  display: flex;
+  height: 42px;
+  padding: 0 10px;
+  border-top: solid 1px #dcdee5;
+  justify-content: center;
+  align-items: center;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-footer span {
+  display: inline-flex;
+  height: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #3a84ff;
+  cursor: pointer;
+  align-items: center;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-footer span.disabled {
+  color: transparent;
+  cursor: auto;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-footer span.btn-filter-split {
+  width: 1px;
+  height: calc(100% - 12px);
+  padding: 6px 0;
+  cursor: default;
+  background: #f0f1f5;
+}
+.bk-popover.bk-pop2-content.bk-table-head-filter .content-footer span.btn-filter-reset.disable {
+  color: #979ba5;
+  cursor: not-allowed;
+}

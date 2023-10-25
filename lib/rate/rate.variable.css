@@ -1,0 +1,10 @@
+.bk-rate {
+  position: relative;
+}
+.bk-rate .bk-score-real {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  overflow: hidden;
+}

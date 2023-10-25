@@ -1,0 +1,93 @@
+.bk-collapse-transitioncollapse-transition {
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+}
+.bk-collapse-transition-leave-active,
+.bk-collapse-transition-enter-active {
+  transition: 0.3s max-height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+}
+.horizontal-collapse-transition {
+  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out, 0.3s padding-right ease-in-out;
+}
+.fade-in-linear-enter-active,
+.fade-in-linear-leave-active {
+  transition: opacity 200ms linear;
+}
+.fade-in-linear-enter,
+.fade-in-linear-leave,
+.fade-in-linear-leave-active {
+  opacity: 0;
+}
+.bk-fade-in-linear-enter-active,
+.bk-fade-in-linear-leave-active {
+  transition: opacity 200ms linear;
+}
+.bk-fade-in-linear-enter,
+.bk-fade-in-linear-leave,
+.bk-fade-in-linear-leave-active {
+  opacity: 0;
+}
+.bk-fade-in-enter-active,
+.bk-fade-in-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.bk-fade-in-enter,
+.bk-fade-in-leave-active {
+  opacity: 0;
+}
+.bk-zoom-in-center-enter-active,
+.bk-zoom-in-center-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.bk-zoom-in-center-enter,
+.bk-zoom-in-center-leave-active {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.bk-zoom-in-top-enter-active,
+.bk-zoom-in-top-leave-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: center top;
+}
+.bk-zoom-in-top-enter,
+.bk-zoom-in-top-leave-active {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.bk-zoom-in-bottom-enter-active,
+.bk-zoom-in-bottom-leave-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: center bottom;
+}
+.bk-zoom-in-bottom-enter,
+.bk-zoom-in-bottom-leave-active {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.bk-zoom-in-left-enter-active,
+.bk-zoom-in-left-leave-active {
+  opacity: 1;
+  transform: scale(1, 1);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: top left;
+}
+.bk-zoom-in-left-enter,
+.bk-zoom-in-left-leave-active {
+  opacity: 0;
+  transform: scale(0.45, 0.45);
+}
+.bk-list-enter-active,
+.bk-list-leave-active {
+  transition: all 1s;
+}
+.bk-list-enter,
+.bk-list-leave-active {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.bk-opacity-transition {
+  transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
