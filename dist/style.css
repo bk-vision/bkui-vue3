@@ -5187,6 +5187,7 @@ optgroup {
     bottom: var(--footer-height);
     left: 0;
     pointer-events: none !important;
+    display: none;
 }
 
 .bk-vision-bk-table .bk-vision-bk-table-fixed .column_fixed {
