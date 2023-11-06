@@ -8222,7 +8222,7 @@ const withInstallProps = (component, childComponents, isProps = false, directive
   });
   return component;
 };
-function resolveClassName(clsName, prefix = "lesscode-bk") {
+function resolveClassName(clsName, prefix = "bk-vision-bk") {
   return `${prefix}-${clsName}`;
 }
 function debounce(delay = 300, fn2, immediate = false) {
@@ -8443,7 +8443,7 @@ function usePrefix() {
   const config = inject(rootProviderKey, defaultRootConfig);
   const prefix = computed(() => {
     const { prefix: prefix2 } = config;
-    return "lesscode-bk";
+    return "bk-vision-bk";
   });
   function resolveClassName2(cls) {
     return `${prefix.value}-${cls.replace(new RegExp(`^${defaultRootConfig.prefix}-`), "")}`;
@@ -8627,7 +8627,7 @@ const archiveFill = (props2, context) => {
 };
 archiveFill.displayName = "archiveFill";
 archiveFill.inheritAttrs = false;
-const data$10 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M416 480h320v64H416l96 96-48 48L288 512l176-176L512 384 416 480z"}}]}');
+const data$10 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","viewBox":"0 0 1024 1024","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;"},"elements":[{"type":"element","name":"path","attributes":{"d":"M416 480h320v64H416l96 96-48 48L288 512l176-176L512 384 416 480z"}}]}');
 const arrowsLeft = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8687,7 +8687,7 @@ const closeLine = (props2, context) => {
 };
 closeLine.displayName = "closeLine";
 closeLine.inheritAttrs = false;
-const data$W = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM670.4 625.1l-45.3 45.3L512 557.3 398.9 670.4l-45.3-45.3L466.7 512 353.6 398.9l45.3-45.3L512 466.7l113.1-113.1 45.3 45.3L557.3 512 670.4 625.1z"}}]}');
+const data$W = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM670.4 625.1l-45.3 45.3L512 557.3 398.9 670.4l-45.3-45.3L466.7 512 353.6 398.9l45.3-45.3L512 466.7l113.1-113.1 45.3 45.3L557.3 512 670.4 625.1z"}}]}');
 const close$1 = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8787,7 +8787,7 @@ const downShape = (props2, context) => {
 };
 downShape.displayName = "downShape";
 downShape.inheritAttrs = false;
-const data$M = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M288 448L336 400 512 576 688 400 736 448 512 672z"}}]}');
+const data$M = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M288 448L336 400 512 576 688 400 736 448 512 672z"}}]}');
 const downSmall = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8927,7 +8927,7 @@ const funnel = (props2, context) => {
 };
 funnel.displayName = "funnel";
 funnel.inheritAttrs = false;
-const data$y = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512c0 57.6 11.2 113.6 32 166.4V896c0 17.6 14.4 32 32 32h217.6C576 1019.2 836.8 908.8 928 678.4S908.8 187.2 678.4 96C625.6 75.2 569.6 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
+const data$y = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512c0 57.6 11.2 113.6 32 166.4V896c0 17.6 14.4 32 32 32h217.6C576 1019.2 836.8 908.8 928 678.4S908.8 187.2 678.4 96C625.6 75.2 569.6 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
 const helpDocumentFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8937,7 +8937,7 @@ const helpDocumentFill = (props2, context) => {
 };
 helpDocumentFill.displayName = "helpDocumentFill";
 helpDocumentFill.inheritAttrs = false;
-const data$x = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
+const data$x = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM500.8 721.6c-27.2 0-48-20.8-48-48s20.8-48 48-48c27.2 0 48 20.8 48 48S528 721.6 500.8 721.6zM587.2 507.2c-36.8 20.8-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8c1.6-70.4 49.6-118.4 136-118.4 80 0 132.8 44.8 132.8 110.4C648 454.4 627.2 484.8 587.2 507.2z"}}]}');
 const helpFill = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8947,7 +8947,7 @@ const helpFill = (props2, context) => {
 };
 helpFill.displayName = "helpFill";
 helpFill.inheritAttrs = false;
-const data$w = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 128c212.8 0 384 171.2 384 384S724.8 896 512 896 128 724.8 128 512 299.2 128 512 128M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64z"}},{"type":"element","name":"path","attributes":{"d":"M548.8 673.6A48 48 0 0 1 500.8 721.6 48 48 0 0 1 452.8 673.6 48 48 0 0 1 548.8 673.6z"}},{"type":"element","name":"path","attributes":{"d":"M513.6 302.4c80 0 132.8 44.8 132.8 110.4 0 41.6-20.8 72-60.8 96-40 24-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8C377.6 352 427.2 302.4 513.6 302.4z"}}]}');
+const data$w = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 128c212.8 0 384 171.2 384 384S724.8 896 512 896 128 724.8 128 512 299.2 128 512 128M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64z"}},{"type":"element","name":"path","attributes":{"d":"M548.8 673.6A48 48 0 0 1 500.8 721.6 48 48 0 0 1 452.8 673.6 48 48 0 0 1 548.8 673.6z"}},{"type":"element","name":"path","attributes":{"d":"M513.6 302.4c80 0 132.8 44.8 132.8 110.4 0 41.6-20.8 72-60.8 96-40 24-48 35.2-48 62.4v14.4H464v-16c-3.2-44.8 11.2-70.4 51.2-92.8 36.8-22.4 48-35.2 48-60.8s-20.8-44.8-52.8-44.8c-28.8-1.6-52.8 19.2-56 48 0 1.6 0 1.6 0 3.2h-76.8C377.6 352 427.2 302.4 513.6 302.4z"}}]}');
 const help = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8987,7 +8987,7 @@ const imgPlacehoulder = (props2, context) => {
 };
 imgPlacehoulder.displayName = "imgPlacehoulder";
 imgPlacehoulder.inheritAttrs = false;
-const data$s = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM512 896C299.2 896 128 724.8 128 512S299.2 128 512 128s384 171.2 384 384S724.8 896 512 896z"}},{"type":"element","name":"path","attributes":{"d":"M494.4 403.2c-28.8 6.4-56 20.8-76.8 41.6-24 22.4 1.6 44.8 16 27.2 9.6-12.8 24-22.4 40-28.8 11.2-1.6 17.6 1.6 19.2 9.6 1.6 14.4 0 27.2-4.8 41.6-4.8 19.2-14.4 51.2-25.6 94.4-22.4 76.8-33.6 124.8-30.4 140.8 3.2 17.6 12.8 32 28.8 41.6 17.6 8 38.4 9.6 57.6 4.8 30.4-6.4 57.6-22.4 80-44.8 25.6-25.6-3.2-43.2-17.6-28.8-9.6 12.8-24 22.4-40 25.6-14.4 3.2-22.4-3.2-25.6-16-1.6-14.4 1.6-28.8 6.4-41.6 40-136 57.6-212.8 52.8-232-3.2-14.4-12.8-27.2-25.6-33.6C532.8 398.4 512 398.4 494.4 403.2z"}},{"type":"element","name":"path","attributes":{"d":"M608 304A48 48 0 0 1 560 352 48 48 0 0 1 512 304 48 48 0 0 1 608 304z"}}]}');
+const data$s = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264 64 64 264 64 512s200 448 448 448 448-200 448-448S760 64 512 64zM512 896C299.2 896 128 724.8 128 512S299.2 128 512 128s384 171.2 384 384S724.8 896 512 896z"}},{"type":"element","name":"path","attributes":{"d":"M494.4 403.2c-28.8 6.4-56 20.8-76.8 41.6-24 22.4 1.6 44.8 16 27.2 9.6-12.8 24-22.4 40-28.8 11.2-1.6 17.6 1.6 19.2 9.6 1.6 14.4 0 27.2-4.8 41.6-4.8 19.2-14.4 51.2-25.6 94.4-22.4 76.8-33.6 124.8-30.4 140.8 3.2 17.6 12.8 32 28.8 41.6 17.6 8 38.4 9.6 57.6 4.8 30.4-6.4 57.6-22.4 80-44.8 25.6-25.6-3.2-43.2-17.6-28.8-9.6 12.8-24 22.4-40 25.6-14.4 3.2-22.4-3.2-25.6-16-1.6-14.4 1.6-28.8 6.4-41.6 40-136 57.6-212.8 52.8-232-3.2-14.4-12.8-27.2-25.6-33.6C532.8 398.4 512 398.4 494.4 403.2z"}},{"type":"element","name":"path","attributes":{"d":"M608 304A48 48 0 0 1 560 352 48 48 0 0 1 512 304 48 48 0 0 1 608 304z"}}]}');
 const infoLine = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -8997,7 +8997,7 @@ const infoLine = (props2, context) => {
 };
 infoLine.displayName = "infoLine";
 infoLine.inheritAttrs = false;
-const data$r = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64A448 448 0 1 1 64 512 448 448 0 0 1 512 64ZM493.92 402.56a156 156 0 0 0-77.12 42.24c-24.32 22.88 1.44 44 16 27.52a82.56 82.56 0 0 1 40.48-28.16c11.04-2.24 17.6 1.28 19.36 10.4A118.88 118.88 0 0 1 488.16 496q-7.2 29.76-26.4 93.92-34.72 116.32-30.08 140.8a54.72 54.72 0 0 0 28.8 40.96 88 88 0 0 0 58.4 5.12 161.76 161.76 0 0 0 80-45.44c25.76-24.96-3.52-43.04-17.28-28a76.32 76.32 0 0 1-39.36 26.08c-14.24 2.88-22.72-2.4-25.28-16A104.96 104.96 0 0 1 522.88 672Q582.24 469.12 576 439.84a46.24 46.24 0 0 0-25.6-33.6A89.6 89.6 0 0 0 493.92 402.56Zm67.84-39.84A49.92 49.92 0 1 0 512 312.96 49.76 49.76 0 0 0 561.76 362.72Z"}}]}');
+const data$r = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64A448 448 0 1 1 64 512 448 448 0 0 1 512 64ZM493.92 402.56a156 156 0 0 0-77.12 42.24c-24.32 22.88 1.44 44 16 27.52a82.56 82.56 0 0 1 40.48-28.16c11.04-2.24 17.6 1.28 19.36 10.4A118.88 118.88 0 0 1 488.16 496q-7.2 29.76-26.4 93.92-34.72 116.32-30.08 140.8a54.72 54.72 0 0 0 28.8 40.96 88 88 0 0 0 58.4 5.12 161.76 161.76 0 0 0 80-45.44c25.76-24.96-3.52-43.04-17.28-28a76.32 76.32 0 0 1-39.36 26.08c-14.24 2.88-22.72-2.4-25.28-16A104.96 104.96 0 0 1 522.88 672Q582.24 469.12 576 439.84a46.24 46.24 0 0 0-25.6-33.6A89.6 89.6 0 0 0 493.92 402.56Zm67.84-39.84A49.92 49.92 0 1 0 512 312.96 49.76 49.76 0 0 0 561.76 362.72Z"}}]}');
 const info = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -9147,7 +9147,7 @@ const spinner = (props2, context) => {
 };
 spinner.displayName = "spinner";
 spinner.inheritAttrs = false;
-const data$c = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM485.7 670.3l-181-181L350 444l135.8 135.8L712 353.5l45.3 45.3L485.7 670.3z"}}]}');
+const data$c = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM485.7 670.3l-181-181L350 444l135.8 135.8L712 353.5l45.3 45.3L485.7 670.3z"}}]}');
 const success = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -9237,7 +9237,7 @@ const upShape = (props2, context) => {
 };
 upShape.displayName = "upShape";
 upShape.inheritAttrs = false;
-const data$3 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M897.6 422.4c-27.2-27.2-62.4-48-100.8-57.6C768 209.6 619.2 104 462.4 131.2c-120 20.8-212.8 115.2-233.6 233.6C131.2 388.8 64 475.2 64 574.4v9.6C64 704 160 800 278.4 800H320v-64h-41.6C195.2 736 128 668.8 128 585.6v-9.6c0-83.2 67.2-150.4 150.4-150.4H288c0-3.2 0-4.8 0-8l0 0c0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-4.8 0 0 0 0 0-1.6 0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-3.2 0-1.6 0-1.6 0-3.2 0 0 0-1.6 0-1.6 1.6-9.6 3.2-20.8 6.4-30.4l0 0c30.4-120 153.6-192 272-161.6 78.4 20.8 140.8 81.6 161.6 161.6l0 0c3.2 9.6 4.8 20.8 4.8 30.4 0 0 0 1.6 0 1.6 0 0 0 1.6 0 3.2 0 1.6 0 3.2 0 3.2V400c0 1.6 0 3.2 0 3.2v1.6c0 1.6 0 3.2 0 4.8v1.6c0 1.6 0 3.2 0 4.8l0 0c0 3.2 0 4.8 0 8h9.6c83.2-1.6 152 65.6 153.6 148.8 0 1.6 0 1.6 0 3.2v9.6c0 83.2-67.2 150.4-150.4 150.4l0 0H704v64h41.6C864 800 960 704 960 585.6v-9.6C960 518.4 937.6 464 897.6 422.4z"}},{"type":"element","name":"path","attributes":{"d":"M376 603.2L420.8 648 480 588.8 480 896 544 896 544 588.8 603.2 648 648 603.2 512 467.2z"}}]}');
+const data$3 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M897.6 422.4c-27.2-27.2-62.4-48-100.8-57.6C768 209.6 619.2 104 462.4 131.2c-120 20.8-212.8 115.2-233.6 233.6C131.2 388.8 64 475.2 64 574.4v9.6C64 704 160 800 278.4 800H320v-64h-41.6C195.2 736 128 668.8 128 585.6v-9.6c0-83.2 67.2-150.4 150.4-150.4H288c0-3.2 0-4.8 0-8l0 0c0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-4.8 0 0 0 0 0-1.6 0-1.6 0-3.2 0-4.8v-1.6c0-1.6 0-3.2 0-3.2 0-1.6 0-1.6 0-3.2 0 0 0-1.6 0-1.6 1.6-9.6 3.2-20.8 6.4-30.4l0 0c30.4-120 153.6-192 272-161.6 78.4 20.8 140.8 81.6 161.6 161.6l0 0c3.2 9.6 4.8 20.8 4.8 30.4 0 0 0 1.6 0 1.6 0 0 0 1.6 0 3.2 0 1.6 0 3.2 0 3.2V400c0 1.6 0 3.2 0 3.2v1.6c0 1.6 0 3.2 0 4.8v1.6c0 1.6 0 3.2 0 4.8l0 0c0 3.2 0 4.8 0 8h9.6c83.2-1.6 152 65.6 153.6 148.8 0 1.6 0 1.6 0 3.2v9.6c0 83.2-67.2 150.4-150.4 150.4l0 0H704v64h41.6C864 800 960 704 960 585.6v-9.6C960 518.4 937.6 464 897.6 422.4z"}},{"type":"element","name":"path","attributes":{"d":"M376 603.2L420.8 648 480 588.8 480 896 544 896 544 588.8 603.2 648 648 603.2 512 467.2z"}}]}');
 const upload = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -9257,7 +9257,7 @@ const videoFill = (props2, context) => {
 };
 videoFill.displayName = "videoFill";
 videoFill.inheritAttrs = false;
-const data$1 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"lesscode-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM544 704h-64v-64h64V704zM544 576h-64V320h64V576z"}}]}');
+const data$1 = JSON.parse('{"type":"element","name":"svg","attributes":{"xmlns":"http://www.w3.org/2000/svg","class":"bk-vision-bk-icon","style":"width: 1em; height: 1em; vertical-align: middle;fill: currentColor;overflow: hidden;","overflow":"hidden","viewBox":"0 0 1024 1024"},"elements":[{"type":"element","name":"path","attributes":{"d":"M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zM544 704h-64v-64h64V704zM544 576h-64V320h64V576z"}}]}');
 const warn = (props2, context) => {
   const p2 = __spreadValues(__spreadValues({}, props2), context.attrs);
   return createVNode(bkIcon, mergeProps(p2, {
@@ -9390,26 +9390,26 @@ var Component$F = defineComponent({
     }
     const renderCloseText = Boolean(this.closeText);
     const closeButtonClasses = classes({
-      "lesscode-bk-alert-close": true,
+      "bk-vision-bk-alert-close": true,
       "close-text": renderCloseText,
-      "lesscode-bk-alert-close-icon": !renderCloseText
+      "bk-vision-bk-alert-close-icon": !renderCloseText
     });
     const typeClass = classes({
-      "lesscode-bk-alert": true,
-      [`lesscode-bk-alert-${this.theme}`]: true
+      "bk-vision-bk-alert": true,
+      [`bk-vision-bk-alert-${this.theme}`]: true
     });
     return createVNode("div", {
       "class": typeClass
     }, [createVNode("div", {
-      "class": "lesscode-bk-alert-wraper"
+      "class": "bk-vision-bk-alert-wraper"
     }, [this.showIcon && createVNode(infoLine, {
-      "class": "lesscode-bk-alert-icon-info"
+      "class": "bk-vision-bk-alert-icon-info"
     }, null), createVNode("div", {
-      "class": "lesscode-bk-alert-content"
+      "class": "bk-vision-bk-alert-content"
     }, [createVNode("div", {
-      "class": "lesscode-bk-alert-title"
+      "class": "bk-vision-bk-alert-title"
     }, [this.$slots.title ? this.$slots.title() : this.title]), createVNode("div", {
-      "class": "lesscode-bk-alert-description"
+      "class": "bk-vision-bk-alert-description"
     }, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)])]), this.closable && createVNode("span", {
       "class": closeButtonClasses,
       "onClick": this.handleClose
@@ -9529,7 +9529,7 @@ var Component$D = defineComponent({
     });
     const affix2 = ref(false);
     const pointClass = computed(() => classes({
-      "lesscode-bk-affix": affix2.value
+      "bk-vision-bk-affix": affix2.value
     }));
     const offsetType = computed(() => props2.offsetBottom >= 0 ? "bottom" : "top");
     const setTargetLoop = () => {
@@ -9666,12 +9666,12 @@ var Component$C = defineComponent({
       container2.value.removeEventListener("scroll", scrollHandler);
     });
     return () => createVNode(Transition, {
-      "name": "lesscode-bk-fade"
+      "name": "bk-vision-bk-fade"
     }, {
       default: () => {
         var _a, _b;
         return [visible.value ? createVNode("div", {
-          "class": `lesscode-bk-backtop ${props2.extCls}`,
+          "class": `bk-vision-bk-backtop ${props2.extCls}`,
           "style": {
             right: styleRight,
             bottom: styleBottom,
@@ -9679,7 +9679,7 @@ var Component$C = defineComponent({
           },
           "onClick": scrollTop2
         }, [(_b = (_a = slots.default) == null ? void 0 : _a.call(slots)) != null ? _b : createVNode(angleUp, {
-          "class": "lesscode-bk-backtop-icon"
+          "class": "bk-vision-bk-backtop-icon"
         }, null)]) : ""];
       }
     });
@@ -9742,14 +9742,14 @@ var Component$B = defineComponent({
   render() {
     var _a, _b, _c, _d, _e, _f;
     const wrapperClasses = classes({
-      "lesscode-bk-badge-main": true
+      "bk-vision-bk-badge-main": true
     }, this.$props.extCls);
     const badgeClass = classes({
-      [`lesscode-bk-badge lesscode-bk-${this.$props.theme}`]: !!this.$props.theme,
+      [`bk-vision-bk-badge bk-vision-bk-${this.$props.theme}`]: !!this.$props.theme,
       ["pinned "]: this.$slots.default,
       ["dot"]: this.$props.dot,
       [`${this.$props.position}`]: this.$slots.default,
-      ["lesscode-bk-badge-icon is-icon"]: this.$slots.icon
+      ["bk-vision-bk-badge-icon is-icon"]: this.$slots.icon
     }, "");
     const number = !this.$props.dot ? createVNode("span", null, [this.numberCount]) : "";
     return createVNode("div", {
@@ -9781,13 +9781,13 @@ var Component$A = defineComponent({
     } = getCurrentInstance();
     provide("breadcrumb", props2);
     onMounted(() => {
-      const items = proxy.$el.querySelectorAll(".lesscode-bk-breadcrumb-item");
+      const items = proxy.$el.querySelectorAll(".bk-vision-bk-breadcrumb-item");
       if (items.length) {
         items[items.length - 1].setAttribute("aria-current", "page");
       }
     });
     const classCtx = classes({
-      "lesscode-bk-breadcrumb": true
+      "bk-vision-bk-breadcrumb": true
     }, `${props2.extCls || ""}`);
     const goBack = () => {
       const {
@@ -9808,11 +9808,11 @@ var Component$A = defineComponent({
         "aria-label": "Breadcrumb",
         "role": "navigation"
       }, [!slots.prefix && props2.backRouter ? createVNode("div", {
-        "class": "lesscode-bk-breadcrumb-goback"
+        "class": "bk-vision-bk-breadcrumb-goback"
       }, [createVNode(arrowsLeft, {
         "onClick": goBack
       }, null)]) : "", slots.prefix ? createVNode("div", {
-        "class": "lesscode-bk-breadcrumb-goback"
+        "class": "bk-vision-bk-breadcrumb-goback"
       }, [slots.prefix()]) : "", (_a = slots.default) == null ? void 0 : _a.call(slots)]);
     };
   }
@@ -9845,7 +9845,7 @@ var BreadcrumbItem = defineComponent({
       replace ? router.replace(to) : router.push(to);
     };
     const classCtx = classes({
-      "lesscode-bk-breadcrumb-item": true
+      "bk-vision-bk-breadcrumb-item": true
     }, `${props2.extCls || ""}`);
     const renderSeparator = () => {
       if (slots.separator) {
@@ -9853,12 +9853,12 @@ var BreadcrumbItem = defineComponent({
       }
       if (parent.separatorClass) {
         return createVNode("i", {
-          "class": `lesscode-bk-breadcrumb-separator ${parent.separatorClass}`
+          "class": `bk-vision-bk-breadcrumb-separator ${parent.separatorClass}`
         }, null);
       }
       if (parent.separator) {
         return createVNode("span", {
-          "class": "lesscode-bk-breadcrumb-separator",
+          "class": "bk-vision-bk-breadcrumb-separator",
           "role": "presentation"
         }, [parent == null ? void 0 : parent.separator]);
       }
@@ -9870,7 +9870,7 @@ var BreadcrumbItem = defineComponent({
         "class": classCtx
       }, [createVNode("span", {
         "ref": "link",
-        "class": `lesscode-bk-breadcrumb-item-inner ${props2.to ? "is-link" : ""}`,
+        "class": `bk-vision-bk-breadcrumb-item-inner ${props2.to ? "is-link" : ""}`,
         "role": "link",
         "onClick": handleClick
       }, [(_a = slots.default) == null ? void 0 : _a.call(slots)]), renderSeparator()]);
@@ -9922,12 +9922,12 @@ var Component$z = defineComponent({
   props: loadingTypes,
   setup(props2, ctx) {
     const dotIndicator = createVNode("div", {
-      "class": "lesscode-bk-normal-indicator"
+      "class": "bk-vision-bk-normal-indicator"
     }, [[1, 2, 3, 4].map((i2) => createVNode("span", {
       "class": `dot dot-${i2}`
     }, null))]);
     const spinIndicator = createVNode("div", {
-      "class": "lesscode-bk-spin-indicator"
+      "class": "bk-vision-bk-spin-indicator"
     }, [[1, 2, 3, 4, 5, 6, 7, 8].map((i2) => createVNode("span", {
       "class": `oval oval-${i2}`
     }, null))]);
@@ -9939,14 +9939,14 @@ var Component$z = defineComponent({
       backgroundColor: props2.color
     }, zIndexStyle.value));
     const loadingWrapperCls = computed(() => classes({
-      "lesscode-bk-loading-wrapper": props2.loading,
-      "lesscode-bk-nested-loading": !!ctx.slots.default,
-      "lesscode-bk-directive-loading": props2.isDirective
+      "bk-vision-bk-loading-wrapper": props2.loading,
+      "bk-vision-bk-nested-loading": !!ctx.slots.default,
+      "bk-vision-bk-directive-loading": props2.isDirective
     }));
     const containerCls = computed(() => classes({
-      [`lesscode-bk-loading-size-${props2.size}`]: !!props2.size,
-      [`lesscode-bk-loading-${props2.theme}`]: !!props2.theme
-    }, "lesscode-bk-loading-indicator"));
+      [`bk-vision-bk-loading-size-${props2.size}`]: !!props2.size,
+      [`bk-vision-bk-loading-${props2.theme}`]: !!props2.theme
+    }, "bk-vision-bk-loading-indicator"));
     const hasTitle = computed(() => !!props2.title);
     const indicator = computed(() => {
       const isSpinMode = props2.mode === BkLoadingMode.Spin;
@@ -9963,13 +9963,13 @@ var Component$z = defineComponent({
       return createVNode("div", {
         "class": loadingWrapperCls.value
       }, [(_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a), props2.loading && [(ctx.slots.default || props2.isDirective) && createVNode("div", {
-        "class": "lesscode-bk-loading-mask",
+        "class": "bk-vision-bk-loading-mask",
         "style": maskStyle.value
       }, null), createVNode("div", {
         "class": containerCls.value,
         "style": zIndexStyle.value
       }, [indicator.value, hasTitle.value && createVNode("div", {
-        "class": "lesscode-bk-loading-title"
+        "class": "bk-vision-bk-loading-title"
       }, [props2.title])])]]);
     };
   }
@@ -10089,7 +10089,7 @@ var Component$y = defineComponent({
     var _a;
     const isHover = ref(false);
     const showSlot = (_a = slots.default) != null ? _a : false;
-    const btnClsPrefix = "lesscode-bk-button";
+    const btnClsPrefix = "bk-vision-bk-button";
     const isText = computed(() => props2.text && !props2.hoverTheme);
     const btnCls = computed(() => {
       const hoverTheme = props2.hoverTheme ? `${btnClsPrefix}-hover-${props2.hoverTheme}` : "";
@@ -10158,8 +10158,8 @@ var ButtonGroup = defineComponent({
   },
   setup(props2, ctx) {
     const btnGroupCls = computed(() => classes({
-      [`lesscode-bk-button-group-${props2.size}`]: !!props2.size
-    }, "lesscode-bk-button-group"));
+      [`bk-vision-bk-button-group-${props2.size}`]: !!props2.size
+    }, "bk-vision-bk-button-group"));
     return () => {
       var _a, _b;
       return createVNode("div", {
@@ -10582,7 +10582,7 @@ var Component$w = defineComponent({
   },
   render() {
     var _a, _b, _c, _d, _e, _f;
-    const wrapperName = "lesscode-bk-card";
+    const wrapperName = "bk-vision-bk-card";
     const cardClass = classes({
       [`${wrapperName}`]: true,
       [`${wrapperName}-border-none`]: !this.$props.border
@@ -10765,7 +10765,7 @@ var Component$v = defineComponent({
   },
   render() {
     const checkboxClass = classes({
-      "lesscode-bk-checkbox": true,
+      "bk-vision-bk-checkbox": true,
       "is-focused": this.isFocus,
       "is-checked": this.isChecked,
       "is-disabled": this.isDisabled,
@@ -10776,7 +10776,7 @@ var Component$v = defineComponent({
         return null;
       }
       return createVNode("span", {
-        "class": "lesscode-bk-checkbox-label"
+        "class": "bk-vision-bk-checkbox-label"
       }, [this.$slots.default ? this.$slots.default() : this.label]);
     };
     return createVNode("label", {
@@ -10787,7 +10787,7 @@ var Component$v = defineComponent({
       "ref": "inputRef",
       "role": "checkbox",
       "type": "checkbox",
-      "class": "lesscode-bk-checkbox-original",
+      "class": "bk-vision-bk-checkbox-original",
       "disabled": this.isDisabled,
       "checked": this.isChecked,
       "onChange": this.handleChange
@@ -10852,7 +10852,7 @@ var BkCheckboxGroup = defineComponent({
   render() {
     var _a;
     return createVNode("div", {
-      "class": "lesscode-bk-checkbox-group"
+      "class": "bk-vision-bk-checkbox-group"
     }, [(_a = this.$slots) == null ? void 0 : _a.default()]);
   }
 });
@@ -10959,7 +10959,7 @@ var CollapsePanel = defineComponent({
         return "";
       }
       return withDirectives(createVNode("div", {
-        "class": `lesscode-bk-collapse-content ${isActive.value && "active" || ""}`
+        "class": `bk-vision-bk-collapse-content ${isActive.value && "active" || ""}`
       }, [getContent()]), [[vShow, isActive.value]]);
     }
     function renderHeader(icon) {
@@ -10980,9 +10980,9 @@ var CollapsePanel = defineComponent({
         title = props2.title;
       }
       return createVNode(Fragment, null, [createVNode("div", {
-        "class": "lesscode-bk-collapse-header"
+        "class": "bk-vision-bk-collapse-header"
       }, [createVNode("span", {
-        "class": "lesscode-bk-collapse-title"
+        "class": "bk-vision-bk-collapse-title"
       }, [title]), icon])]);
     }
     return {
@@ -10996,11 +10996,11 @@ var CollapsePanel = defineComponent({
   render() {
     let _slot;
     return createVNode("div", {
-      "class": `lesscode-bk-collapse-item ${this.disabled ? "is-disabled" : ""} ${this.isActive ? "lesscode-bk-collapse-item-active" : ""}`
+      "class": `bk-vision-bk-collapse-item ${this.disabled ? "is-disabled" : ""} ${this.isActive ? "bk-vision-bk-collapse-item-active" : ""}`
     }, [createVNode("div", {
       "onClick": () => this.clickItem()
     }, [this.renderHeader(createVNode(this.collapseIcon, {
-      "class": `lesscode-bk-collapse-icon ${this.isActive && "rotate-icon" || ""}`
+      "class": `bk-vision-bk-collapse-icon ${this.isActive && "rotate-icon" || ""}`
     }, null))]), createVNode(CollapseTransition, null, _isSlot$8(_slot = this.renderPanel()) ? _slot : {
       default: () => [_slot]
     })]);
@@ -11051,20 +11051,20 @@ var Collapse = defineComponent({
     };
     provide("localActiveItems", localActiveItems);
     provide("handleItemClick", handleItemClick);
-    let className = "lesscode-bk-collapse-wrapper";
+    let className = "bk-vision-bk-collapse-wrapper";
     if (props2.hasHeaderBorder) {
-      className += " lesscode-bk-collapse-header-border";
+      className += " bk-vision-bk-collapse-header-border";
     }
     if (props2.hasHeaderHover) {
-      className += " lesscode-bk-collapse-header-hover";
+      className += " bk-vision-bk-collapse-header-hover";
     }
     if (props2.useCardTheme) {
-      className += " lesscode-bk-collapse-card";
+      className += " bk-vision-bk-collapse-card";
     }
     if (props2.headerIconAlign === "left") {
-      className += " lesscode-bk-collapse-icon-left";
+      className += " bk-vision-bk-collapse-icon-left";
     } else {
-      className += " lesscode-bk-collapse-icon-right";
+      className += " bk-vision-bk-collapse-icon-right";
     }
     if (!Array.isArray(props2.list) || !props2.list.length) {
       return () => createVNode("div", {
@@ -11591,12 +11591,12 @@ var Exception = defineComponent({
     const renderImg = () => {
       if (_$1.isFunction(slots.type)) {
         return createVNode("div", {
-          "class": "lesscode-bk-exception-img"
+          "class": "bk-vision-bk-exception-img"
         }, [slots.type()]);
       }
       const imgSrc = images[props2.type] ? images[props2.type] : empty;
       return createVNode("div", {
-        "class": "lesscode-bk-exception-img"
+        "class": "bk-vision-bk-exception-img"
       }, [createVNode("img", {
         "class": "exception-image",
         "src": imgSrc,
@@ -11606,12 +11606,12 @@ var Exception = defineComponent({
     const renderTitle = () => {
       if (_$1.isFunction(slots.title)) {
         return createVNode("div", {
-          "class": "lesscode-bk-exception-title"
+          "class": "bk-vision-bk-exception-title"
         }, [slots.title()]);
       }
       if (props2.title) {
         return createVNode("div", {
-          "class": "lesscode-bk-exception-title"
+          "class": "bk-vision-bk-exception-title"
         }, [props2.title]);
       }
       return null;
@@ -11619,12 +11619,12 @@ var Exception = defineComponent({
     const renderDescription = () => {
       if (_$1.isFunction(slots.description)) {
         return createVNode("div", {
-          "class": "lesscode-bk-exception-description"
+          "class": "bk-vision-bk-exception-description"
         }, [slots.description()]);
       }
       if (props2.description) {
         return createVNode("div", {
-          "class": "lesscode-bk-exception-description"
+          "class": "bk-vision-bk-exception-description"
         }, [props2.description]);
       }
       return null;
@@ -11632,15 +11632,15 @@ var Exception = defineComponent({
     const renderFooter = () => {
       if (_$1.isFunction(slots.default)) {
         return createVNode("div", {
-          "class": "lesscode-bk-exception-footer"
+          "class": "bk-vision-bk-exception-footer"
         }, [slots.default()]);
       }
       return null;
     };
     return () => {
       const rootClass = classes({
-        "lesscode-bk-exception": true,
-        [`lesscode-bk-exception-${props2.scene}`]: true
+        "bk-vision-bk-exception": true,
+        [`bk-vision-bk-exception-${props2.scene}`]: true
       });
       return createVNode("div", {
         "class": rootClass
@@ -11676,7 +11676,7 @@ var Component$t = defineComponent({
       item.action();
     };
     return () => props2.modelValue && createVNode("div", {
-      "class": `lesscode-bk-fixed-navbar ${props2.extCls} ${props2.position}`,
+      "class": `bk-vision-bk-fixed-navbar ${props2.extCls} ${props2.position}`,
       "style": {
         zIndex
       }
@@ -11728,7 +11728,7 @@ var Component$s = defineComponent({
     const linkClass = classes({
       "is-disabled": this.disabled,
       "has-underline": this.underline
-    }, `${this.theme} lesscode-bk-link`);
+    }, `${this.theme} bk-vision-bk-link`);
     return createVNode("a", {
       "href": this.href,
       "target": this.target,
@@ -14162,7 +14162,7 @@ const Circle = (_2, {
     "stroke-linecap": strokeLinecap,
     "stroke-width": percent > 0 && circleStrokeWidth || 0,
     "fill-opacity": "0",
-    class: `process-circle-path lesscode-bk-${theme}-circle-trail`,
+    class: `process-circle-path bk-vision-bk-${theme}-circle-trail`,
     style: pathStyle
   };
   return createVNode("div", {
@@ -14210,13 +14210,13 @@ const Line = (_2, {
   return createVNode("div", {
     "class": "progress-outer"
   }, [createVNode("div", {
-    "class": `lesscode-bk-progress-${size || "normal"} progress-bar`,
+    "class": `bk-vision-bk-progress-${size || "normal"} progress-bar`,
     "style": percentStyle
   }, [createVNode("div", {
     "style": barStyle,
     "class": {
       "progress-inner": true,
-      [`lesscode-bk-${theme}`]: true
+      [`bk-vision-bk-${theme}`]: true
     }
   }, [createVNode("div", {
     "class": "inner-text",
@@ -14299,7 +14299,7 @@ var Component$q = defineComponent({
     const progressProps = {
       class: classes({
         extCls: !!this.extCls
-      }, `lesscode-bk-progress lesscode-bk-progress-${this.type}`)
+      }, `bk-vision-bk-progress bk-vision-bk-progress-${this.type}`)
     };
     return createVNode("div", progressProps, [progress2]);
   }
@@ -14425,7 +14425,7 @@ var Component$p = defineComponent({
   },
   render() {
     const radioClass = classes({
-      "lesscode-bk-radio": true,
+      "bk-vision-bk-radio": true,
       "is-focused": this.isFocused,
       "is-disabled": this.isDisabled,
       "is-checked": this.isChecked
@@ -14435,14 +14435,14 @@ var Component$p = defineComponent({
         return null;
       }
       return createVNode("span", {
-        "class": "lesscode-bk-radio-label"
+        "class": "bk-vision-bk-radio-label"
       }, [this.$slots.default ? this.$slots.default() : this.label]);
     };
     return createVNode("label", {
       "class": radioClass,
       "tabindex": "0"
     }, [createVNode("input", {
-      "class": "lesscode-bk-radio-input",
+      "class": "bk-vision-bk-radio-input",
       "type": "radio",
       "tabindex": "0",
       "value": this.label,
@@ -14489,7 +14489,7 @@ var RadioButton = defineComponent({
   },
   render() {
     const radioClass = classes({
-      "lesscode-bk-radio-button": true,
+      "bk-vision-bk-radio-button": true,
       "is-focused": this.isFocused,
       "is-disabled": this.isDisabled,
       "is-checked": this.isChecked
@@ -14499,14 +14499,14 @@ var RadioButton = defineComponent({
         return null;
       }
       return createVNode("div", {
-        "class": "lesscode-bk-radio-button-label"
+        "class": "bk-vision-bk-radio-button-label"
       }, [this.$slots.default ? this.$slots.default() : this.label]);
     };
     return createVNode("label", {
       "class": radioClass,
       "tabindex": "0"
     }, [createVNode("input", {
-      "class": "lesscode-bk-radio-button-input",
+      "class": "bk-vision-bk-radio-button-input",
       "type": "radio",
       "tabindex": "0",
       "value": this.label,
@@ -14576,7 +14576,7 @@ var RadioGroup = defineComponent({
   render() {
     var _a;
     return createVNode("div", {
-      "class": ["lesscode-bk-radio-group", `lesscode-bk-radio-${this.type}`]
+      "class": ["bk-vision-bk-radio-group", `bk-vision-bk-radio-${this.type}`]
     }, [(_a = this.$slots) == null ? void 0 : _a.default()]);
   }
 });
@@ -14608,9 +14608,9 @@ var star = defineComponent({
       emit("changeHover", rate2);
     };
     const starClass = (index2) => classes({
-      "lesscode-bk-is-select": index2 < Math.floor(displayRate.value),
-      "lesscode-bk-is-edit": props2.editable,
-      "lesscode-bk-rate-star": true
+      "bk-vision-bk-is-select": index2 < Math.floor(displayRate.value),
+      "bk-vision-bk-is-edit": props2.editable,
+      "bk-vision-bk-rate-star": true
     });
     const displayRate = computed(() => props2.hoverRate || props2.rate);
     const starStyle = {
@@ -14619,7 +14619,7 @@ var star = defineComponent({
       minWidth: `${props2.width}px`
     };
     return () => createVNode("p", {
-      "class": "lesscode-bk-rate-stars"
+      "class": "bk-vision-bk-rate-stars"
     }, [Array(props2.max).fill(1).map((_2, index2) => createVNode("svg", {
       "class": starClass(index2),
       "style": starStyle,
@@ -14669,7 +14669,7 @@ var Component$o = defineComponent({
       hoverRate.value = val;
     };
     const rateClass = classes({
-      "lesscode-bk-rate": true
+      "bk-vision-bk-rate": true
     });
     const sizeMap = {
       small: {
@@ -14714,7 +14714,7 @@ var Component$o = defineComponent({
     }, commonAttrs), null) : [createVNode(star, mergeProps({
       "rate": 5,
       "style": starStyle.value,
-      "class": "lesscode-bk-score-real",
+      "class": "bk-vision-bk-score-real",
       "editable": false
     }, commonAttrs), null), createVNode(star, mergeProps({
       "rate": 0,
@@ -14780,15 +14780,15 @@ var Component$n = defineComponent({
         return;
       window.open(link2, "_blank");
     };
-    const getRenderItemClass = (renderData) => ["lesscode-bk-swiper-img", {
-      "lesscode-bk-swiper-link": renderData.link
+    const getRenderItemClass = (renderData) => ["bk-vision-bk-swiper-img", {
+      "bk-vision-bk-swiper-link": renderData.link
     }, renderData.class];
     const getRenderItemStyle = (renderData) => ({
       "background-image": `url(${renderData.url})`,
       "background-color": renderData.color
     });
     const getRenderIndexStyle = (index2) => ({
-      "lesscode-bk-current-index": swiperIndex.value === index2
+      "bk-vision-bk-current-index": swiperIndex.value === index2
     });
     const startLoop = () => {
       if (isLoop.value) {
@@ -14848,16 +14848,16 @@ var Component$n = defineComponent({
       endWatchParentSizeChange();
     });
     return () => createVNode("section", {
-      "class": "lesscode-bk-swiper-home",
+      "class": "bk-vision-bk-swiper-home",
       "ref": swiperRef,
       "style": computedSwiperRenderStyle.value
     }, [createVNode("hgroup", {
       "style": computedSwiperTranslateStyle.value,
-      "class": "lesscode-bk-transition lesscode-bk-swiper-main"
+      "class": "bk-vision-bk-transition bk-vision-bk-swiper-main"
     }, [computedRenderDataList.value.map((renderData) => {
       var _a, _b;
       return createVNode("h3", {
-        "class": "lesscode-bk-swiper-card",
+        "class": "bk-vision-bk-swiper-card",
         "style": computedSwiperRenderStyle.value
       }, [(_b = (_a = slots.default) == null ? void 0 : _a.call(slots, renderData)) != null ? _b : createVNode("span", {
         "class": getRenderItemClass(renderData),
@@ -14865,20 +14865,20 @@ var Component$n = defineComponent({
         "onClick": () => goToLink(renderData.link)
       }, null)]);
     })]), createVNode("ul", {
-      "class": "lesscode-bk-swiper-index"
+      "class": "bk-vision-bk-swiper-index"
     }, [computedRenderDataList.value.map((_2, index2) => createVNode("li", {
       "class": getRenderIndexStyle(index2),
       "onMouseover": () => changeIndex(index2)
     }, null))]), createVNode("span", {
-      "class": "lesscode-bk-swiper-nav lesscode-bk-nav-prev",
+      "class": "bk-vision-bk-swiper-nav bk-vision-bk-nav-prev",
       "onClick": () => changeIndex(swiperIndex.value - 1)
     }, [createVNode("i", {
-      "class": "lesscode-bk-swiper-nav-icon"
+      "class": "bk-vision-bk-swiper-nav-icon"
     }, null)]), createVNode("span", {
-      "class": "lesscode-bk-swiper-nav lesscode-bk-nav-next",
+      "class": "bk-vision-bk-swiper-nav bk-vision-bk-nav-next",
       "onClick": () => changeIndex(swiperIndex.value + 1)
     }, [createVNode("i", {
-      "class": "lesscode-bk-swiper-nav-icon"
+      "class": "bk-vision-bk-swiper-nav-icon"
     }, null)])]);
   }
 });
@@ -16112,13 +16112,13 @@ var Component$l = defineComponent({
     emit
   }) {
     const wrapperCls = computed(() => classes({
-      "lesscode-bk-tag-closable": props2.closable,
-      "lesscode-bk-tag-checkable": props2.checkable,
-      "lesscode-bk-tag-check": props2.checked,
-      [`lesscode-bk-tag-${props2.type}`]: props2.type,
-      [`lesscode-bk-tag-${props2.theme}`]: props2.theme,
+      "bk-vision-bk-tag-closable": props2.closable,
+      "bk-vision-bk-tag-checkable": props2.checkable,
+      "bk-vision-bk-tag-check": props2.checked,
+      [`bk-vision-bk-tag-${props2.type}`]: props2.type,
+      [`bk-vision-bk-tag-${props2.theme}`]: props2.theme,
       [props2.extCls]: !!props2.extCls
-    }, "lesscode-bk-tag"));
+    }, "bk-vision-bk-tag"));
     const wrapperStyle = computed(() => ({
       borderRadius: props2.radius
     }));
@@ -16148,11 +16148,11 @@ var Component$l = defineComponent({
       "style": this.wrapperStyle,
       "onClick": this.handleClick
     }, [this.$slots.icon ? createVNode("span", {
-      "class": "lesscode-bk-tag-icon"
+      "class": "bk-vision-bk-tag-icon"
     }, [this.$slots.icon()]) : "", createVNode("span", {
-      "class": "lesscode-bk-tag-text"
+      "class": "bk-vision-bk-tag-text"
     }, [(_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a)]), this.closable ? createVNode(error, {
-      "class": "lesscode-bk-tag-close",
+      "class": "bk-vision-bk-tag-close",
       "onClick": this.handleClose
     }, null) : ""]);
   }
@@ -16217,7 +16217,7 @@ var SelectTagInput = defineComponent({
       emit("keydown", e.target.value, e);
     };
     const getTagDOM = (index2) => {
-      const tags = [...proxy.$el.querySelectorAll(".lesscode-bk-tag")];
+      const tags = [...proxy.$el.querySelectorAll(".bk-vision-bk-tag")];
       return typeof index2 === "number" ? tags[index2] : tags;
     };
     const calcOverflow = () => {
@@ -16486,7 +16486,7 @@ var Component$k = defineComponent({
     });
     const isCollapseTags = computed(() => autoHeight.value ? collapseTags.value && !isPopoverShow.value : collapseTags.value);
     const popoverConfig = computed(() => lodash.exports.merge({
-      theme: "light lesscode-bk-select-popover",
+      theme: "light bk-vision-bk-select-popover",
       trigger: "manual",
       width: popperWidth.value,
       arrow: false,
@@ -16903,7 +16903,7 @@ var Component$k = defineComponent({
             }
             if (this.prefix) {
               return createVNode("div", {
-                "class": "lesscode-bk-select--prefix-area"
+                "class": "bk-vision-bk-select--prefix-area"
               }, [createVNode("span", null, [this.prefix])]);
             }
             return "";
@@ -17095,14 +17095,14 @@ var Component$j = defineComponent({
         header: () => {
           var _a, _b;
           return createVNode(Fragment, null, [createVNode("div", {
-            "class": "lesscode-bk-sideslider-header"
+            "class": "bk-vision-bk-sideslider-header"
           }, [createVNode("div", {
-            "class": `lesscode-bk-sideslider-close ${props2.direction}`,
+            "class": `bk-vision-bk-sideslider-close ${props2.direction}`,
             "onClick": () => {
               handleClose();
             }
           }, null), createVNode("div", {
-            "class": `lesscode-bk-sideslider-title ${props2.direction}`
+            "class": `bk-vision-bk-sideslider-title ${props2.direction}`
           }, [(_b = (_a = slots.header) == null ? void 0 : _a.call(slots)) != null ? _b : props2.title])])]);
         },
         default: () => {
@@ -17112,13 +17112,13 @@ var Component$j = defineComponent({
         footer: () => {
           if (slots.footer) {
             return createVNode("div", {
-              "class": "lesscode-bk-sideslider-footer"
+              "class": "bk-vision-bk-sideslider-footer"
             }, [slots.footer()]);
           }
           return null;
         }
       };
-      const className = `lesscode-bk-sideslider-wrapper ${props2.scrollable ? "scroll-able" : ""} ${props2.extCls}`;
+      const className = `bk-vision-bk-sideslider-wrapper ${props2.scrollable ? "scroll-able" : ""} ${props2.extCls}`;
       const maxHeight = slots.footer ? "calc(100vh - 106px)" : "calc(100vh - 52px)";
       return createVNode(BkModal, mergeProps(props2, {
         "maxHeight": maxHeight,
@@ -17236,13 +17236,13 @@ var Component$i = defineComponent({
     };
   },
   render() {
-    const stepsClsPrefix = "lesscode-bk-steps";
+    const stepsClsPrefix = "bk-vision-bk-steps";
     const stepsThemeCls = this.theme ? `${stepsClsPrefix}-${this.theme}` : "";
     const stepsSizeCls = this.size ? `${stepsClsPrefix}-${this.size}` : "";
     const stepsCls = classes({
       [`${this.extCls}`]: !!this.extCls,
-      [`lesscode-bk-steps-${this.direction}`]: this.direction,
-      [`lesscode-bk-steps-${this.lineType}`]: this.lineType
+      [`bk-vision-bk-steps-${this.direction}`]: this.direction,
+      [`bk-vision-bk-steps-${this.lineType}`]: this.lineType
     }, `${stepsThemeCls} ${stepsClsPrefix} ${stepsSizeCls}`);
     const isDone = (index2) => this.curStep > index2 + 1 || this.defaultSteps[index2].status === "done";
     const isCurrent = (index2) => this.curStep === index2 + 1;
@@ -17266,17 +17266,17 @@ var Component$i = defineComponent({
     const renderIcon = (index2, step) => {
       if (isCurrent(index2) && this.status === "loading" || isLoadingStatus(step)) {
         return createVNode(circle, {
-          "class": "lesscode-bk-icon lesscode-bk-steps-icon icon-loading"
+          "class": "bk-vision-bk-icon bk-vision-bk-steps-icon icon-loading"
         }, null);
       }
       if (isCurrent(index2) && this.status === "error" || isErrorStatus(step)) {
         return createVNode(error, {
-          "class": "lesscode-bk-steps-icon"
+          "class": "bk-vision-bk-steps-icon"
         }, null);
       }
       if (isDone(index2)) {
         return createVNode(done, {
-          "class": "lesscode-bk-steps-icon"
+          "class": "bk-vision-bk-steps-icon"
         }, null);
       }
       return createVNode("span", null, [isNumberIcon(index2, step) ? index2 + 1 : createVNode(step.icon, null, null)]);
@@ -17286,9 +17286,9 @@ var Component$i = defineComponent({
     }, [this.defaultSteps.map((step, index2) => {
       var _a, _b, _c;
       return createVNode("div", {
-        "class": ["lesscode-bk-step", !step.title ? "lesscode-bk-step-no-content" : "", isDone(index2) ? "done" : "", isCurrent(index2) ? "current" : "", isCurrent(index2) && this.status === "error" ? "isError" : "", step.status && isCurrent(index2) ? [`lesscode-bk-step-${step.status}`] : ""]
+        "class": ["bk-vision-bk-step", !step.title ? "bk-vision-bk-step-no-content" : "", isDone(index2) ? "done" : "", isCurrent(index2) ? "current" : "", isCurrent(index2) && this.status === "error" ? "isError" : "", step.status && isCurrent(index2) ? [`bk-vision-bk-step-${step.status}`] : ""]
       }, [createVNode("span", {
-        "class": ["lesscode-bk-step-indicator", `lesscode-bk-step-${iconType(step) ? "icon" : "number"}`, `lesscode-bk-step-icon${step.status}`],
+        "class": ["bk-vision-bk-step-indicator", `bk-vision-bk-step-${iconType(step) ? "icon" : "number"}`, `bk-vision-bk-step-icon${step.status}`],
         "style": {
           cursor: this.controllable ? "pointer" : ""
         },
@@ -17296,9 +17296,9 @@ var Component$i = defineComponent({
           this.jumpTo(index2 + 1);
         }
       }, [(_c = (_b = (_a = this.$slots)[index2 + 1]) == null ? void 0 : _b.call(_a)) != null ? _c : renderIcon(index2, step)]), step.title ? createVNode("div", {
-        "class": "lesscode-bk-step-content"
+        "class": "bk-vision-bk-step-content"
       }, [createVNode("div", {
-        "class": "lesscode-bk-step-title",
+        "class": "bk-vision-bk-step-title",
         "style": {
           cursor: this.controllable ? "pointer" : ""
         },
@@ -17306,7 +17306,7 @@ var Component$i = defineComponent({
           this.jumpTo(index2 + 1);
         }
       }, [step.title]), step.description && createVNode("div", {
-        "class": "lesscode-bk-step-description",
+        "class": "bk-vision-bk-step-description",
         "title": step.description
       }, [step.description])]) : ""]);
     })]);
@@ -17344,18 +17344,18 @@ var Component$h = defineComponent({
     const classObject = computed(() => {
       const cls = {
         [props2.extCls]: !!props2.extCls,
-        "lesscode-bk-switcher": true,
-        "lesscode-bk-switcher-outline": props2.isOutline,
-        "lesscode-bk-switcher-square": props2.isSquare,
+        "bk-vision-bk-switcher": true,
+        "bk-vision-bk-switcher-outline": props2.isOutline,
+        "bk-vision-bk-switcher-square": props2.isSquare,
         "show-label": props2.showText,
         "is-disabled": props2.disabled,
         "is-checked": isChecked.value,
         "is-unchecked": !isChecked.value,
         "is-loading": isLoading.value,
-        "lesscode-bk-primary": props2.theme === "primary"
+        "bk-vision-bk-primary": props2.theme === "primary"
       };
       if (props2.size && !props2.showText) {
-        const sizeStr = `lesscode-bk-switcher-${props2.size}`;
+        const sizeStr = `bk-vision-bk-switcher-${props2.size}`;
         cls[sizeStr] = true;
       }
       return cls;
@@ -17409,7 +17409,7 @@ var Component$h = defineComponent({
       "tabindex": "0",
       "onKeydown": handleKeydown
     }, [isLoading.value ? createVNode(switcherLoading, {
-      "class": "lesscode-bk-switcher-loading"
+      "class": "bk-vision-bk-switcher-loading"
     }, null) : "", props2.showText ? createVNode("span", {
       "class": "switcher-text"
     }, [isChecked.value ? props2.onText : props2.offText]) : ""]);
@@ -17937,14 +17937,14 @@ var useLimit = (t2) => {
     }
     return createVNode("div", mergeProps({
       "class": {
-        "lesscode-bk-pagination-limit": true,
+        "bk-vision-bk-pagination-limit": true,
         "is-first": isFirst,
         "is-last": isLast
       }
     }, {
       disabled: proxy.disabled
     }), [createVNode("div", null, [t2.value.eachPage]), createVNode(BkSelect, {
-      "class": "lesscode-bk-pagination-limit-select",
+      "class": "bk-vision-bk-pagination-limit-select",
       "clearable": false,
       "size": "small",
       "withValidate": false,
@@ -18044,48 +18044,48 @@ var useList = () => {
     isLast
   }) => createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-list": true,
+      "bk-vision-bk-pagination-list": true,
       "is-first": isFirst,
       "is-last": isLast
     }
   }, [createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-list-pre": true,
+      "bk-vision-bk-pagination-list-pre": true,
       "is-disabled": isPagePreDisabled.value
     },
     "onClick": handlePrePage
   }, [proxy.prevText || createVNode(angleLeft, null, null)]), createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-list-item": true,
+      "bk-vision-bk-pagination-list-item": true,
       "is-active": localCurrent.value === 1
     },
     "key": "1",
     "onClick": () => handleItemClick(1)
   }, [createTextVNode("1")]), showPreBatch.value && createVNode("div", {
     "key": "pre-batch",
-    "class": "lesscode-bk-pagination-list-pre-batch",
+    "class": "bk-vision-bk-pagination-list-pre-batch",
     "onClick": handlePreBatch
   }, [createVNode(ellipsis$1, null, null)]), list.value.map((num) => createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-list-item": true,
+      "bk-vision-bk-pagination-list-item": true,
       "is-active": localCurrent.value === num
     },
     "key": num,
     "onClick": () => handleItemClick(num)
   }, [num])), showNextBatch.value && createVNode("div", {
     "key": "next-batch",
-    "class": "lesscode-bk-pagination-list-next-batch",
+    "class": "bk-vision-bk-pagination-list-next-batch",
     "onClick": handleNextBatch
   }, [createVNode(ellipsis$1, null, null)]), proxy.totalPageNum > 1 && createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-list-item": true,
+      "bk-vision-bk-pagination-list-item": true,
       "is-active": localCurrent.value === proxy.totalPageNum
     },
     "key": "last",
     "onClick": () => handleItemClick(proxy.totalPageNum)
   }, [proxy.totalPageNum]), createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-list-pre": true,
+      "bk-vision-bk-pagination-list-pre": true,
       "is-disabled": isPageNextDisabled.value
     },
     "onClick": handleNextPage
@@ -18174,10 +18174,10 @@ var useSmallList = () => {
     handlePageEditorBlur();
   };
   const render2 = () => createVNode("div", {
-    "class": "lesscode-bk-pagination-small-list"
+    "class": "bk-vision-bk-pagination-small-list"
   }, [createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-btn-pre": true,
+      "bk-vision-bk-pagination-btn-pre": true,
       "is-disabled": isPagePreDisabled.value
     },
     "onClick": handlePrePage
@@ -18191,12 +18191,12 @@ var useSmallList = () => {
   }, {
     default: () => createVNode("div", {
       "class": {
-        "lesscode-bk-pagination-picker": true,
+        "bk-vision-bk-pagination-picker": true,
         "is-focused": isFocused.value
       }
     }, [createVNode("span", {
       "ref": inputRef,
-      "class": "lesscode-bk-pagination-editor",
+      "class": "bk-vision-bk-pagination-editor",
       "contenteditable": true,
       "spellcheck": "false",
       "onFocus": handlePageEditorFocus,
@@ -18204,10 +18204,10 @@ var useSmallList = () => {
       "onInput": handlePageEditorInput,
       "onKeydown": handlePageEditorKeydown
     }, [localCurrent.value]), createVNode("span", null, [createTextVNode("/")]), createVNode("span", {
-      "class": "lesscode-bk-pagination-small-list-total"
+      "class": "bk-vision-bk-pagination-small-list-total"
     }, [proxy.totalPageNum])]),
     content: () => createVNode("div", {
-      "class": "lesscode-bk-pagination-picker-list"
+      "class": "bk-vision-bk-pagination-picker-list"
     }, [list.value.map((item) => createVNode("div", {
       "class": {
         item: true,
@@ -18218,7 +18218,7 @@ var useSmallList = () => {
     }, [item]))])
   }), createVNode("div", {
     "class": {
-      "lesscode-bk-pagination-btn-next": true,
+      "bk-vision-bk-pagination-btn-next": true,
       "is-disabled": isPageNextDisabled.value
     },
     "onClick": handleNextPage
@@ -18240,14 +18240,14 @@ var useTotal = (t2) => ({
   }
   return createVNode("div", mergeProps({
     "class": {
-      "lesscode-bk-pagination-total": true,
+      "bk-vision-bk-pagination-total": true,
       "is-first": isFirst,
       "is-last": isLast
     }
   }, {
     disabled: props2.disabled
   }), [t2.value.total, createVNode("div", {
-    "class": "lesscode-bk-pagination-total-num"
+    "class": "bk-vision-bk-pagination-total-num"
   }, [props2.count]), t2.value.strip]);
 };
 const paginationProps = {
@@ -18329,8 +18329,8 @@ var Component$g = defineComponent({
   },
   render() {
     const paginationClass = classes({
-      "lesscode-bk-pagination": true,
-      [`lesscode-bk-pagination--${this.size}`]: true,
+      "bk-vision-bk-pagination": true,
+      [`bk-vision-bk-pagination--${this.size}`]: true,
       [`is-align-${this.align}`]: true
     });
     const layoutMap = {
@@ -21162,7 +21162,7 @@ var Component$f = defineComponent({
     }));
     const tableRender = new TableRender(props2, ctx, reactiveSchema, colgroups, styleRef, t2);
     const updateOffsetRight = () => {
-      const $tableContent = root.value.querySelector(".lesscode-bk-table-body-content");
+      const $tableContent = root.value.querySelector(".bk-vision-bk-table-body-content");
       const $table = $tableContent.querySelector("table");
       if ($table) {
         const $tableScrollWidth = $table.scrollWidth;
@@ -21593,7 +21593,7 @@ var ListTagRender = defineComponent({
     }
     const displayText = this.node[this.displayKey];
     return createVNode("div", {
-      "class": "lesscode-bk-selector-node"
+      "class": "bk-vision-bk-selector-node"
     }, [createVNode("span", {
       "class": "text",
       "innerHTML": highlightKeyword(displayText)
@@ -21752,7 +21752,7 @@ var Component$e = defineComponent({
     const placeholderText = computed(() => props2.placeholder || t2.value.placeholder);
     const isShowClear = computed(() => props2.clearable && !props2.disabled && listState.selectedTagList.length !== 0 && (props2.showClearOnlyHover ? state.isHover : true));
     const triggerClass = computed(() => ({
-      "lesscode-bk-tag-input-trigger": true,
+      "bk-vision-bk-tag-input-trigger": true,
       active: state.isEdit,
       disabled: props2.disabled
     }));
@@ -21864,7 +21864,7 @@ var Component$e = defineComponent({
         const {
           className
         } = e.target;
-        if (className.indexOf("lesscode-bk-tag-input-trigger") > -1 || className.indexOf("tag-list") > -1) {
+        if (className.indexOf("bk-vision-bk-tag-input-trigger") > -1 || className.indexOf("tag-list") > -1) {
           tagListRef.value.appendChild(tagInputItemRef.value);
         }
       }
@@ -21953,13 +21953,13 @@ var Component$e = defineComponent({
     };
     const activeClass = (data2, index2) => {
       const style2 = {
-        "lesscode-bk-selector-actived": false,
-        "lesscode-bk-selector-selected": tagList.value.includes(data2[props2.saveKey])
+        "bk-vision-bk-selector-actived": false,
+        "bk-vision-bk-selector-selected": tagList.value.includes(data2[props2.saveKey])
       };
       if (props2.useGroup) {
-        style2["lesscode-bk-selector-actived"] = data2.__index__ === state.focusItemIndex;
+        style2["bk-vision-bk-selector-actived"] = data2.__index__ === state.focusItemIndex;
       } else {
-        style2["lesscode-bk-selector-actived"] = index2 === state.focusItemIndex;
+        style2["bk-vision-bk-selector-actived"] = index2 === state.focusItemIndex;
       }
       return style2;
     };
@@ -22101,7 +22101,7 @@ var Component$e = defineComponent({
         yAxis: selectorListRef.value.getBoundingClientRect().y
       };
       nextTick(() => {
-        const activeObj = selectorListRef.value.querySelector(".lesscode-bk-selector-actived");
+        const activeObj = selectorListRef.value.querySelector(".bk-vision-bk-selector-actived");
         if (!activeObj) {
           return;
         }
@@ -22390,13 +22390,13 @@ var Component$e = defineComponent({
   },
   render() {
     return createVNode("div", {
-      "class": "lesscode-bk-tag-input",
+      "class": "bk-vision-bk-tag-input",
       "ref": "bkTagSelectorRef",
       "onClick": this.focusInputTrigger,
       "onMouseenter": () => this.isHover = true,
       "onMouseleave": () => this.isHover = false
     }, [createVNode(BkPopover, mergeProps({
-      "theme": "light lesscode-bk-tag-input-popover-content",
+      "theme": "light bk-vision-bk-tag-input-popover-content",
       "trigger": "manual",
       "placement": "bottom-start",
       "arrow": false
@@ -22465,7 +22465,7 @@ var Component$e = defineComponent({
         }, null)]);
       },
       content: () => createVNode("div", {
-        "class": "lesscode-bk-selector-list"
+        "class": "bk-vision-bk-selector-list"
       }, [createVNode("ul", {
         "ref": "selectorListRef",
         "style": {
@@ -22473,13 +22473,13 @@ var Component$e = defineComponent({
         },
         "class": "outside-ul"
       }, [this.renderList.map((group, index2) => this.useGroup ? createVNode("li", {
-        "class": "lesscode-bk-selector-group-item"
+        "class": "bk-vision-bk-selector-group-item"
       }, [createVNode("span", {
         "class": "group-name"
       }, [group.name, createTextVNode(" ("), group.children.length, createTextVNode(")")]), createVNode("ul", {
-        "class": "lesscode-bk-selector-group-list-item"
+        "class": "bk-vision-bk-selector-group-list-item"
       }, [group.children.map((item, index3) => createVNode("li", {
-        "class": ["lesscode-bk-selector-list-item", {
+        "class": ["bk-vision-bk-selector-list-item", {
           disabled: item.disabled
         }, this.activeClass(item, index3)],
         "onClick": this.handleTagSelected.bind(this, item, "select")
@@ -22490,7 +22490,7 @@ var Component$e = defineComponent({
         "searchKey": this.searchKey,
         "searchKeyword": this.curInputValue
       }, null)]))])]) : createVNode("li", {
-        "class": ["lesscode-bk-selector-list-item", {
+        "class": ["bk-vision-bk-selector-list-item", {
           disabled: group.disabled
         }, this.activeClass(group, index2)],
         "onClick": this.handleTagSelected.bind(this, group, "select")
@@ -22501,7 +22501,7 @@ var Component$e = defineComponent({
         "searchKey": this.searchKey,
         "searchKeyword": this.curInputValue
       }, null)])), this.isPageLoading ? createVNode("li", {
-        "class": "lesscode-bk-selector-list-item loading"
+        "class": "bk-vision-bk-selector-list-item loading"
       }, [createVNode(BkLoading, {
         "theme": "primary",
         "size": BkLoadingSize.Small
@@ -23206,7 +23206,7 @@ var MessageConstructor = defineComponent({
   setup(props2, {
     emit
   }) {
-    const classNames = computed(() => ["lesscode-bk-message", `lesscode-bk-message-${props2.theme}`, `${props2.extCls}`]);
+    const classNames = computed(() => ["bk-vision-bk-message", `bk-vision-bk-message-${props2.theme}`, `${props2.extCls}`]);
     const zIndex = bkZIndexManager.getMessageNextIndex();
     const isGetContainer = computed(() => props2.getContainer && isElement$4(props2.getContainer));
     const styles = computed(() => ({
@@ -23256,17 +23256,17 @@ var MessageConstructor = defineComponent({
       return iconMap[this.theme];
     };
     return createVNode(Transition, {
-      "name": "lesscode-bk-message-fade"
+      "name": "bk-vision-bk-message-fade"
     }, {
       default: () => [withDirectives(createVNode("div", {
         "class": this.classNames,
         "style": this.styles
       }, [createVNode("div", {
-        "class": "lesscode-bk-message-content"
+        "class": "bk-vision-bk-message-content"
       }, [createVNode("div", {
-        "class": "lesscode-bk-message-icon"
+        "class": "bk-vision-bk-message-icon"
       }, [renderIcon()]), this.message]), this.dismissable && createVNode(error, {
-        "class": "lesscode-bk-message-close",
+        "class": "bk-vision-bk-message-close",
         "onClick": this.close
       }, null)]), [[vShow, this.visible]])]
     });
@@ -23400,7 +23400,7 @@ var NotifyConstructor = defineComponent({
       [verticalProperty.value]: `${props2.offsetY}px`,
       zIndex
     }));
-    const classNames = computed(() => ["lesscode-bk-notify", `lesscode-bk-notify-${props2.theme}`, horizontalClass.value]);
+    const classNames = computed(() => ["bk-vision-bk-notify", `bk-vision-bk-notify-${props2.theme}`, horizontalClass.value]);
     const renderMessage = computed(() => {
       if (typeof props2.message === "function") {
         return props2.message();
@@ -23448,21 +23448,21 @@ var NotifyConstructor = defineComponent({
       return iconMap[this.theme];
     };
     return createVNode(Transition, {
-      "name": "lesscode-bk-notify-fade"
+      "name": "bk-vision-bk-notify-fade"
     }, {
       default: () => [withDirectives(createVNode("div", {
         "class": this.classNames,
         "style": this.styles
       }, [createVNode("div", {
-        "class": "lesscode-bk-notify-content"
+        "class": "bk-vision-bk-notify-content"
       }, [createVNode("div", {
-        "class": "lesscode-bk-notify-icon"
+        "class": "bk-vision-bk-notify-icon"
       }, [renderIcon()]), this.title ? createVNode("div", {
-        "class": "lesscode-bk-notify-content-header"
+        "class": "bk-vision-bk-notify-content-header"
       }, [this.title]) : "", createVNode("div", {
-        "class": "lesscode-bk-notify-content-text"
+        "class": "bk-vision-bk-notify-content-text"
       }, [this.renderMessage])]), this.dismissable && createVNode(error, {
-        "class": "lesscode-bk-notify-icon lesscode-bk-notify-close",
+        "class": "bk-vision-bk-notify-icon bk-vision-bk-notify-close",
         "onClick": this.handleClose
       }, null)]), [[vShow, this.visible]])]
     });
@@ -23666,7 +23666,7 @@ var Component$d = defineComponent({
       var _a;
       return createVNode("div", {
         "class": {
-          "lesscode-bk-menu": true,
+          "bk-vision-bk-menu": true,
           "is-collapse": collapse2.value
         }
       }, [(_a = slots.default) == null ? void 0 : _a.call(slots)]);
@@ -23687,7 +23687,7 @@ var Group = defineComponent({
     return () => {
       var _a;
       return createVNode("div", {
-        "class": "lesscode-bk-menu-group"
+        "class": "bk-vision-bk-menu-group"
       }, [createVNode("div", {
         "class": "group-name"
       }, [props2.name]), createVNode("ul", {
@@ -23737,7 +23737,7 @@ var Item = defineComponent({
       var _a2, _b2;
       return createVNode("li", {
         "class": {
-          "lesscode-bk-menu-item": true,
+          "bk-vision-bk-menu-item": true,
           "is-active": isActive.value
         },
         "onClick": handleClick
@@ -23802,7 +23802,7 @@ var Submenu = defineComponent({
       var _a2;
       return createVNode("li", {
         "class": {
-          "lesscode-bk-menu-submenu": true,
+          "bk-vision-bk-menu-submenu": true,
           "is-opened": isShow.value
         }
       }, [createVNode("div", {
@@ -23853,14 +23853,14 @@ var NavigationTitle = defineComponent({
     return () => {
       var _a, _b;
       return createVNode("div", {
-        "class": "lesscode-bk-navigation-title",
+        "class": "bk-vision-bk-navigation-title",
         "style": {
           borderBottomWidth: props2.navigationType === "left-right" ? "0" : "1px"
         }
       }, [((_a = slots.default) == null ? void 0 : _a.call(slots)) || [createVNode("span", {
         "class": "title-icon"
       }, [((_b = slots["side-icon"]) == null ? void 0 : _b.call(slots)) || createVNode("i", {
-        "class": "lesscode-bk-icon icon-rtx"
+        "class": "bk-vision-bk-icon icon-rtx"
       }, null)]), createVNode("span", {
         "class": "title-desc"
       }, [props2.sideTitle])]]);
@@ -23977,9 +23977,9 @@ var Component$c = defineComponent({
   render() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
     return createVNode("div", {
-      "class": "lesscode-bk-navigation"
+      "class": "bk-vision-bk-navigation"
     }, [this.navigationType === "top-bottom" && createVNode("div", {
-      "class": "lesscode-bk-navigation-header",
+      "class": "bk-vision-bk-navigation-header",
       "style": {
         flexBasis: `${this.headHeight}px`
       }
@@ -23991,7 +23991,7 @@ var Component$c = defineComponent({
     }), createVNode("div", {
       "class": "header-right"
     }, [(_b = (_a = this.$slots).header) == null ? void 0 : _b.call(_a)])]), createVNode("div", {
-      "class": "lesscode-bk-navigation-wrapper"
+      "class": "bk-vision-bk-navigation-wrapper"
     }, [this.needMenu && createVNode("div", {
       "class": "navigation-nav",
       "style": {
@@ -27724,7 +27724,7 @@ var DatePanel = defineComponent({
         e.preventDefault();
       }
     }, [this.shortcuts.length ? createVNode("div", {
-      "class": "lesscode-bk-picker-panel-sidebar"
+      "class": "bk-vision-bk-picker-panel-sidebar"
     }, [this.shortcuts.map((shortcut) => createVNode("div", {
       "class": resolveClassName("picker-panel-shortcut"),
       "onClick": () => this.handleShortcutClick(shortcut)
@@ -27943,7 +27943,7 @@ var TimeRangePanel = defineComponent({
         width: `${this.width}px`
       }
     }, [this.showDate ? createVNode("div", {
-      "class": "lesscode-bk-time-picker-header"
+      "class": "bk-vision-bk-time-picker-header"
     }, [this.leftDatePanelLabel]) : "", createVNode(TimeSpinner, {
       "ref": "timeSpinnerRef",
       "steps": this.steps,
@@ -29371,7 +29371,7 @@ var TimePicker = defineComponent({
           e.stopPropagation();
           e.preventDefault();
           if (isConfirm.value) {
-            const selector = ".lesscode-bk-picker-confirm > *";
+            const selector = ".bk-vision-bk-picker-confirm > *";
             const tabbable = pickerDropdownRef.value.$el.querySelectorAll(selector);
             state.internalFocus = true;
             const element = [...tabbable][e.shiftKey ? "pop" : "shift"]();
@@ -29573,7 +29573,7 @@ var TimePicker = defineComponent({
       "disabled": !this.appendToBody
     }, {
       default: () => [createVNode(Transition, {
-        "name": "lesscode-bk-fade-down-transition"
+        "name": "bk-vision-bk-fade-down-transition"
       }, {
         default: () => [withDirectives(createVNode(PickerDropdown, {
           "class": [this.appendToBody ? resolveClassName("date-picker-transfer") : ""],
@@ -29907,9 +29907,9 @@ var Component$a = defineComponent({
       }, [item[this.displayCode]]), !multiple && createVNode("span", {
         "class": "icon-wrapper"
       }, [isLeft ? createVNode(arrowsRight, {
-        "class": "lesscode-bk-icon icon-move"
+        "class": "bk-vision-bk-icon icon-move"
       }, null) : createVNode(error, {
-        "class": "lesscode-bk-icon icon-delete"
+        "class": "bk-vision-bk-icon icon-delete"
       }, null)])]);
     };
     const getListContentHtml = (dirct) => {
@@ -29947,7 +29947,7 @@ var Component$a = defineComponent({
       return list.length ? contentMode : getEmptyHtml(emptySlotName);
     };
     return createVNode("div", {
-      "class": ["lesscode-bk-transfer", this.extCls]
+      "class": ["bk-vision-bk-transfer", this.extCls]
     }, [createVNode("div", {
       "class": "source-list"
     }, [getHeaderHtml("left-header"), this.searchable && createVNode(BkInput, {
@@ -30277,7 +30277,7 @@ const getNodeItemClass = (item, schema, props2) => {
   const { __is_root, __is_open } = getSchemaVal(schema, item[NODE_ATTRIBUTES.UUID]) || {};
   return {
     "is-root": __is_root,
-    "lesscode-bk-tree-node": true,
+    "bk-vision-bk-tree-node": true,
     "is-open": __is_open,
     "is-virtual-render": props2.virtualRender,
     "level-line": props2.levelLine
@@ -30741,7 +30741,7 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
     const targetNode = getTargetTreeNode(e);
     const data2 = getNodeByTargetTreeNode(targetNode);
     if (data2.draggable === false || isNeedCheckDraggable.value && props2.disableDrag(data2)) {
-      targetNode.classList.add("lesscode-bk-tree-drag-disabled");
+      targetNode.classList.add("bk-vision-bk-tree-drag-disabled");
       return;
     }
     targetNode.setAttribute("draggable", "true");
@@ -30755,10 +30755,10 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
     if (isNeedCheckDroppable.value && (props2 == null ? void 0 : props2.disableDrop(data2))) {
       e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.dropEffect = "none";
-      targetNode.classList.add("lesscode-bk-tree-drop-disabled");
+      targetNode.classList.add("bk-vision-bk-tree-drop-disabled");
       return;
     }
-    targetNode.classList.add("lesscode-bk-tree-drop-active");
+    targetNode.classList.add("bk-vision-bk-tree-drop-active");
     const sourceNodeId = e.dataTransfer.getData("node-id");
     const targetNodeId = targetNode.getAttribute("data-tree-node");
     const transferEffect = isNodeSortable(sourceNodeId, targetNodeId) ? "move" : "none";
@@ -30777,7 +30777,7 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
     e.preventDefault();
     e.stopPropagation();
     const targetNode = getTargetTreeNode(e);
-    targetNode.classList.remove("lesscode-bk-tree-drop-active", "lesscode-bk-tree-drop-disabled");
+    targetNode.classList.remove("bk-vision-bk-tree-drop-active", "bk-vision-bk-tree-drop-disabled");
     const data2 = getNodeByTargetTreeNode(targetNode);
     if (isNeedCheckDroppable.value && props2.disableDrop(data2)) {
       return;
@@ -30844,7 +30844,7 @@ var useNodeDrag = (props2, ctx, root, flatData) => {
   const handleTreeNodeDragLeave = (e) => {
     e.preventDefault();
     const targetNode = getTargetTreeNode(e);
-    targetNode.classList.remove("lesscode-bk-tree-drop-active", "lesscode-bk-tree-drop-disabled");
+    targetNode.classList.remove("bk-vision-bk-tree-drop-active", "bk-vision-bk-tree-drop-disabled");
     ctx.emit(EVENTS.NODE_DRAG_LEAVE, e, targetNode);
   };
   onMounted(() => {
@@ -31318,7 +31318,7 @@ var ComposeFormItem = defineComponent({
         if (!headChildren.props) {
           headChildren.props = {};
         }
-        let headChildClass = "lesscode-bk-compose-form-item-head";
+        let headChildClass = "bk-vision-bk-compose-form-item-head";
         if (headChildren.props.class) {
           headChildClass += ` ${headChildren.props.class}`;
         }
@@ -31331,7 +31331,7 @@ var ComposeFormItem = defineComponent({
         if (!tailChildren.props) {
           tailChildren.props = {};
         }
-        let tailChildStaticClass = "lesscode-bk-compose-form-item-tail";
+        let tailChildStaticClass = "bk-vision-bk-compose-form-item-tail";
         if (tailChildren.props.class) {
           tailChildStaticClass += ` ${tailChildren.props.class}`;
         }
@@ -31344,7 +31344,7 @@ var ComposeFormItem = defineComponent({
       }
     }
     return h$1("div", {
-      class: "lesscode-bk-compose-form-item"
+      class: "bk-vision-bk-compose-form-item"
     }, childrenArr);
   }
 });
@@ -31435,8 +31435,8 @@ var Form = defineComponent({
   render() {
     var _a, _b;
     const formClasses = classes({
-      "lesscode-bk-form": true,
-      [`lesscode-bk-form--${this.formType}`]: true
+      "bk-vision-bk-form": true,
+      [`bk-vision-bk-form--${this.formType}`]: true
     });
     return createVNode("form", {
       "class": formClasses,
@@ -31715,7 +31715,7 @@ var FormItem = defineComponent({
   render() {
     var _a, _b, _c, _d;
     const itemClassees = classes({
-      "lesscode-bk-form-item": true,
+      "bk-vision-bk-form-item": true,
       "is-error": this.isError,
       "is-required": this.required
     });
@@ -31726,7 +31726,7 @@ var FormItem = defineComponent({
       if (this.description) {
         return withDirectives(createVNode("span", {
           "class": {
-            "lesscode-bk-form-label-description": Boolean(this.description)
+            "bk-vision-bk-form-label-description": Boolean(this.description)
           }
         }, [this.label]), [[resolveDirective("bk-tooltips"), this.description]]);
       }
@@ -31738,20 +31738,20 @@ var FormItem = defineComponent({
       }
       if (this.errorDisplayType === "tooltips") {
         return withDirectives(createVNode("div", {
-          "class": "lesscode-bk-form-error-tips"
+          "class": "bk-vision-bk-form-error-tips"
         }, [createVNode(exclamationCircleShape, null, null)]), [[resolveDirective("bk-tooltips"), this.errorMessage]]);
       }
       return createVNode("div", {
-        "class": "lesscode-bk-form-error"
+        "class": "bk-vision-bk-form-error"
       }, [this.$slots.error ? this.$slots.error(this.errorMessage) : this.errorMessage]);
     };
     return createVNode("div", {
       "class": itemClassees
     }, [this.isShowLabel && createVNode("div", {
-      "class": "lesscode-bk-form-label",
+      "class": "bk-vision-bk-form-label",
       "style": this.labelStyles
     }, [renderLabel(), this.isFormTypeVertical && ((_b = (_a = this.$slots).labelAppend) == null ? void 0 : _b.call(_a))]), createVNode("div", {
-      "class": "lesscode-bk-form-content",
+      "class": "bk-vision-bk-form-content",
       "style": this.contentStyles
     }, [(_d = (_c = this.$slots).default) == null ? void 0 : _d.call(_c), renderError()])]);
   }
@@ -31799,7 +31799,7 @@ var Col = defineComponent({
     return () => {
       var _a, _b;
       return createVNode("div", {
-        "class": "lesscode-bk-grid-col",
+        "class": "bk-vision-bk-grid-col",
         "style": style2.value
       }, [(_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a)]);
     };
@@ -31828,7 +31828,7 @@ var Container = defineComponent({
       gutter,
       flex
     });
-    const classes2 = computed(() => extCls ? `lesscode-bk-grid-container ${extCls}` : "lesscode-bk-grid-container");
+    const classes2 = computed(() => extCls ? `bk-vision-bk-grid-container ${extCls}` : "bk-vision-bk-grid-container");
     const style2 = computed(() => {
       const {
         margin
@@ -31873,7 +31873,7 @@ var Row = defineComponent({
     return () => {
       var _a, _b;
       return createVNode("div", {
-        "class": "lesscode-bk-grid-row",
+        "class": "bk-vision-bk-grid-row",
         "style": style2.value
       }, [(_b = (_a = ctx.slots).default) == null ? void 0 : _b.call(_a)]);
     };
@@ -31914,10 +31914,10 @@ var Dropdown = defineComponent({
   },
   render() {
     const wrapperClasses = classes({
-      "lesscode-bk-dropdown": true
+      "bk-vision-bk-dropdown": true
     }, this.$props.extCls);
     const basePopoverOptions = {
-      theme: "light lesscode-bk-dropdown-popover",
+      theme: "light bk-vision-bk-dropdown-popover",
       trigger: this.trigger,
       arrow: false,
       placement: this.placement,
@@ -31936,13 +31936,13 @@ var Dropdown = defineComponent({
       default: () => {
         var _a, _b;
         return createVNode("div", {
-          "class": "lesscode-bk-dropdown-reference"
+          "class": "bk-vision-bk-dropdown-reference"
         }, [createTextVNode(" "), (_b = (_a = this.$slots).default) == null ? void 0 : _b.call(_a), createTextVNode(" ")]);
       },
       content: () => {
         var _a, _b;
         return createVNode("div", {
-          "class": "lesscode-bk-dropdown-content"
+          "class": "bk-vision-bk-dropdown-content"
         }, [createTextVNode(" "), (_b = (_a = this.$slots).content) == null ? void 0 : _b.call(_a), createTextVNode(" ")]);
       }
     })]);
@@ -31961,7 +31961,7 @@ var DropdownItem = defineComponent({
       evt.stopPropagation();
       emit("click", evt);
     };
-    const wrapperCLasses = computed(() => ["lesscode-bk-dropdown-item", props2.extCls]);
+    const wrapperCLasses = computed(() => ["bk-vision-bk-dropdown-item", props2.extCls]);
     return {
       wrapperCLasses,
       handleClick
@@ -31981,7 +31981,7 @@ var DropdownMenu = defineComponent({
     extCls: PropTypes.string
   },
   setup(props2) {
-    const wrapperCLasses = computed(() => ["lesscode-bk-dropdown-menu", props2.extCls]);
+    const wrapperCLasses = computed(() => ["bk-vision-bk-dropdown-menu", props2.extCls]);
     return {
       wrapperCLasses
     };
@@ -32158,7 +32158,7 @@ var CascaderPanel = defineComponent({
   render() {
     const emptyWidth = parseInt(this.panelWidth, 10) > 200 ? this.panelWidth : `${200}px`;
     const searchPanelRender = () => this.suggestions.length ? createVNode("ul", {
-      "class": [resolveClassName("cascader-panel"), "lesscode-bk-scroll-y"],
+      "class": [resolveClassName("cascader-panel"), "bk-vision-bk-scroll-y"],
       "style": {
         height: this.panelHeight,
         width: this.panelWidth
@@ -32180,7 +32180,7 @@ var CascaderPanel = defineComponent({
     return createVNode("div", {
       "class": resolveClassName("cascader-panel-wrapper")
     }, [this.isFiltering ? searchPanelRender() : this.menus.list.map((menu2) => createVNode("ul", {
-      "class": [resolveClassName("cascader-panel"), "lesscode-bk-scroll-y"],
+      "class": [resolveClassName("cascader-panel"), "bk-vision-bk-scroll-y"],
       "style": {
         height: this.panelHeight,
         width: this.panelWidth
@@ -32656,7 +32656,7 @@ var Component$8 = defineComponent({
       default: () => this.$slots.trigger ? this.$slots.trigger({
         selected: this.modelValue
       }) : createVNode("div", {
-        "class": [resolveClassName("cascader-name"), "lesscode-bk-scroll-y"]
+        "class": [resolveClassName("cascader-name"), "bk-vision-bk-scroll-y"]
       }, [this.multiple && this.selectedTags.length > 0 && renderTags(), this.filterable ? (this.isCollapse || this.selectedTags.length === 0) && createVNode("input", {
         "class": [resolveClassName("cascader-search-input"), {
           "is-disabled": this.disabled
@@ -32831,7 +32831,7 @@ var SliderButton = defineComponent({
       }
     };
     const renderDom = () => createVNode("div", {
-      "class": ["lesscode-bk-slider-button", props2.params.vertical ? "vertical" : "horizontal", {
+      "class": ["bk-vision-bk-slider-button", props2.params.vertical ? "vertical" : "horizontal", {
         grabbing: dragging.value
       }],
       "ref": button2,
@@ -33225,31 +33225,31 @@ var Component$7 = defineComponent({
     const renderDom = () => {
       var _a, _b;
       return createVNode("div", {
-        "class": ["lesscode-bk-slider", props2.extCls]
+        "class": ["bk-vision-bk-slider", props2.extCls]
       }, [(_a = slots.start) == null ? void 0 : _a.call(slots), createVNode("div", {
-        "class": "lesscode-bk-slider-runway",
+        "class": "bk-vision-bk-slider-runway",
         "ref": slider2,
         "style": runwayStyle.value,
         "onClick": setButtonPos
       }, [createVNode("div", {
-        "class": ["lesscode-bk-slider-bar", props2.vertical ? "vertical" : "horizontal", {
+        "class": ["bk-vision-bk-slider-bar", props2.vertical ? "vertical" : "horizontal", {
           disable: props2.disable
         }],
         "style": barStyle.value
       }, null), props2.showInterval ? intervals.value.map((interval, index2) => createVNode("div", {
         "key": index2,
-        "class": ["lesscode-bk-slider-interval", {
+        "class": ["bk-vision-bk-slider-interval", {
           vertical: props2.vertical
         }],
         "style": getIntervalStyle(interval)
       }, null)) : void 0, props2.customContent ? customList.value.map((custom, index2) => createVNode("div", {
         "key": index2,
-        "class": ["lesscode-bk-slider-interval", {
+        "class": ["bk-vision-bk-slider-interval", {
           vertical: props2.vertical
         }],
         "style": getIntervalStyle(custom.percent)
       }, null)) : void 0, props2.showBetweenLabel || props2.showIntervalLabel || props2.customContent ? createVNode("div", {
-        "class": ["lesscode-bk-slider-labels", props2.vertical ? "vertical" : "horizontal"]
+        "class": ["bk-vision-bk-slider-labels", props2.vertical ? "vertical" : "horizontal"]
       }, [function() {
         if (props2.showBetweenLabel) {
           return [createVNode("div", {
@@ -33266,14 +33266,14 @@ var Component$7 = defineComponent({
         }
         if (props2.showIntervalLabel) {
           return intervalLabels.value.map((intervalLabel, index2) => createVNode("div", {
-            "class": ["lesscode-bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
+            "class": ["bk-vision-bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
             "key": index2,
             "style": getIntervalStyle(intervalLabel.stepWidth)
           }, [intervalLabel.stepLabel]));
         }
         if (props2.customContent) {
           return customList.value.map((item, index2) => createVNode("div", {
-            "class": ["lesscode-bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
+            "class": ["bk-vision-bk-slider-label", props2.vertical ? "vertical" : "horizontal"],
             "key": index2,
             "style": getIntervalStyle(item.percent)
           }, [item.label]));
@@ -33294,7 +33294,7 @@ var Component$7 = defineComponent({
         "onEmitChange": emitChange,
         "onResetSize": resetSize
       }, null) : void 0]), props2.showInput && !props2.vertical ? createVNode("div", {
-        "class": "lesscode-bk-slider-input"
+        "class": "bk-vision-bk-slider-input"
       }, [createVNode("div", {
         "class": "input-item"
       }, [createVNode(BkInput, {
@@ -33545,37 +33545,37 @@ var Component$6 = defineComponent({
   },
   render() {
     var _a, _b, _c, _d, _e, _f;
-    const bkResizeLayoutClass = ["lesscode-bk-resize-layout", `lesscode-bk-resize-layout-${this.placement}`, {
-      "lesscode-bk-resize-layout-collapsed": this.collapsed,
-      "lesscode-bk-resize-layout-border": this.border,
-      "lesscode-bk-resize-layout-collapsible": this.collapsible
+    const bkResizeLayoutClass = ["bk-vision-bk-resize-layout", `bk-vision-bk-resize-layout-${this.placement}`, {
+      "bk-vision-bk-resize-layout-collapsed": this.collapsed,
+      "bk-vision-bk-resize-layout-border": this.border,
+      "bk-vision-bk-resize-layout-collapsible": this.collapsible
     }];
     return createVNode("div", {
       "ref": "bkResizeLayoutRef",
       "class": bkResizeLayoutClass
     }, [createVNode("aside", {
-      "class": "lesscode-bk-resize-layout-aside",
+      "class": "bk-vision-bk-resize-layout-aside",
       "ref": "asideRef",
       "style": this.asideStyle
     }, [withDirectives(createVNode("div", {
-      "class": "lesscode-bk-resize-layout-aside-content"
+      "class": "bk-vision-bk-resize-layout-aside-content"
     }, [(_b = (_a = this.$slots).aside) == null ? void 0 : _b.call(_a)]), [[vShow, this.asideContentVisible]]), withDirectives(createVNode("i", {
-      "class": "lesscode-bk-resize-trigger",
+      "class": "bk-vision-bk-resize-trigger",
       "style": this.triggerStyle,
       "onMousedown": withModifiers(this.handleMousedown, ["left"])
     }, null), [[vShow, !this.disabled && (!this.collapsed || this.autoMinimize)]]), withDirectives(createVNode("i", {
-      "class": ["lesscode-bk-resize-proxy", this.placement],
+      "class": ["bk-vision-bk-resize-proxy", this.placement],
       "ref": "resizeProxyRef"
     }, null), [[vShow, !this.collapsed || this.autoMinimize]]), this.collapsible && (((_d = (_c = this.$slots)["collapse-trigger"]) == null ? void 0 : _d.call(_c)) || (this.collapsed ? createVNode(angleRight, {
-      "class": "lesscode-bk-resize-collapse",
+      "class": "bk-vision-bk-resize-collapse",
       "onClick": this.setCollapse
     }, null) : createVNode(angleLeft, {
-      "class": "lesscode-bk-resize-collapse",
+      "class": "bk-vision-bk-resize-collapse",
       "onClick": this.setCollapse
     }, null)))]), createVNode("main", {
-      "class": "lesscode-bk-resize-layout-main"
+      "class": "bk-vision-bk-resize-layout-main"
     }, [(_f = (_e = this.$slots).main) == null ? void 0 : _f.call(_e)]), createVNode("div", {
-      "class": "lesscode-bk-resize-mask",
+      "class": "bk-vision-bk-resize-mask",
       "ref": "resizeMaskRef"
     }, null)]);
   }
@@ -33656,7 +33656,7 @@ var Component$5 = defineComponent({
       return false;
     };
     const makeClass = (item) => {
-      const timelineClsPrefix = "lesscode-bk-timeline";
+      const timelineClsPrefix = "bk-vision-bk-timeline";
       const dotColors = ["blue", "red", "green", "yellow", "gray"];
       const timelineThemeCls = item.type ? `${timelineClsPrefix}-${item.type}` : `${timelineClsPrefix}-default`;
       const timelineSizeCls = item.size ? `${timelineClsPrefix}-${item.size}` : "";
@@ -33667,29 +33667,29 @@ var Component$5 = defineComponent({
       return timelinesCls;
     };
     const getContent = (item) => this.$slots.content ? createVNode("div", {
-      "class": "lesscode-bk-timeline-content"
+      "class": "bk-vision-bk-timeline-content"
     }, [this.$slots.content(item)]) : createVNode("div", {
-      "class": "lesscode-bk-timeline-content",
+      "class": "bk-vision-bk-timeline-content",
       "innerHTML": item.content
     }, null);
     return createVNode("ul", {
-      "class": ["lesscode-bk-timeline", this.extCls]
+      "class": ["bk-vision-bk-timeline", this.extCls]
     }, [this.defaultTimelines.map((item) => {
       var _a, _b, _c;
       return createVNode("li", {
-        "class": ["lesscode-bk-timeline-dot", makeClass(item)]
+        "class": ["bk-vision-bk-timeline-dot", makeClass(item)]
       }, [isIcon(item) ? createVNode("div", {
-        "class": "lesscode-bk-timeline-icon",
+        "class": "bk-vision-bk-timeline-icon",
         "style": {
           border: item.border ? `2px solid ${item.color}` : "0px",
           borderRadius: item.border ? "50%" : "0"
         }
       }, [createVNode("span", {
-        "class": "lesscode-bk-timeline-icon-inner"
+        "class": "bk-vision-bk-timeline-icon-inner"
       }, [typeof item.icon === "function" ? createVNode(item.icon, null, null) : item.icon])]) : "", createVNode("div", {
-        "class": "lesscode-bk-timeline-section"
+        "class": "bk-vision-bk-timeline-section"
       }, [createVNode("div", {
-        "class": "lesscode-bk-timeline-title",
+        "class": "bk-vision-bk-timeline-title",
         "onClick": () => {
           this.titleSelect(item);
         }
@@ -33755,7 +33755,7 @@ var Component$4 = defineComponent({
     };
   },
   render() {
-    const processClsPrefix = "lesscode-bk-process";
+    const processClsPrefix = "bk-vision-bk-process";
     const processCls = classes({
       [`${this.extCls}`]: !!this.extCls
     }, `${processClsPrefix}`);
@@ -33766,22 +33766,22 @@ var Component$4 = defineComponent({
     const renderIcon = (index2, item) => {
       if (index2 === this.curProcess - 1 && isLoadingStatus(item)) {
         return createVNode(circle, {
-          "class": "lesscode-bk-icon lesscode-bk-process-icon icon-loading"
+          "class": "bk-vision-bk-icon bk-vision-bk-process-icon icon-loading"
         }, null);
       }
       if (index2 === this.curProcess - 1 && isErrorStatus(item)) {
         return createVNode(error, {
-          "class": "lesscode-bk-process-icon icon-error"
+          "class": "bk-vision-bk-process-icon icon-error"
         }, null);
       }
       if (index2 === this.curProcess - 1 && isIcon(item)) {
         return createVNode("span", {
-          "class": "lesscode-bk-process-icon-custom"
+          "class": "bk-vision-bk-process-icon-custom"
         }, [createVNode(item.icon, null, null)]);
       }
       if (isDone(index2)) {
         return createVNode(done, {
-          "class": "lesscode-bk-process-icon-done"
+          "class": "bk-vision-bk-process-icon-done"
         }, null);
       }
     };
@@ -33809,7 +33809,7 @@ var Component$4 = defineComponent({
   }
 });
 const BkProcess = withInstall(Component$4);
-const CLASS_PREFIX = "lesscode-bk-upload";
+const CLASS_PREFIX = "bk-vision-bk-upload";
 var EThemes = /* @__PURE__ */ ((EThemes2) => {
   EThemes2["BUTTON"] = "button";
   EThemes2["DRAGGABLE"] = "draggable";
@@ -38178,7 +38178,7 @@ var CodeDiff = defineComponent({
     const diffHtml = ref("");
     const diffBoxCls = computed(() => classes({
       dark: props2.theme === themesEnum.dark
-    }, "hljs lesscode-bk-code-diff"));
+    }, "hljs bk-vision-bk-code-diff"));
     function highlightElement() {
       nextTick(() => {
         if (diffBox.value) {
@@ -39152,9 +39152,9 @@ var InputContainer = defineComponent({
     };
     const colorPickerCls = computed(() => classes({
       error: props2.info.error
-    }, "lesscode-bk-color-picker-input-value"));
+    }, "bk-vision-bk-color-picker-input-value"));
     return () => createVNode("div", {
-      "class": "lesscode-bk-color-picker-input-part"
+      "class": "bk-vision-bk-color-picker-input-part"
     }, [createVNode("input", {
       "type": props2.info.name === "HEX" ? "text" : "number",
       "class": colorPickerCls.value,
@@ -39162,7 +39162,7 @@ var InputContainer = defineComponent({
       "onKeydown": handleTab,
       "onInput": handleInput
     }, null), createVNode("span", {
-      "class": "lesscode-bk-color-picker-input-text"
+      "class": "bk-vision-bk-color-picker-input-text"
     }, [props2.info.name])]);
   }
 });
@@ -39263,14 +39263,14 @@ var ColorInput = defineComponent({
       return result;
     };
     return () => createVNode("div", {
-      "class": "lesscode-bk-color-picker-input"
+      "class": "bk-vision-bk-color-picker-input"
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-input-hex"
+      "class": "bk-vision-bk-color-picker-input-hex"
     }, [createVNode(InputContainer, {
       "info": hex,
       "onInput": handleInput
     }, null)]), createVNode("div", {
-      "class": "lesscode-bk-color-picker-input-rgba"
+      "class": "bk-vision-bk-color-picker-input-rgba"
     }, [createVNode(InputContainer, {
       "info": r2,
       "onInput": handleInput
@@ -39415,7 +39415,7 @@ var HueSlider = defineComponent({
     return () => createVNode("div", {
       "ref": containerRef,
       "tabindex": "0",
-      "class": "lesscode-bk-color-picker-hue",
+      "class": "bk-vision-bk-color-picker-hue",
       "onKeydown": handleArrowKeydown,
       "onMousedown": (e) => {
         e.stopPropagation();
@@ -39423,10 +39423,10 @@ var HueSlider = defineComponent({
         handleMouseDown(e);
       }
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-hue-pointer",
+      "class": "bk-vision-bk-color-picker-hue-pointer",
       "style": pointerStyle.value
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-hue-rectangle"
+      "class": "bk-vision-bk-color-picker-hue-rectangle"
     }, null)])]);
   }
 });
@@ -39451,9 +39451,9 @@ var RecommendColors = defineComponent({
     });
     const colors = computed(() => getColorsFromRecommend(props2.recommend));
     const getColorClass = (color, index2) => classes({
-      "lesscode-bk-color-picker-empty": color === "",
-      "lesscode-bk-color-picker-recommend-selected-color": isFocused.value && selectedIndex.value === index2
-    }, "lesscode-bk-color-picker-recommend-color");
+      "bk-vision-bk-color-picker-empty": color === "",
+      "bk-vision-bk-color-picker-recommend-selected-color": isFocused.value && selectedIndex.value === index2
+    }, "bk-vision-bk-color-picker-recommend-color");
     const handleKeydown = (e) => {
       if (e.code === "Tab") {
         emit("tab", e);
@@ -39502,7 +39502,7 @@ var RecommendColors = defineComponent({
     };
     return () => createVNode("div", {
       "tabindex": "0",
-      "class": "lesscode-bk-color-picker-recommend",
+      "class": "bk-vision-bk-color-picker-recommend",
       "onFocus": () => isFocused.value = true,
       "onBlur": () => isFocused.value = false,
       "onKeydown": handleKeydown
@@ -39511,9 +39511,9 @@ var RecommendColors = defineComponent({
       "class": getColorClass(color, index2),
       "onClick": () => selectColor(index2)
     }, [selectedIndex.value === index2 ? createVNode("div", {
-      "class": "lesscode-bk-color-picker-pointer"
+      "class": "bk-vision-bk-color-picker-pointer"
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-circle"
+      "class": "bk-vision-bk-color-picker-circle"
     }, null)]) : void 0]))]);
   }
 });
@@ -39608,7 +39608,7 @@ var SaturationPanel = defineComponent({
     return () => createVNode("div", {
       "ref": containerRef,
       "tabindex": "0",
-      "class": "lesscode-bk-color-picker-saturation",
+      "class": "bk-vision-bk-color-picker-saturation",
       "style": backgroundStyle.value,
       "onKeydown": handleArrowKeydown,
       "onMousedown": (e) => {
@@ -39616,14 +39616,14 @@ var SaturationPanel = defineComponent({
         handleMouseDown(e);
       }
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-saturation-white"
+      "class": "bk-vision-bk-color-picker-saturation-white"
     }, null), createVNode("div", {
-      "class": "lesscode-bk-color-picker-saturation-black"
+      "class": "bk-vision-bk-color-picker-saturation-black"
     }, null), createVNode("div", {
-      "class": "lesscode-bk-color-picker-pointer",
+      "class": "bk-vision-bk-color-picker-pointer",
       "style": pointerStyle.value
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-circle"
+      "class": "bk-vision-bk-color-picker-circle"
     }, null)])]);
   }
 });
@@ -39663,11 +39663,11 @@ var Component$2 = defineComponent({
     const saturationPanelRef = ref(null);
     const referenceRef = ref(null);
     const colorPickerCls = computed(() => classes({
-      [`lesscode-bk-color-picker-${props2.size}`]: props2.size,
-      "lesscode-bk-color-picker-show-dropdown": showDropdown.value,
-      "lesscode-bk-color-picker-show-value": props2.showValue,
-      "lesscode-bk-color-picker-disabled": props2.disabled || props2.readonly
-    }, `lesscode-bk-color-picker ${props2.extCls}`));
+      [`bk-vision-bk-color-picker-${props2.size}`]: props2.size,
+      "bk-vision-bk-color-picker-show-dropdown": showDropdown.value,
+      "bk-vision-bk-color-picker-show-value": props2.showValue,
+      "bk-vision-bk-color-picker-disabled": props2.disabled || props2.readonly
+    }, `bk-vision-bk-color-picker ${props2.extCls}`));
     const isRenderRecommend = computed(() => Boolean(props2.recommend === true || Array.isArray(props2.recommend) && props2.recommend.length));
     onBeforeMount(() => {
       changeColorFromProps({
@@ -39714,7 +39714,7 @@ var Component$2 = defineComponent({
       showDropdown.value = true;
       (_a = dropRef.value) == null ? void 0 : _a.updateDropdown();
       setTimeout(() => {
-        const hexInput = dropRef.value.$el.querySelector(".lesscode-bk-color-picker-input-hex .lesscode-bk-color-picker-input-value");
+        const hexInput = dropRef.value.$el.querySelector(".bk-vision-bk-color-picker-input-hex .bk-vision-bk-color-picker-input-value");
         hexInput.select();
       }, 100);
     };
@@ -39786,27 +39786,27 @@ var Component$2 = defineComponent({
       "onKeydown": handleTriggerKeydown,
       "onClick": toggleDropdown
     }, [createVNode("div", {
-      "class": "lesscode-bk-color-picker-color"
+      "class": "bk-vision-bk-color-picker-color"
     }, [createVNode("span", {
-      "class": `lesscode-bk-color-picker-color-square ${!colorStr.value && "lesscode-bk-color-picker-empty"}`,
+      "class": `bk-vision-bk-color-picker-color-square ${!colorStr.value && "bk-vision-bk-color-picker-empty"}`,
       "style": `background: ${colorStr.value || "#FFF"}`
     }, null)]), props2.showValue ? createVNode("div", {
-      "class": "lesscode-bk-color-picker-text"
+      "class": "bk-vision-bk-color-picker-text"
     }, [createVNode("span", null, [colorStr.value])]) : void 0, createVNode("div", {
-      "class": "lesscode-bk-color-picker-icon"
+      "class": "bk-vision-bk-color-picker-icon"
     }, [createVNode(angleUp, {
       "class": "icon-angle-down"
     }, null)]), createVNode(Transition, {
-      "name": "lesscode-bk-fade-down-transition"
+      "name": "bk-vision-bk-fade-down-transition"
     }, {
       default: () => [withDirectives(createVNode(PickerDropdown, {
         "ref": dropRef,
         "triggerRef": referenceRef.value
       }, {
         default: () => [createVNode("div", {
-          "class": "lesscode-bk-color-dropdown-container"
+          "class": "bk-vision-bk-color-dropdown-container"
         }, [createVNode("div", {
-          "class": "lesscode-bk-color-picker-dropdown",
+          "class": "bk-vision-bk-color-picker-dropdown",
           "onClick": (e) => {
             e.stopPropagation();
           },
@@ -39826,7 +39826,7 @@ var Component$2 = defineComponent({
           "onTab": handleTabInput,
           "onChange": handleColorChange
         }, null), isRenderRecommend.value ? createVNode("div", {
-          "class": "lesscode-bk-color-picker-recommend-container"
+          "class": "bk-vision-bk-color-picker-recommend-container"
         }, [createVNode(RecommendColors, {
           "colorObj": colorObj,
           "recommend": props2.recommend,
@@ -41375,19 +41375,19 @@ var Component = defineComponent({
       "theme": props2.theme,
       "width": props2.width,
       "onAfterShow": () => visible.value = true,
-      "extCls": "lesscode-bk-pop-confirm-box"
+      "extCls": "bk-vision-bk-pop-confirm-box"
     }, {
       default: () => slots.default(),
       content: () => createVNode("div", {
-        "class": "lesscode-bk-pop-confirm"
+        "class": "bk-vision-bk-pop-confirm"
       }, [typeof slots.content === "function" ? slots.content() : createVNode(Fragment, null, [props2.title ? createVNode("div", {
-        "class": "lesscode-bk-pop-confirm-title"
+        "class": "bk-vision-bk-pop-confirm-title"
       }, [icon ? createVNode("span", {
-        "class": "lesscode-bk-pop-confirm-icon"
+        "class": "bk-vision-bk-pop-confirm-icon"
       }, [icon]) : "", createVNode("span", null, [props2.title])]) : "", createVNode("div", {
-        "class": "lesscode-bk-pop-confirm-content"
+        "class": "bk-vision-bk-pop-confirm-content"
       }, [!props2.title ? icon : "", props2.content])]), createVNode("div", {
-        "class": "lesscode-bk-pop-confirm-footer"
+        "class": "bk-vision-bk-pop-confirm-footer"
       }, [createVNode(BkButton, {
         "onClick": ensure,
         "size": "small",
